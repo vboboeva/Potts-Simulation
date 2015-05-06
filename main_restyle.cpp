@@ -37,7 +37,7 @@ float rr1[N][S+1];
 FILE *pat;
 FILE *mvari;
 FILE *lulu;
-FILE *last; 
+FILE *last;
 FILE *Qfile;
 FILE *ksequenza;
 FILE *Hfile;
@@ -65,154 +65,156 @@ extern void deletememory();
 extern void SetUpTables();
 extern void print_m(float);
 extern void calcolo_m();
+
 /***************************************************    DYNAMICS   ****************************************************/
 
-int main()
+int main(int argv, char *argc[])
 {
-int i, n, k, f, mu, iii, ttt, x;
-int  fine, intempo, numero, Mumax, Mumaxold;
-float t, Mmax, lunghezza;
-float Q;
-time_t iniziosim, finesim, fineiniz;
 
-ksequenza=fopen("ksequenza.txt","w");
-last = fopen("last.dat","w");
-//lulu = fopen("lunghezza.dat","w");
-Passi=fopen("passi.txt","a");		///###########################################################################
+	//Force number of time steps
 
-srand48( time(NULL) );
+	int i, n, k, f, mu, iii, ttt, x;
+	int  fine, intempo, numero, Mumax, Mumaxold;
+	float t, Mmax, lunghezza;
+	float Q;
+	time_t iniziosim, finesim, fineiniz;
 
-getmemory();
-read_pattern();	
-SetUpTables();							/// per creare vettori shaffle di unita	
+	ksequenza=fopen("ksequenza.txt","w");
+	last = fopen("last.dat","w");
+	//lulu = fopen("lunghezza.dat","w");
+	Passi=fopen("passi.txt","a");		///###########################################################################
 
-n0=500*N;
+	srand48( time(NULL) );
 
+	getmemory();
+	read_pattern();
+	SetUpTables();							/// per creare vettori shaffle di unita
 
-
-for(f=0;f<p;f++)   ///	 per  diversi pattern di inizio
-{
-lunghezza=0;
-Mumaxold=p+5;
-Mumax=p+5;
-
-//f=Retr;/// !!!  f=Retr=retr
-n=0;
-iniziosim=time(0);
-printf( "simulazione iniziata:	%ld		\n", iniziosim);
-//srand48( time(NULL) );
-
-/// poi rimetti il seme random!!!!!!!!!!!!!!!!
-retr=f;	
-printf("prima	\n");
-fprintf(ksequenza, "%d		", retr);
-fflush (ksequenza); 
-printf("retrieval di =%d\n", retr);
-initializing();						///to initializing the network
-//intempo=0;
-
-numero=-1;
-printf( "inizia dinamica\n");
-
-mvari=fopen("andamento_m.txt","w");
-
-
-fineiniz=time(0);
-printf( "durata inizializzazione		%ld secondi\n", fineiniz-iniziosim);
+	n0=500*N;
 
 
 
-for(ttt=0;ttt<Trete;ttt++)
-{
-	x=(int)(NumSet*drand48());
-
-	for(iii=0;iii<N;iii++)
+	for(f=0;f<p;f++)   ///	 per  diversi pattern di inizio
 	{
-		i=Permut[iii][x];
-		update_stato(i,n);																	///update di s[][] di un neu per ogni stato
+	lunghezza=0;
+	Mumaxold=p+5;
+	Mumax=p+5;
+
+	//f=Retr;/// !!!  f=Retr=retr
+	n=0;
+	iniziosim=time(0);
+	printf( "simulazione iniziata:	%ld		\n", iniziosim);
+	//srand48( time(NULL) );
+
+	/// poi rimetti il seme random!!!!!!!!!!!!!!!!
+	retr=f;
+	printf("prima	\n");
+	fprintf(ksequenza, "%d		", retr);
+	fflush (ksequenza);
+	printf("retrieval di =%d\n", retr);
+	initializing();						///to initializing the network
+	//intempo=0;
+
+	numero=-1;
+	printf( "inizia dinamica\n");
+
+	mvari=fopen("andamento_m.txt","w");
 
 
-		if((n%tempostampa)==0)																/// stampo gli overlap
+	fineiniz=time(0);
+	printf( "durata inizializzazione		%ld secondi\n", fineiniz-iniziosim);
+
+	for(ttt=0;ttt<Trete;ttt++)
+	{
+		x=(int)(NumSet*drand48());
+
+		for(iii=0;iii<N;iii++)
 		{
-		t=(float)n/N;																			/// effective time
-		calcolo_m();
+			i=Permut[iii][x];
+			update_stato(i,n);																	///update di s[][] di un neu per ogni stato
 
-// 			for(mu=0;mu<p;mu++)
-// 			{
-// 					fprintf(mvari, "%.2f	%.4f	%d\n", t, m[mu], mu);
-// 					fflush(mvari);
-// 			}
 
-			if(n>n0+10*N)																/// stampo gli overlap
+			if((n%tempostampa)==0)																/// stampo gli overlap
 			{
-				Mmax=-1.;
-				Mumax=p+1;
-				for(mu=0;mu<p;mu++)
+			t=(float)n/N;																			/// effective time
+			calcolo_m();
+
+	// 			for(mu=0;mu<p;mu++)
+	// 			{
+	// 					fprintf(mvari, "%.2f	%.4f	%d\n", t, m[mu], mu);
+	// 					fflush(mvari);
+	// 			}
+
+				if(n>n0+10*N)																/// stampo gli overlap
 				{
-					if(m[mu]>Mmax)
+					Mmax=-1.;
+					Mumax=p+1;
+					for(mu=0;mu<p;mu++)
 					{
-					Mmax=m[mu];
-					Mumax=mu;
-					} 
-				}
-	
-				if(Mumaxold!=Mumax && Mmax>0.5)
-				{
-				numero=numero+1;
-				Mumaxold=Mumax;
-//				printf( "t=%f\n",t);
-			fprintf(ksequenza, "%d	", Mumax);
-//			printf("%d	", Mumax);
-			fflush (ksequenza); 
-				}
-			}
+						if(m[mu]>Mmax)
+						{
+						Mmax=m[mu];
+						Mumax=mu;
+						}
+					}
 
-		///per vedere se la sequenza di latching e` finita
-		for(mu=0;mu<p;mu++)									
-		{
-			fine=1;
-			if(m[mu]>0.02)
+					if(Mumaxold!=Mumax && Mmax>0.5)
+					{
+					numero=numero+1;
+					Mumaxold=Mumax;
+	//				printf( "t=%f\n",t);
+				fprintf(ksequenza, "%d	", Mumax);
+	//			printf("%d	", Mumax);
+				fflush (ksequenza);
+					}
+				}
+
+			///per vedere se la sequenza di latching e` finita
+			for(mu=0;mu<p;mu++)
 			{
-				fine=0;
-				mu=p;
+				fine=1;
+				if(m[mu]>0.02)
+				{
+					fine=0;
+					mu=p;
+				}
 			}
+			if((fine!=0) && (n>n0+100*N))
+			{
+				lunghezza=t;
+				ttt=Trete;
+				iii=N;
+			}
+			}
+		n++;
 		}
-		if((fine!=0) && (n>n0+100*N))
-		{
-			lunghezza=t;
-			ttt=Trete;
-			iii=N;
-		}
-		}
-	n++;
+	if(ttt==(Trete-1))  lunghezza=t;
 	}
-if(ttt==(Trete-1))  lunghezza=t;
-}
 
 
-fprintf(ksequenza, "  999999 \n");
-fflush(ksequenza);
+	fprintf(ksequenza, "  999999 \n");
+	fflush(ksequenza);
 
-fclose(mvari);
+	fclose(mvari);
 
-finesim=time(0);
-// printf( "simulazione finita:	%ld		\n", finesim);
-printf( "durata		%ld secondi\n", finesim-iniziosim);
+	finesim=time(0);
+	// printf( "simulazione finita:	%ld		\n", finesim);
+	printf( "durata		%ld secondi\n", finesim-iniziosim);
 
-printf( "p=%d	retr=%d	passi %d	lunghezza = %.1f	\n",p,f, numero, lunghezza);
-/*fprintf( lulu,"%d	%.1f	\n",f, lunghezza);		
-fflush(lulu);*/
-fprintf(last,"%d	%d	%d	\n", retr, numero, Mumax);
-fflush(last);
+	printf( "p=%d	retr=%d	passi %d	lunghezza = %.1f	\n",p,f, numero, lunghezza);
+	/*fprintf( lulu,"%d	%.1f	\n",f, lunghezza);
+	fflush(lulu);*/
+	fprintf(last,"%d	%d	%d	\n", retr, numero, Mumax);
+	fflush(last);
 
-fprintf(Passi,"%d	%d	%.1f\n",f,numero,lunghezza);	
-fflush(Passi);
-}
-fclose(Passi);
-deletememory();
-fclose(ksequenza);
-fclose(last);
-//fclose(lulu);
+	fprintf(Passi,"%d	%d	%.1f\n",f,numero,lunghezza);
+	fflush(Passi);
+	}
+	fclose(Passi);
+	deletememory();
+	fclose(ksequenza);
+	fclose(last);
+	//fclose(lulu);
 }
 /**********************************************************************************************************************/
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -234,9 +236,3 @@ fclose(last);
 /// 	n mi da il tempo di update della singola unita
 ///	t mi da il tempo della rete
 ///
-
-
-
-
-
-
