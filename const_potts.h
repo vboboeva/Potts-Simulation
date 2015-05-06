@@ -1,6 +1,6 @@
 
 #define      Retr   		3
-#define      N   			20000
+#define      N   			600
 #define      Cm			90
 #define      p				10
 #define      S				3

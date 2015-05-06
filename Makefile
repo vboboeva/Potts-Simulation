@@ -14,8 +14,8 @@ main.x : main_restyle.cpp
 generate: generator.x
 	@./generator.x
 
-profile: CFLAGS += -g -pg
-profile: all
+profile: CFLAGS += -g -pg -ggdb
+profile: all;
 
 run: generate main.x
 	@./main.x 1

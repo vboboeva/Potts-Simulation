@@ -130,6 +130,7 @@ int main(int argv, char *argc[])
 
 		for(iii=0;iii<N;iii++)
 		{
+			
 			i=Permut[iii][x];
 			update_stato(i,n);																	///update di s[][] di un neu per ogni stato
 
