@@ -6,7 +6,6 @@ Original version of code
 
 * Develop and Potts network simulation with high performance code.
 * Version 0.1
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
 
 ### How do I get set up? ###
 
