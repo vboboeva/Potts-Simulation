@@ -86,7 +86,7 @@ int main(int argv, char *argc[])
 
 	srand48( time(NULL) );
 
-	getmemory();
+	getmemory();//OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 	read_pattern();
 	SetUpTables();							/// per creare vettori shaffle di unita
 
@@ -130,7 +130,7 @@ int main(int argv, char *argc[])
 
 		for(iii=0;iii<N;iii++)
 		{
-			
+
 			i=Permut[iii][x];
 			update_stato(i,n);																	///update di s[][] di un neu per ogni stato
 

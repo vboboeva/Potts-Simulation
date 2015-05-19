@@ -1,4 +1,4 @@
-#include <stdio.h>                              
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
@@ -9,86 +9,86 @@
 
 
 int Factors[N_fact][Num_fact];
-int Patt[p][N];	
+int Patt[p][N];
 double	C[p][p];
 
 FILE *fpattern;
 
 void SetFactors(void);
 void SetPatterns(void);
-void save_pattern(int);		
+void save_pattern(int);
 double floor (double);
 
 
 int main()
 {
-int mu, nu, i;
-//srand48( 6789 );
-srand48( time(NULL) );
-SetFactors();								/// genero i fattori
+			int mu, nu, i;
+			//srand48( 6789 );
+			srand48( time(NULL) );
+			SetFactors();								/// genero i fattori
 
-SetPatterns();								/// genero i pattern
-
-
-
-///		calcolo la correlazione
-for(mu=0;mu<p;mu++)
-{
-for(nu=0;nu<p;nu++)
-{
-C[mu][nu]=0.0;
-
-for(i=0;i<N;i++)
-C[mu][nu]+= (Patt[mu][i]==Patt[nu][i]);
-
-C[mu][nu]=C[mu][nu]/N;
-}
-}
+			SetPatterns();								/// genero i pattern
 
 
-///	calcolo il valor medio e la deviazione standard
-double coppie, media, varianza, mC, vC;
-coppie=0.0;
 
-media=0.0;
-varianza=0.0;
+			///		calcolo la correlazione
+			for(mu=0;mu<p;mu++)
+			{
+			for(nu=0;nu<p;nu++)
+			{
+			C[mu][nu]=0.0;
 
-for(mu=0;mu<(p-1);mu++)
-{
-	for(nu=(mu+1);nu<p;nu++)
-	{
-	media+= C[mu][nu];
-	coppie++;		
-	}
-}
-mC=media/coppie;
+			for(i=0;i<N;i++)
+			C[mu][nu]+= (Patt[mu][i]==Patt[nu][i]);
+
+			C[mu][nu]=C[mu][nu]/N;
+			}
+			}
 
 
-for(mu=0;mu<(p-1);mu++)
-{
-	for(nu=(mu+1);nu<p;nu++)
-	{
-	varianza+= C[mu][nu]* C[mu][nu]-mC*mC;
-	}
-}
-vC=varianza/coppie;
+			///	calcolo il valor medio e la deviazione standard
+			double coppie, media, varianza, mC, vC;
+			coppie=0.0;
+
+			media=0.0;
+			varianza=0.0;
+
+			for(mu=0;mu<(p-1);mu++)
+			{
+				for(nu=(mu+1);nu<p;nu++)
+				{
+				media+= C[mu][nu];
+				coppie++;
+				}
+			}
+			mC=media/coppie;
 
 
-printf("<C>:		m= %.4f	sd=%.4f\n",mC, sqrt(vC));
+			for(mu=0;mu<(p-1);mu++)
+			{
+				for(nu=(mu+1);nu<p;nu++)
+				{
+				varianza+= C[mu][nu]* C[mu][nu]-mC*mC;
+				}
+			}
+			vC=varianza/coppie;
 
 
+			printf("<C>:		m= %.4f	sd=%.4f\n",mC, sqrt(vC));
 
 
 
 
 
-fpattern = fopen("pattern.dat","w");
 
-for(mu=0;mu<Num_p;mu++)						/// salvo i pattern nel file    "dati/spatt.txt"
-{
-save_pattern(mu);
-}
-fclose (fpattern);
+
+			fpattern = fopen("pattern.dat","w");
+
+			for(mu=0;mu<Num_p;mu++)						/// salvo i pattern nel file    "dati/spatt.txt"
+			{
+			save_pattern(mu);
+			}
+			fclose (fpattern);
 }
 
 
@@ -195,14 +195,14 @@ void SetPatterns(void)
       a_pa = (float)N_p/(float)Num_u;
       h000 += 0.1*(a_pa-a_mod);
 
-      k++;   
+      k++;
       }
       a_patt += a_pa/(float)Num_p;
-       
+
    }
    printf("Average pattern sparsity %f\n",a_patt);
 }
-    
+
 void save_pattern(int mu)
 {
 int i;
@@ -215,16 +215,3 @@ fprintf(fpattern, "%d ", Patt[mu][i]);						//to save one pattern on savepattern
 fprintf(fpattern, "\n ");
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
