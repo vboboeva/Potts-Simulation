@@ -10,17 +10,17 @@ int main(int argc, char *argv[]){
     generator.seed(12345);
 
     PatternGen pgen(
-               600,
-               10,
-               3,
-               0.25,
-               11.0,
-               50,
-               200,
-               0.25,
-               1e-6,
-               3e-6,
-               3e-6
+               600, //N
+               10, //p
+               3, //S
+               0.25, //a
+               11.0, //beta
+               50, //N_fact
+               200, //Num_fact
+               0.25, //a_fact
+               1e-6, //eps
+               3e-6, //a_pf
+               3e-6 //fact_eigen_slope
                );
 
     pgen.set_random_generator(generator);
