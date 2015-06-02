@@ -19,7 +19,7 @@ To compile the code in terminal use *make* or instead to compile and run, write 
 
 ## Features
 
-Right now I have cleaned up the code and rewrote it in a more object oriented way so it's easier to read and to reuse, this is a one-time task per simulation and so I will not stress the efficiency in this part of the code right now. Anyway this work had to be done to simplify and reorganize the code.
+Right now I have cleaned up the code of the pattern generation and rewrote it in a more object oriented way so it's easier to read and to reuse, this is a one-time task per simulation and so I will not stress the efficiency in this part of the code right now. Anyway this work had to be done to simplify and reorganize the code.
 
 The code now simply generate a pattern with defaults parameters and write optionally to a file. The output is consistent with the original version of the code. Now I will start working on the dynamics of the simulation.
 
