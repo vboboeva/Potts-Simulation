@@ -19,31 +19,30 @@ PatternGen::PatternGen(int N, int p, int S, double a, double beta, int N_fact, i
 
 }
 
+void PatternGen::set_random_generator(std::default_random_engine & generator){
+        this->generator = generator;
+}
+
 PatternGen::~PatternGen(){
     delete[] this->Patt;
 }
 
 void PatternGen::generate(){
 
-    int N_p,i,ii,k,m,s1,u1,u2,unit;
+    int N_p,i,j,k,m,s1,unit;
     double y, h_max, eigen_fact, sum_e, piccolo, a_pa,  a_patt, dh, h000,expon,fluct,bb;
     double hh[this->N][this->S],hhh[this->S],ss[this->S];
     int Factors[N_fact][Num_fact];
 
-
-    std::default_random_engine generator;
-    generator.seed(12312)
-    //generator.seed(time(NULL));
-
-    std::uniform_int_distribution int_uniform_0_N(0,this->N);
-    std::uniform_int_distribution int_uniform_0_S(0,this->S);
-    std::uniform_real_distribution double_uniform_0_1(0,1);
-    std::uniform_real_distribution double_uniform_0_eps(0,this->eps);
+    std::uniform_int_distribution<int> int_uniform_0_N(0,this->N);
+    std::uniform_int_distribution<int> int_uniform_0_S(0,this->S);
+    std::uniform_real_distribution<double> double_uniform_0_1(0,1);
+    std::uniform_real_distribution<double> double_uniform_0_eps(0,this->eps);
 
     //Set factors
     for(i=0; i<this->Num_fact; i++){
         for(j=0; j<this->N_fact; j++){
-            Factors[j][i] = int_uniform_0_N(generator);
+            Factors[j][i] = int_uniform_0_N(this->generator);
         }
     }
 
@@ -74,15 +73,15 @@ void PatternGen::generate(){
                 expon = 2.*piccolo;
             }
 
-            y = double_uniform_0_1(generator);
+            y = double_uniform_0_1(this->generator);
 
             if(y <= this->a_pf){
 
                 eigen_fact = exp(expon)*y/this->a_pf;
-                s1 = int_uniform_0_S(generator);
+                s1 = int_uniform_0_S(this->generator);
 
                 for(j=0; j<this->N_fact; j++){
-                    hh[Factors[j][k]][s1] += eigen_fact + double_uniform_0_eps(generator);
+                    hh[Factors[j][k]][s1] += eigen_fact + double_uniform_0_eps(this->generator);
                 }
             }
 
@@ -127,7 +126,7 @@ void PatternGen::generate(){
                     sum_e += exp(bb*dh);
                 }
 
-                Patt[m][unit] = this->S;
+                Patt[m*this->N + unit] = this->S;
 
                 for(s1=0;s1<this->S;s1++){
 
@@ -135,7 +134,7 @@ void PatternGen::generate(){
 
                     if(ss[s1]>=0.5){
                         N_p++;
-                        Patt[m][unit] = s1;
+                        Patt[m*this->N + unit] = s1;
                     }
                 }
             }
@@ -151,7 +150,7 @@ void PatternGen::generate(){
 
     }
 
-    std::cout << "Average pattern sparsity" << a_patt << std::endl;
+    std::cout << "Average pattern sparsity=" << a_patt << std::endl;
 
 }
 
@@ -193,8 +192,6 @@ void PatternGen::eval_stats(){
 
     //Display output
     std::cout << "<C>: Mean="
-              << std::fixed
-              << std::setw( 11 )
               << std::setprecision( 4 )
               << mC
               << "  Standard Dev="

@@ -1,5 +1,5 @@
 CPPC=g++
-CFLAGS= -std=c++11 
+CFLAGS= -std=c++11 -Wall
 
 all: main.x
 
