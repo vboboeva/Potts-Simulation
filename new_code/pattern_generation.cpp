@@ -1,6 +1,5 @@
 #include "main.h"
 
-
 PatternGen::PatternGen(int N, int p, int S, double a, double beta, int N_fact, int Num_fact, double a_fact, double eps, double a_pf, double fact_eigen_slope){
 
     this->N = N;
@@ -20,7 +19,7 @@ PatternGen::PatternGen(int N, int p, int S, double a, double beta, int N_fact, i
 }
 
 void PatternGen::set_random_generator(std::default_random_engine & generator){
-        this->generator = generator;
+        this->generator = &generator;
 }
 
 PatternGen::~PatternGen(){
@@ -42,7 +41,7 @@ void PatternGen::generate(){
     //Set factors
     for(i=0; i<this->Num_fact; i++){
         for(j=0; j<this->N_fact; j++){
-            Factors[j][i] = int_uniform_0_N(this->generator);
+            Factors[j][i] = int_uniform_0_N(*this->generator);
         }
     }
 
@@ -73,15 +72,15 @@ void PatternGen::generate(){
                 expon = 2.*piccolo;
             }
 
-            y = double_uniform_0_1(this->generator);
+            y = double_uniform_0_1(*this->generator);
 
             if(y <= this->a_pf){
 
                 eigen_fact = exp(expon)*y/this->a_pf;
-                s1 = int_uniform_0_S(this->generator);
+                s1 = int_uniform_0_S(*this->generator);
 
                 for(j=0; j<this->N_fact; j++){
-                    hh[Factors[j][k]][s1] += eigen_fact + double_uniform_0_eps(this->generator);
+                    hh[Factors[j][k]][s1] += eigen_fact + double_uniform_0_eps(*this->generator);
                 }
             }
 
@@ -109,7 +108,7 @@ void PatternGen::generate(){
                 h_max = 0.0;
 
                 for(s1=0; s1<this->S; s1++){
-                    hhh[s1] = hh[unit][s1]+fluct*drand48();
+                    hhh[s1] = hh[unit][s1] + fluct*double_uniform_0_1(*this->generator);
                     if(hhh[s1]>h_max)h_max = hhh[s1];
                 }
 
@@ -198,4 +197,19 @@ void PatternGen::eval_stats(){
               << sqrt(vC)
               << std::endl;
 
+}
+
+void PatternGen::save_pattern_to_file(std::string filename){
+
+    std::ofstream ofile;
+    int i,j;
+    ofile.open(filename);
+
+    for(i = 0; i < this->p; i++){
+        for(j= 0; j < this->N; j++){
+            ofile << this->Patt[i*this->N + j]<< " ";
+        }
+        ofile << std::endl;
+    }
+    ofile.close();
 }

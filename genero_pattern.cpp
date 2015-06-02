@@ -2,7 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-
+#include <iostream>
+#include <random>
+#include <iomanip>
 #include <time.h>
 
 #include "const_potts.h"
@@ -19,12 +21,21 @@ void SetPatterns(void);
 void save_pattern(int);
 double floor (double);
 
+std::default_random_engine generator;
+
+std::uniform_int_distribution<int> int_uniform_0_N(0,N);
+std::uniform_int_distribution<int> int_uniform_0_S(0,S);
+std::uniform_real_distribution<double> double_uniform_0_1(0,1);
+std::uniform_real_distribution<double> double_uniform_0_eps(0,eps);
 
 int main()
 {
+
+	generator.seed(12345);
+
+
 			int mu, nu, i;
 			//srand48( 6789 );
-			srand48( time(NULL) );
 			SetFactors();								/// genero i fattori
 
 			SetPatterns();								/// genero i pattern
@@ -102,7 +113,7 @@ void SetFactors(void)
    {
       for(i=0; i<N_fact; i++)
       {
-         Factors[i][k] = (int)((double)Num_u*drand48());
+         Factors[i][k] = int_uniform_0_N(generator);
       }
    }
 }
@@ -134,14 +145,14 @@ void SetPatterns(void)
 
          expon = -fact_eigen_slope*k;
          if((k+2) > Num_fact)expon = 2.*piccolo;
-         y = (float)drand48();
+         y = double_uniform_0_1(generator);
          if(y<=a_pf)
          {
             eigen_fact = exp(expon)*y/a_pf;
-            s1 = (int)((double)Num_s*drand48());
+            s1 = int_uniform_0_S(generator);
             for(ii=0; ii<N_fact; ii++)
             {
-               hh[Factors[ii][k]][s1] += eigen_fact+eps*drand48();
+               hh[Factors[ii][k]][s1] += eigen_fact+double_uniform_0_eps(generator);
             }
          }
          k++;
@@ -166,7 +177,7 @@ void SetPatterns(void)
          h_max = 0.0;
          for(s1=0; s1<Num_s; s1++)
          {
-            hhh[s1] = hh[unit][s1]+fluct*drand48();
+            hhh[s1] = hh[unit][s1]+fluct*double_uniform_0_1(generator);
             if(hhh[s1]>h_max)h_max = hhh[s1];
          }
 
@@ -212,6 +223,6 @@ for(i=0;i<N;i++)
 fprintf(fpattern, "%d ", Patt[mu][i]);						//to save one pattern on savepatterns
 }
 
-fprintf(fpattern, "\n ");
+fprintf(fpattern, "\n");
 
 }

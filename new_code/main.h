@@ -2,6 +2,7 @@
 #include <random>
 #include <time.h>
 #include <iomanip>
+#include <fstream>
 
 
 //pattern_generation.cpp
@@ -24,7 +25,7 @@ class PatternGen{
 
         int * Patt; // Dynamic array of dimension p * N
 
-        std::default_random_engine generator;
+        std::default_random_engine * generator;
 
     public:
         PatternGen(int N,
@@ -44,6 +45,7 @@ class PatternGen{
         void set_random_generator(std::default_random_engine & generator);
         void generate();
         void eval_stats();
+        void save_pattern_to_file(std::string filename);
 
 };
 

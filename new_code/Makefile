@@ -10,4 +10,4 @@ run: main.x
 	@./main.x
 
 clean:
-	rm -rf *.x
+	rm -rf *.x *.dat
