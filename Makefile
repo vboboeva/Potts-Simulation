@@ -1,24 +1,13 @@
 CPPC=g++
-CFLAGS= -Wall
+CFLAGS= -std=c++11 -Wall
 
+all: main.x
 
-all: generator.x main.x
-
-
-generator.x : genero_pattern.cpp
+main.x : main.cpp pattern_generation.cpp dynamic.cpp
 	$(CPPC) $(CFLAGS) -o $@ $^
 
-main.x : main_restyle.cpp
-	$(CPPC) $(CFLAGS) -o $@ $^
-
-generate: generator.x
-	@./generator.x
-
-profile: CFLAGS += -g -pg -ggdb
-profile: all;
-
-run: generate main.x
-	@./main.x 1
+run: main.x
+	@./main.x
 
 clean:
-	rm -rf *.x *.txt *.dat
+	rm -rf *.x *.dat
