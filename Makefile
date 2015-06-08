@@ -3,7 +3,7 @@ CFLAGS= -std=c++11 -Wall
 
 all: main.x
 
-main.x : main.cpp pattern_generation.cpp dynamic.cpp
+main.x : main.cpp pattern_generation.cpp dynamics.cpp
 	$(CPPC) $(CFLAGS) -o $@ $^
 
 run: main.x

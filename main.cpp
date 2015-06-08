@@ -3,8 +3,11 @@
 
 int main(int argc, char *argv[]){
 
-    std::cout << "Welcome to Potts simulation" << std::endl;
+    std::cout << "Potts simulation" << std::endl;
 
+    /***************************************************************************
+    PATTERN GENERATION
+    ***************************************************************************/
     //Random seed init
     std::default_random_engine generator;
     generator.seed(12345);
@@ -28,6 +31,13 @@ int main(int argc, char *argv[]){
     pgen.eval_stats();
     pgen.save_pattern_to_file("patterns.dat");
 
-    std::cout << "End" << std::endl;
+    /***************************************************************************
+    DYNAMICS
+    ***************************************************************************/
+
+    //Generate random sequence
+    RandomSequence sequence(10);
+
+    std::cout << "End of the simulation" << std::endl;
     return 0;
 }
