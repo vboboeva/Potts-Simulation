@@ -19,6 +19,7 @@ To compile the code in terminal use *make* or instead to compile and run, write 
 
 ## Features
 
+
 Right now I have cleaned up the code of the pattern generation and rewrote it in a more object oriented way so it's easier to read and to reuse, this is a one-time task per simulation and so I will not stress the efficiency in this part of the code right now. Anyway this work had to be done to simplify and reorganize the code.
 
 The code now simply generate a pattern with defaults parameters and write optionally to a file. The output is consistent with the original version of the code. Now I will start working on the dynamics of the simulation.
@@ -56,3 +57,70 @@ also in the code are kept  as generally true the following equations of the old 
 Num_u = N
 Num_p = p
 Num_s = S
+
+### !Hot! Features
+
+New class definitions:
+
+
+
+Generate an array of integers between 0 and N-1, you can shuffle this random sequence, print it on terminal or retrieve the pointer to the sequence.
+```c++
+class RandomSequence{
+    private:
+        int * sequence;
+        int N;
+
+    public:
+        RandomSequence(const int N);
+        ~RandomSequence();
+
+        void shuffle(std::default_random_engine & generator);
+        void save_sequence_to_file();
+        void print();
+        int * begin();
+        int * end();
+
+};
+```
+
+
+PUnit class defines a Potts Unit. Object has been since the updates of the dynamics are asynchronous and because of that the overhead is not an issue.
+```c++
+class PUnit{
+    private:
+        double * state; //Array that keeps the value of the states of the current Potts unit
+        double * cdata; //Array that keeps for each array all the data necessary to update the unit.
+        double * r; //Input!?
+        int S; //Number of states
+        int C; //Number of connections
+    public:
+        ~PUnit();
+        PUnit(const int S, const int C);
+        void init(const double beta, const double U);
+};
+```
+PNetwork is a class that handles the potts units. And provide useful methods to handle the dynamics and initialization process but a lot of the definitions has not be implemented yet.
+```c++
+class PNetwork{
+    private:
+        PUnit ** network;
+        int N; //Number of units
+        int S; //Number of states per unit
+        int C; // Number of connections per unit
+        double beta;
+        double U;
+
+        int * cm; //Connection matrix
+
+    public:
+        PNetwork(const int N, const int S, const int C, const double beta, const double U);
+        ~PNetwork();
+        void Init_Units();
+        void ConnectUnits();
+        void start();
+
+        void print_cm();
+
+};
+```

@@ -4,7 +4,7 @@
 #include <iomanip>
 #include <fstream>
 #include <algorithm>
-
+#include <cstring>
 
 //pattern_generation.cpp
 #ifndef __PATTERN_GENERATION
@@ -98,11 +98,13 @@ class PNetwork{
         int * cm; //Connection matrix
 
     public:
-        PNetwork(const int N, const int S, const int C);
+        PNetwork(const int N, const int S, const int C, const double beta, const double U);
         ~PNetwork();
         void Init_Units();
         void ConnectUnits();
         void start();
+
+        void print_cm();
 
 
 

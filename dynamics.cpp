@@ -45,13 +45,15 @@ void RandomSequence::print(){
 /*******************************************************************************
 POTTS NETWORK HANDLER
 *******************************************************************************/
-PNetwork::PNetwork( int N, int S, int C){
+PNetwork::PNetwork( int N, int S, int C, double beta, double U){
 
     int i;
 
     this->N = N;
     this->S = S;
     this->C = C;
+    this->beta = beta;
+    this->U = U;
 
     this->network = new PUnit * [N];
 
@@ -76,26 +78,49 @@ PNetwork::~PNetwork(){
 
 void PNetwork::ConnectUnits(){
 
+    int i,j;
+    std::default_random_engine generator;
+    generator.seed(time(NULL));
+
+    RandomSequence sequence(N);
+
+    //Fill cm matrix with indices of potts units
     for(i=0; i<N; i++){
-        i_c = 0;
-        while(i_c<Cm)
-        {
-            new_one = 1;
-
-            j = (int)((double)N*drand48());
-            if(j==i) new_one = 0;
-            for(x=0; x<i_c; x++){
-                if(C[i][x]==j) new_one = 0;
-            }
-
-            if(new_one){
-                C[i][i_c] = j;
-                i_c++;
-            }
+        sequence.shuffle(generator);
+        for(j=0; j < C; ++j){
+            std::memcpy(cm + C*i, sequence.begin(), C * sizeof(*sequence.begin()));
         }
     }
+
 }
 
+void PNetwork::print_cm(){
+
+    int i,j;
+
+    for(i=0; i<N; i++){
+        for(j=0; j < C; ++j){
+            std::cout << cm[C*i + j]<< " ";
+        }
+        std::cout << std::endl;
+    }
+
+}
+
+void PNetwork::Init_Units(){
+
+    int i;
+
+    //Generate connection matrix
+    this->ConnectUnits();
+
+    //Init unit states and r
+    for(i=0; i < N; ++i){
+        network[i]->init(beta,U);
+    }
+
+
+}
 /*******************************************************************************
 POTTS UNIT
 *******************************************************************************/
@@ -123,4 +148,5 @@ void PUnit::init( double beta, double U){
 
 	state[S] = 1 - S*state[0];
 	r[S] = 1 - state[S];
+
 }

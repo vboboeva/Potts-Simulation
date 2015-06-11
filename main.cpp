@@ -39,11 +39,13 @@ int main(int argc, char *argv[]){
     //Generate random sequence
     RandomSequence sequence(600);
     sequence.shuffle(generator);
+    //sequence.print(); //If you want to check the output of the shuffled sequence.
 
+    //Create the network
+    PNetwork pnet(600,10,3,11.0,0.1);
 
-    //Create Potts Network handler
-    PNetwork network(600,3,90);
-
+    //Initialize the network
+    pnet.Init_Units();//Yet not fully implemented
 
 
     std::cout << "End of the simulation" << std::endl;
