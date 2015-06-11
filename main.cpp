@@ -12,6 +12,7 @@ int main(int argc, char *argv[]){
     std::default_random_engine generator;
     generator.seed(12345);
 
+
     PatternGen pgen(
                600, //N
                10, //p
@@ -36,7 +37,14 @@ int main(int argc, char *argv[]){
     ***************************************************************************/
 
     //Generate random sequence
-    RandomSequence sequence(10);
+    RandomSequence sequence(600);
+    sequence.shuffle(generator);
+
+
+    //Create Potts Network handler
+    PNetwork network(600,3,90);
+
+
 
     std::cout << "End of the simulation" << std::endl;
     return 0;

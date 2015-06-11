@@ -5,6 +5,7 @@
 #include <fstream>
 #include <algorithm>
 
+
 //pattern_generation.cpp
 #ifndef __PATTERN_GENERATION
 #define __PATTERN_GENERATION
@@ -71,5 +72,49 @@ class RandomSequence{
         int * end();
 
 };
+
+class PUnit{
+    private:
+        double * state; //Array that keeps the value of the states of the current Potts unit
+        double * cdata; //Array that keeps for each array all the data necessary to update the unit.
+        double * r; //Input!?
+        int S; //Number of states
+        int C; //Number of connections
+    public:
+        ~PUnit();
+        PUnit(const int S, const int C);
+        void init(const double beta, const double U);
+};
+
+class PNetwork{
+    private:
+        PUnit ** network;
+        int N; //Number of units
+        int S; //Number of states per unit
+        int C; // Number of connections per unit
+        double beta;
+        double U;
+
+        int * cm; //Connection matrix
+
+    public:
+        PNetwork(const int N, const int S, const int C);
+        ~PNetwork();
+        void Init_Units();
+        void ConnectUnits();
+        void start();
+
+
+
+
+};
+
+/*
+struct data{
+        double * Jjl; //Array keeping the part of the connection tensor Jikjl with fixed i and k
+        double * Sjl; //Array keeping the state l of the connected unit j;
+};
+*/
+
 
 #endif
