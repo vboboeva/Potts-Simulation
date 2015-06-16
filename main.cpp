@@ -42,7 +42,7 @@ int main(int argc, char *argv[]){
     //sequence.print(); //If you want to check the output of the shuffled sequence.
 
     //Create the network
-    PNetwork pnet(600,10,3,11.0,0.1);
+    PNetwork pnet(pgen,90,0.1);
 
     //Initialize the network
     pnet.Init_Units();//Yet not fully implemented

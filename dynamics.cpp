@@ -45,15 +45,17 @@ void RandomSequence::print(){
 /*******************************************************************************
 POTTS NETWORK HANDLER
 *******************************************************************************/
-PNetwork::PNetwork( int N, int S, int C, double beta, double U){
+PNetwork::PNetwork(PatternGen & pgen, int C, double U){
 
     int i;
 
-    this->N = N;
-    this->S = S;
+    this->N = pgen.N;
+    this->S = pgen.S;
+    this->beta = pgen.beta;
+    this->p = pgen.p;
     this->C = C;
-    this->beta = beta;
     this->U = U;
+    this->pgen = &pgen;
 
     this->network = new PUnit * [N];
 
@@ -62,6 +64,8 @@ PNetwork::PNetwork( int N, int S, int C, double beta, double U){
     }
 
     this->cm = new int[N * C];
+
+    this->m = new double[pgen.p];
 }
 
 PNetwork::~PNetwork(){
@@ -73,6 +77,7 @@ PNetwork::~PNetwork(){
     }
 
     delete[] this->network;
+    delete[] this->m;
 
 }
 
@@ -107,6 +112,28 @@ void PNetwork::print_cm(){
 
 }
 
+void PNetwork::evaluate_m(){
+
+    int i,j,k;
+    int * xi = this->pgen->get_patt();
+    double ma, maa;
+    double a = pgen->a;
+    double invdenN = 1/(a*(1-a/S)*N);
+
+    for(i = 0; i < p; ++i){
+        maa = 0;
+        for(j = 0; j < N; ++j){
+            ma = 0;
+            for(k = 0; k < S; ++k){
+                ma += ( (xi[p * j + i] == k) - a/S) * network[i]->get_state()[k];				//to calculate m
+            }
+            maa += ma;
+        }
+        this->m[i] = maa*invdenN;
+    }
+
+
+}
 void PNetwork::Init_Units(){
 
     int i;
@@ -116,8 +143,11 @@ void PNetwork::Init_Units(){
 
     //Init unit states and r
     for(i=0; i < N; ++i){
-        network[i]->init(beta,U);
+        network[i]->init(beta,U,p,pgen->a/S,this->pgen->get_patt(),i,cm,this->network);
     }
+
+    this->evaluate_m();
+
 
 
 }
@@ -126,10 +156,12 @@ POTTS UNIT
 *******************************************************************************/
 PUnit::PUnit( int S, int C){
     this->state = new double[S + 1];
-    this->cdata = new double[2 * S * C * S];
+    this->cdata = new double[S * 2 * C * S];
     this->r = new double[S + 1];
     this->S = S;
     this->C = C;
+    this->h = new double[S];
+    this->theta = new double[S];
 }
 
 PUnit::~PUnit(){
@@ -138,15 +170,45 @@ PUnit::~PUnit(){
     delete[] this->cdata;
 }
 
-void PUnit::init( double beta, double U){
+double * PUnit::get_state(){
+    return this->state;
+}
+void PUnit::init(const double beta, const double U, const int p, const double as, const int * xi, const int unit, const int * cm, PUnit ** network){
 
-    int i;
+    int i,j,k,l;
+    double n = -2*beta-2*exp(beta*U)-2*S+sqrt(pow(2*beta+2*exp(beta*U)+2*S,2)+8*(-beta*beta-2*beta*S+2*beta*S*exp(beta*U)));
+    double d = 2*(-beta*beta-2*beta*S+2*beta*S*exp(beta*U));
 
     for(i = 0; i < S; ++i){
-		state[i]=(-2*beta-2*exp(beta*U)-2*S+sqrt(pow(2*beta+2*exp(beta*U)+2*S,2)+8*(-beta*beta-2*beta*S+2*beta*S*exp(beta*U))))/(2*(-beta*beta-2*beta*S+2*beta*S*exp(beta*U)));
+		state[i] = n / d;
 	}
 
 	state[S] = 1 - S*state[0];
 	r[S] = 1 - state[S];
+
+    //Generate Jkxl
+    for(i = 0; i < S; ++i){
+        h[i] = 0;
+        for(j = 0; j < C; ++j){
+            for(k = 0; k < S; ++k){
+
+                cdata[i * (2*C*S) + j * (S) + k] = 0;
+
+                for(l = 0; l < p; ++l){
+                    cdata[i * (2*C*S) + j * (S) + k] += ((xi[p * unit + l]==i)-as)*((xi[p * cm[C*unit+j] + l]==k)-as);
+                }
+
+                //Fill the space left with all the states that this units need to perform the update
+                cdata[C*S + i * (2*C*S) + j * (S) + k] = network[cm[C*unit + j]]->state[k];
+
+                h[i] += cdata[i * (2*C*S) + j * (S) + k] * network[cm[C*unit + j]]->state[k];
+            }
+        }
+        r[i] = h[i];
+        theta[i] = state[k];
+    }
+
+
+
 
 }

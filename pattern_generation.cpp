@@ -14,7 +14,7 @@ PatternGen::PatternGen(int N, int p, int S, double a, double beta, int N_fact, i
     this->a_pf = a_pf;
     this->fact_eigen_slope = fact_eigen_slope;
 
-    this->Patt = new int[p * N];
+    this->Patt = new int[N * p];
 
 }
 
@@ -125,7 +125,7 @@ void PatternGen::generate(){
                     sum_e += exp(bb*dh);
                 }
 
-                Patt[m*this->N + unit] = this->S;
+                Patt[unit*this->p + m] = this->S;
 
                 for(s1=0;s1<this->S;s1++){
 
@@ -133,7 +133,7 @@ void PatternGen::generate(){
 
                     if(ss[s1]>=0.5){
                         N_p++;
-                        Patt[m*this->N + unit] = s1;
+                        Patt[unit*this->p + m] = s1;
                     }
                 }
             }
@@ -163,7 +163,7 @@ void PatternGen::eval_stats(){
         for(nu=0;nu<p;nu++){
             C[mu][nu]=0.0;
             for(i=0;i<N;i++){
-                C[mu][nu]+= (Patt[mu*N + i]==Patt[nu*N + i]);
+                C[mu][nu]+= (Patt[i*this->p + mu]==Patt[i*this->p + nu]);
             }
             C[mu][nu]=C[mu][nu]/N;
         }
@@ -207,9 +207,13 @@ void PatternGen::save_pattern_to_file(std::string filename){
 
     for(i = 0; i < this->p; i++){
         for(j= 0; j < this->N; j++){
-            ofile << this->Patt[i*this->N + j]<< " ";
+            ofile << this->Patt[j*this->p + i]<< " ";
         }
         ofile << std::endl;
     }
     ofile.close();
+}
+
+int * PatternGen::get_patt(){
+    return this->Patt;
 }

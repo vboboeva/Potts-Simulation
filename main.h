@@ -11,6 +11,9 @@
 #define __PATTERN_GENERATION
 
 class PatternGen{
+
+    friend class PNetwork; //Allows PNetwork to direct access PatternGen member
+
     private:
         int N; // Number of potts units
         int p; // Number of patterns
@@ -47,6 +50,7 @@ class PatternGen{
         void generate();
         void eval_stats();
         void save_pattern_to_file(const std::string filename);
+        int * get_patt();
 
 };
 
@@ -78,12 +82,16 @@ class PUnit{
         double * state; //Array that keeps the value of the states of the current Potts unit
         double * cdata; //Array that keeps for each array all the data necessary to update the unit.
         double * r; //Input!?
+        double * h;
+        double * theta;
+
         int S; //Number of states
         int C; //Number of connections
     public:
         ~PUnit();
         PUnit(const int S, const int C);
-        void init(const double beta, const double U);
+        void init(const double beta, const double U, const int p, const double as, const int * xi, const int unit, const int * cm, PUnit ** network);
+        double * get_state();
 };
 
 class PNetwork{
@@ -92,17 +100,21 @@ class PNetwork{
         int N; //Number of units
         int S; //Number of states per unit
         int C; // Number of connections per unit
+        int p; //Number of patterns
         double beta;
         double U;
 
         int * cm; //Connection matrix
+        double * m; //m
+        PatternGen * pgen;
 
     public:
-        PNetwork(const int N, const int S, const int C, const double beta, const double U);
+        PNetwork(PatternGen & pgen,const int C, const double U);
         ~PNetwork();
         void Init_Units();
         void ConnectUnits();
         void start();
+        void evaluate_m();
 
         void print_cm();
 
