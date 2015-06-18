@@ -194,13 +194,15 @@ void PUnit::init(const double beta, const double U, const int p, const double as
 
                 cdata[i * (2*C*S) + j * (S) + k] = 0;
 
+                //Half filled with Jkxl
                 for(l = 0; l < p; ++l){
                     cdata[i * (2*C*S) + j * (S) + k] += ((xi[p * unit + l]==i)-as)*((xi[p * cm[C*unit+j] + l]==k)-as);
                 }
 
-                //Fill the space left with all the states that this units need to perform the update
+                //Half filled with all the states that this units need to perform the update
                 cdata[C*S + i * (2*C*S) + j * (S) + k] = network[cm[C*unit + j]]->state[k];
 
+                //Compute directly initial h
                 h[i] += cdata[i * (2*C*S) + j * (S) + k] * network[cm[C*unit + j]]->state[k];
             }
         }
