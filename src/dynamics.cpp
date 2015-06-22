@@ -85,7 +85,8 @@ void PNetwork::ConnectUnits(){
 
     int i,j;
     std::default_random_engine generator;
-    generator.seed(time(NULL));
+    generator.seed(12345);
+    //generator.seed(time(NULL));
 
     RandomSequence sequence(N);
 

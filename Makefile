@@ -1,13 +1,21 @@
 CPPC=g++
 CFLAGS= -std=c++11 -Wall
+SRC=src
+BUILD=build
 
-all: main.x
+.PHONY: all clean run test
 
-main.x : main.cpp pattern_generation.cpp dynamics.cpp
+all: $(BUILD)/potts.x
+
+$(BUILD)/potts.x: $(wildcard $(SRC)/*.cpp)
 	$(CPPC) $(CFLAGS) -o $@ $^
 
-run: main.x
-	@./main.x
+run: $(BUILD)/potts.x
+	@./$^
 
 clean:
-	rm -rf *.x *.dat
+	@rm -rf $(BUILD)/*.x $(BUILD)/*.dat
+
+test:
+	@$(MAKE) -s -C test
+	@$(MAKE) -s -C test clean

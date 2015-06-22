@@ -14,19 +14,21 @@
 
 #define      g				5.0
 #define      tau			10*N
-#define      T				600000*N
-#define      Trete			600000
-
-
+#define      T				1*N
+#define      Trete			1
+//#define      T				6000*N
+//#define      Trete			6000
 #define      as			a/S
 #define      tempostampa		5000
 #define      tstampato	(int)T/tempostampa
 
 #define      NumSet  		10
-
-
 #define      N_fact	 		50
 #define      Num_fact   	200
+#define 	    Num_u     		N
+#define	    Num_p			p
+#define 	    Num_s     		S
+
 #define	   a_fact			0.25
 #define	   a_mod				a
 #define	   eps				0.000001
