@@ -2,16 +2,17 @@ CPPC=g++
 CFLAGS= -std=c++11 -Wall
 SRC=src
 BUILD=build
-
+EXE=potts.x
 .PHONY: all clean run test
 
-all: $(BUILD)/potts.x
+all: $(BUILD)/$(EXE)
 
-$(BUILD)/potts.x: $(wildcard $(SRC)/*.cpp)
+$(BUILD)/$(EXE): $(wildcard $(SRC)/*.cpp)
 	$(CPPC) $(CFLAGS) -o $@ $^
 
-run: $(BUILD)/potts.x
-	@./$^
+run: $(BUILD)/$(EXE)
+	(cd $(BUILD) && ./$(EXE))
+
 
 clean:
 	@rm -rf $(BUILD)/*.x $(BUILD)/*.dat
