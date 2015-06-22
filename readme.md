@@ -19,5 +19,5 @@ To compile the code in terminal use *make* or instead to compile and run, write 
 
 ### !Hot! Features
 
-    * I have made a test directory so that when I finish the code refactoring and I have to check that numbers are still the same it will be an easy task.
-    * Changed the Makefile in the root directory. Now you can check that numbers are ok with the old version running make test, compile and run the code with make run or just compile with make
+* I have made a test directory so that when I finish the code refactoring and I have to check that numbers are still the same it will be an easy task.
+* Changed the Makefile in the root directory. Now you can check that numbers are ok with the old version running make test, compile and run the code with make run or just compile with make
