@@ -1,4 +1,11 @@
 ///	%%%%%%%%%%%%%%%%%%		CONNECTIVITY		%%%%%%%%%%%%%%%%%
+#include <iostream>
+#include <random>
+#include <time.h>
+#include <iomanip>
+#include <fstream>
+#include <algorithm>
+#include <cstring>
 extern int    	 	**xi;
 extern double   	**s;
 extern double    	**sold;
@@ -79,15 +86,21 @@ int i_c, x, new_one;
 
 /// inizializzo da file
 
+//inizializza e stampa s
+std::ofstream ofile;
+ofile.open("init_states.dat");
 for(i=0;i<N;i++)
 {
 	for(k=0;k<S;k++)
 	{
 	s[i][k]=(-2*beta-2*exp(beta*U)-2*S+sqrt(pow(2*beta+2*exp(beta*U)+2*S,2)+8*(-beta*beta-2*beta*S+2*beta*S*exp(beta*U))))/(2*(-beta*beta-2*beta*S+2*beta*S*exp(beta*U)));  //soluzione per lo stato sazionario sviluppata attorno a s[i][k]=0
+	ofile << s[i][k] << " ";
 	}
 s[i][S]=1.-S*s[i][0];
 r[i][S]=1.-s[i][S];
+ofile << s[i][S] << " "<< std::endl;
 }
+ofile.close();
 
 ///		Cij		///33333333333333333333333333333333333333333
 
@@ -108,7 +121,7 @@ for(i=0; i<N; i++)
 // //printf("%d	\n", i_c);
 // 		}
 ///		SPARSE connected
-		j = (int)((double)N*drand48());
+		j = (int)((double)int_uniform_0_N(generator));
 		if(j==i) new_one = 0;						/// per porre Cii=0
 		for(x=0; x<i_c; x++)						/// per controllare di non averlo gia` preso
 		{

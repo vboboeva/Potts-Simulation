@@ -3,6 +3,7 @@ CFLAGS= -std=c++11 -Wall
 SRC=src
 BUILD=build
 EXE=potts.x
+
 .PHONY: all clean run test
 
 all: $(BUILD)/$(EXE)

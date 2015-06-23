@@ -144,12 +144,27 @@ void PNetwork::Init_Units(){
 
     //Init unit states and r
     for(i=0; i < N; ++i){
-        network[i]->init(beta,U,p,pgen->a/S,this->pgen->get_patt(),i,cm,this->network);
+        network[i]->init(this->beta,this->U,p,pgen->a/S,this->pgen->get_patt(),i,this->cm,this->network);
     }
 
     this->evaluate_m();
 
 
+}
+
+void PNetwork::save_states_to_file(std::string filename){
+
+    std::ofstream ofile;
+    int i,j;
+    ofile.open(filename);
+
+    for(i = 0; i < this->N; i++){
+        for(j= 0; j < this->S+1; j++){
+            ofile << *(this->network[i]->get_state()+j)<< " ";
+        }
+        ofile << std::endl;
+    }
+    ofile.close();
 
 }
 /*******************************************************************************
@@ -174,6 +189,7 @@ PUnit::~PUnit(){
 double * PUnit::get_state(){
     return this->state;
 }
+
 void PUnit::init(const double beta, const double U, const int p, const double as, const int * xi, const int unit, const int * cm, PUnit ** network){
 
     int i,j,k,l;

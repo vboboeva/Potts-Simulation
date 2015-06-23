@@ -117,7 +117,7 @@ class PNetwork{
         void evaluate_m();
 
         void print_cm();
-
+        void save_states_to_file(std::string filename);
 
 
 

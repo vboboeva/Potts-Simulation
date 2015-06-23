@@ -12,7 +12,6 @@ int main(int argc, char *argv[]){
     std::default_random_engine generator;
     generator.seed(12345);
 
-
     PatternGen pgen(
                600, //N
                10, //p
@@ -47,8 +46,12 @@ int main(int argc, char *argv[]){
     //Initialize the network
     pnet.Init_Units();//Yet not fully implemented
 
-    //Write files to check numbers
-    //pnet.print_stats();
+    //Write states to file
+    pnet.save_states_to_file("init_states.dat");
+
+    //Write m to file
+
+    //Write J to file
 
 
     std::cout << "End of the simulation" << std::endl;

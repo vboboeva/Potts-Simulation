@@ -98,7 +98,8 @@ n0=500*N;
 
 
 
-for(f=0;f<p;f++)   ///	 per  diversi pattern di inizio
+//for(f=0;f<p;f++)   ///	 per  diversi pattern di inizio
+for(f=0;f<1;f++)   ///	 per  diversi pattern di inizio
 {
 lunghezza=0;
 Mumaxold=p+5;
