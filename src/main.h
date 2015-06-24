@@ -92,6 +92,7 @@ class PUnit{
         PUnit(const int S, const int C);
         void init(const double beta, const double U, const int p, const double as, const int * xi, const int unit, const int * cm, PUnit ** network);
         double * get_state();
+        void update_rule(const double w, const double g, const int tx, const int t);
 };
 
 class PNetwork{
@@ -103,32 +104,30 @@ class PNetwork{
         int p; //Number of patterns
         double beta;
         double U;
+        double w;
+        double g;
 
         int * cm; //Connection matrix
         double * m; //m
         PatternGen * pgen;
 
     public:
-        PNetwork(PatternGen & pgen,const int C, const double U);
+        PNetwork(PatternGen & pgen,const int C, const double U, const double w, const double g);
         ~PNetwork();
-        void Init_Units();
-        void ConnectUnits();
+        void init_units();
+        void connect_units();
         void start();
         void evaluate_m();
+        void start_dynamics(const int nupdates, const int tx, const double tau);
 
         void print_cm();
         void save_states_to_file(std::string filename);
+        void save_connections_to_file(std::string filename);
 
 
 
 };
 
-/*
-struct data{
-        double * Jjl; //Array keeping the part of the connection tensor Jikjl with fixed i and k
-        double * Sjl; //Array keeping the state l of the connected unit j;
-};
-*/
 
 
 #endif

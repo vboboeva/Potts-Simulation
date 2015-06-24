@@ -6,6 +6,7 @@
 #include <fstream>
 #include <algorithm>
 #include <cstring>
+
 extern int    	 	**xi;
 extern double   	**s;
 extern double    	**sold;
@@ -104,38 +105,37 @@ ofile.close();
 
 ///		Cij		///33333333333333333333333333333333333333333
 
+
+int seq[N];
+
+for(i=0; i<N;i++){
+	seq[i] = i;
+}
+
+generator.seed(12345);
+
+ofile.open("init_connections.dat");
+
 for(i=0; i<N; i++)
 {
-//	C[i][0] = i;									/// per self sustained serve per stabilizzare il campo
-//	i_c = 1;
-	i_c = 0; 										/// considero Cii=0 ma poi per stabilizzare il campo agisco direttamente quando calcolo h
-	while(i_c<Cm)
+
+	std::shuffle(&seq[0], &seq[600], generator);
+	for(i_c=0; i_c<Cm;i_c++)
 	{
-		new_one = 1;
-///		FULLY connected
-// 		j=i_c;
-// 		if(j==i)
-// 		{
-// 			new_one = 0;
-// 			i_c++;
-// //printf("%d	\n", i_c);
-// 		}
-///		SPARSE connected
-		j = (int)((double)int_uniform_0_N(generator));
-		if(j==i) new_one = 0;						/// per porre Cii=0
-		for(x=0; x<i_c; x++)						/// per controllare di non averlo gia` preso
-		{
-			if(C[i][x]==j) new_one = 0;
-		}
-///
-		if(new_one)
-		{
-			C[i][i_c] = j;
-			i_c++;
-		}
+
+
+
+		C[i][i_c] = seq[i_c];
+
+		ofile << C[i][i_c] << " ";
 	}
+	ofile << std::endl;
 }
+
+ofile.close();
+
 printf("dopo	\n");
+
 
 /// stampo la matrice delle connessioni  Cij
 // FILE *cij;
@@ -542,7 +542,7 @@ int fatto, kk;
 
 //srand48(time(0));
 std::default_random_engine generator2;
-generator.seed(12345);
+//generator.seed(12345);
 
 
 for(kk=0; kk<NumSet; kk++)

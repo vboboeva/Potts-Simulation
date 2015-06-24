@@ -36,17 +36,21 @@ int main(int argc, char *argv[]){
     DYNAMICS
     ***************************************************************************/
 
-    //Generate random sequence
-    RandomSequence sequence(600);
-    sequence.shuffle(generator);
-    //sequence.print(); //If you want to check the output of the shuffled sequence.
-
     //Create the network
-    PNetwork pnet(pgen,90,0.1);
+    PNetwork pnet(pgen, //Patterns
+                    90, //Number of connections for each unit
+                    0.1, //U
+                    0.8, //w
+                    5.0 //g
+                    );
 
     //Initialize the network
-    pnet.Init_Units();//Yet not fully implemented
+    pnet.init_units();//Yet not fully implemented
 
+    //Start the dynamics
+    pnet.start_dynamics(10, //Trete
+                        500 * 600 //n0 in the old code N*500
+                        );
 
     std::cout << "End of the simulation" << std::endl;
     return 0;

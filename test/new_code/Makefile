@@ -4,7 +4,7 @@ PFOLDER=../../src/
 all: main.x
 
 main.x : main.cpp $(PFOLDER)pattern_generation.cpp $(PFOLDER)dynamics.cpp
-	@$(CPPC) $(CFLAGS) -o $@ $^
+	$(CPPC) $(CFLAGS) -o $@ $^
 
 run: main.x
 	@./main.x &>/dev/null

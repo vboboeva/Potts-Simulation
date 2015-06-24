@@ -14,5 +14,11 @@ else
     echo -e "States initialization test: \e[4;31mNOT PASSED\e[0m"
 fi
 
+if diff old_code/init_connections.dat new_code/init_connections.dat ; then
+    echo -e "Connection initialization test: \e[4;32mPASSED\e[0m"
+else
+    echo -e "Connection initialization test: \e[4;31mNOT PASSED\e[0m"
+fi
+
 
 echo -e "\n"

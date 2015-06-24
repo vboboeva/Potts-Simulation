@@ -28,7 +28,6 @@ int main(int argc, char *argv[]){
 
     pgen.set_random_generator(generator);
     pgen.generate();
-    pgen.eval_stats();
     pgen.save_pattern_to_file("patterns.dat");
 
     /***************************************************************************
@@ -40,19 +39,34 @@ int main(int argc, char *argv[]){
     sequence.shuffle(generator);
     //sequence.print(); //If you want to check the output of the shuffled sequence.
 
+    //Reset generator, this is because the old code run 2 different files and
+    //generators. This is just to check that everything is as in the old code.
+    generator.seed(12345);
+
     //Create the network
-    PNetwork pnet(pgen,90,0.1);
+    PNetwork pnet(pgen, //Patterns
+                    90, //Number of connections for each unit
+                    0.1, //U
+                    0.8, //w
+                    5.0 //g
+                    );
 
     //Initialize the network
-    pnet.Init_Units();//Yet not fully implemented
+    pnet.init_units();//Yet not fully implemented
 
     //Write states to file
     pnet.save_states_to_file("init_states.dat");
 
-    //Write m to file
+    //Write connections to file
+    pnet.save_connections_to_file("init_connections.dat");
 
     //Write J to file
+    //pnet.save_J_to_file("init_J.dat");
 
+    //Update 10 times
+
+    //Check states
+    //pnet.save_states_to_file("10updates.dat");
 
     std::cout << "End of the simulation" << std::endl;
     return 0;

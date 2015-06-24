@@ -45,7 +45,7 @@ void RandomSequence::print(){
 /*******************************************************************************
 POTTS NETWORK HANDLER
 *******************************************************************************/
-PNetwork::PNetwork(PatternGen & pgen, int C, double U){
+PNetwork::PNetwork(PatternGen & pgen, int C, double U, double w, double g){
 
     int i;
 
@@ -55,6 +55,8 @@ PNetwork::PNetwork(PatternGen & pgen, int C, double U){
     this->p = pgen.p;
     this->C = C;
     this->U = U;
+    this->w = w;
+    this->g = g;
     this->pgen = &pgen;
 
     this->network = new PUnit * [N];
@@ -81,18 +83,15 @@ PNetwork::~PNetwork(){
 
 }
 
-void PNetwork::ConnectUnits(){
+void PNetwork::connect_units(){
 
     int i,j;
-    std::default_random_engine generator;
-    generator.seed(12345);
-    //generator.seed(time(NULL));
 
     RandomSequence sequence(N);
 
     //Fill cm matrix with indices of potts units
     for(i=0; i<N; i++){
-        sequence.shuffle(generator);
+        sequence.shuffle(*this->pgen->generator);
         for(j=0; j < C; ++j){
             std::memcpy(cm + C*i, sequence.begin(), C * sizeof(*sequence.begin()));
         }
@@ -135,12 +134,13 @@ void PNetwork::evaluate_m(){
 
 
 }
-void PNetwork::Init_Units(){
+
+void PNetwork::init_units(){
 
     int i;
 
     //Generate connection matrix
-    this->ConnectUnits();
+    this->connect_units();
 
     //Init unit states and r
     for(i=0; i < N; ++i){
@@ -167,6 +167,52 @@ void PNetwork::save_states_to_file(std::string filename){
     ofile.close();
 
 }
+
+void PNetwork::save_connections_to_file(std::string filename){
+
+    std::ofstream ofile;
+    int i,j;
+    ofile.open(filename);
+
+    for(i = 0; i < this->N; i++){
+        for(j= 0; j < this->C; j++){
+            ofile << *(cm + C*i + j)<< " ";
+        }
+        ofile << std::endl;
+    }
+    ofile.close();
+
+}
+
+void PNetwork::start_dynamics(const int nupdates, const int tx, const double tau){
+
+    int i,j,t;
+
+
+    RandomSequence sequence(this->N);
+    //double * patterns = this->pgen->get_patt();
+
+    t = 0;
+    //First loop = times the whole network has to be updated
+    for(i = 0; i < nupdates; ++i){
+
+        //Shuffle the random sequence
+        sequence.shuffle(*this->pgen->generator);
+
+        //Second loop = loop on all neurons serially
+        for(j = 0; j < this->N; ++j){
+
+
+            //Update the unit
+            this->network[j]->update_rule( this->w, this->g, tx, t);
+
+            //Update the network with new numbers
+
+            t++;
+        }
+    }
+}
+
 /*******************************************************************************
 POTTS UNIT
 *******************************************************************************/
@@ -227,7 +273,34 @@ void PUnit::init(const double beta, const double U, const int p, const double as
         theta[i] = state[k];
     }
 
+}
+
+void PUnit::update_rule(const double w, const double g, const double tau, const double b1, const double b2, const double b3, const double beta, const int tx, const int t){
+
+    //tx == n0 in the old code, "time 'x' "
+    int i,j,k;
+    double self, INcost;
+
+    //Evaluate self exitation
+    for(i = 0; i < this->S; ++i){
+        self += this->state[i];
+    }
+    self = (w / this->S) * self;
+
+    INcost = (t > tx) * g * exp(-(t-tx)/tau);
+
+    for(i = 0; i < this->S; ++i){
+        h[i] = 0;
+
+        for(j = 0; j < C; ++j){
+            for(k = 0; k < S; ++k){
+                h[i] += h[i] += cdata[i * (2*C*S) + j * (S) + k] * network[cm[C*unit + j]]->state[k];
+            }
+        }
+
+        h[i] += w * state[i] - self + INcost * (xi[i][retr]==k);
 
 
+    }
 
 }
