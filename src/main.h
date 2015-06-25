@@ -61,6 +61,11 @@ class PatternGen{
 #ifndef __DYNAMICS
 #define __DYNAMICS
 
+struct uindx{
+    int unit;
+    int idx;
+};
+
 class RandomSequence{
     private:
         int * sequence;
@@ -105,6 +110,7 @@ class PUnit{
                         const int tx,
                         const int t
                         );
+        void update_cdata(const double * new_states, const int index);
 };
 
 class PNetwork{
@@ -120,6 +126,7 @@ class PNetwork{
         double g;
 
         int * cm; //Connection matrix
+        std::vector<uindx> * icm;
         double * m; //m
         PatternGen * pgen;
 
@@ -128,7 +135,6 @@ class PNetwork{
         ~PNetwork();
         void init_units();
         void connect_units();
-        void start();
         void evaluate_m();
         void start_dynamics(const int nupdates, const int tx, const double tau, const double b1, const double b2, const double b3, const int pattern_number);
 

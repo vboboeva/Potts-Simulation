@@ -66,7 +66,7 @@ PNetwork::PNetwork(PatternGen & pgen, int C, double U, double w, double g){
     }
 
     this->cm = new int[N * C];
-
+    this->icm = new std::vector<uindx>[N];
     this->m = new double[pgen.p];
 }
 
@@ -78,6 +78,7 @@ PNetwork::~PNetwork(){
         delete this->network[i];
     }
 
+    delete[] this->icm;
     delete[] this->network;
     delete[] this->m;
 
@@ -86,16 +87,26 @@ PNetwork::~PNetwork(){
 void PNetwork::connect_units(){
 
     int i,j;
-
+    struct uindx a;
     RandomSequence sequence(N);
 
     //Fill cm matrix with indices of potts units
-    for(i=0; i<N; i++){
+    for(i = 0; i < N; ++i){
+        //Shuffle the sequence
         sequence.shuffle(*this->pgen->generator);
-        for(j=0; j < C; ++j){
-            std::memcpy(cm + C*i, sequence.begin(), C * sizeof(*sequence.begin()));
+
+        //Copy the first C numbers
+        std::memcpy(cm + C*i, sequence.begin(), C * sizeof(*sequence.begin()));
+
+        //Store in the inverse cm
+        a.unit = i;
+        for(j = 0; j < C; ++j){
+            a.idx = j;
+            this->icm[sequence.begin()[j]].push_back(a);
         }
     }
+
+
 
 }
 
@@ -187,13 +198,16 @@ void PNetwork::save_connections_to_file(std::string filename){
 void PNetwork::start_dynamics(const int nupdates, const int tx, const double tau, const double b1, const double b2, const double b3, const int pattern_number){
 
     int i,j,t;
-
+    double * new_states;
     RandomSequence sequence(this->N);
+    std::vector<uindx>::iterator it;
     //double * patterns = this->pgen->get_patt();
 
     t = 0;
     //First loop = times the whole network has to be updated
     for(i = 0; i < nupdates; ++i){
+
+        std::cout << i << std::endl;
 
         //Shuffle the random sequence
         sequence.shuffle(*this->pgen->generator);
@@ -216,7 +230,13 @@ void PNetwork::start_dynamics(const int nupdates, const int tx, const double tau
                                             t
                                             );
 
-            //Update the network with new numbers
+            //Update the network with new numbers (this could be done in parallel)
+
+            new_states = this->network[j]->get_state();
+
+            for (it = this->icm[j].begin(); it != this->icm[j].end(); ++it){
+                this->network[it->unit]->update_cdata(new_states,it->idx);
+            }
 
             t++;
         }
@@ -335,5 +355,17 @@ void PUnit::update_rule(const int init_pattern, const double U, const double w, 
     }
 
     this->state[S]=exp(beta * (this->r[S] - rmax + U)) / Z;
+
+}
+
+void PUnit::update_cdata(const double * new_states, const int index){
+
+    int i,j;
+
+    for(i = 0; i < S; ++i){
+        for(j = 0; j < S; ++j){
+            cdata[C*S + i * (2*C*S) + index * (S) + j] = new_states[j];
+        }
+    }
 
 }
