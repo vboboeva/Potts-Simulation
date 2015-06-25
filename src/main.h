@@ -51,6 +51,7 @@ class PatternGen{
         void eval_stats();
         void save_pattern_to_file(const std::string filename);
         int * get_patt();
+        int * get_patt(const int n);
 
 };
 
@@ -92,7 +93,18 @@ class PUnit{
         PUnit(const int S, const int C);
         void init(const double beta, const double U, const int p, const double as, const int * xi, const int unit, const int * cm, PUnit ** network);
         double * get_state();
-        void update_rule(const double w, const double g, const int tx, const int t);
+        void update_rule(const int init_pattern,
+                        const double U,
+                        const double w,
+                        const double g,
+                        const double tau,
+                        const double b1,
+                        const double b2,
+                        const double b3,
+                        const double beta,
+                        const int tx,
+                        const int t
+                        );
 };
 
 class PNetwork{
@@ -118,7 +130,7 @@ class PNetwork{
         void connect_units();
         void start();
         void evaluate_m();
-        void start_dynamics(const int nupdates, const int tx, const double tau);
+        void start_dynamics(const int nupdates, const int tx, const double tau, const double b1, const double b2, const double b3, const int pattern_number);
 
         void print_cm();
         void save_states_to_file(std::string filename);

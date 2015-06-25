@@ -184,10 +184,9 @@ void PNetwork::save_connections_to_file(std::string filename){
 
 }
 
-void PNetwork::start_dynamics(const int nupdates, const int tx, const double tau){
+void PNetwork::start_dynamics(const int nupdates, const int tx, const double tau, const double b1, const double b2, const double b3, const int pattern_number){
 
     int i,j,t;
-
 
     RandomSequence sequence(this->N);
     //double * patterns = this->pgen->get_patt();
@@ -204,13 +203,25 @@ void PNetwork::start_dynamics(const int nupdates, const int tx, const double tau
 
 
             //Update the unit
-            this->network[j]->update_rule( this->w, this->g, tx, t);
+            this->network[j]->update_rule(this->pgen->get_patt(j)[pattern_number],
+                                            this->U,
+                                            this->w,
+                                            this->g,
+                                            tau,
+                                            b1,
+                                            b2,
+                                            b3,
+                                            this->pgen->beta,
+                                            tx,
+                                            t
+                                            );
 
             //Update the network with new numbers
 
             t++;
         }
     }
+
 }
 
 /*******************************************************************************
@@ -239,8 +250,8 @@ double * PUnit::get_state(){
 void PUnit::init(const double beta, const double U, const int p, const double as, const int * xi, const int unit, const int * cm, PUnit ** network){
 
     int i,j,k,l;
-    double n = -2*beta-2*exp(beta*U)-2*S+sqrt(pow(2*beta+2*exp(beta*U)+2*S,2)+8*(-beta*beta-2*beta*S+2*beta*S*exp(beta*U)));
-    double d = 2*(-beta*beta-2*beta*S+2*beta*S*exp(beta*U));
+    double n = -2 * beta - 2 * exp(beta * U) - 2 * S+sqrt(pow(2 * beta + 2 * exp(beta * U)+2 * S,2)+8 * (-beta * beta - 2 * beta * S + 2 * beta *S * exp(beta * U)));
+    double d = 2 * (-beta * beta - 2 * beta * S + 2 * beta * S * exp(beta * U));
 
     for(i = 0; i < S; ++i){
 		state[i] = n / d;
@@ -275,13 +286,14 @@ void PUnit::init(const double beta, const double U, const int p, const double as
 
 }
 
-void PUnit::update_rule(const double w, const double g, const double tau, const double b1, const double b2, const double b3, const double beta, const int tx, const int t){
+void PUnit::update_rule(const int init_pattern, const double U, const double w, const double g, const double tau, const double b1, const double b2, const double b3, const double beta, const int tx, const int t){
 
     //tx == n0 in the old code, "time 'x' "
     int i,j,k;
-    double self, INcost;
+    double self, INcost, rmax, Z;
 
-    //Evaluate self exitation
+    rmax = this->r[this->S];
+
     for(i = 0; i < this->S; ++i){
         self += this->state[i];
     }
@@ -294,13 +306,34 @@ void PUnit::update_rule(const double w, const double g, const double tau, const 
 
         for(j = 0; j < C; ++j){
             for(k = 0; k < S; ++k){
-                h[i] += h[i] += cdata[i * (2*C*S) + j * (S) + k] * network[cm[C*unit + j]]->state[k];
+                this->h[i] += this->cdata[i * (2*C*S) + j * (S) + k] * this->cdata[C*S + i * (2*C*S) + j * (S) + k];
             }
         }
 
-        h[i] += w * state[i] - self + INcost * (xi[i][retr]==k);
+        this->h[i] += w * this->state[i] - self + INcost * (init_pattern == k);
 
+        this->theta[k] += b2 * (this->state[k]-this->theta[k]);
+	    this->r[k] += b1 * (this->h[k]-this->theta[k]-this->r[k]);
+
+        rmax = r[k] * (r[k] > rmax) - ((r[k] > rmax) - 1) * this->r[this->S];
 
     }
+
+    this->r[S] += b3 * (1 - this->state[S] - this->r[S]);
+
+    Z=0;
+
+    for(i = 0; i < S; ++i){
+        Z += exp(beta * (r[k] - rmax));
+    }
+
+    Z += exp(beta * (r[S] + U - rmax));
+
+
+    for(i = 0; i < S; ++i){
+    	this->state[i] = exp(beta * (this->r[i] - rmax)) / Z;
+    }
+
+    this->state[S]=exp(beta * (this->r[S] - rmax + U)) / Z;
 
 }

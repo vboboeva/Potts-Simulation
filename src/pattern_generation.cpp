@@ -217,3 +217,7 @@ void PatternGen::save_pattern_to_file(std::string filename){
 int * PatternGen::get_patt(){
     return this->Patt;
 }
+
+int * PatternGen::get_patt(const int n){
+    return (this->Patt + n*this->p);
+}

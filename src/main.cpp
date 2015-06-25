@@ -48,9 +48,15 @@ int main(int argc, char *argv[]){
     pnet.init_units();//Yet not fully implemented
 
     //Start the dynamics
-    pnet.start_dynamics(10, //Trete
-                        500 * 600 //n0 in the old code N*500
+    pnet.start_dynamics(1000, //Number of updates
+                        500*600, //n0
+                        10*600, //tau
+                        0.3, //b1
+                        0.01, //b2
+                        0.000001, //b3
+                        1 //pattern number
                         );
+
 
     std::cout << "End of the simulation" << std::endl;
     return 0;
