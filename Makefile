@@ -18,6 +18,10 @@ run: $(BUILD)/$(EXE)
 clean:
 	@rm -rf $(BUILD)/*.x $(BUILD)/*.dat
 
+debug: CFLAGS+=-g
+debug: $(BUILD)/$(EXE)
+
+
 test:
 	@$(MAKE) -s -C test
 	@$(MAKE) -s -C test clean

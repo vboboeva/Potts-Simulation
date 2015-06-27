@@ -19,7 +19,7 @@ PatternGen::PatternGen(int N, int p, int S, double a, double beta, int N_fact, i
 }
 
 void PatternGen::set_random_generator(std::default_random_engine & generator){
-        this->generator = &generator;
+    this->generator = &generator;
 }
 
 PatternGen::~PatternGen(){

@@ -77,9 +77,8 @@ PNetwork::~PNetwork(){
     for(i = 0; i < N; ++i){
         delete this->network[i];
     }
-
-    delete[] this->icm;
     delete[] this->network;
+    delete[] this->icm;
     delete[] this->m;
 
 }
@@ -96,11 +95,12 @@ void PNetwork::connect_units(){
         sequence.shuffle(*this->pgen->generator);
 
         //Copy the first C numbers
-        std::memcpy(cm + C*i, sequence.begin(), C * sizeof(*sequence.begin()));
+        //std::memcpy(cm + C*i, sequence.begin(), C * sizeof(*sequence.begin()));
 
         //Store in the inverse cm
         a.unit = i;
         for(j = 0; j < C; ++j){
+            cm[C*i + j] = sequence.begin()[j];
             a.idx = j;
             this->icm[sequence.begin()[j]].push_back(a);
         }
@@ -201,20 +201,18 @@ void PNetwork::start_dynamics(const int nupdates, const int tx, const double tau
     double * new_states;
     RandomSequence sequence(this->N);
     std::vector<uindx>::iterator it;
-    //double * patterns = this->pgen->get_patt();
 
     t = 0;
     //First loop = times the whole network has to be updated
     for(i = 0; i < nupdates; ++i){
 
-        std::cout << i << std::endl;
+
 
         //Shuffle the random sequence
         sequence.shuffle(*this->pgen->generator);
 
         //Second loop = loop on all neurons serially
         for(j = 0; j < this->N; ++j){
-
 
             //Update the unit
             this->network[j]->update_rule(this->pgen->get_patt(j)[pattern_number],
@@ -231,14 +229,13 @@ void PNetwork::start_dynamics(const int nupdates, const int tx, const double tau
                                             );
 
             //Update the network with new numbers (this could be done in parallel)
-
             new_states = this->network[j]->get_state();
 
-            for (it = this->icm[j].begin(); it != this->icm[j].end(); ++it){
+            for(it = this->icm[j].begin(); it != this->icm[j].end(); ++it){
                 this->network[it->unit]->update_cdata(new_states,it->idx);
             }
-
             t++;
+
         }
     }
 
@@ -258,9 +255,11 @@ PUnit::PUnit( int S, int C){
 }
 
 PUnit::~PUnit(){
-
     delete[] this->state;
     delete[] this->cdata;
+    delete[] this->r;
+    delete[] this->h;
+    delete[] this->theta;
 }
 
 double * PUnit::get_state(){
@@ -301,7 +300,7 @@ void PUnit::init(const double beta, const double U, const int p, const double as
             }
         }
         r[i] = h[i];
-        theta[i] = state[k];
+        theta[i] = state[i];
     }
 
 }
@@ -324,18 +323,19 @@ void PUnit::update_rule(const int init_pattern, const double U, const double w, 
     for(i = 0; i < this->S; ++i){
         h[i] = 0;
 
+
         for(j = 0; j < C; ++j){
             for(k = 0; k < S; ++k){
                 this->h[i] += this->cdata[i * (2*C*S) + j * (S) + k] * this->cdata[C*S + i * (2*C*S) + j * (S) + k];
             }
         }
 
-        this->h[i] += w * this->state[i] - self + INcost * (init_pattern == k);
+        this->h[i] += w * this->state[i] - self + INcost * (init_pattern == i);
 
-        this->theta[k] += b2 * (this->state[k]-this->theta[k]);
-	    this->r[k] += b1 * (this->h[k]-this->theta[k]-this->r[k]);
+        this->theta[i] += b2 * (this->state[i]-this->theta[i]);
+	    this->r[i] += b1 * (this->h[i]-this->theta[i]-this->r[i]);
 
-        rmax = r[k] * (r[k] > rmax) - ((r[k] > rmax) - 1) * this->r[this->S];
+        rmax = r[i] * (r[i] > rmax) - ((r[i] > rmax) - 1) * this->r[this->S];
 
     }
 
@@ -344,7 +344,7 @@ void PUnit::update_rule(const int init_pattern, const double U, const double w, 
     Z=0;
 
     for(i = 0; i < S; ++i){
-        Z += exp(beta * (r[k] - rmax));
+        Z += exp(beta * (r[i] - rmax));
     }
 
     Z += exp(beta * (r[S] + U - rmax));
