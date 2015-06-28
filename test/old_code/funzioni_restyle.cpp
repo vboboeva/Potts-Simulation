@@ -6,6 +6,7 @@
 #include <fstream>
 #include <algorithm>
 #include <cstring>
+#include <string>
 
 extern int    	 	**xi;
 extern double   	**s;
@@ -79,6 +80,40 @@ for(mu=0;mu<p;mu++)
 fclose(pat);
 }
 
+void print_states(std::string filename){
+
+	int i,k;
+	std::ofstream ofile;
+	ofile.open(filename);
+	for(i=0;i<N;i++)
+	{
+		for(k=0;k<S;k++)
+		{
+		ofile << s[i][k] << " ";
+		}
+	ofile << s[i][S] << " "<< std::endl;
+	}
+	ofile.close();
+}
+
+void print_J(std::string filename){
+
+	int i,j,k,l;
+	std::ofstream ofile;
+	ofile.open(filename);
+	for(i = 0; i < N; ++i){
+        for(j = 0; j < S; ++j){
+            for(k = 0; k < Cm; ++k){
+                for(l = 0; l < S; ++l){
+                    ofile << J[i][k][j][l] << " ";
+                }
+            }
+        }
+        ofile << std::endl;
+    }
+	ofile.close();
+}
+
 void initializing()
 {
 int i, j, l, k, mu;
@@ -119,7 +154,7 @@ ofile.open("init_connections.dat");
 for(i=0; i<N; i++)
 {
 
-	std::shuffle(&seq[0], &seq[600], generator);
+	std::shuffle(&seq[0], &seq[N], generator);
 	for(i_c=0; i_c<Cm;i_c++)
 	{
 
@@ -267,6 +302,7 @@ for(k=0;k<S;k++)
 		 h[i][k]+=	J[i][x][k][l]*s[C[i][x]][l];
 		}
 	}
+	std::cout <<"RIS "<< h[i][k] << " ";
 	h[i][k]+=w*s[i][k]-self+ INcost*(xi[i][retr]==k);										//tolgo l`auto eccitazione
 	/// di sold, thteta, r
 	sold[i][k]=s[i][k];
@@ -278,11 +314,13 @@ for(k=0;k<S;k++)
 	{
 		rmax=r[i][k];
 	}
-}
 
+}
+	std::cout << std::endl;
 /// //////////	update rS e sold per S	///
 sold[i][S]=s[i][S];
 r[i][S]+=b3*(1.-s[i][S]-r[i][S]);
+
 
 /// //////////    UPDATE stato PER T!=0    ///////////////
 Z=0.;

@@ -48,7 +48,7 @@ int main(int argc, char *argv[]){
     pnet.init_units();//Yet not fully implemented
 
     //Start the dynamics
-    pnet.start_dynamics(10, //Number of updates
+    pnet.start_dynamics(600, //Number of updates
                         500*600, //n0
                         10*600, //tau
                         0.3, //b1

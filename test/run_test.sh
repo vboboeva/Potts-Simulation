@@ -7,7 +7,6 @@ else
     echo -e "Pattern generation test: \e[4;31mNOT PASSED\e[0m"
 fi
 
-
 if diff old_code/init_states.dat new_code/init_states.dat ; then
     echo -e "States initialization test: \e[4;32mPASSED\e[0m"
 else
@@ -20,5 +19,10 @@ else
     echo -e "Connection initialization test: \e[4;31mNOT PASSED\e[0m"
 fi
 
+if diff old_code/init_J.dat new_code/init_J.dat $2>/dev/null ; then
+    echo -e "J test: \e[4;32mPASSED\e[0m"
+else
+    echo -e "J test: \e[4;31mNOT PASSED\e[0m"
+fi
 
 echo -e "\n"

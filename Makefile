@@ -1,5 +1,5 @@
 CPPC=g++
-CFLAGS= -std=c++11 -Wall
+CFLAGS= -std=c++11 -Wall -O3 -ftree-vectorizer-verbose=9
 SRC=src
 BUILD=build
 EXE=potts.x
@@ -16,7 +16,7 @@ run: $(BUILD)/$(EXE)
 
 
 clean:
-	@rm -rf $(BUILD)/*.x $(BUILD)/*.dat
+	@rm -rf $(BUILD)/*.x $(BUILD)/*.dat $(BUILD)/*.txt
 
 debug: CFLAGS+=-g
 debug: $(BUILD)/$(EXE)

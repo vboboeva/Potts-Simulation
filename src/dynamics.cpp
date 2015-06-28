@@ -309,7 +309,7 @@ void PUnit::update_rule(const int init_pattern, const double U, const double w, 
 
     //tx == n0 in the old code, "time 'x' "
     int i,j,k;
-    double self, INcost, rmax, Z;
+    double self=0, INcost, rmax, Z;
 
     rmax = this->r[this->S];
 

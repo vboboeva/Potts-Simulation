@@ -71,7 +71,7 @@ extern void calcolo_m();
 /***************************************************    DYNAMICS   ****************************************************/
 
 std::default_random_engine generator;
-std::uniform_int_distribution<int> int_uniform_0_N(0,N);
+std::uniform_int_distribution<int> int_uniform_0_N(0,N-1);
 
 int main()
 {
@@ -129,17 +129,17 @@ mvari=fopen("andamento_m.txt","w");
 fineiniz=time(0);
 printf( "durata inizializzazione		%ld secondi\n", fineiniz-iniziosim);
 
-
+print_J("init_J.dat");
 
 for(ttt=0;ttt<Trete;ttt++)
 {
 	x=(int)(NumSet*drand48());
 
-	for(iii=0;iii<N;iii++)
+	for(iii=0;iii<1;iii++)
 	{
-		i=Permut[iii][x];
-		update_stato(i,n);																	///update di s[][] di un neu per ogni stato
-
+		//i=Permut[iii][x];
+		update_stato(iii,n);																	///update di s[][] di un neu per ogni stato
+		//print_states("updated_states.dat");
 
 		if((n%tempostampa)==0)																/// stampo gli overlap
 		{
@@ -199,6 +199,7 @@ if(ttt==(Trete-1))  lunghezza=t;
 }
 
 
+
 fprintf(ksequenza, "  999999 \n");
 fflush(ksequenza);
 
@@ -217,6 +218,8 @@ fflush(last);
 fprintf(Passi,"%d	%d	%.1f\n",f,numero,lunghezza);
 fflush(Passi);
 }
+
+
 fclose(Passi);
 deletememory();
 fclose(ksequenza);
