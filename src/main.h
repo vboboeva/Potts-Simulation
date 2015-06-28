@@ -96,7 +96,8 @@ class PUnit{
     public:
         ~PUnit();
         PUnit(const int S, const int C);
-        void init(const double beta, const double U, const int p, const double as, const int * xi, const int unit, const int * cm, PUnit ** network);
+        void init_states(const double beta, const double U);
+        void init_J(const int p, const double a, const int * xi, const int unit, const int * cm, PUnit ** network);
         double * get_state();
         void update_rule(const int init_pattern,
                         const double U,
@@ -111,6 +112,8 @@ class PUnit{
                         const int t
                         );
         void update_cdata(const double * new_states, const int index);
+
+        double * get_cdata(){ return this->cdata;};
 };
 
 class PNetwork{
@@ -141,6 +144,7 @@ class PNetwork{
         void print_cm();
         void save_states_to_file(std::string filename);
         void save_connections_to_file(std::string filename);
+        void save_J_to_file(std::string filename);
 
 
 

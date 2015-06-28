@@ -1,5 +1,6 @@
 CPPC=g++
-CFLAGS= -std=c++11 -Wall -O3 -ftree-vectorizer-verbose=9
+CFLAGS= -std=c++11 -Wall -O3
+#CFLAGS+= -march=native -ftree-vectorize -fopt-info-vec-missed -march=native -ftree-vectorizer-verbose=5
 SRC=src
 BUILD=build
 EXE=potts.x

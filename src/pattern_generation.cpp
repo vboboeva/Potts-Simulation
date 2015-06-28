@@ -33,7 +33,7 @@ void PatternGen::generate(){
     double hh[this->N][this->S],hhh[this->S],ss[this->S];
     int Factors[N_fact][Num_fact];
 
-    std::uniform_int_distribution<int> int_uniform_0_N(0,this->N);
+    std::uniform_int_distribution<int> int_uniform_0_Nm1(0,this->N-1);
     std::uniform_int_distribution<int> int_uniform_0_S(0,this->S);
     std::uniform_real_distribution<double> double_uniform_0_1(0,1);
     std::uniform_real_distribution<double> double_uniform_0_eps(0,this->eps);
@@ -41,7 +41,7 @@ void PatternGen::generate(){
     //Set factors
     for(i=0; i<this->Num_fact; i++){
         for(j=0; j<this->N_fact; j++){
-            Factors[j][i] = int_uniform_0_N(*this->generator);
+            Factors[j][i] = int_uniform_0_Nm1(*this->generator);
         }
     }
 

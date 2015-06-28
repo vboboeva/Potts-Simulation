@@ -87,7 +87,7 @@ void PNetwork::connect_units(){
 
     int i,j;
     struct uindx a;
-    RandomSequence sequence(N);
+    RandomSequence sequence(N); //Sequence between 0 and N-1
 
     //Fill cm matrix with indices of potts units
     for(i = 0; i < N; ++i){
@@ -153,9 +153,14 @@ void PNetwork::init_units(){
     //Generate connection matrix
     this->connect_units();
 
-    //Init unit states and r
+    //Init unit states
     for(i=0; i < N; ++i){
-        network[i]->init(this->beta,this->U,p,pgen->a/S,this->pgen->get_patt(),i,this->cm,this->network);
+        network[i]->init_states(this->beta,this->U);
+    }
+
+    //Init J
+    for(i=0; i < N; ++i){
+        network[i]->init_J(p,pgen->a,this->pgen->get_patt(),i,this->cm,this->network);
     }
 
     this->evaluate_m();
@@ -177,6 +182,25 @@ void PNetwork::save_states_to_file(std::string filename){
     }
     ofile.close();
 
+}
+void PNetwork::save_J_to_file(std::string filename){
+
+    std::ofstream ofile;
+    int i,j,k,l;
+    ofile.open(filename);
+
+    for(i = 0; i < this->N; ++i){
+        for(j = 0; j < this->S; ++j){
+            for(k = 0; k < this->C; ++k){
+                for(l = 0; l < this->S; ++l){
+                    ofile << this->network[i]->get_cdata()[C*S*j + S*k + l] << " ";
+                }
+            }
+        }
+        ofile << std::endl;
+    }
+
+    ofile.close();
 }
 
 void PNetwork::save_connections_to_file(std::string filename){
@@ -212,7 +236,8 @@ void PNetwork::start_dynamics(const int nupdates, const int tx, const double tau
         sequence.shuffle(*this->pgen->generator);
 
         //Second loop = loop on all neurons serially
-        for(j = 0; j < this->N; ++j){
+        //for(j = 0; j < this->N; ++j){
+        for(j = 0; j < 1; ++j){
 
             //Update the unit
             this->network[j]->update_rule(this->pgen->get_patt(j)[pattern_number],
@@ -265,19 +290,24 @@ PUnit::~PUnit(){
 double * PUnit::get_state(){
     return this->state;
 }
+void PUnit::init_states(const double beta, const double U){
 
-void PUnit::init(const double beta, const double U, const int p, const double as, const int * xi, const int unit, const int * cm, PUnit ** network){
-
-    int i,j,k,l;
+    int i;
     double n = -2 * beta - 2 * exp(beta * U) - 2 * S+sqrt(pow(2 * beta + 2 * exp(beta * U)+2 * S,2)+8 * (-beta * beta - 2 * beta * S + 2 * beta *S * exp(beta * U)));
     double d = 2 * (-beta * beta - 2 * beta * S + 2 * beta * S * exp(beta * U));
 
     for(i = 0; i < S; ++i){
-		state[i] = n / d;
-	}
+        state[i] = n / d;
+    }
 
-	state[S] = 1 - S*state[0];
-	r[S] = 1 - state[S];
+    state[S] = 1 - S*state[0];
+    r[S] = 1 - state[S];
+
+}
+void PUnit::init_J(const int p, const double a, const int * xi, const int unit, const int * cm, PUnit ** network){
+
+    int i,j,k,l;
+    double as = a/S;
 
     //Generate Jkxl
     for(i = 0; i < S; ++i){
@@ -285,18 +315,20 @@ void PUnit::init(const double beta, const double U, const int p, const double as
         for(j = 0; j < C; ++j){
             for(k = 0; k < S; ++k){
 
-                cdata[i * (2*C*S) + j * (S) + k] = 0;
+                cdata[C*S*i + S*j + k] = 0;
+                //cdata[i * (2*C*S) + j * (S) + k] = 0;
 
                 //Half filled with Jkxl
                 for(l = 0; l < p; ++l){
-                    cdata[i * (2*C*S) + j * (S) + k] += ((xi[p * unit + l]==i)-as)*((xi[p * cm[C*unit+j] + l]==k)-as);
+                    cdata[C*S*i + S*j + k] += ((xi[p * unit + l]==i)-as)*((xi[p * cm[C*unit+j] + l]==k)-as);
                 }
-
+                cdata[C*S*i + S*j + k] /= a * (1 - as)* C;
                 //Half filled with all the states that this units need to perform the update
-                cdata[C*S + i * (2*C*S) + j * (S) + k] = network[cm[C*unit + j]]->state[k];
+                cdata[(S*C*S) + C*S*i + S*j + k] = network[cm[C*unit + j]]->state[k];
+                //cdata[C*S + i * (2*C*S) + j * (S) + k] = network[cm[C*unit + j]]->state[k];
 
                 //Compute directly initial h
-                h[i] += cdata[i * (2*C*S) + j * (S) + k] * network[cm[C*unit + j]]->state[k];
+                h[i] += cdata[C*S*i + S*j + k] * network[cm[C*unit + j]]->state[k];
             }
         }
         r[i] = h[i];
@@ -326,10 +358,10 @@ void PUnit::update_rule(const int init_pattern, const double U, const double w, 
 
         for(j = 0; j < C; ++j){
             for(k = 0; k < S; ++k){
-                this->h[i] += this->cdata[i * (2*C*S) + j * (S) + k] * this->cdata[C*S + i * (2*C*S) + j * (S) + k];
+                this->h[i] += this->cdata[C*S*i + S*j + k] * this->cdata[(S*C*S) + C*S*i + S*j + k];
             }
         }
-
+        std::cout<<"RIS " << h[i] << " " ;
         this->h[i] += w * this->state[i] - self + INcost * (init_pattern == i);
 
         this->theta[i] += b2 * (this->state[i]-this->theta[i]);
@@ -338,8 +370,9 @@ void PUnit::update_rule(const int init_pattern, const double U, const double w, 
         rmax = r[i] * (r[i] > rmax) - ((r[i] > rmax) - 1) * this->r[this->S];
 
     }
-
+    std::cout << std::endl;
     this->r[S] += b3 * (1 - this->state[S] - this->r[S]);
+
 
     Z=0;
 
@@ -348,7 +381,6 @@ void PUnit::update_rule(const int init_pattern, const double U, const double w, 
     }
 
     Z += exp(beta * (r[S] + U - rmax));
-
 
     for(i = 0; i < S; ++i){
     	this->state[i] = exp(beta * (this->r[i] - rmax)) / Z;
@@ -364,7 +396,7 @@ void PUnit::update_cdata(const double * new_states, const int index){
 
     for(i = 0; i < S; ++i){
         for(j = 0; j < S; ++j){
-            cdata[C*S + i * (2*C*S) + index * (S) + j] = new_states[j];
+            cdata[(S*C*S) + C*S*i + S*index + j] = new_states[j];
         }
     }
 
