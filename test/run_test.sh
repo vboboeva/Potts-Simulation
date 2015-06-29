@@ -25,4 +25,10 @@ else
     echo -e "J test: \e[4;31mNOT PASSED\e[0m"
 fi
 
+if diff old_code/updated_states.dat new_code/updated_states.dat ; then
+    echo -e "States update test: \e[4;32mPASSED\e[0m"
+else
+    echo -e "States update test: \e[4;31mNOT PASSED\e[0m"
+fi
+
 echo -e "\n"

@@ -236,8 +236,7 @@ void PNetwork::start_dynamics(const int nupdates, const int tx, const double tau
         sequence.shuffle(*this->pgen->generator);
 
         //Second loop = loop on all neurons serially
-        //for(j = 0; j < this->N; ++j){
-        for(j = 0; j < 1; ++j){
+        for(j = 0; j < this->N; ++j){
 
             //Update the unit
             this->network[j]->update_rule(this->pgen->get_patt(j)[pattern_number],
@@ -361,7 +360,7 @@ void PUnit::update_rule(const int init_pattern, const double U, const double w, 
                 this->h[i] += this->cdata[C*S*i + S*j + k] * this->cdata[(S*C*S) + C*S*i + S*j + k];
             }
         }
-        std::cout<<"RIS " << h[i] << " " ;
+
         this->h[i] += w * this->state[i] - self + INcost * (init_pattern == i);
 
         this->theta[i] += b2 * (this->state[i]-this->theta[i]);
@@ -370,7 +369,7 @@ void PUnit::update_rule(const int init_pattern, const double U, const double w, 
         rmax = r[i] * (r[i] > rmax) - ((r[i] > rmax) - 1) * this->r[this->S];
 
     }
-    std::cout << std::endl;
+
     this->r[S] += b3 * (1 - this->state[S] - this->r[S]);
 
 

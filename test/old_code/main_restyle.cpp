@@ -135,11 +135,11 @@ for(ttt=0;ttt<Trete;ttt++)
 {
 	x=(int)(NumSet*drand48());
 
-	for(iii=0;iii<1;iii++)
+	for(iii=0;iii<N;iii++)
 	{
 		//i=Permut[iii][x];
 		update_stato(iii,n);																	///update di s[][] di un neu per ogni stato
-		//print_states("updated_states.dat");
+
 
 		if((n%tempostampa)==0)																/// stampo gli overlap
 		{
@@ -198,6 +198,7 @@ for(ttt=0;ttt<Trete;ttt++)
 if(ttt==(Trete-1))  lunghezza=t;
 }
 
+print_states("updated_states.dat");
 
 
 fprintf(ksequenza, "  999999 \n");

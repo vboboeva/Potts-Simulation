@@ -64,8 +64,8 @@ int main(int argc, char *argv[]){
     pnet.save_J_to_file("init_J.dat");
 
     //Start the dynamics
-    /*
-    pnet.start_dynamics(1, //Number of updates
+
+    pnet.start_dynamics(100, //Number of updates
                         500*600, //n0
                         10*600, //tau
                         0.3, //b1
@@ -73,9 +73,9 @@ int main(int argc, char *argv[]){
                         0.000001, //b3
                         1 //pattern number
                         );
-                        */
+
     //Check states
-    //pnet.save_states_to_file("updated_states.dat");
+    pnet.save_states_to_file("updated_states.dat");
 
     std::cout << "End of the simulation" << std::endl;
     return 0;
