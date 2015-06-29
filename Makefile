@@ -20,6 +20,8 @@ OBJ_FILES := $(addprefix $(ODIR)/,$(notdir $(CPP_FILES:.cpp=.o)))
 
 all: $(ODIR)/$(EXE)
 
+build:$(OBJ_FILES)
+
 $(ODIR)/%.o : $(SRC)/%.cpp
 	$(CC) $(CFLAGS) $(OPTFLAGS) -c -o $@ $<
 
@@ -28,9 +30,6 @@ $(ODIR)/$(EXE): $(OBJ_FILES)
 
 run: $(ODIR)/$(EXE)
 	(cd $(ODIR) && ./$(EXE))
-
-ciao:
-	@echo $(OBJS)
 
 clean:
 	@rm -rf $(ODIR)/*.x $(ODIR)/*.dat $(ODIR)/*.txt $(ODIR)/*.o
