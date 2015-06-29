@@ -2,6 +2,7 @@ CPPC=g++
 CFLAGS= -std=c++11 -Wall -O3
 #CFLAGS+= -march=native -ftree-vectorize -fopt-info-vec-missed -march=native -ftree-vectorizer-verbose=5
 SRC=src
+LIB=src/libpotts
 BUILD=build
 EXE=potts.x
 
@@ -9,8 +10,8 @@ EXE=potts.x
 
 all: $(BUILD)/$(EXE)
 
-$(BUILD)/$(EXE): $(wildcard $(SRC)/*.cpp)
-	$(CPPC) $(CFLAGS) -o $@ $^
+$(BUILD)/$(EXE): $(wildcard $(SRC)/*.cpp) $(wildcard $(LIB)/*.cpp)
+	$(CPPC) $(CFLAGS) -I$(LIB) $^ -o $@
 
 run: $(BUILD)/$(EXE)
 	(cd $(BUILD) && ./$(EXE))
