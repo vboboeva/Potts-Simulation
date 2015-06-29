@@ -1,4 +1,3 @@
-#include <math.h>
 
 #ifndef __P_UNIT
 #define __P_UNIT

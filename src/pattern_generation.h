@@ -1,13 +1,10 @@
-#include <iostream>
+#ifndef __PATTERN_GENERATION_H
+#define __PATTERN_GENERATION_H
+
 #include <string>
 #include <random>
-#include <fstream>
-#include <iomanip>
 
-#include "p_network.h"
 
-#ifndef __PATTERN_GENERATION
-#define __PATTERN_GENERATION
 
 class PatternGen{
 

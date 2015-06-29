@@ -1,3 +1,6 @@
+#include <random>
+#include <algorithm>
+#include <iostream>
 #include "random_sequence.h"
 
 /*******************************************************************************

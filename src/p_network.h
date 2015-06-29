@@ -1,16 +1,14 @@
-#include <iostream>
+
+#ifndef __P_NETWORK_H
+#define __P_NETWORK_H
+
 #include <string>
 #include <vector>
-#include <random>
-#include <fstream>
-#include <math.h>
 
-#include "p_unit.h"
 #include "pattern_generation.h"
+#include "p_unit.h"
 
 
-#ifndef __P_NETWORK
-#define __P_NETWORK
 
 struct uindx{
     int unit;
@@ -46,8 +44,6 @@ class PNetwork{
         void save_states_to_file(std::string filename);
         void save_connections_to_file(std::string filename);
         void save_J_to_file(std::string filename);
-
-
 
 };
 

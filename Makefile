@@ -1,28 +1,46 @@
+################################################################################
+# CONFIGURATION
+################################################################################
 CPPC=g++
-CFLAGS= -std=c++11 -Wall -O3
+CFLAGS= -std=c++11 -Wall
+OPTFLAGS= -O3
 #CFLAGS+= -march=native -ftree-vectorize -fopt-info-vec-missed -march=native -ftree-vectorizer-verbose=5
 SRC=src
-LIB=src/libpotts
-BUILD=build
-EXE=potts.x
+ODIR=build
+EXE=psim.x
 
-.PHONY: all clean run test
+CPP_FILES := $(wildcard $(SRC)/*.cpp)
+OBJ_FILES := $(addprefix $(ODIR)/,$(notdir $(CPP_FILES:.cpp=.o)))
 
-all: $(BUILD)/$(EXE)
+.PHONY: all clean run test ciao
 
-$(BUILD)/$(EXE): $(wildcard $(SRC)/*.cpp) $(wildcard $(LIB)/*.cpp)
-	$(CPPC) $(CFLAGS) -I$(LIB) $^ -o $@
+################################################################################
+# COMPILE
+################################################################################
 
-run: $(BUILD)/$(EXE)
-	(cd $(BUILD) && ./$(EXE))
+all: $(ODIR)/$(EXE)
 
+$(ODIR)/%.o : $(SRC)/%.cpp
+	$(CC) $(CFLAGS) $(OPTFLAGS) -c -o $@ $<
+
+$(ODIR)/$(EXE): $(OBJ_FILES)
+	$(CPPC) $(CFLAGS) $^ -o $@
+
+run: $(ODIR)/$(EXE)
+	(cd $(ODIR) && ./$(EXE))
+
+ciao:
+	@echo $(OBJS)
 
 clean:
-	@rm -rf $(BUILD)/*.x $(BUILD)/*.dat $(BUILD)/*.txt
+	@rm -rf $(ODIR)/*.x $(ODIR)/*.dat $(ODIR)/*.txt $(ODIR)/*.o
 
 debug: CFLAGS+=-g
-debug: $(BUILD)/$(EXE)
+debug: $(ODIR)/$(EXE)
 
+################################################################################
+# TESTING
+################################################################################
 
 test:
 	@$(MAKE) -s -C test

@@ -1,4 +1,13 @@
+#include <vector>
+#include <random>
+#include <fstream>
+#include <string>
+#include <iostream>
+
 #include "p_network.h"
+#include "pattern_generation.h"
+#include "p_unit.h"
+#include "random_sequence.h"
 
 /*******************************************************************************
 POTTS NETWORK HANDLER
