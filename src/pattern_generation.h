@@ -4,8 +4,6 @@
 #include <string>
 #include <random>
 
-
-
 class PatternGen{
 
     friend class PNetwork; //Allows PNetwork to direct access PatternGen member
@@ -50,5 +48,7 @@ class PatternGen{
         int * get_patt(const int n);
 
 };
+
+#include "p_network.h"
 
 #endif
