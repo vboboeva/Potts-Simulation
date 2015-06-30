@@ -1,4 +1,9 @@
-#include "main.h"
+#include <iostream>
+#include <random>
+#include <iomanip>
+#include <fstream>
+
+#include "pattern_generation.h"
 
 PatternGen::PatternGen(int N, int p, int S, double a, double beta, int N_fact, int Num_fact, double a_fact, double eps, double a_pf, double fact_eigen_slope){
 
@@ -14,12 +19,12 @@ PatternGen::PatternGen(int N, int p, int S, double a, double beta, int N_fact, i
     this->a_pf = a_pf;
     this->fact_eigen_slope = fact_eigen_slope;
 
-    this->Patt = new int[p * N];
+    this->Patt = new int[N * p];
 
 }
 
 void PatternGen::set_random_generator(std::default_random_engine & generator){
-        this->generator = &generator;
+    this->generator = &generator;
 }
 
 PatternGen::~PatternGen(){
@@ -33,7 +38,7 @@ void PatternGen::generate(){
     double hh[this->N][this->S],hhh[this->S],ss[this->S];
     int Factors[N_fact][Num_fact];
 
-    std::uniform_int_distribution<int> int_uniform_0_N(0,this->N);
+    std::uniform_int_distribution<int> int_uniform_0_Nm1(0,this->N-1);
     std::uniform_int_distribution<int> int_uniform_0_S(0,this->S);
     std::uniform_real_distribution<double> double_uniform_0_1(0,1);
     std::uniform_real_distribution<double> double_uniform_0_eps(0,this->eps);
@@ -41,7 +46,7 @@ void PatternGen::generate(){
     //Set factors
     for(i=0; i<this->Num_fact; i++){
         for(j=0; j<this->N_fact; j++){
-            Factors[j][i] = int_uniform_0_N(*this->generator);
+            Factors[j][i] = int_uniform_0_Nm1(*this->generator);
         }
     }
 
@@ -125,7 +130,7 @@ void PatternGen::generate(){
                     sum_e += exp(bb*dh);
                 }
 
-                Patt[m*this->N + unit] = this->S;
+                Patt[unit*this->p + m] = this->S;
 
                 for(s1=0;s1<this->S;s1++){
 
@@ -133,7 +138,7 @@ void PatternGen::generate(){
 
                     if(ss[s1]>=0.5){
                         N_p++;
-                        Patt[m*this->N + unit] = s1;
+                        Patt[unit*this->p + m] = s1;
                     }
                 }
             }
@@ -163,7 +168,7 @@ void PatternGen::eval_stats(){
         for(nu=0;nu<p;nu++){
             C[mu][nu]=0.0;
             for(i=0;i<N;i++){
-                C[mu][nu]+= (Patt[mu*N + i]==Patt[nu*N + i]);
+                C[mu][nu]+= (Patt[i*this->p + mu]==Patt[i*this->p + nu]);
             }
             C[mu][nu]=C[mu][nu]/N;
         }
@@ -207,9 +212,17 @@ void PatternGen::save_pattern_to_file(std::string filename){
 
     for(i = 0; i < this->p; i++){
         for(j= 0; j < this->N; j++){
-            ofile << this->Patt[i*this->N + j]<< " ";
+            ofile << this->Patt[j*this->p + i]<< " ";
         }
         ofile << std::endl;
     }
     ofile.close();
+}
+
+int * PatternGen::get_patt(){
+    return this->Patt;
+}
+
+int * PatternGen::get_patt(const int n){
+    return (this->Patt + n*this->p);
 }
