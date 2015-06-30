@@ -4,6 +4,10 @@
 #include <string>
 #include <iostream>
 
+#ifdef _BENCH
+#include <chrono>
+#endif
+
 #include "p_network.h"
 #include "pattern_generation.h"
 #include "p_unit.h"
@@ -187,7 +191,13 @@ void PNetwork::save_connections_to_file(std::string filename){
 }
 
 void PNetwork::start_dynamics(const int nupdates, const int tx, const double tau, const double b1, const double b2, const double b3, const int pattern_number){
+    //The code here is wrote for different cases defined during preprocessor
 
+
+    #ifdef _TEST
+    /***************************************************************************
+    * FOR THE TEST SUITE
+    ***************************************************************************/
     int i,j,t;
     double * new_states;
     RandomSequence sequence(this->N);
@@ -195,12 +205,8 @@ void PNetwork::start_dynamics(const int nupdates, const int tx, const double tau
 
     t = 0;
     //First loop = times the whole network has to be updated
+
     for(i = 0; i < nupdates; ++i){
-
-
-
-        //Shuffle the random sequence
-        sequence.shuffle(*this->pgen->generator);
 
         //Second loop = loop on all neurons serially
         for(j = 0; j < this->N; ++j){
@@ -229,5 +235,71 @@ void PNetwork::start_dynamics(const int nupdates, const int tx, const double tau
 
         }
     }
+
+    #else
+    /***************************************************************************
+    * NORMAL RUN
+    ***************************************************************************/
+    int i,j,t;
+    double * new_states;
+    RandomSequence sequence(this->N);
+    std::vector<uindx>::iterator it;
+
+    #ifdef _BENCH
+    std::chrono::high_resolution_clock::time_point t1;
+    std::chrono::high_resolution_clock::time_point t2;
+    auto duration;
+
+    t1 = high_resolution_clock::now();
+    #endif
+
+    t = 0;
+    //First loop = times the whole network has to be updated
+
+    for(i = 0; i < nupdates; ++i){
+
+
+
+        //Shuffle the random sequence
+        sequence.shuffle(*this->pgen->generator);
+
+        //Second loop = loop on all neurons serially
+        for(j = 0; j < this->N; ++j){
+
+            //Update the unit
+            this->network[sequence.get(j)]->update_rule(this->pgen->get_patt(j)[pattern_number],
+                                            this->U,
+                                            this->w,
+                                            this->g,
+                                            tau,
+                                            b1,
+                                            b2,
+                                            b3,
+                                            this->pgen->beta,
+                                            tx,
+                                            t
+                                            );
+
+            //Update the network with new numbers (this could be done in parallel)
+            new_states = this->network[j]->get_state();
+
+            for(it = this->icm[j].begin(); it != this->icm[j].end(); ++it){
+                this->network[it->unit]->update_cdata(new_states,it->idx);
+            }
+            t++;
+
+        }
+    }
+
+    #ifdef _BENCH
+    t2 = high_resolution_clock::now();
+
+    auto duration = std::chrono::duration_cast<std::chrono::microseconds>( t2 - t1 ).count();
+
+    std::cout << "TOTAL UPDATE ELAPSED TIME(ms): "<< duration << std::endl;
+    #endif
+
+    #endif
+
 
 }

@@ -77,23 +77,28 @@ void PUnit::update_rule(const int init_pattern, const double U, const double w, 
     //tx == n0 in the old code, "time 'x' "
     int i,j,k;
     double self=0, INcost, rmax, Z;
+    int tsize = this->S * this->C * this->S;
 
     rmax = this->r[this->S];
 
     for(i = 0; i < this->S; ++i){
         self += this->state[i];
+        h[i] = 0;
     }
     self = (w / this->S) * self;
 
     INcost = (t > tx) * g * exp(-(t-tx)/tau);
 
+    for(i = 0; i < tsize; ++i){
+        this->h[i] += this->cdata[i] * this->cdata[(S*C*S) + i];
+    }
     for(i = 0; i < this->S; ++i){
-        h[i] = 0;
+
 
 
         for(j = 0; j < C; ++j){
             for(k = 0; k < S; ++k){
-                this->h[i] += this->cdata[C*S*i + S*j + k] * this->cdata[(S*C*S) + C*S*i + S*j + k];
+
             }
         }
 
