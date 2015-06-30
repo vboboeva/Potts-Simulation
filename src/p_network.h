@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 
+#include "config.h"
 #include "pattern_generation.h"
 #include "p_unit.h"
 
@@ -22,28 +23,29 @@ class PNetwork{
         int S; //Number of states per unit
         int C; // Number of connections per unit
         int p; //Number of patterns
-        double beta;
-        double U;
-        double w;
-        double g;
+        __fpv beta;
+        __fpv U;
+        __fpv w;
+        __fpv g;
 
         int * cm; //Connection matrix
         std::vector<uindx> * icm;
-        double * m; //m
+        std::vector<uindx> * updated_units;
+        __fpv * m; //m
         PatternGen * pgen;
 
     public:
-        PNetwork(PatternGen & pgen,const int C, const double U, const double w, const double g);
+        PNetwork(PatternGen & pgen,const int & C, const __fpv & U, const __fpv & w, const __fpv & g);
         ~PNetwork();
         void init_units();
         void connect_units();
         void evaluate_m();
-        void start_dynamics(const int nupdates, const int tx, const double tau, const double b1, const double b2, const double b3, const int pattern_number);
+        void start_dynamics(const int & nupdates, const int & tx, const __fpv & tau, const __fpv & b1, const __fpv & b2, const __fpv & b3, const int & pattern_number);
 
         void print_cm();
-        void save_states_to_file(std::string filename);
-        void save_connections_to_file(std::string filename);
-        void save_J_to_file(std::string filename);
+        void save_states_to_file(const std::string & filename);
+        void save_connections_to_file(const std::string & filename);
+        void save_J_to_file(const std::string & filename);
 
 };
 

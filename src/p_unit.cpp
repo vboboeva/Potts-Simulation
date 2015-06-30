@@ -1,17 +1,19 @@
 #include <math.h>
+#include "config.h"
 #include "p_unit.h"
 
 /*******************************************************************************
 POTTS UNIT
 *******************************************************************************/
-PUnit::PUnit( int S, int C){
-    this->state = new double[S + 1];
-    this->cdata = new double[S * 2 * C * S];
-    this->r = new double[S + 1];
+PUnit::PUnit( const int & S, const int & C){
+    this->state = new __fpv[S + 1];
+    this->cdata = new __fpv[S * 2 * C * S];
+    this->r = new __fpv[S + 1];
     this->S = S;
     this->C = C;
-    this->h = new double[S];
-    this->theta = new double[S];
+    this->h = new __fpv[S];
+    this->theta = new __fpv[S];
+
 }
 
 PUnit::~PUnit(){
@@ -22,14 +24,14 @@ PUnit::~PUnit(){
     delete[] this->theta;
 }
 
-double * PUnit::get_state(){
+__fpv * PUnit::get_state(){
     return this->state;
 }
-void PUnit::init_states(const double beta, const double U){
+void PUnit::init_states(const __fpv & beta, const __fpv & U){
 
     int i;
-    double n = -2 * beta - 2 * exp(beta * U) - 2 * S+sqrt(pow(2 * beta + 2 * exp(beta * U)+2 * S,2)+8 * (-beta * beta - 2 * beta * S + 2 * beta *S * exp(beta * U)));
-    double d = 2 * (-beta * beta - 2 * beta * S + 2 * beta * S * exp(beta * U));
+    __fpv n = -2 * beta - 2 * exp(beta * U) - 2 * S+sqrt(pow(2 * beta + 2 * exp(beta * U)+2 * S,2)+8 * (-beta * beta - 2 * beta * S + 2 * beta *S * exp(beta * U)));
+    __fpv d = 2 * (-beta * beta - 2 * beta * S + 2 * beta * S * exp(beta * U));
 
     for(i = 0; i < S; ++i){
         state[i] = n / d;
@@ -39,10 +41,10 @@ void PUnit::init_states(const double beta, const double U){
     r[S] = 1 - state[S];
 
 }
-void PUnit::init_J(const int p, const double a, const int * xi, const int unit, const int * cm, PUnit ** network){
+void PUnit::init_J(const int & p, const __fpv & a, const int * xi, const int & unit, const int * cm, PUnit ** network){
 
     int i,j,k,l;
-    double as = a/S;
+    __fpv as = a/S;
 
     //Generate Jkxl
     for(i = 0; i < S; ++i){
@@ -72,13 +74,15 @@ void PUnit::init_J(const int p, const double a, const int * xi, const int unit, 
 
 }
 
-void PUnit::update_rule(const int init_pattern, const double U, const double w, const double g, const double tau, const double b1, const double b2, const double b3, const double beta, const int tx, const int t){
+void PUnit::update_rule(const int & init_pattern, const __fpv & U, const __fpv & w, const __fpv & g, const __fpv & tau, const __fpv & b1, const __fpv & b2, const __fpv & b3, const __fpv & beta, const int & tx, const int & t){
+
 
     //tx == n0 in the old code, "time 'x' "
-    int i,j,k;
-    double self=0, INcost, rmax, Z;
-    int tsize = this->S * this->C * this->S;
+    int i,j;
+    __fpv self=0, INcost, rmax, Z;
+    int tsize = this->C * this->S;
 
+    __fpv * a, * b;
     rmax = this->r[this->S];
 
     for(i = 0; i < this->S; ++i){
@@ -89,17 +93,15 @@ void PUnit::update_rule(const int init_pattern, const double U, const double w, 
 
     INcost = (t > tx) * g * exp(-(t-tx)/tau);
 
-    for(i = 0; i < tsize; ++i){
-        this->h[i] += this->cdata[i] * this->cdata[(S*C*S) + i];
-    }
+    
+
     for(i = 0; i < this->S; ++i){
 
+        a = this->cdata + C*S*i;
+        b = this->cdata + (S*C*S) + C*S*i;
 
-
-        for(j = 0; j < C; ++j){
-            for(k = 0; k < S; ++k){
-
-            }
+        for(j = 0; j < tsize; ++j){
+            this->h[i] += a[j] * b[j];
         }
 
         this->h[i] += w * this->state[i] - self + INcost * (init_pattern == i);
@@ -130,7 +132,7 @@ void PUnit::update_rule(const int init_pattern, const double U, const double w, 
 
 }
 
-void PUnit::update_cdata(const double * new_states, const int index){
+void PUnit::update_cdata(const __fpv * new_states, const int & index){
 
     int i,j;
 

@@ -3,9 +3,10 @@
 #include <iomanip>
 #include <fstream>
 
+#include "config.h"
 #include "pattern_generation.h"
 
-PatternGen::PatternGen(int N, int p, int S, double a, double beta, int N_fact, int Num_fact, double a_fact, double eps, double a_pf, double fact_eigen_slope){
+PatternGen::PatternGen(int N, int p, int S, __fpv a, __fpv beta, int N_fact, int Num_fact, __fpv a_fact, __fpv eps, __fpv a_pf, __fpv fact_eigen_slope){
 
     this->N = N;
     this->p = p;
@@ -34,14 +35,14 @@ PatternGen::~PatternGen(){
 void PatternGen::generate(){
 
     int N_p,i,j,k,m,s1,unit;
-    double y, h_max, eigen_fact, sum_e, piccolo, a_pa,  a_patt, dh, h000,expon,fluct,bb;
-    double hh[this->N][this->S],hhh[this->S],ss[this->S];
+    __fpv y, h_max, eigen_fact, sum_e, piccolo, a_pa,  a_patt, dh, h000,expon,fluct,bb;
+    __fpv hh[this->N][this->S],hhh[this->S],ss[this->S];
     int Factors[N_fact][Num_fact];
 
     std::uniform_int_distribution<int> int_uniform_0_Nm1(0,this->N-1);
     std::uniform_int_distribution<int> int_uniform_0_S(0,this->S);
-    std::uniform_real_distribution<double> double_uniform_0_1(0,1);
-    std::uniform_real_distribution<double> double_uniform_0_eps(0,this->eps);
+    std::uniform_real_distribution<__fpv> real_uniform_0_1(0,1);
+    std::uniform_real_distribution<__fpv> real_uniform_0_eps(0,this->eps);
 
     //Set factors
     for(i=0; i<this->Num_fact; i++){
@@ -77,7 +78,7 @@ void PatternGen::generate(){
                 expon = 2.*piccolo;
             }
 
-            y = double_uniform_0_1(*this->generator);
+            y = real_uniform_0_1(*this->generator);
 
             if(y <= this->a_pf){
 
@@ -85,7 +86,7 @@ void PatternGen::generate(){
                 s1 = int_uniform_0_S(*this->generator);
 
                 for(j=0; j<this->N_fact; j++){
-                    hh[Factors[j][k]][s1] += eigen_fact + double_uniform_0_eps(*this->generator);
+                    hh[Factors[j][k]][s1] += eigen_fact + real_uniform_0_eps(*this->generator);
                 }
             }
 
@@ -113,7 +114,7 @@ void PatternGen::generate(){
                 h_max = 0.0;
 
                 for(s1=0; s1<this->S; s1++){
-                    hhh[s1] = hh[unit][s1] + fluct*double_uniform_0_1(*this->generator);
+                    hhh[s1] = hh[unit][s1] + fluct*real_uniform_0_1(*this->generator);
                     if(hhh[s1]>h_max)h_max = hhh[s1];
                 }
 
@@ -161,7 +162,7 @@ void PatternGen::generate(){
 void PatternGen::eval_stats(){
 
     int mu, nu, i;
-    double C[p][p], coppie = 0, media = 0, varianza = 0, mC, vC;
+    __fpv C[p][p], coppie = 0, media = 0, varianza = 0, mC, vC;
 
     //Evaluating correlation
     for(mu=0;mu<p;mu++){
