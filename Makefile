@@ -1,10 +1,10 @@
 ################################################################################
 # CONFIGURATION
 ################################################################################
-CPPC=g++
+CPPC=icc
 CFLAGS= -std=c++11 -Wall
 OPTFLAGS= -O3
-CFLAGS+= -ftree-vectorize -fopt-info-vec-missed -march=native -ftree-vectorizer-verbose=5 -mavx -ffast-math or -fassociative-math
+CFLAGS+= -vec-report
 CMACRO=-D_FLOAT_PRECISION
 SRC=src
 ODIR=build

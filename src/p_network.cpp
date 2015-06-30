@@ -295,7 +295,7 @@ void PNetwork::start_dynamics(const int & nupdates, const int & tx, const __fpv 
                 a.idx = it->idx;
                 this->updated_units[it->unit].push_back(a);
             }
-            
+
             t++;
 
         }

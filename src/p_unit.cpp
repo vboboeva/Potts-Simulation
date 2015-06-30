@@ -82,7 +82,6 @@ void PUnit::update_rule(const int & init_pattern, const __fpv & U, const __fpv &
     __fpv self=0, INcost, rmax, Z;
     int tsize = this->C * this->S;
 
-    __fpv * a, * b;
     rmax = this->r[this->S];
 
     for(i = 0; i < this->S; ++i){
@@ -93,15 +92,10 @@ void PUnit::update_rule(const int & init_pattern, const __fpv & U, const __fpv &
 
     INcost = (t > tx) * g * exp(-(t-tx)/tau);
 
-    
-
     for(i = 0; i < this->S; ++i){
 
-        a = this->cdata + C*S*i;
-        b = this->cdata + (S*C*S) + C*S*i;
-
         for(j = 0; j < tsize; ++j){
-            this->h[i] += a[j] * b[j];
+            this->h[i] += this->cdata[C*S*i + j] * this->cdata[(S*C*S) + C*S*i + j];
         }
 
         this->h[i] += w * this->state[i] - self + INcost * (init_pattern == i);
