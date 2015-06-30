@@ -1,9 +1,15 @@
 CPPC=g++
 CFLAGS= -std=c++11 -Wall
-PFOLDER=../../src/
+PFOLDER=../../src
+CFLAGS+= -I$(PFOLDER)
+
+SRC_FILES = $(filter-out $(PFOLDER)/main.cpp, $(wildcard $(PFOLDER)/*.cpp))
+
+.PHONY: all link run clean
+
 all: main.x
 
-main.x : main.cpp $(PFOLDER)pattern_generation.cpp $(PFOLDER)dynamics.cpp
+main.x : main.cpp $(SRC_FILES)
 	$(CPPC) $(CFLAGS) -o $@ $^
 
 run: main.x

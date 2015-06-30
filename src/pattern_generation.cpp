@@ -1,4 +1,9 @@
-#include "main.h"
+#include <iostream>
+#include <random>
+#include <iomanip>
+#include <fstream>
+
+#include "pattern_generation.h"
 
 PatternGen::PatternGen(int N, int p, int S, double a, double beta, int N_fact, int Num_fact, double a_fact, double eps, double a_pf, double fact_eigen_slope){
 
