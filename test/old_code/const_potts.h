@@ -15,7 +15,7 @@
 #define      g				5.0
 #define      tau			10*N
 #define      T				1*N
-#define      Trete			2
+#define      Trete			1
 //#define      T				6000*N
 //#define      Trete			6000
 #define      as			a/S
