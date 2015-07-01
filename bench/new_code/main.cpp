@@ -20,7 +20,7 @@ int main(int argc, char *argv[]){
     PatternGen pgen(
                600, //N
                10, //p
-               3, //S
+               5, //S
                0.25, //a
                11.0, //beta
                50, //N_fact
@@ -50,7 +50,7 @@ int main(int argc, char *argv[]){
 
     //Create the network
     PNetwork pnet(pgen, //Patterns
-                    90, //Number of connections for each unit
+                    300, //Number of connections for each unit
                     0.1, //U
                     0.8, //w
                     5.0 //g
@@ -62,8 +62,8 @@ int main(int argc, char *argv[]){
 
     //Start the dynamics
     pnet.start_dynamics(600, //Number of updates
-                        500*600, //n0
-                        10*600, //tau
+                        500*600, //n0 500*N
+                        10*600, //tau 10*N
                         0.3, //b1
                         0.01, //b2
                         0.000001, //b3

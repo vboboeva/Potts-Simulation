@@ -1,5 +1,5 @@
-CPPC=g++
-CFLAGS= -std=c++11 -Wall
+CPPC=icc
+CFLAGS= -std=c++11 -Wall -openmp
 PFOLDER=../../src
 CFLAGS+= -I$(PFOLDER)
 CMACROS+= -D_TEST -D_DOUBLE_PRECISION

@@ -70,7 +70,7 @@ int main(int argc, char *argv[]){
 
     //Start the dynamics
 
-    pnet.start_dynamics(100, //Number of updates
+    pnet.start_dynamics(2, //Number of updates
                         500*600, //n0
                         10*600, //tau
                         0.3, //b1
