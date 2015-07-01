@@ -19,7 +19,7 @@ POTTS NETWORK HANDLER
 *******************************************************************************/
 PNetwork::PNetwork(PatternGen & pgen, const int & C, const __fpv & U, const __fpv & w, const __fpv & g){
 
-    int i;
+    int i,j;
 
     this->N = pgen.N;
     this->S = pgen.S;
@@ -34,18 +34,22 @@ PNetwork::PNetwork(PatternGen & pgen, const int & C, const __fpv & U, const __fp
     this->network = new PUnit * [N];
 
     for(i = 0; i < N; ++i){
-        this->network[i] = new PUnit(S,C);
+        this->network[i] = new PUnit(S,C,this->N);
     }
 
     this->cm = new int[N * C];
-    this->icm = new std::vector<uindx>[N];
-    for(i = 0; i < N; ++i){
-        this->icm[i].reserve(N);
-    }
-    this->updated_units = new std::vector<uindx>[N];
+    this->ucm = new int[N * N];
 
+    //Init to 0 "1-0 matrix"
+    for(i = 0; i < N; ++i){
+        for(j = 0; j < N; ++j){
+            this->ucm[i*N + j] = 0;
+        }
+    }
 
     this->m = new __fpv[pgen.p];
+    this->states = new __fpv[this->N * this-> S];
+
 }
 
 PNetwork::~PNetwork(){
@@ -56,16 +60,15 @@ PNetwork::~PNetwork(){
         delete this->network[i];
     }
     delete[] this->network;
-    delete[] this->icm;
     delete[] this->m;
-    delete[] this->updated_units;
+    delete[] this->states;
+    delete[] this->ucm;
 
 }
 
 void PNetwork::connect_units(){
 
     int i,j;
-    struct uindx a;
     RandomSequence sequence(N); //Sequence between 0 and N-1
 
     //Fill cm matrix with indices of potts units
@@ -73,15 +76,10 @@ void PNetwork::connect_units(){
         //Shuffle the sequence
         sequence.shuffle(*this->pgen->generator);
 
-        //Copy the first C numbers
-        //std::memcpy(cm + C*i, sequence.begin(), C * sizeof(*sequence.begin()));
-
         //Store in the inverse cm
-        a.unit = i;
         for(j = 0; j < C; ++j){
             cm[C*i + j] = sequence.begin()[j];
-            a.idx = j;
-            this->icm[sequence.begin()[j]].push_back(a);
+            ucm[i*N + sequence.begin()[j]] = 1;
         }
     }
 
@@ -127,7 +125,7 @@ void PNetwork::evaluate_m(){
 
 void PNetwork::init_units(){
 
-    int i;
+    int i,j;
 
     //Generate connection matrix
     this->connect_units();
@@ -137,13 +135,20 @@ void PNetwork::init_units(){
         network[i]->init_states(this->beta,this->U);
     }
 
+    //Fill the states array with the initialized states of the network
+    //all except the "inactivity state"
+    for(i=0; i < N; ++i){
+        for(j = 0; j < S; ++j){
+            this->states[i*S + j] = network[i]->get_state()[j];
+        }
+    }
+
     //Init J
     for(i=0; i < N; ++i){
-        network[i]->init_J(p,pgen->a,this->pgen->get_patt(),i,this->cm,this->network);
+        network[i]->init_J(p,pgen->a,this->pgen->get_patt(),i,this->ucm,this->network);
     }
 
     this->evaluate_m();
-
 
 }
 
@@ -172,7 +177,7 @@ void PNetwork::save_J_to_file(const std::string & filename){
         for(j = 0; j < this->S; ++j){
             for(k = 0; k < this->C; ++k){
                 for(l = 0; l < this->S; ++l){
-                    ofile << this->network[i]->get_cdata()[C*S*j + S*k + l] << " ";
+                    ofile << this->network[i]->get_cdata()[N*S*j + S*cm[C*i+k] + l] << " ";
                 }
             }
         }
@@ -201,77 +206,9 @@ void PNetwork::save_connections_to_file(const std::string & filename){
 void PNetwork::start_dynamics(const int & nupdates, const int & tx, const __fpv & tau, const __fpv & b1, const __fpv & b2, const __fpv & b3, const int & pattern_number){
     //The code here is wrote for different cases defined during preprocessor
 
-
-    #ifdef _TEST
-    /***************************************************************************
-    * FOR THE TEST SUITE
-    ***************************************************************************/
     int i,j,k,t;
-    struct uindx a;
-    RandomSequence sequence(this->N);
-    std::vector<uindx>::iterator it;
-    std::vector<uindx>::reverse_iterator rit;
-
-    t = 0;
-    //First loop = times the whole network has to be updated
-    /***************************************************************************
-    * FOR THE TEST SUITE
-    ***************************************************************************/
-    for(i = 0; i < nupdates; ++i){
-
-        //Second loop = loop on all neurons serially
-        for(j = 0; j < this->N; ++j){
-
-            /***************************************************************************
-            * FOR THE TEST SUITE
-            ***************************************************************************/
-            for (rit = this->updated_units[j].rbegin(); rit != this->updated_units[j].rend(); ++rit ) {
-                this->network[j]->update_cdata(this->network[rit->unit]->get_state(),rit->idx);
-                this->updated_units[j].pop_back();
-            }
-
-            //Update the unit
-            this->network[j]->update_rule(this->pgen->get_patt(j)[pattern_number],
-                                            this->U,
-                                            this->w,
-                                            this->g,
-                                            tau,
-                                            b1,
-                                            b2,
-                                            b3,
-                                            this->pgen->beta,
-                                            tx,
-                                            t
-                                            );
-
-            /***************************************************************************
-            * FOR THE TEST SUITE
-            ***************************************************************************/
-            //Update the network with new numbers (this could be done in parallel)
-
-            a.unit = j;
-            //#pragma omp parallel for
-            for(it = this->icm[j].begin(); it != this->icm[j].end(); ++it){
-                a.idx = it->idx;
-                this->updated_units[it->unit].push_back(a);
-            }
-
-            t++;
-
-        }
-
-    }
-
-    #else
-    /***************************************************************************
-    * NORMAL RUN
-    ***************************************************************************/
-    int i,j,t;
     int unit;
-    struct uindx a;
     RandomSequence sequence(this->N);
-    std::vector<uindx>::iterator it;
-    std::vector<uindx>::reverse_iterator rit;
 
     #ifdef _BENCH
     std::chrono::high_resolution_clock::time_point t1;
@@ -282,26 +219,22 @@ void PNetwork::start_dynamics(const int & nupdates, const int & tx, const __fpv 
 
     t = 0;
     //First loop = times the whole network has to be updated
-
     for(i = 0; i < nupdates; ++i){
 
-
-
         //Shuffle the random sequence
+        #ifndef _TEST
         sequence.shuffle(*this->pgen->generator);
+        #endif
 
         //Second loop = loop on all neurons serially
-        for(j = 0; j < this->N; ++j){
+        for(j = 0; j < N; ++j){
+
 
             unit = sequence.get(j);
-            //Check for updated connected units and update cdata
-            for (rit = this->updated_units[unit].rbegin(); rit != this->updated_units[unit].rend(); ++rit ) {
-                this->network[unit]->update_cdata(this->network[rit->unit]->get_state(),rit->idx);
-                this->updated_units[unit].pop_back();
-            }
 
             //Update the unit
             this->network[unit]->update_rule(this->pgen->get_patt(j)[pattern_number],
+                                            this->states,
                                             this->U,
                                             this->w,
                                             this->g,
@@ -315,16 +248,9 @@ void PNetwork::start_dynamics(const int & nupdates, const int & tx, const __fpv 
                                             );
 
 
-
-            a.unit = unit;
-
-            //#pragma omp parallel for
-            /*
-            for(it = this->icm[j].begin(); it != this->icm[j].end(); ++it){
-                a.idx = it->idx;
-                this->updated_units[it->unit].push_back(a);
+            for(k = 0; k < S; ++k){
+                states[S*unit + k] = this->network[unit]->get_state()[k];
             }
-            */
             t++;
 
 
@@ -337,9 +263,7 @@ void PNetwork::start_dynamics(const int & nupdates, const int & tx, const __fpv 
 
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>( t2 - t1 ).count();
 
-    std::cout << "TOTAL UPDATE ELAPSED TIME(us): "<< duration << std::endl;
-    #endif
-
+    std::cout << "TOTAL UPDATE ELAPSED TIME(ms): "<< duration << std::endl;
     #endif
 
 

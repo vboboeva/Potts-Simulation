@@ -1,16 +1,18 @@
 #include <math.h>
 #include "config.h"
 #include "p_unit.h"
+#include <iostream>
 
 /*******************************************************************************
 POTTS UNIT
 *******************************************************************************/
-PUnit::PUnit( const int & S, const int & C){
+PUnit::PUnit( const int & S, const int & C, const int & N){
     this->state = new __fpv[S + 1];
-    this->cdata = new __fpv[S * 2 * C * S];
+    this->cdata = new __fpv[S * N * S];
     this->r = new __fpv[S + 1];
     this->S = S;
     this->C = C;
+    this->N = N;
     this->h = new __fpv[S];
     this->theta = new __fpv[S];
 
@@ -41,46 +43,48 @@ void PUnit::init_states(const __fpv & beta, const __fpv & U){
     r[S] = 1 - state[S];
 
 }
-void PUnit::init_J(const int & p, const __fpv & a, const int * xi, const int & unit, const int * cm, PUnit ** network){
+
+void PUnit::init_J(const int & p, const __fpv & a, const int * xi, const int & unit, const int * ucm, PUnit ** network){
 
     int i,j,k,l;
     __fpv as = a/S;
 
     //Generate Jkxl
     for(i = 0; i < S; ++i){
-        h[i] = 0;
-        for(j = 0; j < C; ++j){
+        for(j = 0; j < N; ++j){
             for(k = 0; k < S; ++k){
 
-                cdata[C*S*i + S*j + k] = 0;
-                //cdata[i * (2*C*S) + j * (S) + k] = 0;
+                cdata[N*S*i + S*j + k] = 0;
 
-                //Half filled with Jkxl
-                for(l = 0; l < p; ++l){
-                    cdata[C*S*i + S*j + k] += ((xi[p * unit + l]==i)-as)*((xi[p * cm[C*unit+j] + l]==k)-as);
+                if(ucm[unit*N + j] == 1){
+
+                    for(l = 0; l < p; ++l){
+                        cdata[N*S*i + S*j + k] += ((xi[p * unit + l]==i)-as)*((xi[p * j + l]==k)-as);
+                    }
+
+                    cdata[N*S*i + S*j + k] /= a * (1 - as)* C;
+
+                    h[i] += cdata[N*S*i + S*j + k] * network[j]->state[k];
                 }
-                cdata[C*S*i + S*j + k] /= a * (1 - as)* C;
-                //Half filled with all the states that this units need to perform the update
-                cdata[(S*C*S) + C*S*i + S*j + k] = network[cm[C*unit + j]]->state[k];
-                //cdata[C*S + i * (2*C*S) + j * (S) + k] = network[cm[C*unit + j]]->state[k];
 
-                //Compute directly initial h
-                h[i] += cdata[C*S*i + S*j + k] * network[cm[C*unit + j]]->state[k];
             }
         }
+
         r[i] = h[i];
         theta[i] = state[i];
+
     }
+
 
 }
 
-void PUnit::update_rule(const int & init_pattern, const __fpv & U, const __fpv & w, const __fpv & g, const __fpv & tau, const __fpv & b1, const __fpv & b2, const __fpv & b3, const __fpv & beta, const int & tx, const int & t){
+void PUnit::update_rule(const int & init_pattern, const __fpv * states, const __fpv & U, const __fpv & w, const __fpv & g, const __fpv & tau, const __fpv & b1, const __fpv & b2, const __fpv & b3, const __fpv & beta, const int & tx, const int & t){
 
 
     //tx == n0 in the old code, "time 'x' "
     int i,j;
     __fpv self=0, INcost, rmax, Z;
-    int tsize = this->C * this->S;
+    int tsize = this->N * this->S;
 
     rmax = this->r[this->S];
 
@@ -95,7 +99,7 @@ void PUnit::update_rule(const int & init_pattern, const __fpv & U, const __fpv &
     for(i = 0; i < this->S; ++i){
 
         for(j = 0; j < tsize; ++j){
-            this->h[i] += this->cdata[C*S*i + j] * this->cdata[(S*C*S) + C*S*i + j];
+            this->h[i] += this->cdata[N*S*i + j] * states[j];
         }
 
         this->h[i] += w * this->state[i] - self + INcost * (init_pattern == i);
@@ -108,7 +112,6 @@ void PUnit::update_rule(const int & init_pattern, const __fpv & U, const __fpv &
     }
 
     this->r[S] += b3 * (1 - this->state[S] - this->r[S]);
-
 
     Z=0;
 
@@ -123,17 +126,5 @@ void PUnit::update_rule(const int & init_pattern, const __fpv & U, const __fpv &
     }
 
     this->state[S]=exp(beta * (this->r[S] - rmax + U)) / Z;
-
-}
-
-void PUnit::update_cdata(const __fpv * new_states, const int & index){
-
-    int i,j;
-
-    for(i = 0; i < S; ++i){
-        for(j = 0; j < S; ++j){
-            cdata[(S*C*S) + C*S*i + S*index + j] = new_states[j];
-        }
-    }
 
 }

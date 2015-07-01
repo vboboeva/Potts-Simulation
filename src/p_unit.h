@@ -17,14 +17,15 @@ class PUnit{
 
         int S; //Number of states
         int C; //Number of connections
+        int N; //Number of Units of the network
 
     public:
         ~PUnit();
-        PUnit(const int & S, const int & C);
+        PUnit(const int & S, const int & C, const int & N);
         void init_states(const __fpv & beta, const __fpv & U);
-        void init_J(const int &p, const __fpv &a, const int * xi, const int &unit, const int * cm, PUnit ** network);
+        void init_J(const int &p, const __fpv &a, const int * xi, const int &unit, const int * ucm, PUnit ** network);
         __fpv * get_state();
-        void update_rule(const int & init_pattern,
+        void update_rule(const int & init_pattern, const __fpv * states,
                         const __fpv & U,
                         const __fpv & w,
                         const __fpv & g,
@@ -36,7 +37,7 @@ class PUnit{
                         const int & tx,
                         const int & t
                         );
-        void update_cdata(const __fpv * new_states, const int & index);
+
         __fpv * get_cdata(){ return this->cdata;};
 };
 

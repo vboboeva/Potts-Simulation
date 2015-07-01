@@ -141,7 +141,7 @@ for(ttt=0;ttt<Trete;ttt++)
 }
 t2 = std::chrono::high_resolution_clock::now();
 auto duration = std::chrono::duration_cast<std::chrono::milliseconds>( t2 - t1 ).count();
-std::cout << "TOTAL UPDATE ELAPSED TIME(us): "<< duration << std::endl;
+std::cout << "TOTAL UPDATE ELAPSED TIME(ms): "<< duration << std::endl;
 
 fprintf(ksequenza, "  999999 \n");
 fflush(ksequenza);

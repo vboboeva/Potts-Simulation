@@ -135,7 +135,7 @@ for(ttt=0;ttt<Trete;ttt++)
 {
 	x=(int)(NumSet*drand48());
 
-	for(iii=0;iii<1;iii++)
+	for(iii=0;iii<N;iii++)
 	{
 		//i=Permut[iii][x];
 		update_stato(iii,n);																	///update di s[][] di un neu per ogni stato

@@ -1,7 +1,7 @@
 CPPC=icc
 CFLAGS= -std=c++11 -Wall
 PFOLDER=../../src
-OPTFLAGS= -O3 -openmp
+OPTFLAGS= -O3
 CFLAGS+= -I$(PFOLDER)
 CMACROS+= -D_BENCH -D_FLOAT_PRECISION
 

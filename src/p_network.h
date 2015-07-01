@@ -10,12 +10,6 @@
 #include "p_unit.h"
 
 
-
-struct uindx{
-    int unit;
-    int idx;
-};
-
 class PNetwork{
     private:
         PUnit ** network;
@@ -29,9 +23,9 @@ class PNetwork{
         __fpv g;
 
         int * cm; //Connection matrix
-        std::vector<uindx> * icm;
-        std::vector<uindx> * updated_units;
+        int * ucm; //1-0 connection matrix
         __fpv * m; //m
+        __fpv * states;
         PatternGen * pgen;
 
     public:

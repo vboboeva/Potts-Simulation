@@ -19,7 +19,7 @@ int main(int argc, char *argv[]){
 
     PatternGen pgen(
                600, //N
-               10, //p
+               100, //p
                5, //S
                0.25, //a
                11.0, //beta

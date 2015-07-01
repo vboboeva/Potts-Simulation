@@ -310,7 +310,6 @@ for(k=0;k<S;k++)
 
 	theta[i][k]+=b2*(s[i][k]-theta[i][k]);
 									//update theta
-									std::cout <<"RIS "<< r[i][k] << " ";
 	r[i][k]+=b1*(h[i][k]-theta[i][k]-r[i][k]);								//update r
 
 	if(r[i][k]>rmax)												//(per evitare l'overflow calcolando s)
@@ -321,7 +320,6 @@ for(k=0;k<S;k++)
 
 
 }
-std::cout << std::endl;
 /// //////////	update rS e sold per S	///
 sold[i][S]=s[i][S];
 r[i][S]+=b3*(1.-s[i][S]-r[i][S]);

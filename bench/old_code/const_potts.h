@@ -2,7 +2,7 @@
 #define      Retr   		3
 #define      N   			600
 #define      Cm			300
-#define      p				10
+#define      p				100
 #define      S				5
 #define      a				0.25
 #define      U				0.1
