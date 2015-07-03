@@ -5,7 +5,6 @@
 #include "config.h"
 
 struct parameters{
-    int Retr;
     int N;
     int C;
     int p;

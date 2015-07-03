@@ -4,7 +4,7 @@
 CPPC=icc
 CFLAGS= -std=c++11 -Wall
 OPTFLAGS= -O3
-CFLAGS+= -vec-report
+CFLAGS+= -qopt-report
 CMACRO=-D_FLOAT_PRECISION
 SRC=src
 ODIR=build

@@ -1,15 +1,23 @@
 #include <iostream>
 #include <random>
 
+
 #include "pattern_generation.h"
 #include "random_sequence.h"
 #include "p_unit.h"
 #include "p_network.h"
+#include "utils.h"
+#include "parameters_struct.h"
 
 int main(int argc, char *argv[]){
 
     std::cout << "Potts simulation" << std::endl;
 
+
+    std::cout << "loading parameters" << std::endl;
+    struct parameters params;
+    load_params("test.cfg", params);
+    print_params(params);
     /***************************************************************************
     PATTERN GENERATION
     ***************************************************************************/
