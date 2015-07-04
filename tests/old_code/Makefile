@@ -1,6 +1,6 @@
 
 master.x: master.cpp
-	g++ -o master.x master.cpp
+	icc -o master.x master.cpp
 
 clean:
 	@rm -rf *.dat *.txt *.out *.x

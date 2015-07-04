@@ -23,7 +23,7 @@ double floor (double);
 
 std::default_random_engine generator;
 
-std::uniform_int_distribution<int> int_uniform_0_N(0,N);
+std::uniform_int_distribution<int> int_uniform_0_N(0,N-1);
 std::uniform_int_distribution<int> int_uniform_0_S(0,S);
 std::uniform_real_distribution<double> double_uniform_0_1(0,1);
 std::uniform_real_distribution<double> double_uniform_0_eps(0,eps);
@@ -121,8 +121,8 @@ void SetFactors(void)
 void SetPatterns(void)
 {
    int N_p,i,ii,k,m,s1,u1,u2,unit;
-   float y, h_max, eigen_fact, sum_e, piccolo, a_pa,  a_patt, dh, h000,expon,fluct,bb;
-   float hh[Num_u][Num_s],hhh[Num_s],ss[Num_s];
+   double y, h_max, eigen_fact, sum_e, piccolo, a_pa,  a_patt, dh, h000,expon,fluct,bb;
+   double hh[Num_u][Num_s],hhh[Num_s],ss[Num_s];
 
    piccolo = log(eps);
    a_patt = 0.0;
@@ -163,15 +163,15 @@ void SetPatterns(void)
       a_pa = 0.0;
       h000 = Num_fact;
       k = 0;
-      if(fact_eigen_slope > (1./(float)Num_fact))
+      if(fact_eigen_slope > (1./(double)Num_fact))
 	h000 = 1./fact_eigen_slope;
-      h000 *= 0.5*a_pf*a_fact/(float)Num_s;
+      h000 *= 0.5*a_pf*a_fact/(double)Num_s;
       bb = beta;
 
       while(((a_pa-a_mod)*(a_pa-a_mod))>=eps)
       {
       N_p = 0;
-      fluct = sqrt(eps)*(float)k;
+      fluct = sqrt(eps)*(double)k;
       for(unit=0;unit<Num_u;unit++)
       {
          h_max = 0.0;
@@ -203,12 +203,12 @@ void SetPatterns(void)
          }
       }
 
-      a_pa = (float)N_p/(float)Num_u;
+      a_pa = (double)N_p/(double)Num_u;
       h000 += 0.1*(a_pa-a_mod);
 
       k++;
       }
-      a_patt += a_pa/(float)Num_p;
+      a_patt += a_pa/(double)Num_p;
 
    }
    printf("Average pattern sparsity %f\n",a_patt);
