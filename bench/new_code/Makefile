@@ -1,18 +1,23 @@
 CPPC=icc
 CFLAGS= -std=c++11 -Wall
-PFOLDER=../../src
+PRJ_ROOT=../..
 OPTFLAGS= -O3
-CFLAGS+= -I$(PFOLDER)
-CMACROS+= -D_BENCH -D_FLOAT_PRECISION
 
-SRC_FILES = $(filter-out $(PFOLDER)/main.cpp, $(wildcard $(PFOLDER)/*.cpp))
+MACROS_LIST=_BENCH _FLOAT_PRECISION
+CMACROS=$(foreach d, $(MACROS_LIST), -D$d)
 
-.PHONY: all link run clean
+INCLUDE_LIST=$(PRJ_ROOT)/include $(PRJ_ROOT)/lib
+CINCLUDE=$(foreach d, $(INCLUDE_LIST), -I$d)
+
+LIB_FILES = $(wildcard $(PRJ_ROOT)/lib/*.cpp)
+
+.PHONY: all run clean
+
 
 all: main.x
 
-main.x : main.cpp $(SRC_FILES)
-	$(CPPC) $(CFLAGS) $(OPTFLAGS) $(CMACROS) -o $@ $^
+main.x : main.cpp $(LIB_FILES)
+	$(CPPC) $(CFLAGS) $(CINCLUDE) $(OPTFLAGS) $(CMACROS) -o $@ $^
 
 run: main.x
 	@./main.x &>/dev/null
