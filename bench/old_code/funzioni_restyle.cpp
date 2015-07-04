@@ -1,15 +1,15 @@
 ///	%%%%%%%%%%%%%%%%%%		CONNECTIVITY		%%%%%%%%%%%%%%%%%
-extern int    	 	**xi;							
+extern int    	 	**xi;
 extern float   	**s;
-extern float    	**sold;	
+extern float    	**sold;
 extern float    	****J;		/// 33333333333333333333333
 //extern float	mark[N]; 				/// per costruire una cue correlata con un pattern
 extern float    	m[p];
 extern float    	mS[p];
 extern int       	retr;
-extern float    	**h; 
-extern float		**r;						
-extern float    	q; 
+extern float    	**h;
+extern float		**r;
+extern float    	q;
 extern float		**theta;
 extern float		n0;
 extern float    	invdenN;
@@ -57,7 +57,7 @@ void read_pattern()
 {
 int i, mu;
 pat=fopen("pattern.dat","r");
-//	pat=fopen("spatt.txt","r");	
+//	pat=fopen("spatt.txt","r");
 for(mu=0;mu<p;mu++)
 {
 	for(i=0;i<N;i++)
@@ -76,12 +76,12 @@ int i_c, x, new_one;
 
 /// inizializzo da file
 
-for(i=0;i<N;i++)								
-{										
+for(i=0;i<N;i++)
+{
 	for(k=0;k<S;k++)
 	{
 	s[i][k]=(-2*beta-2*exp(beta*U)-2*S+sqrt(pow(2*beta+2*exp(beta*U)+2*S,2)+8*(-beta*beta-2*beta*S+2*beta*S*exp(beta*U))))/(2*(-beta*beta-2*beta*S+2*beta*S*exp(beta*U)));  //soluzione per lo stato sazionario sviluppata attorno a s[i][k]=0
-	}	
+	}
 s[i][S]=1.-S*s[i][0];
 r[i][S]=1.-s[i][S];
 }
@@ -91,25 +91,25 @@ r[i][S]=1.-s[i][S];
 for(i=0; i<N; i++)
 {
 //	C[i][0] = i;									/// per self sustained serve per stabilizzare il campo
-//	i_c = 1; 
-	i_c = 0; 										/// considero Cii=0 ma poi per stabilizzare il campo agisco direttamente quando calcolo h    
+//	i_c = 1;
+	i_c = 0; 										/// considero Cii=0 ma poi per stabilizzare il campo agisco direttamente quando calcolo h
 	while(i_c<Cm)
 	{
 		new_one = 1;
 ///		FULLY connected
-// 		j=i_c;			
-// 		if(j==i) 
+// 		j=i_c;
+// 		if(j==i)
 // 		{
-// 			new_one = 0;				
+// 			new_one = 0;
 // 			i_c++;
 // //printf("%d	\n", i_c);
 // 		}
 ///		SPARSE connected
-		j = (int)((double)N*drand48());
+		j = (int)((float)N*drand48());
 		if(j==i) new_one = 0;						/// per porre Cii=0
 		for(x=0; x<i_c; x++)						/// per controllare di non averlo gia` preso
 		{
-			if(C[i][x]==j) new_one = 0;	
+			if(C[i][x]==j) new_one = 0;
 		}
 ///
 		if(new_one)
@@ -121,10 +121,10 @@ for(i=0; i<N; i++)
 }
 printf("dopo	\n");
 
-/// stampo la matrice delle connessioni  Cij 
+/// stampo la matrice delle connessioni  Cij
 // FILE *cij;
 // cij=fopen("Cij.txt","w");
-// 
+//
 // for(i=0; i<N; i++)
 // {
 // 	for(x=0; x<Cm; x++)
@@ -148,8 +148,8 @@ for(i=0; i<N; i++)
 			{
 			J[i][x][k][l]=0;
 
-			for(mu=0; mu<p; mu++)	
-					J[i][x][k][l]+=((float)(xi[i][mu]==k)-as)*((float)(xi[C[i][x]][mu]==l)-as);	
+			for(mu=0; mu<p; mu++)
+					J[i][x][k][l]+=((float)(xi[i][mu]==k)-as)*((float)(xi[C[i][x]][mu]==l)-as);
 			J[i][x][k][l]=J[i][x][k][l]/denCm;
 //			J[i][x][k][l]=(J[i][x][k][l]*(float)((k==0)*(l==0)))/denCm;
 			}
@@ -160,60 +160,60 @@ printf("dopo3	\n");
 
 
 ///		M		///33333333333333333333333333333333333333333
-								
-for(mu=0;mu<p;mu++)								
-{	
-	maa=0.;									
-	for(i=0;i<N;i++)							
+
+for(mu=0;mu<p;mu++)
+{
+	maa=0.;
+	for(i=0;i<N;i++)
 	{
 		ma=0.;
 		for(k=0;k<S;k++)
 		{
-			ma+=((float)(xi[i][mu]==k)-as)*s[i][k];				//to calculate m  
+			ma+=((float)(xi[i][mu]==k)-as)*s[i][k];				//to calculate m
 		}
 		maa+=ma;
 	}
 m[mu]=maa*invdenN;									//value of m[mu] for each mu
-}										
+}
 
 /*
 ///		H , R , T 		///33333333333333333333333333333333333333333
 for(i=0;i<N;i++)								//to calculate h, r, theta
-{						
+{
 	r[i][S]=0.;
 
 	for(k=0;k<S;k++)
 	{
 	h[i][k]=0.;
-	 for(x=0;x<Cm;x++)								
+	 for(x=0;x<Cm;x++)
 	{
-		for(l=0;l<S;l++)								
+		for(l=0;l<S;l++)
 		{
 		 h[i][k]+=	J[i][x][k][l]*s[C[i][x]][l];	///	333333333333333333333333333333333333333
 		}
 	}
-	r[i][k]=h[i][k];	
-	theta[i][k]=s[i][k];								
+	r[i][k]=h[i][k];
+	theta[i][k]=s[i][k];
 
-	}									
+	}
 }*/
 
 ///		H , R , T 		///33333333333333333333333333333333333333333
 for(i=0;i<N;i++)								//to calculate h, r, theta
-{						
+{
 	for(k=0;k<S;k++)
 	{
 	h[i][k]=0.;
-	 for(x=0;x<Cm;x++)								
+	 for(x=0;x<Cm;x++)
 	{
-		for(l=0;l<S;l++)								
+		for(l=0;l<S;l++)
 		{
 		 h[i][k]+=	J[i][x][k][l]*s[C[i][x]][l];	///	333333333333333333333333333333333333333
 		}
 	}
 	r[i][k]=h[i][k];			//valgono nello stato stazionario
 	theta[i][k]=s[i][k];		//valgono nello stato stazionario
-	}									
+	}
 }
 
 }
@@ -236,7 +236,7 @@ for(l=0;l<S;l++)
 {
 	self+=s[i][l];
 }
-self=ws*self; 
+self=ws*self;
 
 INcost	=	(float)(n>n0)*g*exp(-((n-n0)/((float)tau)));			/// campo iniziale &&&&&&&&&&&&@@@@@@@@@@@@@@@@@@
 
@@ -244,9 +244,9 @@ for(k=0;k<S;k++)
 {
 	///	di  h
 	h[i][k]=0.;
-	 for(x=0;x<Cm;x++)								
+	 for(x=0;x<Cm;x++)
 	{
-		for(l=0;l<S;l++)								
+		for(l=0;l<S;l++)
 		{
 		 h[i][k]+=	J[i][x][k][l]*s[C[i][x]][l];
 		}
@@ -257,10 +257,10 @@ for(k=0;k<S;k++)
 
 	theta[i][k]+=b2*(s[i][k]-theta[i][k]);								//update theta
 	r[i][k]+=b1*(h[i][k]-theta[i][k]-r[i][k]);								//update r
-	
-	if(r[i][k]>rmax)												//(per evitare l'overflow calcolando s)	
+
+	if(r[i][k]>rmax)												//(per evitare l'overflow calcolando s)
 	{
-		rmax=r[i][k];	
+		rmax=r[i][k];
 	}
 }
 
@@ -290,8 +290,8 @@ s[i][S]=invZ*exp(beta*(r[i][S]-rmax+U));
 /*
 /// //////////    UPDATE H
 t=(float)n/N;
-//if((n%tempostampa)==0 && n>=10000*N)	
-if((n%tempostampa)==0)				
+//if((n%tempostampa)==0 && n>=10000*N)
+if((n%tempostampa)==0)
 {
 
 H=0.;
@@ -305,7 +305,7 @@ Hht=0.;
 		Hht+=-h[v][k]*s[v][k]/2.+theta[v][k]*s[v][k];
 		H+=-h[v][k]*s[v][k]/2.+(U+theta[v][k]+r[v][S])*s[v][k];  //il contributo di w e` gia` dentro h
 		}
-//	H+=-(theta[v][S]+U);  
+//	H+=-(theta[v][S]+U);
 	}
 fprintf(Hqfile, "%.2f	%.4f\n", t, Hq);
 fprintf(Hfile, "%.2f	%.4f\n", t, H);
@@ -405,21 +405,21 @@ void calcolo_m()
 int  k,i, l, mu;
 float ma, maa;
 ///		M		///33333333333333333333333333333333333333333
-								
-for(mu=0;mu<p;mu++)								
-{	
-	maa=0.;									
-	for(i=0;i<N;i++)							
+
+for(mu=0;mu<p;mu++)
+{
+	maa=0.;
+	for(i=0;i<N;i++)
 	{
 		ma=0.;
 		for(k=0;k<S;k++)
 		{
-			ma+=((float)(xi[i][mu]==k)-as)*s[i][k];				//to calculate m  
+			ma+=((float)(xi[i][mu]==k)-as)*s[i][k];				//to calculate m
 		}
 		maa+=ma;
 	}
 m[mu]=maa*invdenN;									//value of m[mu] for each mu
-}										
+}
 
 
 }
@@ -462,10 +462,10 @@ for(i=0; i<tstampato; i++)
 */
 J= new float***[N];
 for(i=0; i<N; i++)
-{	
+{
 	J[i]=new float**[N];
 	 for(x=0; x<Cm; x++)
-	{	
+	{
 		J[i][x]=new float*[S];
 		 for(z=0; z<S; z++)
 			J[i][x][z]=new float[S];
@@ -522,26 +522,26 @@ delete(overlap);
 void SetUpTables()
 {
 int item, jtem, info;
-int fatto, kk;  
+int fatto, kk;
 
 //srand48(time(0));
 srand48(6937);
 for(kk=0; kk<NumSet; kk++)
 {
-	item = 0; 
-	
+	item = 0;
+
 	while(item<N)
 	{
-	
-	
-	info =(int)((double)N*drand48());
-	
+
+
+	info =(int)((float)N*drand48());
+
 	fatto=0;
 	while(fatto==0)
 	{
-	
+
 		fatto=1;
-		
+
 		for(jtem=0; jtem<item; jtem++)
 		{
 			if(  Permut[jtem][kk] == info  )
@@ -551,36 +551,14 @@ for(kk=0; kk<NumSet; kk++)
 				fatto=0;
 			}
 		}
-	
-	
+
+
 	}
-	
+
 	Permut[item][kk]= info;
 	item++;
 	}
-	
-}	
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}

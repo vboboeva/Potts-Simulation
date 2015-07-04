@@ -1,4 +1,4 @@
-#include <stdio.h>                              
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
@@ -9,15 +9,15 @@
 
 
 int Factors[N_fact][Num_fact];
-int Patt[p][N];	
-double	C[p][p];
+int Patt[p][N];
+float	C[p][p];
 
 FILE *fpattern;
 
 void SetFactors(void);
 void SetPatterns(void);
-void save_pattern(int);		
-double floor (double);
+void save_pattern(int);
+float floor (float);
 
 
 int main()
@@ -47,7 +47,7 @@ C[mu][nu]=C[mu][nu]/N;
 
 
 ///	calcolo il valor medio e la deviazione standard
-double coppie, media, varianza, mC, vC;
+float coppie, media, varianza, mC, vC;
 coppie=0.0;
 
 media=0.0;
@@ -58,7 +58,7 @@ for(mu=0;mu<(p-1);mu++)
 	for(nu=(mu+1);nu<p;nu++)
 	{
 	media+= C[mu][nu];
-	coppie++;		
+	coppie++;
 	}
 }
 mC=media/coppie;
@@ -102,7 +102,7 @@ void SetFactors(void)
    {
       for(i=0; i<N_fact; i++)
       {
-         Factors[i][k] = (int)((double)Num_u*drand48());
+         Factors[i][k] = (int)((float)Num_u*drand48());
       }
    }
 }
@@ -138,7 +138,7 @@ void SetPatterns(void)
          if(y<=a_pf)
          {
             eigen_fact = exp(expon)*y/a_pf;
-            s1 = (int)((double)Num_s*drand48());
+            s1 = (int)((float)Num_s*drand48());
             for(ii=0; ii<N_fact; ii++)
             {
                hh[Factors[ii][k]][s1] += eigen_fact+eps*drand48();
@@ -195,14 +195,14 @@ void SetPatterns(void)
       a_pa = (float)N_p/(float)Num_u;
       h000 += 0.1*(a_pa-a_mod);
 
-      k++;   
+      k++;
       }
       a_patt += a_pa/(float)Num_p;
-       
+
    }
    printf("Average pattern sparsity %f\n",a_patt);
 }
-    
+
 void save_pattern(int mu)
 {
 int i;
@@ -215,16 +215,3 @@ fprintf(fpattern, "%d ", Patt[mu][i]);						//to save one pattern on savepattern
 fprintf(fpattern, "\n ");
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
