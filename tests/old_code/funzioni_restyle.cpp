@@ -189,24 +189,24 @@ printf("dopo	\n");
 
 ///		Jixkl		///33333333333333333333333333333333333333333
 
-for(i=0; i<N; i++)
-{
-	for(x=0; x<Cm; x++)
+	for(i=0; i<N; i++)
 	{
-		for(k=0; k<S; k++)
+		for(x=0; x<Cm; x++)
 		{
-			for(l=0; l<S; l++)
+			for(k=0; k<S; k++)
 			{
-			J[i][x][k][l]=0;
+				for(l=0; l<S; l++)
+				{
+				J[i][x][k][l]=0;
 
-			for(mu=0; mu<p; mu++)
-					J[i][x][k][l]+=((double)(xi[i][mu]==k)-as)*((double)(xi[C[i][x]][mu]==l)-as);
-			J[i][x][k][l]=J[i][x][k][l]/denCm;
-//			J[i][x][k][l]=(J[i][x][k][l]*(double)((k==0)*(l==0)))/denCm;
+				for(mu=0; mu<p; mu++)
+						J[i][x][k][l]+=((double)(xi[i][mu]==k)-as)*((double)(xi[C[i][x]][mu]==l)-as);
+				J[i][x][k][l]=J[i][x][k][l]/denCm;
+	//			J[i][x][k][l]=(J[i][x][k][l]*(double)((k==0)*(l==0)))/denCm;
+				}
 			}
 		}
 	}
-}
 printf("dopo3	\n");
 
 
@@ -302,12 +302,14 @@ for(k=0;k<S;k++)
 		 h[i][k]+=	J[i][x][k][l]*s[C[i][x]][l];
 		}
 	}
-	std::cout <<"RIS "<< h[i][k] << " ";
-	h[i][k]+=w*s[i][k]-self+ INcost*(xi[i][retr]==k);										//tolgo l`auto eccitazione
+
+	h[i][k]+=w*s[i][k]-self+ INcost*(xi[i][retr]==k);
+											//tolgo l`auto eccitazione
 	/// di sold, thteta, r
 	sold[i][k]=s[i][k];
 
-	theta[i][k]+=b2*(s[i][k]-theta[i][k]);								//update theta
+	theta[i][k]+=b2*(s[i][k]-theta[i][k]);
+									//update theta
 	r[i][k]+=b1*(h[i][k]-theta[i][k]-r[i][k]);								//update r
 
 	if(r[i][k]>rmax)												//(per evitare l'overflow calcolando s)
@@ -315,8 +317,9 @@ for(k=0;k<S;k++)
 		rmax=r[i][k];
 	}
 
+
+
 }
-	std::cout << std::endl;
 /// //////////	update rS e sold per S	///
 sold[i][S]=s[i][S];
 r[i][S]+=b3*(1.-s[i][S]-r[i][S]);
@@ -336,8 +339,10 @@ invZ=1./Z;
 
 for(k=0;k<S;k++)
 {
-	s[i][k]=invZ*exp(beta*(r[i][k]-rmax));						//update of s[]
+	s[i][k]=invZ*exp(beta*(r[i][k]-rmax));
+						//update of s[]
 }
+
 s[i][S]=invZ*exp(beta*(r[i][S]-rmax+U));
 
 

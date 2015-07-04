@@ -17,6 +17,7 @@ class RandomSequence{
         void print();
         int * begin();
         int * end();
+        int get(const int & i){return this->sequence[i];};
 
 };
 

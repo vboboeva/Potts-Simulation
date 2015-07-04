@@ -4,6 +4,8 @@
 #include <string>
 #include <random>
 
+#include "config.h"
+
 class PatternGen{
 
     friend class PNetwork; //Allows PNetwork to direct access PatternGen member
@@ -12,14 +14,14 @@ class PatternGen{
         int N; // Number of potts units
         int p; // Number of patterns
         int S; // Number of states
-        double a;
-        double beta;
+        __fpv a;
+        __fpv beta;
         int N_fact;
         int Num_fact;
-        double a_fact;
-        double eps;
-        double a_pf;
-        double fact_eigen_slope;
+        __fpv a_fact;
+        __fpv eps;
+        __fpv a_pf;
+        __fpv fact_eigen_slope;
 
         int * Patt; // Dynamic array of dimension p * N
 
@@ -29,14 +31,14 @@ class PatternGen{
         PatternGen(const int N,
                    const int p,
                    const int S,
-                   const double a,
-                   const double beta,
+                   const __fpv a,
+                   const __fpv beta,
                    const int N_fact,
                    const int Num_fact,
-                   const double a_fact,
-                   const double eps,
-                   const double a_pf,
-                   const double fact_eigen_slope
+                   const __fpv a_fact,
+                   const __fpv eps,
+                   const __fpv a_pf,
+                   const __fpv fact_eigen_slope
                    );
         ~PatternGen();
 
