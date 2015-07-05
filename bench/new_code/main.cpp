@@ -5,6 +5,8 @@
 #include "random_sequence.h"
 #include "p_unit.h"
 #include "p_network.h"
+#include "parameters_struct.h"
+#include "utils.h"
 
 int main(int argc, char *argv[]){
 
@@ -17,56 +19,50 @@ int main(int argc, char *argv[]){
     std::default_random_engine generator;
     generator.seed(12345);
 
+    std::cout << "loading parameters" << std::endl;
+    struct parameters params;
+    load_params("params.cfg", params);
+
     PatternGen pgen(
-               600, //N
-               100, //p
-               5, //S
-               0.25, //a
-               11.0, //beta
-               50, //N_fact
-               200, //Num_fact
-               0.25, //a_fact
-               1e-6, //eps
-               3e-6, //a_pf
-               3e-6 //fact_eigen_slope
+               params.N, //N
+               params.p, //p
+               params.S, //S
+               params.a, //a
+               params.beta, //beta
+               params.N_fact, //N_fact
+               params.Num_fact, //Num_fact
+               params.a_fact, //a_fact
+               params.eps, //eps
+               params.a_pf, //a_pf
+               params.fact_eigen_slope //fact_eigen_slope
                );
 
     pgen.set_random_generator(generator);
     pgen.generate();
-    pgen.save_pattern_to_file("patterns.dat");
 
     /***************************************************************************
     DYNAMICS
     ***************************************************************************/
 
-    //Generate random sequence
-    RandomSequence sequence(600);
-    sequence.shuffle(generator);
-    //sequence.print(); //If you want to check the output of the shuffled sequence.
-
-    //Reset generator, this is because the old code run 2 different files and
-    //generators. This is just to check that everything is as in the old code.
-    generator.seed(12345);
-
     //Create the network
     PNetwork pnet(pgen, //Patterns
-                    300, //Number of connections for each unit
-                    0.1, //U
-                    0.8, //w
-                    5.0 //g
+                    params.C, //Number of connections for each unit
+                    params.U, //U
+                    params.w, //w
+                    params.g //g
                     );
 
     //Initialize the network
-    pnet.init_units();//Yet not fully implemented
+    pnet.init_units();
 
 
     //Start the dynamics
-    pnet.start_dynamics(600, //Number of updates
-                        500*600, //n0 500*N
-                        10*600, //tau 10*N
-                        0.3, //b1
-                        0.01, //b2
-                        0.000001, //b3
+    pnet.start_dynamics(params.nupdates, //Number of updates
+                        500*params.N, //n0 500*N
+                        10*params.N, //tau 10*N
+                        params.b1, //b1
+                        params.b2, //b2
+                        params.b3, //b3
                         1 //pattern number
                         );
 

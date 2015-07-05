@@ -14,10 +14,11 @@ int main(int argc, char *argv[]){
     std::cout << "Potts simulation" << std::endl;
 
 
-    std::cout << "loading parameters" << std::endl;
+    std::cout << "Loading parameters" << std::endl;
     struct parameters params;
     load_params("test.cfg", params);
-    print_params(params);
+
+
     /***************************************************************************
     PATTERN GENERATION
     ***************************************************************************/

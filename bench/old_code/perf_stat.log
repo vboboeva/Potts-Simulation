@@ -1,0 +1,15 @@
+# started on Sun Jul  5 13:13:07 2015
+
+
+ Performance counter stats for './master.x':
+
+       252,168,325      cache-references                                            
+       112,740,349      cache-misses              #   44.708 % of all cache refs    
+    36,214,755,031      cycles                                                      
+    58,063,840,350      instructions              #    1.60  insns per cycle        
+     3,640,795,834      branches                                                    
+            48,947      faults                                                      
+                49      migrations                                                  
+
+      10.246457968 seconds time elapsed
+
