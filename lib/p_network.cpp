@@ -4,10 +4,6 @@
 #include <string>
 #include <iostream>
 
-#ifdef _BENCH
-#include <chrono>
-#endif
-
 #include "config.h"
 #include "p_network.h"
 #include "pattern_generation.h"
@@ -210,13 +206,6 @@ void PNetwork::start_dynamics(const int & nupdates, const int & tx, const __fpv 
     int unit;
     RandomSequence sequence(this->N);
 
-    #ifdef _BENCH
-    std::chrono::high_resolution_clock::time_point t1;
-    std::chrono::high_resolution_clock::time_point t2;
-
-    t1 = std::chrono::high_resolution_clock::now();
-    #endif
-
     t = 0;
     //First loop = times the whole network has to be updated
     for(i = 0; i < nupdates; ++i){
@@ -257,14 +246,5 @@ void PNetwork::start_dynamics(const int & nupdates, const int & tx, const __fpv 
         }
 
     }
-
-    #ifdef _BENCH
-    t2 = std::chrono::high_resolution_clock::now();
-
-    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>( t2 - t1 ).count();
-
-    std::cout << "TOTAL UPDATE ELAPSED TIME(ms): "<< duration << std::endl;
-    #endif
-
 
 }

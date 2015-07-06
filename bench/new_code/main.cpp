@@ -1,5 +1,6 @@
 #include <iostream>
 #include <random>
+#include <chrono>
 
 #include "pattern_generation.h"
 #include "random_sequence.h"
@@ -10,11 +11,15 @@
 
 int main(int argc, char *argv[]){
 
+    std::chrono::high_resolution_clock::time_point t1;
+    std::chrono::high_resolution_clock::time_point t2;
+
     std::cout << "Potts simulation" << std::endl;
 
     /***************************************************************************
-    PATTERN GENERATION
+    LOADING PARAMETERS
     ***************************************************************************/
+
     //Random seed init
     std::default_random_engine generator;
     generator.seed(12345);
@@ -23,6 +28,10 @@ int main(int argc, char *argv[]){
     struct parameters params;
     load_params("params.cfg", params);
 
+    /***************************************************************************
+    INITIALIZATION
+    ***************************************************************************/
+    t1 = std::chrono::high_resolution_clock::now(); //START TIMER
     PatternGen pgen(
                params.N, //N
                params.p, //p
@@ -40,9 +49,6 @@ int main(int argc, char *argv[]){
     pgen.set_random_generator(generator);
     pgen.generate();
 
-    /***************************************************************************
-    DYNAMICS
-    ***************************************************************************/
 
     //Create the network
     PNetwork pnet(pgen, //Patterns
@@ -55,6 +61,14 @@ int main(int argc, char *argv[]){
     //Initialize the network
     pnet.init_units();
 
+    t2 = std::chrono::high_resolution_clock::now(); //STOP TIMER
+    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>( t2 - t1 ).count();
+    std::cout << "INITIALIZATION ELAPSED TIME(ms): "<< duration << std::endl;
+
+    /***************************************************************************
+    DYNAMICS
+    ***************************************************************************/
+    t1 = std::chrono::high_resolution_clock::now(); //START TIMER
 
     //Start the dynamics
     pnet.start_dynamics(params.nupdates, //Number of updates
@@ -65,6 +79,10 @@ int main(int argc, char *argv[]){
                         params.b3, //b3
                         1 //pattern number
                         );
+
+    t2 = std::chrono::high_resolution_clock::now(); //STOP TIMER
+    duration = std::chrono::duration_cast<std::chrono::milliseconds>( t2 - t1 ).count();
+    std::cout << "TOTAL UPDATE ELAPSED TIME(ms): "<< duration << std::endl;
 
 
     std::cout << "End of the simulation" << std::endl;

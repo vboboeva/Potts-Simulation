@@ -71,13 +71,17 @@ extern void calcolo_m();
 
 int main()
 {
+	std::chrono::high_resolution_clock::time_point t1;
+	std::chrono::high_resolution_clock::time_point t2;
+
+	t1 = std::chrono::high_resolution_clock::now();
+	
 int i, n, k, f, mu, iii, ttt, x;
 int  fine, intempo, numero, Mumax, Mumaxold;
 float t, Mmax, lunghezza;
 float Q;
 time_t iniziosim, finesim, fineiniz;
-std::chrono::high_resolution_clock::time_point t1;
-std::chrono::high_resolution_clock::time_point t2;
+
 
 ksequenza=fopen("ksequenza.txt","w");
 last = fopen("last.dat","w");
@@ -125,6 +129,11 @@ fineiniz=time(0);
 printf( "durata inizializzazione		%ld secondi\n", fineiniz-iniziosim);
 
 
+t2 = std::chrono::high_resolution_clock::now();
+auto duration = std::chrono::duration_cast<std::chrono::milliseconds>( t2 - t1 ).count();
+std::cout << "INIT2 "<< duration << std::endl;
+
+
 t1 = std::chrono::high_resolution_clock::now();
 for(ttt=0;ttt<Trete;ttt++)
 {
@@ -140,7 +149,7 @@ for(ttt=0;ttt<Trete;ttt++)
 
 }
 t2 = std::chrono::high_resolution_clock::now();
-auto duration = std::chrono::duration_cast<std::chrono::milliseconds>( t2 - t1 ).count();
+duration = std::chrono::duration_cast<std::chrono::milliseconds>( t2 - t1 ).count();
 std::cout << "TOTAL UPDATE ELAPSED TIME(ms): "<< duration << std::endl;
 
 fprintf(ksequenza, "  999999 \n");
