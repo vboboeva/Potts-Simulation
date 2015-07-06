@@ -1,8 +1,15 @@
 OLD_CODE=old_code
 NEW_CODE=new_code
 
-.PHONY: test clean
+.PHONY: test clean compile
 
+.DEFAULT_GOAL := compile
+
+
+compile:
+	@$(MAKE) -s -C $(OLD_CODE) master.x
+	@$(MAKE) -s -C $(NEW_CODE) main.x
+	
 bench:
 	@echo "Running old code..."
 	@$(MAKE) -s -C $(OLD_CODE) master.x

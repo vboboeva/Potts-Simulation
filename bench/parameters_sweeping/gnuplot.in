@@ -1,0 +1,19 @@
+set xlabel "# POTTS UNITS"
+set ylabel "time(ms)"
+#set logscale y 10
+
+set mytics 5
+
+set term png size 1200, 800
+
+set datafile separator " "
+
+set style line 100 lt 1.0 lc rgb "gray" lw 2
+set style line 101 lt 0.5 lc rgb "gray" lw 1
+set grid  ytics ls 100, ls 101
+
+set key right top
+
+set title "time vs #potts unit, ran locally with half connectivity and default parameters"
+set output 'test.png'
+plot "bench_times.dat" using 1:2 title "NEW CODE" with lp lw 2 lc rgb "blue", '' using 1:3 title "OLD CODE" with lp lw 2 lc rgb "red"
