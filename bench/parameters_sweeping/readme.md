@@ -1,7 +1,7 @@
 # Timing old code vs new code potts unit sweeping
 
-In this test I have made a comparison of the timings between the new code and the old code in the dynamic part. The test was made running the simulation with just one pattern as initial cue. These are the plots:
-
+In this test I have made a comparison of the timings between the new code and the old code in the dynamic part. The test was made running the simulation with just one pattern as initial cue. This is the plot:
+This is for 600 updates of the whole network.
 ![](test.png)
 
 I have also made with perf the count of cache misses for the last configuration (2000 potts units) and this is the output.
@@ -40,6 +40,26 @@ I have also made with perf the count of cache misses for the last configuration 
          90.832652081 seconds time elapsed
 
 The tests were made in a local machine with the following hardware
+
+#Second test
+This test was made keeping fix at 100 updates every simulation. I have changed in the following 4 plots the ration between the number of Potts units and connections, for example for 600 units I tested 300 connections, 120 connections, 75 connections and 60 connections testing both the timings of the initialization dynamics and total time.
+
+N/C=2
+![](test2.png)
+
+N/C=5
+![](test5.png)
+
+N/C=8
+![](test8.png)
+
+N/C=10
+![](test10.png)
+
+As we can see the initialization requires always more time in the new code but will be a fixed time constant varying the number of updates.
+
+The dynamic part in the new code is much less time consuming than the old code if we take a the ration N/C less than 5. The time to evaluate 100 updates of the network with a N/C ratio equal to  2 it takes for 2000 units 2,713 seconds while the new code requires 10,098 (new/old code dynamics time ratio = 3.7).
+
 
 ###lscpu
 
