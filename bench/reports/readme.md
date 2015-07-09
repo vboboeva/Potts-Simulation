@@ -41,7 +41,7 @@ I have also made with perf the count of cache misses for the last configuration 
 
 The tests were made in a local machine with the following hardware
 
-#Second test
+#Sweeping with different N/C ratio and added initialization and total time
 This test was made keeping fix at 100 updates every simulation. I have changed in the following 4 plots the ration between the number of Potts units and connections, for example for 600 units I tested 300 connections, 120 connections, 75 connections and 60 connections testing both the timings of the initialization dynamics and total time.
 
 N/C=2
@@ -60,6 +60,36 @@ As we can see the initialization requires always more time in the new code but w
 
 The dynamic part in the new code is much less time consuming than the old code if we take a the ration N/C less than 5. The time to evaluate 100 updates of the network with a N/C ratio equal to  2 it takes for 2000 units 2,713 seconds while the new code requires 10,098 (new/old code dynamics time ratio = 3.7).
 
+#Cache profiling
+In the following folder there's the output of cachegrind. Also with perf I did new tests and this is the following output with N= 600 C=300 and this time 1000 updates.
+
+##OLD CODE
+    perf stat -e L1-dcache-loads,L1-dcache-load-misses,L1-dcache-stores,LLC-loads,LLC-load-misses,LLC-stores,LLC-prefetches ./master.x
+    Performance counter stats for './master.x':
+
+       35,445,784,584      L1-dcache-loads                                               (42.94%)
+        3,350,512,423      L1-dcache-load-misses     #    9.45% of all L1-dcache hits    (57.28%)
+        7,024,466,636      L1-dcache-stores                                              (57.33%)
+          373,005,728      LLC-loads                                                     (57.40%)
+          173,757,532      LLC-load-misses           #   46.58% of all LL-cache hits     (57.25%)
+            4,550,462      LLC-stores                                                    (28.54%)
+          357,629,616      LLC-prefetches                                                (28.56%)
+
+         13.351015930 seconds time elapsed
+
+##NEW CODE
+    perf stat -e L1-dcache-loads,L1-dcache-load-misses,L1-dcache-stores,LLC-loads,LLC-load-misses,LLC-stores,LLC-prefetches ./main.x
+    Performance counter stats for './main.x':
+
+        14,612,529,736      L1-dcache-loads                                               (42.88%)
+           635,619,055      L1-dcache-load-misses     #    4.35% of all L1-dcache hits    (57.17%)
+         3,194,277,388      L1-dcache-stores                                              (57.17%)
+           432,212,390      LLC-loads                                                     (57.17%)
+           157,485,599      LLC-load-misses           #   36.44% of all LL-cache hits     (57.14%)
+               354,339      LLC-stores                                                    (28.56%)
+           169,634,932      LLC-prefetches                                                (28.57%)
+
+           9.099069022 seconds time elapsed
 
 ###lscpu
 
