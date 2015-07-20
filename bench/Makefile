@@ -1,22 +1,18 @@
-OLD_CODE=old_code
-NEW_CODE=new_code
+bench=
 
-.PHONY: test clean compile
-
-.DEFAULT_GOAL := compile
+.PHONY: bench clean
 
 
-compile:
-	@$(MAKE) -s -C $(OLD_CODE) master.x
-	@$(MAKE) -s -C $(NEW_CODE) main.x
-	
 bench:
-	@echo "Running old code..."
-	@$(MAKE) -s -C $(OLD_CODE) master.x
-	@echo "Running new code..."
-	@$(MAKE) -s -C $(NEW_CODE) main.x
-	@./run_bench.sh
+ifdef bench
+	@$(MAKE) -s -C $(bench) bench
+else
+	@echo "Error, define bench type es. 'make bench=standard'"
+endif
 
 clean:
-	@$(MAKE) -s -C $(OLD_CODE) clean
-	@$(MAKE) -s -C $(NEW_CODE) clean
+ifdef bench
+	@$(MAKE) -s -C $(bench) clean
+else
+	@echo "Error, define bench type es. 'make clean bench=standard'"
+endif

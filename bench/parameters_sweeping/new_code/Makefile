@@ -1,7 +1,7 @@
 CPPC=icc
 CFLAGS= -std=c++11 -Wall
-PRJ_ROOT=../..
-OPTFLAGS= -O3 
+PRJ_ROOT=../../..
+OPTFLAGS= -O3
 
 MACROS_LIST=_FLOAT_PRECISION
 CMACROS=$(foreach d, $(MACROS_LIST), -D$d)

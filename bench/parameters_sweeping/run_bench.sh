@@ -1,12 +1,9 @@
 #!/bin/bash
 
-
-cd ../
-
 for j in 2 5 8 10
 do
-    :>parameters_sweeping/bench_times_$j.dat
-    echo "S   C   INIT_NEW   DYN_NEW   TOT_NEW   INIT_OLD   DYN_OLD   TOT_OLD"  >> parameters_sweeping/bench_times_$j.dat
+    :>bench_times_$j.dat
+    echo "S   C   INIT_NEW   DYN_NEW   TOT_NEW   INIT_OLD   DYN_OLD   TOT_OLD"  >> bench_times_$j.dat
     for i in {100..2000..100}
     do
 
@@ -28,7 +25,7 @@ do
 
         cd ..
 
-        echo "$i $(($i/$j)) $TINEW $TUNEW $(($TINEW+$TUNEW)) $TIOLD $TUOLD $(($TIOLD+$TUOLD))" >> parameters_sweeping/bench_times_$j.dat
+        echo "$i $(($i/$j)) $TINEW $TUNEW $(($TINEW+$TUNEW)) $TIOLD $TUOLD $(($TIOLD+$TUOLD))" >> bench_times_$j.dat
 
     done
 done
