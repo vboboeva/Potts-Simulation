@@ -57,7 +57,7 @@ int main(int argc, char *argv[]){
                     );
 
     //Initialize the network
-    pnet.init_units();//Yet not fully implemented
+    pnet.lc_init_units();//Yet not fully implemented
 
     //Write states to file
     pnet.save_states_to_file("init_states.dat");
@@ -70,7 +70,7 @@ int main(int argc, char *argv[]){
 
     //Start the dynamics
 
-    pnet.start_dynamics(100, //Number of updates
+    pnet.lc_start_dynamics(100, //Number of updates
                         500*600, //n0
                         10*600, //tau
                         0.3, //b1

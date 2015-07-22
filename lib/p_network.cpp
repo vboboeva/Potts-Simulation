@@ -173,7 +173,8 @@ void PNetwork::save_J_to_file(const std::string & filename){
         for(j = 0; j < this->S; ++j){
             for(k = 0; k < this->C; ++k){
                 for(l = 0; l < this->S; ++l){
-                    ofile << this->network[i]->get_cdata()[N*S*j + S*cm[C*i+k] + l] << " ";
+                    //ofile << this->network[i]->get_cdata()[N*S*j + S*cm[C*i+k] + l] << " ";
+                    ofile << this->network[i]->get_lc_cdata()[C*S*j + S*k + l] << " ";
                 }
             }
         }
@@ -263,7 +264,7 @@ void PNetwork::lc_init_units(){
 
     //Init J
     for(i=0; i < N; ++i){
-        network[i]->lc_init_J(p,pgen->a,this->pgen->get_patt(),i,this->ucm,this->network);
+        network[i]->lc_init_J(p,pgen->a,this->pgen->get_patt(),i,this->cm,this->network);
     }
 
     this->evaluate_m();
@@ -299,8 +300,7 @@ void PNetwork::lc_start_dynamics(const int & nupdates, const int & tx, const __f
                 }
             }
             //Update the unit
-            this->network[unit]->lc_update_rule(this->pgen->get_patt(j)[pattern_number],
-                                            buffer,
+            this->network[unit]->lc_update_rule(this->pgen->get_patt(j)[pattern_number], buffer,
                                             this->U,
                                             this->w,
                                             this->g,
