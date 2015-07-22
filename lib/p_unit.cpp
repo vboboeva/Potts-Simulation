@@ -128,3 +128,38 @@ void PUnit::update_rule(const int & init_pattern, const __fpv * states, const __
     this->state[S]=exp(beta * (this->r[S] - rmax + U)) / Z;
 
 }
+
+
+void PUnit::init_J(const int & p, const __fpv & a, const int * xi, const int & unit, const int * ucm, PUnit ** network){
+
+    int i,j,k,l;
+    __fpv as = a/S;
+
+    //Generate Jkxl
+    for(i = 0; i < S; ++i){
+        for(j = 0; j < N; ++j){
+            for(k = 0; k < S; ++k){
+
+                cdata[N*S*i + S*j + k] = 0;
+
+                if(ucm[unit*N + j] == 1){
+
+                    for(l = 0; l < p; ++l){
+                        cdata[N*S*i + S*j + k] += ((xi[p * unit + l]==i)-as)*((xi[p * j + l]==k)-as);
+                    }
+
+                    cdata[N*S*i + S*j + k] /= a * (1 - as)* C;
+
+                    h[i] += cdata[N*S*i + S*j + k] * network[j]->state[k];
+                }
+
+            }
+        }
+
+        r[i] = h[i];
+        theta[i] = state[i];
+
+    }
+
+
+}

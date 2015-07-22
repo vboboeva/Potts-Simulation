@@ -248,3 +248,76 @@ void PNetwork::start_dynamics(const int & nupdates, const int & tx, const __fpv 
     }
 
 }
+
+
+void PNetwork::lc_init_units(){
+    int i,j;
+
+    //Generate connection matrix
+    this->connect_units();
+
+    //Init unit states
+    for(i=0; i < N; ++i){
+        network[i]->init_states(this->beta,this->U);
+    }
+
+    //Init J
+    for(i=0; i < N; ++i){
+        network[i]->lc_init_J(p,pgen->a,this->pgen->get_patt(),i,this->ucm,this->network);
+    }
+
+    this->evaluate_m();
+
+}
+void PNetwork::lc_start_dynamics(const int & nupdates, const int & tx, const __fpv & tau, const __fpv & b1, const __fpv & b2, const __fpv & b3, const int & pattern_number){
+    //The code here is wrote for different cases defined during preprocessor
+
+    int i,j,k,n,t;
+    int unit;
+    __fpv buffer[this->C * this->S];
+    RandomSequence sequence(this->N);
+
+    t = 0;
+    //First loop = times the whole network has to be updated
+    for(i = 0; i < nupdates; ++i){
+
+        //Shuffle the random sequence
+        #ifndef _TEST
+        sequence.shuffle(*this->pgen->generator);
+        #endif
+
+        //Second loop = loop on all neurons serially
+        for(j = 0; j < N; ++j){
+
+
+            unit = sequence.get(j);
+
+            //Fill the buffer containing all the states requested
+            for(k = 0; k < this->C; ++k){
+                for(n = 0; n < this->S; ++n){
+                    buffer[k*this->S + n] = this->network[cm[unit * C + k]]->get_state()[n];
+                }
+            }
+            //Update the unit
+            this->network[unit]->lc_update_rule(this->pgen->get_patt(j)[pattern_number],
+                                            buffer,
+                                            this->U,
+                                            this->w,
+                                            this->g,
+                                            tau,
+                                            b1,
+                                            b2,
+                                            b3,
+                                            this->pgen->beta,
+                                            tx,
+                                            t
+                                            );
+
+            t++;
+
+
+        }
+
+    }
+
+}

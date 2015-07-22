@@ -41,6 +41,9 @@ class PNetwork{
         void save_connections_to_file(const std::string & filename);
         void save_J_to_file(const std::string & filename);
 
+        void lc_init_units();
+        void lc_start_dynamics(const int & nupdates, const int & tx, const __fpv & tau, const __fpv & b1, const __fpv & b2, const __fpv & b3, const int & pattern_number);
+
 };
 
 #endif

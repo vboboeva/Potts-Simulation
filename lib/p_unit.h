@@ -24,6 +24,7 @@ class PUnit{
         PUnit(const int & S, const int & C, const int & N);
         void init_states(const __fpv & beta, const __fpv & U);
         void init_J(const int &p, const __fpv &a, const int * xi, const int &unit, const int * ucm, PUnit ** network);
+
         __fpv * get_state();
         void update_rule(const int & init_pattern, const __fpv * states,
                         const __fpv & U,
@@ -39,6 +40,20 @@ class PUnit{
                         );
 
         __fpv * get_cdata(){ return this->cdata;};
+
+        void lc_init_J(const int &p, const __fpv &a, const int * xi, const int &unit, const int * ucm, PUnit ** network);
+        void lc_update_rule(const int & init_pattern, const __fpv & buffer,
+                        const __fpv & U,
+                        const __fpv & w,
+                        const __fpv & g,
+                        const __fpv & tau,
+                        const __fpv & b1,
+                        const __fpv & b2,
+                        const __fpv & b3,
+                        const __fpv & beta,
+                        const int & tx,
+                        const int & t
+                        );
 };
 
 #endif

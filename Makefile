@@ -76,5 +76,5 @@ test:
 ################################################################################
 
 bench:
-	@$(MAKE) -s -C bench bench
+	@$(MAKE) -s -C bench bench=standard
 	@$(MAKE) -s -C bench clean
