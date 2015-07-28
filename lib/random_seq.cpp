@@ -1,7 +1,7 @@
 #include <random>
 #include <algorithm>
 #include <iostream>
-#include "random_sequence.h"
+#include "random_seq.h"
 
 /*******************************************************************************
 RANDOM SEQUENCE

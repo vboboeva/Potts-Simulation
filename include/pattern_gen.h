@@ -1,5 +1,5 @@
-#ifndef __PATTERN_GENERATION_H
-#define __PATTERN_GENERATION_H
+#ifndef __PATTERN_GEN_H
+#define __PATTERN_GEN_H
 
 #include <string>
 #include <random>
@@ -51,6 +51,6 @@ class PatternGen{
 
 };
 
-#include "p_network.h"
+#include "pnet.h"
 
 #endif

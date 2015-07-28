@@ -7,12 +7,14 @@ There are three branches of the code:
 
 ## Running the stable code
 
-To download the code clone or fork the project and type on a terminal:
-
-    git clone https://leonardo_romor@bitbucket.org/leonardo_romor/potts-simulation.git
-
 To compile the code in terminal use *make* or instead to compile and run, write *make run*.
+Do not break the directory tree to keep makefiles and scripts fully working.
 
-### How to sync with the repository
+##Folder structure
 
-  A simple git pull inside the cloned folder should to the job. In case of troubles contact me.
+* *bench* : Keeps some useful benchmarks, more info in the readme inside the folder.
+* *build* : Default directory where the binaries are going to be generated
+* *include* : Default directory that keeps the "frontend" includes
+* *src* : Default directory that keeps the source files.
+* *lib* : Default directory that keeps all the .cpp and .h used in a generic source file.
+* *tests* : Directory in which is possible to run some "sanity check" tests to match the new code results with the old one.

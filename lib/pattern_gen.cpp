@@ -4,7 +4,7 @@
 #include <fstream>
 
 #include "config.h"
-#include "pattern_generation.h"
+#include "pattern_gen.h"
 
 PatternGen::PatternGen(int N, int p, int S, __fpv a, __fpv beta, int N_fact, int Num_fact, __fpv a_fact, __fpv eps, __fpv a_pf, __fpv fact_eigen_slope){
 

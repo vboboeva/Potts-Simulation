@@ -2,10 +2,10 @@
 #include <random>
 #include <chrono>
 
-#include "pattern_generation.h"
-#include "random_sequence.h"
-#include "p_unit.h"
-#include "p_network.h"
+#include "pattern_gen.h"
+#include "random_seq.h"
+#include "punit.h"
+#include "pnet.h"
 #include "parameters_struct.h"
 #include "utils.h"
 

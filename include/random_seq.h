@@ -1,6 +1,6 @@
 
-#ifndef __RANDOM_SEQUENCE_H
-#define __RANDOM_SEQUENCE_H
+#ifndef __RANDOM_SEQ_H
+#define __RANDOM_SEQ_H
 
 #include <random>
 

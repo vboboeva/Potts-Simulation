@@ -1,10 +1,10 @@
 #include <iostream>
 #include <random>
 
-#include "pattern_generation.h"
-#include "random_sequence.h"
-#include "p_unit.h"
-#include "p_network.h"
+#include "pattern_gen.h"
+#include "random_seq.h"
+#include "hc_pnet.h"
+#include "lc_pnet.h"
 
 int main(int argc, char *argv[]){
 
@@ -39,25 +39,22 @@ int main(int argc, char *argv[]){
     DYNAMICS
     ***************************************************************************/
 
-    //Generate random sequence
-    RandomSequence sequence(600);
-    sequence.shuffle(generator);
-    //sequence.print(); //If you want to check the output of the shuffled sequence.
-
     //Reset generator, this is because the old code run 2 different files and
     //generators. This is just to check that everything is as in the old code.
     generator.seed(12345);
 
     //Create the network
-    PNetwork pnet(pgen, //Patterns
-                    90, //Number of connections for each unit
-                    0.1, //U
-                    0.8, //w
-                    5.0 //g
-                    );
+    LC_PNet pnet(600,
+                 90,
+                 3
+                 );
 
+
+    //Connect units (generate connection matrix)
+    pnet.connect_units(generator);
     //Initialize the network
-    pnet.lc_init_units();//Yet not fully implemented
+    pnet.init_network(11.0,0.1,10,0.25,pgen.get_patt());
+
 
     //Write states to file
     pnet.save_states_to_file("init_states.dat");
@@ -70,13 +67,17 @@ int main(int argc, char *argv[]){
 
     //Start the dynamics
 
-    pnet.lc_start_dynamics(100, //Number of updates
-                        500*600, //n0
+    pnet.start_dynamics(generator,100, //Number of updates
+                        pgen.get_patt(1),
+                        0.1,
+                        0.8,
+                        5.0,
                         10*600, //tau
                         0.3, //b1
                         0.01, //b2
                         0.000001, //b3
-                        1 //pattern number
+                        11.0, //beta
+                        500*600 //tx
                         );
 
     //Check states
