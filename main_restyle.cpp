@@ -37,7 +37,7 @@ float rr1[N][S+1];
 FILE *pat;
 FILE *mvari;
 FILE *lulu;
-FILE *last; 
+FILE *last;
 FILE *Qfile;
 FILE *ksequenza;
 FILE *Hfile;
@@ -83,8 +83,8 @@ Passi=fopen("passi.txt","a");		///##############################################
 srand48( time(NULL) );
 
 getmemory();
-read_pattern();	
-SetUpTables();							/// per creare vettori shaffle di unita	
+read_pattern();
+SetUpTables();							/// per creare vettori shaffle di unita
 
 n0=500*N;
 
@@ -103,10 +103,10 @@ printf( "simulazione iniziata:	%ld		\n", iniziosim);
 //srand48( time(NULL) );
 
 /// poi rimetti il seme random!!!!!!!!!!!!!!!!
-retr=f;	
+retr=f;
 printf("prima	\n");
 fprintf(ksequenza, "%d		", retr);
-fflush (ksequenza); 
+fflush (ksequenza);
 printf("retrieval di =%d\n", retr);
 initializing();						///to initializing the network
 //intempo=0;
@@ -153,9 +153,9 @@ for(ttt=0;ttt<Trete;ttt++)
 					{
 					Mmax=m[mu];
 					Mumax=mu;
-					} 
+					}
 				}
-	
+
 				if(Mumaxold!=Mumax && Mmax>0.5)
 				{
 				numero=numero+1;
@@ -163,12 +163,12 @@ for(ttt=0;ttt<Trete;ttt++)
 //				printf( "t=%f\n",t);
 			fprintf(ksequenza, "%d	", Mumax);
 //			printf("%d	", Mumax);
-			fflush (ksequenza); 
+			fflush (ksequenza);
 				}
 			}
 
 		///per vedere se la sequenza di latching e` finita
-		for(mu=0;mu<p;mu++)									
+		for(mu=0;mu<p;mu++)
 		{
 			fine=1;
 			if(m[mu]>0.02)
@@ -184,7 +184,7 @@ for(ttt=0;ttt<Trete;ttt++)
 			iii=N;
 		}
 		}
-	n++;
+		n++;
 	}
 if(ttt==(Trete-1))  lunghezza=t;
 }
@@ -200,12 +200,12 @@ finesim=time(0);
 printf( "durata		%ld secondi\n", finesim-iniziosim);
 
 printf( "p=%d	retr=%d	passi %d	lunghezza = %.1f	\n",p,f, numero, lunghezza);
-/*fprintf( lulu,"%d	%.1f	\n",f, lunghezza);		
+/*fprintf( lulu,"%d	%.1f	\n",f, lunghezza);
 fflush(lulu);*/
 fprintf(last,"%d	%d	%d	\n", retr, numero, Mumax);
 fflush(last);
 
-fprintf(Passi,"%d	%d	%.1f\n",f,numero,lunghezza);	
+fprintf(Passi,"%d	%d	%.1f\n",f,numero,lunghezza);
 fflush(Passi);
 }
 fclose(Passi);
@@ -234,9 +234,3 @@ fclose(last);
 /// 	n mi da il tempo di update della singola unita
 ///	t mi da il tempo della rete
 ///
-
-
-
-
-
-
