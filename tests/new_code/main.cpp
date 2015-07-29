@@ -44,7 +44,7 @@ int main(int argc, char *argv[]){
     generator.seed(12345);
 
     //Create the network
-    LC_PNet pnet(600,
+    HC_PNet pnet(600,
                  90,
                  3
                  );
