@@ -36,7 +36,9 @@ class HC_PNet : public PNet {
                          const int & tx,
                          const int & t
                          );
-        void evaluate_m(const int & p, const __fpv & a, const int * xi);
+
+        void get_status(const int & p, const int & tx, const int & t, const int * xi, const __fpv & a, int & Mumaxold, int & Mumax, int & steps, bool & stop);
+        void evaluate_m(const int & p, const __fpv & a, const int * xi, __fpv m[]);
         void init_J(const int & p, const __fpv & a, const int * xi);
 
 
@@ -60,8 +62,12 @@ class HC_PNet : public PNet {
                           const int * xi
                           );
         void start_dynamics(const std::default_random_engine & generator,
+                            const int & p,
+                            const int & tstatus,
                             const int & nupdates,
-                            const int * init_pattern,
+                            const int * xi,
+                            const int & pattern,
+                            const __fpv & a,
                             const __fpv & U,
                             const __fpv & w,
                             const __fpv & g,

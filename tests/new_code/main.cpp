@@ -67,8 +67,13 @@ int main(int argc, char *argv[]){
 
     //Start the dynamics
 
-    pnet.start_dynamics(generator,100, //Number of updates
-                        pgen.get_patt(1),
+    pnet.start_dynamics(generator, //Number of updates
+                        10,
+                        5000, //tstatus (tempostampa)
+                        100,
+                        pgen.get_patt(),
+                        1,
+                        0.25,
                         0.1,
                         0.8,
                         5.0,
@@ -77,7 +82,7 @@ int main(int argc, char *argv[]){
                         0.01, //b2
                         0.000001, //b3
                         11.0, //beta
-                        500*600 //tx
+                        500*600 //tx (n0)
                         );
 
     //Check states

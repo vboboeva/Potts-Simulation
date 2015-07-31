@@ -13,7 +13,7 @@ PNet family can be handled with those methods
 
 class PNet{
     private:
-        virtual void evaluate_m(const int & p, const __fpv & a, const int * xi) = 0;
+        virtual void evaluate_m(const int & p, const __fpv & a, const int * xi, __fpv m[]) = 0;
         virtual void init_J(const int & p, const __fpv & a, const int * xi) = 0;
 
     public:
@@ -31,8 +31,12 @@ class PNet{
                           ) = 0;
 
         virtual void start_dynamics(const std::default_random_engine & generator,
+                            const int & p,
+                            const int & tstatus,
                             const int & nupdates,
-                            const int * init_pattern,
+                            const int * xi,
+                            const int & pattern,
+                            const __fpv & a,
                             const __fpv & U,
                             const __fpv & w,
                             const __fpv & g,
@@ -42,8 +46,7 @@ class PNet{
                             const __fpv & b3,
                             const __fpv & beta,
                             const int & tx
-                            ) = 0;
-
+                        ) = 0;
 };
 
 #endif

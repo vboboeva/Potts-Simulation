@@ -179,54 +179,107 @@ void HC_PNet::update_rule(const int & unit, const int & pattern, const __fpv & U
 
 }
 
-void HC_PNet::start_dynamics(const std::default_random_engine & generator, const int & nupdates, const int * init_pattern, const __fpv & U, const __fpv & w, const __fpv & g, const __fpv & tau, const __fpv & b1, const __fpv & b2, const __fpv & b3, const __fpv & beta, const int & tx){
+void HC_PNet::start_dynamics(const std::default_random_engine & generator, const int & p,const int & tstatus, const int & nupdates, const int * xi, const int & pattern, const __fpv & a, const __fpv & U, const __fpv & w, const __fpv & g, const __fpv & tau, const __fpv & b1, const __fpv & b2, const __fpv & b3, const __fpv & beta, const int & tx){
 
     //The code here is wrote for different cases defined during preprocessor
     int i,j,k,t;
     int unit;
+
     RandomSequence sequence(this->N);
+    __fpv time, latching_length;
+    bool stop = false;
+    int Mumax, Mumaxold, steps;
 
     t = 0;
     //First loop = times the whole network has to be updated
-    for(i = 0; i < nupdates; ++i){
+    while(stop == false){
+        for(i = 0; i < nupdates; ++i){
 
-        //Shuffle the random sequence
-        #ifndef _TEST
-        sequence.shuffle(generator);
-        #endif
+            //Shuffle the random sequence
+            #ifndef _TEST
+            sequence.shuffle(generator);
+            #endif
 
-        //Second loop = loop on all neurons serially
-        for(j = 0; j < N; ++j){
+            //Second loop = loop on all neurons serially
+            for(j = 0; j < N; ++j){
 
 
-            unit = sequence.get(j);
+                unit = sequence.get(j);
 
-            //Update the unit
-            this->update_rule(unit,
-                             init_pattern[unit],
-                             U,
-                             w,
-                             g,
-                             tau,
-                             b1,
-                             b2,
-                             b3,
-                             beta,
-                             tx,
-                             t
-                             );
+                //Update the unit
+                this->update_rule(unit,
+                                 xi[p * unit + pattern],
+                                 U,
+                                 w,
+                                 g,
+                                 tau,
+                                 b1,
+                                 b2,
+                                 b3,
+                                 beta,
+                                 tx,
+                                 t
+                                 );
 
-            t++;
+                if((t % tstatus) == 0){
+                    this->get_status(p,tx,t,xi,a,Mumaxold,Mumax,steps,stop);
+                }
+
+                t++;
+
+            }
 
         }
+    }
 
+    if(t > tx + 100 * N){
+        latching_length = t / N;
+    }else{
+        std::cout << "Simulation finished before reaching minimum steps" << std::endl;
+    }
+
+}
+void HC_PNet::get_status(const int & p, const int & tx, const int & t, const int * xi, const __fpv & a, int & Mumaxold, int & Mumax, int & steps, bool & stop){
+
+    __fpv m[p];
+    __fpv time = t/N;
+    int mu;
+    __fpv Mmax;
+
+    evaluate_m(p,a,xi,m);
+
+    if(t > (tx + 10 * N)){
+        Mmax = -1.0;
+        Mumax = p + 1;
+
+        for(mu = 0; mu < p; ++mu){
+            if(m[mu] > Mmax){
+                Mmax = m[mu];
+                Mumax = mu;
+            }
+        }
+
+        if(Mumaxold != Mumax && Mmax > 0.5){
+            steps++;
+            Mumaxold = Mumax;
+        }
+    }
+
+    for(mu = 0; mu < p; ++mu){
+
+        stop = true;
+
+        if(m[mu] > 0.02){
+            stop = false;
+            break;
+        }
     }
 
 }
 
-void HC_PNet::evaluate_m(const int & p, const __fpv & a, const int * xi){
+void HC_PNet::evaluate_m(const int & p, const __fpv & a, const int * xi, __fpv m[]){
     int i,j,k;
-    __fpv m[p];
+
     __fpv ma, maa;
     __fpv invdenN = 1/(a*(1-a/S)*N);
 
