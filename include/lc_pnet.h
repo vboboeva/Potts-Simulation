@@ -6,7 +6,7 @@
 #include "pnet.h"
 
 class LC_PNet : public PNet {
-    private:
+    protected:
         int N; //Number of units
         int C; //Number of connections per unit
         int S; //Number of states
@@ -37,7 +37,7 @@ class LC_PNet : public PNet {
                          const int & tx,
                          const int & t
                          );
-        virtual void evaluate_m(const int & p, const __fpv & a, const int * xi, __fpv m[]);
+        void evaluate_m(const int & p, const __fpv & a, const int * xi, __fpv m[]);
         void init_J(const int & p, const __fpv & a, const int * xi);
 
 

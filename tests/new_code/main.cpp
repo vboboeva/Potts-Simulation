@@ -5,6 +5,7 @@
 #include "random_seq.h"
 #include "hc_pnet.h"
 #include "lc_pnet.h"
+#include "vlc_pnet.h"
 
 int main(int argc, char *argv[]){
 
@@ -44,7 +45,7 @@ int main(int argc, char *argv[]){
     generator.seed(12345);
 
     //Create the network
-    LC_PNet pnet(600,
+    VLC_PNet pnet(600,
                  90,
                  3
                  );
@@ -67,10 +68,10 @@ int main(int argc, char *argv[]){
 
     //Start the dynamics
 
-    pnet.start_dynamics(generator, //Number of updates
+    pnet.start_dynamics(generator,
                         10,
-                        5000, //tstatus (tempostampa)
-                        100,
+                        10000, //tstatus (tempostampa)
+                        100,  //Number of updates
                         pgen.get_patt(),
                         1,
                         0.25,
