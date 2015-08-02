@@ -37,7 +37,6 @@ class HC_PNet : public PNet {
                          const int & t
                          );
 
-        void get_status(const int & p, const int & tx, const int & t, const int * xi, const __fpv & a, int & Mumaxold, int & Mumax, int & steps, bool & stop);
         void evaluate_m(const int & p, const __fpv & a, const int * xi, __fpv m[]);
         void init_J(const int & p, const __fpv & a, const int * xi);
 

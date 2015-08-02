@@ -3,7 +3,7 @@
 #define __PNET_H
 
 #include <fstream>
-
+#include <random>
 #include "config.h"
 
 /**********************************
@@ -12,9 +12,11 @@ PNet family can be handled with those methods
 **********************************/
 
 class PNet{
-    private:
+    protected:
+        int N;
         virtual void evaluate_m(const int & p, const __fpv & a, const int * xi, __fpv m[]) = 0;
         virtual void init_J(const int & p, const __fpv & a, const int * xi) = 0;
+        void get_status(const int & p, const int & tx, const int & t, const int * xi, const __fpv & a, int & Mumaxold, int & Mumax, int & steps, bool & stop);
 
     public:
 
@@ -23,7 +25,8 @@ class PNet{
         virtual void save_connections_to_file(const std::string & filename) = 0;
         virtual void save_J_to_file(const std::string & filename) = 0;
 
-         virtual void init_network(const double beta,
+
+        virtual void init_network(const double beta,
                           const double U,
                           const int & p,
                           const __fpv & a,

@@ -37,7 +37,7 @@ class LC_PNet : public PNet {
                          const int & tx,
                          const int & t
                          );
-        void evaluate_m(const int & p, const __fpv & a, const int * xi);
+        virtual void evaluate_m(const int & p, const __fpv & a, const int * xi, __fpv m[]);
         void init_J(const int & p, const __fpv & a, const int * xi);
 
 
@@ -60,19 +60,24 @@ class LC_PNet : public PNet {
                           const __fpv & a,
                           const int * xi
                           );
+
         void start_dynamics(const std::default_random_engine & generator,
-                            const int & nupdates,
-                            const int * init_pattern,
-                            const __fpv & U,
-                            const __fpv & w,
-                            const __fpv & g,
-                            const __fpv & tau,
-                            const __fpv & b1,
-                            const __fpv & b2,
-                            const __fpv & b3,
-                            const __fpv & beta,
-                            const int & tx
-                            );
+                          const int & p,
+                          const int & tstatus,
+                          const int & nupdates,
+                          const int * xi,
+                          const int & pattern,
+                          const __fpv & a,
+                          const __fpv & U,
+                          const __fpv & w,
+                          const __fpv & g,
+                          const __fpv & tau,
+                          const __fpv & b1,
+                          const __fpv & b2,
+                          const __fpv & b3,
+                          const __fpv & beta,
+                          const int & tx
+                          );
 
 };
 

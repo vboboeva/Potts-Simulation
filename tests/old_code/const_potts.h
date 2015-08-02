@@ -19,7 +19,7 @@
 //#define      T				6000*N
 //#define      Trete			6000
 #define      as			a/S
-#define      tempostampa		5000
+#define      tempostampa		80
 #define      tstampato	(int)T/tempostampa
 
 #define      NumSet  		10
