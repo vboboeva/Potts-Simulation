@@ -4,9 +4,7 @@
 
 #include "pattern_gen.h"
 #include "random_seq.h"
-#include "hc_pnet.h"
 #include "lc_pnet.h"
-#include "vlc_pnet.h"
 #include "parameters_struct.h"
 #include "utils.h"
 
@@ -52,15 +50,15 @@ int main(int argc, char *argv[]){
 
 
     //Create the network
-    HC_PNet pnet(pgen, //Patterns
-                    params.C, //Number of connections for each unit
-                    params.U, //U
-                    params.w, //w
-                    params.g //g
+    LC_PNet pnet(params.N,
+                params.C,
+                params.S
                     );
 
-    //Initialize the network
-    pnet.init_units();
+    //Connect units
+    pnet.connect_units(generator);
+
+    pnet.init_network(params.beta,params.U,params.p,params.a,pgen.get_patt());
 
     t2 = std::chrono::high_resolution_clock::now(); //STOP TIMER
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>( t2 - t1 ).count();
@@ -71,15 +69,26 @@ int main(int argc, char *argv[]){
     ***************************************************************************/
     t1 = std::chrono::high_resolution_clock::now(); //START TIMER
 
+
     //Start the dynamics
-    pnet.start_dynamics(params.nupdates, //Number of updates
-                        500*params.N, //n0 500*N
-                        10*params.N, //tau 10*N
+    pnet.start_dynamics(generator,
+                        params.p,
+                        params.tstatus, //tstatus (tempostampa)
+                        params.nupdates,  //Number of updates
+                        pgen.get_patt(),
+                        1, //Pattern number
+                        params.a,
+                        params.U,
+                        params.w,
+                        params.g,
+                        params.tau * params.N, //tau
                         params.b1, //b1
                         params.b2, //b2
                         params.b3, //b3
-                        1 //pattern number
+                        params.beta, //beta
+                        500*params.N //tx (n0)
                         );
+
 
     t2 = std::chrono::high_resolution_clock::now(); //STOP TIMER
     duration = std::chrono::duration_cast<std::chrono::milliseconds>( t2 - t1 ).count();

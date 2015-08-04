@@ -33,7 +33,7 @@ class PNet{
                           const int * xi
                           ) = 0;
 
-        virtual void start_dynamics(const std::default_random_engine & generator,
+        virtual void start_dynamics(std::default_random_engine & generator,
                             const int & p,
                             const int & tstatus,
                             const int & nupdates,

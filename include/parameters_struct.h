@@ -26,6 +26,7 @@ struct parameters{
     __fpv eps;
     __fpv a_pf;
     __fpv fact_eigen_slope;
+    int tstatus;
 };
 
 #endif

@@ -75,7 +75,7 @@ int main()
 	std::chrono::high_resolution_clock::time_point t2;
 
 	t1 = std::chrono::high_resolution_clock::now();
-	
+
 int i, n, k, f, mu, iii, ttt, x;
 int  fine, intempo, numero, Mumax, Mumaxold;
 float t, Mmax, lunghezza;
@@ -144,6 +144,58 @@ for(ttt=0;ttt<Trete;ttt++)
 		i=Permut[iii][x];
 		update_stato(i,n);																	///update di s[][] di un neu per ogni stato
 
+				if((n%tempostampa)==0)																/// stampo gli overlap
+				{
+				t=(float)n/N;																			/// effective time
+				calcolo_m();
+
+		// 			for(mu=0;mu<p;mu++)
+		// 			{
+		// 					fprintf(mvari, "%.2f	%.4f	%d\n", t, m[mu], mu);
+		// 					fflush(mvari);
+		// 			}
+
+					if(n>n0+10*N)																/// stampo gli overlap
+					{
+						Mmax=-1.;
+						Mumax=p+1;
+						for(mu=0;mu<p;mu++)
+						{
+							if(m[mu]>Mmax)
+							{
+							Mmax=m[mu];
+							Mumax=mu;
+							}
+						}
+
+						if(Mumaxold!=Mumax && Mmax>0.5)
+						{
+						numero=numero+1;
+						Mumaxold=Mumax;
+		//				printf( "t=%f\n",t);
+					fprintf(ksequenza, "%d	", Mumax);
+		//			printf("%d	", Mumax);
+					fflush (ksequenza);
+						}
+					}
+
+				///per vedere se la sequenza di latching e` finita
+				for(mu=0;mu<p;mu++)
+				{
+					fine=1;
+					if(m[mu]>0.02)
+					{
+						fine=0;
+						mu=p;
+					}
+				}
+				if((fine!=0) && (n>n0+100*N))
+				{
+					lunghezza=t;
+					ttt=Trete;
+					iii=N;
+				}
+				}
 	n++;
 	}
 

@@ -60,7 +60,7 @@ class HC_PNet : public PNet {
                           const __fpv & a,
                           const int * xi
                           );
-        void start_dynamics(const std::default_random_engine & generator,
+        void start_dynamics(std::default_random_engine & generator,
                             const int & p,
                             const int & tstatus,
                             const int & nupdates,

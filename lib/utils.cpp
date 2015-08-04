@@ -60,6 +60,8 @@ void key_value_matcher(std::string key, std::string value, struct parameters & p
             params.a_pf = (__fpv)std::stof(value);
         case str2int("fact_eigen_slope"):
             params.fact_eigen_slope = (__fpv)std::stof(value);
+        case str2int("tstatus"):
+            params.tstatus = std::stoi(value);
     }
 
 }

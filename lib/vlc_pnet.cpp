@@ -55,7 +55,7 @@ void VLC_PNet::update_rule(const int & unit, const int & pattern, const __fpv & 
 
 }
 
-void VLC_PNet::start_dynamics(const std::default_random_engine & generator, const int & p,const int & tstatus, const int & nupdates, const int * xi, const int & pattern, const __fpv & a, const __fpv & U, const __fpv & w, const __fpv & g, const __fpv & tau, const __fpv & b1, const __fpv & b2, const __fpv & b3, const __fpv & beta, const int & tx){
+void VLC_PNet::start_dynamics(std::default_random_engine & generator, const int & p,const int & tstatus, const int & nupdates, const int * xi, const int & pattern, const __fpv & a, const __fpv & U, const __fpv & w, const __fpv & g, const __fpv & tau, const __fpv & b1, const __fpv & b2, const __fpv & b3, const __fpv & beta, const int & tx){
 
     //The code here is wrote for different cases defined during preprocessor
     int i,j,k,n,t;
@@ -68,47 +68,46 @@ void VLC_PNet::start_dynamics(const std::default_random_engine & generator, cons
     int Mumax, Mumaxold, steps;
 
     t = 0;
+
     //First loop = times the whole network has to be updated
-    while(stop == false){
-        //First loop = times the whole network has to be updated
-        for(i = 0; i < nupdates; ++i){
+    for(i = 0; i < nupdates && ((stop == false) || (t<=(tx+100*this->N))); ++i){
 
-            //Shuffle the random sequence
-            #ifndef _TEST
-            sequence.shuffle(generator);
-            #endif
+        //Shuffle the random sequence
+        #ifndef _TEST
+        sequence.shuffle(generator);
+        #endif
 
-            //Second loop = loop on all neurons serially
-            for(j = 0; j < N; ++j){
+        //Second loop = loop on all neurons serially
+        for(j = 0; j < N && ((stop == false) || (t<=(tx+100*this->N))); ++j){
 
 
-                unit = sequence.get(j);
+            unit = sequence.get(j);
 
-                //Update the unit
-                this->update_rule(unit,
-                                 xi[p * unit + pattern],
-                                 U,
-                                 w,
-                                 g,
-                                 tau,
-                                 b1,
-                                 b2,
-                                 b3,
-                                 beta,
-                                 tx,
-                                 t
-                                 );
+            //Update the unit
+            this->update_rule(unit,
+                             xi[p * unit + pattern],
+                             U,
+                             w,
+                             g,
+                             tau,
+                             b1,
+                             b2,
+                             b3,
+                             beta,
+                             tx,
+                             t
+                             );
 
-                if((t % tstatus) == 0){
-                    this->get_status(p,tx,t,xi,a,Mumaxold,Mumax,steps,stop);
-                }
-
-                t++;
-
+            if((t % tstatus) == 0){
+                this->get_status(p,tx,t,xi,a,Mumaxold,Mumax,steps,stop);
             }
 
+            t++;
+
         }
+
     }
+
 
     if(t > tx + 100 * N){
         latching_length = t / N;

@@ -2,7 +2,7 @@
 
 set term pngcairo dashed size 1200, 800
 set key left top
-set xrange [50:2050]
+set xrange [0:1000]
 
 
 set xlabel "# POTTS UNITS"
@@ -22,47 +22,39 @@ set style line 4 lt 2 lc rgb "green" lw 2
 set style line 5 lt 1 lc rgb "red" lw 2
 set style line 6 lt 2 lc rgb "red" lw 2
 
-title1="benchmarks on local machine with N/2 connected network"
-title2="benchmarks on local machine with N/5 connected network"
-title3="benchmarks on local machine with N/8 connected network"
-title4="benchmarks on local machine with N/10 connected network"
-
-a="initialization time new code"
-b="initialization time old code"
-c="dynamics time (50 step) new code"
-d="dynamics time (50 step) old code"
-e="total time new code"
-f="total time old code"
-
-set output 'test2.png'
-plot "bench_times_2.dat" every ::1 using 1:3 w l title a ls 1, \
-     '' every ::1 using 1:6 w l title b ls 2, \
-     '' every ::1 using 1:4 w l title c ls 3, \
-     '' every ::1 using 1:7 w l title d ls 4, \
-     '' every ::1 using 1:5 w l title e ls 5, \
-     '' every ::1 using 1:8 w l title f ls 6
+set style line 7 lt 1 lc rgb "black" lw 2
+set style line 8 lt 2 lc rgb "black" lw 2
 
 
-set output 'test5.png'
-plot "bench_times_5.dat" every ::1 using 1:3 w l title a ls 1, \
-     '' every ::1 using 1:6 w l title b ls 2, \
-     '' every ::1 using 1:4 w l title c ls 3, \
-     '' every ::1 using 1:7 w l title d ls 4, \
-     '' every ::1 using 1:5 w l title e ls 5, \
-     '' every ::1 using 1:8 w l title f ls 6
+title1="benchmarks on local machine with N=500 connected network"
+title2="benchmarks on local machine with N=1000 connected network"
+title3="benchmarks on local machine with N=10000 connected network"
 
-set output 'test8.png'
-plot "bench_times_8.dat" every ::1 using 1:3 w l title a ls 1, \
-     '' every ::1 using 1:6 w l title b ls 2, \
-     '' every ::1 using 1:4 w l title c ls 3, \
-     '' every ::1 using 1:7 w l title d ls 4, \
-     '' every ::1 using 1:5 w l title e ls 5, \
-     '' every ::1 using 1:8 w l title f ls 6
 
-set output 'test10.png'
-plot "bench_times_10.dat" every ::1 using 1:3 w l title a ls 1, \
-     '' every ::1 using 1:6 w l title b ls 2, \
-     '' every ::1 using 1:4 w l title c ls 3, \
-     '' every ::1 using 1:7 w l title d ls 4, \
-     '' every ::1 using 1:5 w l title e ls 5, \
-     '' every ::1 using 1:8 w l title f ls 6
+a="dynamic_time hc"
+b="dynamic_time lc"
+c="dynamic_time vlc"
+d="dynamics time old code"
+
+
+set xrange [0:250]
+set output 'test500.png'
+plot "bench_times_500.dat" every ::1 using 2:4 w l title a ls 1, \
+     '' every ::1 using 2:7 w l title b ls 3, \
+     '' every ::1 using 2:10 w l title c ls 5, \
+     '' every ::1 using 2:13 w l title d ls 7
+
+
+set xrange [0:500]
+set output 'test1000.png'
+plot "bench_times_1000.dat" every ::1 using 2:4 w l title a ls 1, \
+     '' every ::1 using 2:7 w l title b ls 3, \
+     '' every ::1 using 2:10 w l title c ls 5, \
+     '' every ::1 using 2:13 w l title d ls 7
+
+set xrange [0:750]
+set output 'test1500.png'
+plot "bench_times_1500.dat" every ::1 using 2:4 w l title a ls 1, \
+     '' every ::1 using 2:7 w l title b ls 3, \
+     '' every ::1 using 2:10 w l title c ls 5, \
+     '' every ::1 using 2:13 w l title d ls 7

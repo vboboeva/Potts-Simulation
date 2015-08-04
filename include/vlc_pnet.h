@@ -27,7 +27,7 @@ class VLC_PNet : public LC_PNet {
         VLC_PNet(const int & N, const int & C, const int & S):LC_PNet(N,C,S){};
         ~VLC_PNet(){};
 
-        void start_dynamics(const std::default_random_engine & generator,
+        void start_dynamics(std::default_random_engine & generator,
                           const int & p,
                           const int & tstatus,
                           const int & nupdates,
