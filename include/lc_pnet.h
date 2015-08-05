@@ -54,8 +54,8 @@ class LC_PNet : public PNet {
 
         void connect_units(std::default_random_engine & generator);
 
-        void init_network(const double beta,
-                          const double U,
+        void init_network(const __fpv & beta,
+                          const __fpv & U,
                           const int & p,
                           const __fpv & a,
                           const int * xi

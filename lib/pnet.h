@@ -26,8 +26,8 @@ class PNet{
         virtual void save_J_to_file(const std::string & filename) = 0;
 
 
-        virtual void init_network(const double beta,
-                          const double U,
+        virtual void init_network(const __fpv & beta,
+                          const __fpv & U,
                           const int & p,
                           const __fpv & a,
                           const int * xi

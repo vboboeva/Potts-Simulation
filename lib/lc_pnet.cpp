@@ -2,6 +2,8 @@
 #include <iostream>
 #include <random>
 #include <fstream>
+#include <iomanip>
+
 
 #include "lc_pnet.h"
 #include "config.h"
@@ -72,6 +74,7 @@ void LC_PNet::connect_units(std::default_random_engine & generator){
 void LC_PNet::init_states(const __fpv & beta, const __fpv & U){
 
     int i,j;
+
     __fpv n = -2 * beta - 2 * exp(beta * U) - 2 * S+sqrt(pow(2 * beta + 2 * exp(beta * U)+2 * S,2)+8 * (-beta * beta - 2 * beta * S + 2 * beta *S * exp(beta * U)));
     __fpv d = 2 * (-beta * beta - 2 * beta * S + 2 * beta * S * exp(beta * U));
 
@@ -119,7 +122,7 @@ void LC_PNet::init_J(const int & p, const __fpv & a, const int * xi){
 
 }
 
-void LC_PNet::init_network(const double beta, const double U, const int & p, const __fpv & a, const int * xi){
+void LC_PNet::init_network(const __fpv & beta, const __fpv & U, const int & p, const __fpv & a, const int * xi){
 
         //Init states
         this->init_states(beta,U);
@@ -140,7 +143,7 @@ void LC_PNet::update_rule(const int & unit, const __fpv buffer[], const int & pa
 
     for(i = 0; i < this->S; ++i){
         self += this->active_states[unit*S + i];
-        this->h[unit*S + i] = 0;
+        this->h[unit*S + i] = 0; //Maybe h can be even a small array of size S, since it's erased at each update
     }
     self = (w / this->S) * self;
 
@@ -148,6 +151,7 @@ void LC_PNet::update_rule(const int & unit, const __fpv buffer[], const int & pa
 
     for(i = 0; i < this->S; ++i){
 
+        //Inside here maybe different order of + and * so slightly different solutions, have to check.
         for(j = 0; j < tsize; ++j){
             this->h[unit*S + i] += this->J[S*C*S*unit + C*S*i + j] * buffer[j];
         }
@@ -200,8 +204,6 @@ void LC_PNet::start_dynamics(std::default_random_engine & generator, const int &
         #ifndef _TEST
         sequence.shuffle(generator);
         #endif
-
-        //std::cout << (N && ((stop == false) && (t<=(tx+100*this->N)))) << " ";
 
         //Second loop = loop on all neurons serially
         for(j = 0; j < N && ((stop == false) || (t<=(tx+100*this->N))); ++j){
@@ -305,6 +307,8 @@ void LC_PNet::save_states_to_file(const std::string & filename){
     std::ofstream ofile;
     int i,j;
     ofile.open(filename);
+    ofile.precision(15);
+    ofile << std::scientific;
 
     for(i = 0; i < this->N; i++){
         for(j= 0; j < this->S; j++){
@@ -322,6 +326,8 @@ void LC_PNet::save_J_to_file(const std::string & filename){
     std::ofstream ofile;
     int i,j,k,l;
     ofile.open(filename);
+    ofile.precision(15);
+    ofile << std::scientific;
 
     for(i = 0; i < this->N; ++i){
         for(j = 0; j < this->S; ++j){

@@ -6,7 +6,7 @@
 #include "hc_pnet.h"
 #include "lc_pnet.h"
 #include "vlc_pnet.h"
-
+#include "utils.h"
 int main(int argc, char *argv[]){
 
     std::cout << "Potts simulation" << std::endl;
@@ -18,20 +18,22 @@ int main(int argc, char *argv[]){
     std::default_random_engine generator;
     generator.seed(12345);
 
-    PatternGen pgen(
-               600, //N
-               10, //p
-               3, //S
-               0.25, //a
-               11.0, //beta
-               50, //N_fact
-               200, //Num_fact
-               0.25, //a_fact
-               1e-6, //eps
-               3e-6, //a_pf
-               3e-6 //fact_eigen_slope
-               );
+    struct parameters params;
+    load_params("params.cfg", params);
 
+    PatternGen pgen(
+               params.N, //N
+               params.p, //p
+               params.S, //S
+               params.a, //a
+               params.beta, //beta
+               params.N_fact, //N_fact
+               params.Num_fact, //Num_fact
+               params.a_fact, //a_fact
+               params.eps, //eps
+               params.a_pf, //a_pf
+               params.fact_eigen_slope //fact_eigen_slope
+               );
     pgen.set_random_generator(generator);
     pgen.generate();
     pgen.save_pattern_to_file("patterns.dat");
@@ -45,17 +47,17 @@ int main(int argc, char *argv[]){
     generator.seed(12345);
 
     //Create the network
-    VLC_PNet pnet(600,
-                 90,
-                 3
-                 );
+    LC_PNet pnet(params.N,
+                params.C,
+                params.S
+                    );
 
 
     //Connect units (generate connection matrix)
     pnet.connect_units(generator);
-    //Initialize the network
-    pnet.init_network(11.0,0.1,10,0.25,pgen.get_patt());
 
+    //Initialize the network
+    pnet.init_network(params.beta,params.U,params.p,params.a,pgen.get_patt());
 
     //Write states to file
     pnet.save_states_to_file("init_states.dat");
@@ -67,23 +69,22 @@ int main(int argc, char *argv[]){
     pnet.save_J_to_file("init_J.dat");
 
     //Start the dynamics
-
     pnet.start_dynamics(generator,
-                        10,
-                        10000, //tstatus (tempostampa)
-                        100,  //Number of updates
+                        params.p,
+                        params.tstatus, //tstatus (tempostampa)
+                        params.nupdates,  //Number of updates
                         pgen.get_patt(),
-                        1,
-                        0.25,
-                        0.1,
-                        0.8,
-                        5.0,
-                        10*600, //tau
-                        0.3, //b1
-                        0.01, //b2
-                        0.000001, //b3
-                        11.0, //beta
-                        500*600 //tx (n0)
+                        1, //Pattern number
+                        params.a,
+                        params.U,
+                        params.w,
+                        params.g,
+                        params.tau * params.N, //tau
+                        params.b1, //b1
+                        params.b2, //b2
+                        params.b3, //b3
+                        params.beta, //beta
+                        500*params.N //tx (n0)
                         );
 
     //Check states

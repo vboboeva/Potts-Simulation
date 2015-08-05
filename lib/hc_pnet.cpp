@@ -2,6 +2,8 @@
 #include <iostream>
 #include <random>
 #include <fstream>
+#include <chrono>
+#include <iomanip>
 
 #include "hc_pnet.h"
 #include "config.h"
@@ -119,7 +121,7 @@ void HC_PNet::init_J(const int & p, const __fpv & a, const int * xi){
     }
 }
 
-void HC_PNet::init_network(const double beta, const double U, const int & p, const __fpv & a, const int * xi){
+void HC_PNet::init_network(const __fpv & beta, const __fpv & U, const int & p, const __fpv & a, const int * xi){
 
         //Init states
         this->init_states(beta,U);
@@ -160,7 +162,6 @@ void HC_PNet::update_rule(const int & unit, const int & pattern, const __fpv & U
         rmax = this->active_r[unit*S + i] * (this->active_r[unit*S + i] > rmax) - ((this->active_r[unit*S + i] > rmax) - 1) * this->inactive_r[unit];
 
     }
-
     this->inactive_r[unit] += b3 * (1 - this->inactive_states[unit] - this->inactive_r[unit]);
 
     Z=0;
@@ -219,6 +220,7 @@ void HC_PNet::start_dynamics(std::default_random_engine & generator, const int &
                              tx,
                              t
                              );
+
 
             if((t % tstatus) == 0){
                 this->get_status(p,tx,t,xi,a,Mumaxold,Mumax,steps,stop);
@@ -293,6 +295,8 @@ void HC_PNet::save_states_to_file(const std::string & filename){
     std::ofstream ofile;
     int i,j;
     ofile.open(filename);
+    ofile.precision(15);
+    ofile << std::scientific;
 
     for(i = 0; i < this->N; i++){
         for(j= 0; j < this->S; j++){
@@ -310,6 +314,8 @@ void HC_PNet::save_J_to_file(const std::string & filename){
     std::ofstream ofile;
     int i,j,k,l;
     ofile.open(filename);
+    ofile.precision(15);
+    ofile << std::scientific;
 
     for(i = 0; i < this->N; ++i){
         for(j = 0; j < this->S; ++j){

@@ -85,6 +85,8 @@ void print_states(std::string filename){
 	int i,k;
 	std::ofstream ofile;
 	ofile.open(filename);
+	ofile.precision(15);
+    ofile << std::scientific;
 	for(i=0;i<N;i++)
 	{
 		for(k=0;k<S;k++)
@@ -101,6 +103,8 @@ void print_J(std::string filename){
 	int i,j,k,l;
 	std::ofstream ofile;
 	ofile.open(filename);
+	ofile.precision(15);
+    ofile << std::scientific;
 	for(i = 0; i < N; ++i){
         for(j = 0; j < S; ++j){
             for(k = 0; k < Cm; ++k){
@@ -125,6 +129,11 @@ int i_c, x, new_one;
 //inizializza e stampa s
 std::ofstream ofile;
 ofile.open("init_states.dat");
+ofile.precision(15);
+ofile << std::scientific;
+std::cout.precision(18);
+std::cout << std::scientific;
+std::cout << (2*(-beta*beta-2*beta*S+2*beta*S*exp(beta*U))) << std::endl;
 for(i=0;i<N;i++)
 {
 	for(k=0;k<S;k++)
@@ -297,10 +306,12 @@ for(k=0;k<S;k++)
 	h[i][k]=0.;
 	 for(x=0;x<Cm;x++)
 	{
+		
 		for(l=0;l<S;l++)
 		{
 		 h[i][k]+=	J[i][x][k][l]*s[C[i][x]][l];
 		}
+
 	}
 
 	h[i][k]+=w*s[i][k]-self+ INcost*(xi[i][retr]==k);

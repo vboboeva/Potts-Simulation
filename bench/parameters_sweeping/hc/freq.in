@@ -1,0 +1,12 @@
+
+
+
+set xlabel "bins"
+set ylabel "count"
+set yrange [0:]
+
+binwidth=0.0005
+bin(x,width)=width*floor(x/width)
+
+
+plot "output2.txt" using (bin($1,binwidth)):(1.0) smooth freq with boxes, "output1.txt" using (bin($1,binwidth)):(1.0) smooth freq with boxes

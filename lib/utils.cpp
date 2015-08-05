@@ -27,23 +27,23 @@ void key_value_matcher(std::string key, std::string value, struct parameters & p
         case str2int("S"):
             params.S = std::stoi(value);
         case str2int("a"):
-            params.a = (__fpv)std::stof(value);
+            params.a = (__fpv)std::stod(value);
         case str2int("U"):
-            params.U = (__fpv)std::stof(value);
+            params.U = (__fpv)std::stod(value);
         case str2int("b1"):
-            params.b1 = (__fpv)std::stof(value);
+            params.b1 = (__fpv)std::stod(value);
         case str2int("b2"):
-            params.b2 = (__fpv)std::stof(value);
+            params.b2 = (__fpv)std::stod(value);
         case str2int("b3"):
-            params.b3 = (__fpv)std::stof(value);
+            params.b3 = (__fpv)std::stod(value);
         case str2int("beta"):
-            params.beta = (__fpv)std::stof(value);
+            params.beta = (__fpv)std::stod(value);
         case str2int("w"):
-            params.w = (__fpv)std::stof(value);
+            params.w = (__fpv)std::stod(value);
         case str2int("g"):
-            params.g = (__fpv)std::stof(value);
+            params.g = (__fpv)std::stod(value);
         case str2int("tau"):
-            params.tau = (__fpv)std::stof(value);
+            params.tau = (__fpv)std::stod(value);
         case str2int("nupdates"):
             params.nupdates = std::stoi(value);
         case str2int("NumSet"):
@@ -53,13 +53,13 @@ void key_value_matcher(std::string key, std::string value, struct parameters & p
         case str2int("Num_fact"):
             params.Num_fact = std::stoi(value);
         case str2int("a_fact"):
-            params.a_fact = (__fpv)std::stof(value);
+            params.a_fact = (__fpv)std::stod(value);
         case str2int("eps"):
-            params.eps = (__fpv)std::stof(value);
+            params.eps = (__fpv)std::stod(value);
         case str2int("a_pf"):
-            params.a_pf = (__fpv)std::stof(value);
+            params.a_pf = (__fpv)std::stod(value);
         case str2int("fact_eigen_slope"):
-            params.fact_eigen_slope = (__fpv)std::stof(value);
+            params.fact_eigen_slope = (__fpv)std::stod(value);
         case str2int("tstatus"):
             params.tstatus = std::stoi(value);
     }
