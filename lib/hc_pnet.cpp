@@ -196,7 +196,7 @@ void HC_PNet::start_dynamics(std::default_random_engine & generator, const int &
     int unit;
 
     RandomSequence sequence(this->N);
-    __fpv time, latching_length;
+    __fpv latching_length;
     bool stop = false;
     int Mumax, Mumaxold, steps;
 
@@ -230,11 +230,11 @@ void HC_PNet::start_dynamics(std::default_random_engine & generator, const int &
                              t
                              );
 
-
+            /*
             if((t % tstatus) == 0){
                 this->get_status(p,tx,t,xi,a,Mumaxold,Mumax,steps,stop);
             }
-
+            */
             t++;
 
         }
@@ -243,7 +243,7 @@ void HC_PNet::start_dynamics(std::default_random_engine & generator, const int &
 
 
     if(t > tx + 100 * N){
-        latching_length = t / N;
+        latching_length = t*1.0 / N*1.0;
     }else{
         std::cout << "Simulation finished before reaching minimum steps" << std::endl;
     }

@@ -4,7 +4,7 @@
 void PNet::get_status(const int & p, const int & tx, const int & t, const int * xi, const __fpv & a, int & Mumaxold, int & Mumax, int & steps, bool & stop){
 
     __fpv m[p];
-    __fpv time = t/N;
+    //__fpv time = t*1.0/N*1.0;
     int mu;
     __fpv Mmax;
 
