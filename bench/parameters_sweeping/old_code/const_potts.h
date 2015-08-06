@@ -1,7 +1,7 @@
 
 #define      Retr   		3
 #define N 1500
-#define Cm 44
+#define Cm 27
 #define      p				100
 #define      S				5
 #define      a				0.25
@@ -19,7 +19,7 @@
 //#define      T				6000*N
 //#define      Trete			6000
 #define      as			a/S
-#define      tempostampa		10000
+#define      tempostampa		Trete * N
 #define      tstampato	(int)T/tempostampa
 
 #define      NumSet  		10

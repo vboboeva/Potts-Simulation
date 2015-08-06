@@ -75,7 +75,7 @@ void VLC_PNet::start_dynamics(std::default_random_engine & generator, const int 
     t = 0;
 
     //First loop = times the whole network has to be updated
-    for(i = 0; (i < nupdates) && !((stop == true) && (t>tx+100*this->N)); ++i){
+    for(i = 0; i < nupdates; ++i){
 
         //Shuffle the random sequence
         #ifndef _TEST
@@ -83,7 +83,7 @@ void VLC_PNet::start_dynamics(std::default_random_engine & generator, const int 
         #endif
 
         //Second loop = loop on all neurons serially
-        for(j = 0; (j < N) && !((stop == true) && (t>tx+100*this->N)); ++j){
+        for(j = 0; j < N; ++j){
 
 
             unit = sequence.get(j);
@@ -102,17 +102,18 @@ void VLC_PNet::start_dynamics(std::default_random_engine & generator, const int 
                              tx,
                              t
                              );
-            /*
+
             if((t % tstatus) == 0){
                 this->get_status(p,tx,t,xi,a,Mumaxold,Mumax,steps,stop);
+                if(stop &&  (t > tx + 100 * N)) goto end;
             }
-            */
+
             t++;
 
         }
 
     }
-
+    end:
 
     if(t > tx + 100 * N){
         latching_length = t*1.0 / N*1.0;

@@ -57,7 +57,6 @@ int main(int argc, char *argv[]){
 
     //Connect units
     pnet.connect_units(generator);
-
     pnet.init_network(params.beta,params.U,params.p,params.a,pgen.get_patt());
 
     t2 = std::chrono::high_resolution_clock::now(); //STOP TIMER
@@ -73,7 +72,7 @@ int main(int argc, char *argv[]){
     //Start the dynamics
     pnet.start_dynamics(generator,
                         params.p,
-                        params.tstatus, //tstatus (tempostampa)
+                        params.nupdates*params.N,//params.tstatus, //tstatus (tempostampa)
                         params.nupdates,  //Number of updates
                         pgen.get_patt(),
                         1, //Pattern number
