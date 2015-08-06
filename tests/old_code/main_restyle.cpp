@@ -186,12 +186,14 @@ for(ttt=0;ttt<Trete;ttt++)
 				mu=p;
 			}
 		}
+
 		if((fine!=0) && (n>n0+100*N))
 		{
 			lunghezza=t;
 			ttt=Trete;
 			iii=N;
 		}
+		
 		}
 	n++;
 	}

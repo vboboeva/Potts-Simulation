@@ -96,6 +96,9 @@ void LC_PNet::init_J(const int & p, const __fpv & a, const int * xi){
     //Generate Jkxl
     for(i = 0; i < N; ++i){
         for(j = 0; j < S; ++j){
+
+            this->h[S*i + j] = 0;
+
             for(k = 0; k < C; ++k){
                 for(l = 0; l < S; ++l){
 
@@ -161,7 +164,13 @@ void LC_PNet::update_rule(const int & unit, const __fpv buffer[], const int & pa
         this->theta[unit*S + i] += b2 * (this->active_states[unit*S + i]-this->theta[unit*S + i]);
 	    this->active_r[unit*S + i] += b1 * (this->h[unit*S + i]-this->theta[unit*S + i]-this->active_r[unit*S + i]);
 
-        rmax = this->active_r[unit*S + i] * (this->active_r[unit*S + i] > rmax) - ((this->active_r[unit*S + i] > rmax) - 1) * this->inactive_r[unit];
+        rmax = this->active_r[unit*S + i] * (this->active_r[unit*S + i] > rmax) - ((this->active_r[unit*S + i] > rmax) - 1) * rmax;
+        /*
+        if(this->active_r[unit*S + i]>rmax){
+            rmax=this->active_r[unit*S + i];
+	    }
+        */
+
 
     }
 
@@ -198,7 +207,7 @@ void LC_PNet::start_dynamics(std::default_random_engine & generator, const int &
     t = 0;
 
     //First loop = times the whole network has to be updated
-    for(i = 0; i < nupdates && ((stop == false) || (t<=(tx+100*this->N))); ++i){
+    for(i = 0; (i < nupdates) && !((stop == true) && (t>tx+100*this->N)); ++i){
 
         //Shuffle the random sequence
         #ifndef _TEST
@@ -206,8 +215,7 @@ void LC_PNet::start_dynamics(std::default_random_engine & generator, const int &
         #endif
 
         //Second loop = loop on all neurons serially
-        for(j = 0; j < N && ((stop == false) || (t<=(tx+100*this->N))); ++j){
-
+        for(j = 0; (j < N) && !((stop == true) && (t>tx+100*this->N)); ++j){
 
             unit = sequence.get(j);
 

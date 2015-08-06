@@ -131,9 +131,7 @@ std::ofstream ofile;
 ofile.open("init_states.dat");
 ofile.precision(15);
 ofile << std::scientific;
-std::cout.precision(18);
-std::cout << std::scientific;
-std::cout << (2*(-beta*beta-2*beta*S+2*beta*S*exp(beta*U))) << std::endl;
+
 for(i=0;i<N;i++)
 {
 	for(k=0;k<S;k++)
@@ -300,27 +298,38 @@ self=ws*self;
 
 INcost	=	(double)(n>n0)*g*exp(-((n-n0)/((double)tau)));			/// campo iniziale &&&&&&&&&&&&@@@@@@@@@@@@@@@@@@
 
+
+
 for(k=0;k<S;k++)
 {
 	///	di  h
 	h[i][k]=0.;
 	 for(x=0;x<Cm;x++)
 	{
-		
+
 		for(l=0;l<S;l++)
 		{
 		 h[i][k]+=	J[i][x][k][l]*s[C[i][x]][l];
+
 		}
 
 	}
 
+	if(i == 30){
+	std::cout.precision(15);
+				std::cout << std::scientific;
+				std::cout << xi[i][retr] << std::endl;
+			}
+
 	h[i][k]+=w*s[i][k]-self+ INcost*(xi[i][retr]==k);
+
 											//tolgo l`auto eccitazione
 	/// di sold, thteta, r
 	sold[i][k]=s[i][k];
 
 	theta[i][k]+=b2*(s[i][k]-theta[i][k]);
 									//update theta
+
 	r[i][k]+=b1*(h[i][k]-theta[i][k]-r[i][k]);								//update r
 
 	if(r[i][k]>rmax)												//(per evitare l'overflow calcolando s)
@@ -331,6 +340,7 @@ for(k=0;k<S;k++)
 
 
 }
+
 /// //////////	update rS e sold per S	///
 sold[i][S]=s[i][S];
 r[i][S]+=b3*(1.-s[i][S]-r[i][S]);
@@ -344,17 +354,15 @@ for(k=0;k<S;k++)
 }
 Z+=exp(beta*(r[i][S]+U-rmax));							//modificato con nuova concezione di U
 
-double invZ;
-
-invZ=1./Z;
 
 for(k=0;k<S;k++)
 {
-	s[i][k]=invZ*exp(beta*(r[i][k]-rmax));
+	s[i][k]=exp(beta*(r[i][k]-rmax))/Z;
 						//update of s[]
+
 }
 
-s[i][S]=invZ*exp(beta*(r[i][S]-rmax+U));
+s[i][S]=exp(beta*(r[i][S]-rmax+U))/Z;
 
 
 /*

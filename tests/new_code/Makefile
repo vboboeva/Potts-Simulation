@@ -20,7 +20,7 @@ main.x : main.cpp $(LIB_FILES)
 	$(CPPC) $(CFLAGS) $(CINCLUDE) $(OPTFLAGS) $(CMACROS) -o $@ $^
 
 run: main.x
-	@./main.x #&>/dev/null
+	@./main.x 1>/dev/null
 
 clean:
 	@rm -rf *.x *.dat

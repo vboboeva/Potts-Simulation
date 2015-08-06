@@ -47,7 +47,7 @@ int main(int argc, char *argv[]){
     generator.seed(12345);
 
     //Create the network
-    LC_PNet pnet(params.N,
+    VLC_PNet pnet(params.N,
                 params.C,
                 params.S
                     );
@@ -74,7 +74,7 @@ int main(int argc, char *argv[]){
                         params.tstatus, //tstatus (tempostampa)
                         params.nupdates,  //Number of updates
                         pgen.get_patt(),
-                        1, //Pattern number
+                        0, //Pattern number
                         params.a,
                         params.U,
                         params.w,

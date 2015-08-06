@@ -33,7 +33,12 @@ void VLC_PNet::update_rule(const int & unit, const int & pattern, const __fpv & 
         this->theta[unit*S + i] += b2 * (this->active_states[unit*S + i]-this->theta[unit*S + i]);
 	    this->active_r[unit*S + i] += b1 * (this->h[unit*S + i]-this->theta[unit*S + i]-this->active_r[unit*S + i]);
 
-        rmax = this->active_r[unit*S + i] * (this->active_r[unit*S + i] > rmax) - ((this->active_r[unit*S + i] > rmax) - 1) * this->inactive_r[unit];
+        rmax = this->active_r[unit*S + i] * (this->active_r[unit*S + i] > rmax) - ((this->active_r[unit*S + i] > rmax) - 1) * rmax;
+        /*
+        if(this->active_r[unit*S + i]>rmax){
+            rmax=this->active_r[unit*S + i];
+	    }
+        */
 
     }
 
@@ -70,7 +75,7 @@ void VLC_PNet::start_dynamics(std::default_random_engine & generator, const int 
     t = 0;
 
     //First loop = times the whole network has to be updated
-    for(i = 0; i < nupdates && ((stop == false) || (t<=(tx+100*this->N))); ++i){
+    for(i = 0; (i < nupdates) && !((stop == true) && (t>tx+100*this->N)); ++i){
 
         //Shuffle the random sequence
         #ifndef _TEST
@@ -78,7 +83,7 @@ void VLC_PNet::start_dynamics(std::default_random_engine & generator, const int 
         #endif
 
         //Second loop = loop on all neurons serially
-        for(j = 0; j < N && ((stop == false) || (t<=(tx+100*this->N))); ++j){
+        for(j = 0; (j < N) && !((stop == true) && (t>tx+100*this->N)); ++j){
 
 
             unit = sequence.get(j);

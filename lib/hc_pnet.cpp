@@ -74,6 +74,7 @@ void HC_PNet::connect_units(std::default_random_engine & generator){
 void HC_PNet::init_states(const __fpv & beta, const __fpv & U){
 
     int i,j;
+
     __fpv n = -2 * beta - 2 * exp(beta * U) - 2 * S+sqrt(pow(2 * beta + 2 * exp(beta * U)+2 * S,2)+8 * (-beta * beta - 2 * beta * S + 2 * beta *S * exp(beta * U)));
     __fpv d = 2 * (-beta * beta - 2 * beta * S + 2 * beta * S * exp(beta * U));
 
@@ -95,6 +96,9 @@ void HC_PNet::init_J(const int & p, const __fpv & a, const int * xi){
     //Generate Jkxl
     for(i = 0; i < N; ++i){
         for(j = 0; j < S; ++j){
+
+            this->h[S*i + j] = 0;
+
             for(k = 0; k < N; ++k){
                 for(l = 0; l < S; ++l){
 
@@ -159,7 +163,12 @@ void HC_PNet::update_rule(const int & unit, const int & pattern, const __fpv & U
         this->theta[unit*S + i] += b2 * (this->active_states[unit*S + i]-this->theta[unit*S + i]);
 	    this->active_r[unit*S + i] += b1 * (this->h[unit*S + i]-this->theta[unit*S + i]-this->active_r[unit*S + i]);
 
-        rmax = this->active_r[unit*S + i] * (this->active_r[unit*S + i] > rmax) - ((this->active_r[unit*S + i] > rmax) - 1) * this->inactive_r[unit];
+        rmax = this->active_r[unit*S + i] * (this->active_r[unit*S + i] > rmax) - ((this->active_r[unit*S + i] > rmax) - 1) * rmax;
+        /*
+        if(this->active_r[unit*S + i]>rmax){
+            rmax=this->active_r[unit*S + i];
+	    }
+        */
 
     }
     this->inactive_r[unit] += b3 * (1 - this->inactive_states[unit] - this->inactive_r[unit]);
@@ -193,7 +202,7 @@ void HC_PNet::start_dynamics(std::default_random_engine & generator, const int &
 
     t = 0;
     //First loop = times the whole network has to be updated
-    for(i = 0; i < nupdates && ((stop == false) || (t<=(tx+100*this->N))); ++i){
+    for(i = 0; (i < nupdates) && !((stop == true) && (t>tx+100*this->N)); ++i){
 
         //Shuffle the random sequence
         #ifndef _TEST
@@ -201,7 +210,7 @@ void HC_PNet::start_dynamics(std::default_random_engine & generator, const int &
         #endif
 
         //Second loop = loop on all neurons serially
-        for(j = 0; j < N && ((stop == false) || (t<=(tx+100*this->N))); ++j){
+        for(j = 0; (j < N) && !((stop == true) && (t>tx+100*this->N)); ++j){
 
 
             unit = sequence.get(j);
@@ -224,6 +233,9 @@ void HC_PNet::start_dynamics(std::default_random_engine & generator, const int &
 
             if((t % tstatus) == 0){
                 this->get_status(p,tx,t,xi,a,Mumaxold,Mumax,steps,stop);
+                if(stop == true){
+                    std::cout << "STOP CONDITION REACHED" << std::endl;
+                }
             }
 
             t++;
