@@ -165,6 +165,7 @@ void LC_PNet::update_rule(const int & unit, const __fpv buffer[], const int & pa
 	    this->active_r[unit*S + i] += b1 * (this->h[unit*S + i]-this->theta[unit*S + i]-this->active_r[unit*S + i]);
 
         rmax = this->active_r[unit*S + i] * (this->active_r[unit*S + i] > rmax) - ((this->active_r[unit*S + i] > rmax) - 1) * rmax;
+
         /*
         if(this->active_r[unit*S + i]>rmax){
             rmax=this->active_r[unit*S + i];
@@ -186,6 +187,13 @@ void LC_PNet::update_rule(const int & unit, const __fpv buffer[], const int & pa
 
     for(i = 0; i < S; ++i){
     	this->active_states[unit*S + i] = exp(beta * (this->active_r[unit*S + i] - rmax)) / Z;
+        /*
+        if(unit == 0){
+
+		std::cout.precision(30);
+					std::cout << std::scientific;
+					std::cout << this->active_r[unit*S + i] << std::endl;
+				}*/
     }
 
     this->inactive_states[unit]=exp(beta * (this->inactive_r[unit] - rmax + U)) / Z;
