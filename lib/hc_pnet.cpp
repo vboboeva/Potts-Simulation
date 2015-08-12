@@ -196,9 +196,9 @@ void HC_PNet::start_dynamics(std::default_random_engine & generator, const int &
     int unit;
 
     RandomSequence sequence(this->N);
-    __fpv latching_length;
+    __fpv latching_length = 0;
     bool stop = false;
-    int Mumax, Mumaxold, steps;
+    int Mumax = p + 5, Mumaxold = p + 5, steps = 0;
 
     t = 0;
     //First loop = times the whole network has to be updated
@@ -231,7 +231,7 @@ void HC_PNet::start_dynamics(std::default_random_engine & generator, const int &
                              );
 
 
-            if(false){//if((t % tstatus) == 0){
+            if((t % tstatus) == 0){
                 this->get_status(p,tx,t,xi,a,Mumaxold,Mumax,steps,stop);
                 if(stop &&  (t > tx + 100 * N)) goto end;
             }
@@ -245,6 +245,7 @@ void HC_PNet::start_dynamics(std::default_random_engine & generator, const int &
 
     if(t > tx + 100 * N){
         latching_length = t*1.0 / N*1.0;
+        std::cout << "Latching length: " <<  latching_length << std::endl;
     }else{
         std::cout << "Simulation finished before reaching minimum steps" << std::endl;
     }
@@ -263,7 +264,7 @@ void HC_PNet::evaluate_m(const int & p, const __fpv & a, const int * xi, __fpv m
         for(j = 0; j < N; ++j){
             ma = 0;
             for(k = 0; k < S; ++k){
-                ma += ( (xi[p * j + i] == k) - a/S) * this->active_states[S*i + k];
+                ma += ( (xi[p * j + i] == k) - a/S) * this->active_states[S*j + k];
             }
             maa += ma;
         }

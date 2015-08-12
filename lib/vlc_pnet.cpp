@@ -70,7 +70,7 @@ void VLC_PNet::start_dynamics(std::default_random_engine & generator, const int 
 
     __fpv latching_length;
     bool stop = false;
-    int Mumax, Mumaxold, steps;
+    int Mumax = p + 5, Mumaxold = p + 5, steps = 0;
 
     t = 0;
 
@@ -103,7 +103,7 @@ void VLC_PNet::start_dynamics(std::default_random_engine & generator, const int 
                              t
                              );
 
-            if(false){//if((t % tstatus) == 0){
+            if((t % tstatus) == 0){
                 this->get_status(p,tx,t,xi,a,Mumaxold,Mumax,steps,stop);
                 if(stop &&  (t > tx + 100 * N)) goto end;
             }
@@ -117,6 +117,7 @@ void VLC_PNet::start_dynamics(std::default_random_engine & generator, const int 
 
     if(t > tx + 100 * N){
         latching_length = t*1.0 / N*1.0;
+        std::cout << "Latching length: " <<  latching_length << std::endl;
     }else{
         std::cout << "Simulation finished before reaching minimum steps" << std::endl;
     }
