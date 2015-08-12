@@ -134,7 +134,7 @@ for(ttt=0;ttt<Trete;ttt++)
 		update_stato(i,n);																	///update di s[][] di un neu per ogni stato
 
 
-		if(false)//if((n%tempostampa)==0)																/// stampo gli overlap
+		if((n%tempostampa)==0)																/// stampo gli overlap
 		{
 		t=(double)n/N;																			/// effective time
 		calcolo_m();
@@ -201,7 +201,7 @@ fclose(mvari);
 finesim=time(0);
 // printf( "simulazione finita:	%ld		\n", finesim);
 printf( "durata		%ld secondi\n", finesim-iniziosim);
-
+printf("Latching length: %f\n", lunghezza);
 printf( "p=%d	retr=%d	passi %d	lunghezza = %.1f	\n",p,f, numero, lunghezza);
 /*fprintf( lulu,"%d	%.1f	\n",f, lunghezza);
 fflush(lulu);*/

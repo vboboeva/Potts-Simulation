@@ -465,7 +465,6 @@ void calcolo_m()
 int  k,i, l, mu;
 double ma, maa;
 ///		M		///33333333333333333333333333333333333333333
-
 for(mu=0;mu<p;mu++)
 {
 	maa=0.;
@@ -479,6 +478,7 @@ for(mu=0;mu<p;mu++)
 		maa+=ma;
 	}
 m[mu]=maa*invdenN;									//value of m[mu] for each mu
+
 }
 
 

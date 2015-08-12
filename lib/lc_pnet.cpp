@@ -112,7 +112,6 @@ void LC_PNet::init_J(const int & p, const __fpv & a, const int * xi){
 
                     this->h[S*i + j] += this->J[S*C*S*i + C*S*j + S*k + l] * this->active_states[S*cm[C*i + k] + l];
 
-
                 }
             }
 
@@ -187,13 +186,6 @@ void LC_PNet::update_rule(const int & unit, const __fpv buffer[], const int & pa
 
     for(i = 0; i < S; ++i){
     	this->active_states[unit*S + i] = exp(beta * (this->active_r[unit*S + i] - rmax)) / Z;
-        /*
-        if(unit == 0){
-
-		std::cout.precision(30);
-					std::cout << std::scientific;
-					std::cout << this->active_r[unit*S + i] << std::endl;
-				}*/
     }
 
     this->inactive_states[unit]=exp(beta * (this->inactive_r[unit] - rmax + U)) / Z;
@@ -208,9 +200,9 @@ void LC_PNet::start_dynamics(std::default_random_engine & generator, const int &
     __fpv buffer[C * S];
     RandomSequence sequence(this->N);
 
-    __fpv latching_length;
+    __fpv latching_length = 0;
     bool stop = false;
-    int Mumax, Mumaxold, steps;
+    int Mumax = p + 5, Mumaxold = p + 5, steps = 0;
 
     t = 0;
 
@@ -250,7 +242,7 @@ void LC_PNet::start_dynamics(std::default_random_engine & generator, const int &
                              t
                              );
 
-            if(false){//if((t % tstatus) == 0){
+            if((t % tstatus) == 0){
                 this->get_status(p,tx,t,xi,a,Mumaxold,Mumax,steps,stop);
                 if(stop &&  (t > tx + 100 * N)) goto end;
             }
@@ -264,6 +256,8 @@ void LC_PNet::start_dynamics(std::default_random_engine & generator, const int &
 
     if(t > tx + 100 * N){
         latching_length = t*1.0 / N*1.0;
+        std::cout << "Latching length: " <<  latching_length << std::endl;
+
     }else{
         std::cout << "Simulation finished before reaching minimum steps" << std::endl;
     }
@@ -282,12 +276,14 @@ void LC_PNet::evaluate_m(const int & p, const __fpv & a, const int * xi, __fpv m
         for(j = 0; j < N; ++j){
             ma = 0;
             for(k = 0; k < S; ++k){
-                ma += ( (xi[p * j + i] == k) - a/S) * this->active_states[S*i + k];
+                ma += ( (xi[p * j + i] == k) - a/S) * this->active_states[S*j + k];
             }
             maa += ma;
         }
         m[i] = maa*invdenN;
+
     }
+
 }
 
 void LC_PNet::print_cm(){
