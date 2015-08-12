@@ -15,6 +15,7 @@ int main(int argc, char *argv[]){
     PATTERN GENERATION
     ***************************************************************************/
     //Random seed init
+
     std::default_random_engine generator;
     generator.seed(12345);
 

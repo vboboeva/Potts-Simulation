@@ -54,11 +54,26 @@ src: $(SRC_OBJ_FILES)
 run: $(ODIR)/$(EXE)
 	(cd $(ODIR) && ./$(EXE))
 
+
+################################################################################
+# UTILITIES
+################################################################################
 clean:
 	@rm -rf $(ODIR)/*.x $(ODIR)/*.dat $(ODIR)/*.txt $(ODIR)/*.o $(ODIR)/*.optrpt
+	@$(MAKE) -s -C bench clean
+	@$(MAKE) -s -C tests clean
 
 clean_obj:
 	@rm -rf $(ODIR)/*.o $(ODIR)/*.optrpt
 
 debug: CFLAGS+=-g
 debug: $(ODIR)/$(EXE)
+
+################################################################################
+# PUSH ON CLUSTER
+################################################################################
+
+PASSWORDLESS_CLUSTER_DOMAIN=ulisse
+
+push:
+	@rsync --delete -avzhe ssh --progress . $(PASSWORDLESS_CLUSTER_DOMAIN):

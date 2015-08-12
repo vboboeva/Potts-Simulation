@@ -54,8 +54,7 @@ plot "bench_times_1000.dat" every ::1 using 2:4 w l title a ls 1, \
      '' every ::1 using 2:10 w l title c ls 5, \
      '' every ::1 using 2:13 w l title d ls 7, \
 
-set xrange [0:750]
-set yrange [0:50000]
+set autoscale
 set output 'test1500.png'
 plot "bench_times_1500.dat" every ::1 using 2:4 w l title a ls 1, \
      '' every ::1 using 2:7 w l title b ls 3, \
@@ -63,7 +62,7 @@ plot "bench_times_1500.dat" every ::1 using 2:4 w l title a ls 1, \
      '' every ::1 using 2:13 w l title d ls 7
 
 
-set autoscale
+
 
 set output 'scale500.png'
 plot "bench_times_500.dat" every ::1 using 2:($13/$4) w l title a ls 1, \

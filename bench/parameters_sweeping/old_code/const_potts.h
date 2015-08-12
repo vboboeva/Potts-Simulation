@@ -2,8 +2,8 @@
 #define      Retr   		3
 #define N 1500
 #define Cm 27
-#define      p				100
-#define      S				5
+#define      p				10
+#define      S				3
 #define      a				0.25
 #define      U				0.1
 #define      b1			0.3
@@ -15,7 +15,7 @@
 #define      g				5.0
 #define      tau			10*N
 #define      T				600000*N
-#define      Trete			1000
+#define      Trete			50
 //#define      T				6000*N
 //#define      Trete			6000
 #define      as			a/S

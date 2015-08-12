@@ -231,7 +231,7 @@ void HC_PNet::start_dynamics(std::default_random_engine & generator, const int &
                              );
 
 
-            if((t % tstatus) == 0){
+            if(false){//if((t % tstatus) == 0){
                 this->get_status(p,tx,t,xi,a,Mumaxold,Mumax,steps,stop);
                 if(stop &&  (t > tx + 100 * N)) goto end;
             }

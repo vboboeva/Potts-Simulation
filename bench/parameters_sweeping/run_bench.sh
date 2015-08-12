@@ -1,6 +1,8 @@
 #!/bin/bash
 
-for i in {500..1500..500}
+# {500..1500..500}
+
+for i in 1500
 do
     :>bench_times_$i.dat
     echo "N   C   INIT_HC   DYN_HC   TOT_HC   INIT_LC   DYN_LC   TOT_LC   INIT_VLC   DYN_VLC   TOT_VLC   INIT_OLD   DYN_OLD   TOT_OLD"  >> bench_times_$i.dat
