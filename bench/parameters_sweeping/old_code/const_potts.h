@@ -15,11 +15,11 @@
 #define      g				5.0
 #define      tau			10*N
 #define      T				600000*N
-#define      Trete			50
+#define      Trete			1000
 //#define      T				6000*N
 //#define      Trete			6000
 #define      as			a/S
-#define      tempostampa		Trete * N
+#define      tempostampa		10000
 #define      tstampato	(int)T/tempostampa
 
 #define      NumSet  		10
