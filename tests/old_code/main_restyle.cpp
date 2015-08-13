@@ -5,12 +5,10 @@
 #include <math.h>
 #include <string.h>
 #include <time.h>
-#include <iostream>
-#include <random>
-#include <iomanip>
 #include "const_potts.h"
 #include "funzioni_restyle.cpp"
 #include <cstdlib>
+
 int       	**xi;							//pattern
 double    	**s;
 double    	**sold;
@@ -70,13 +68,8 @@ extern void print_m(double);
 extern void calcolo_m();
 /***************************************************    DYNAMICS   ****************************************************/
 
-std::default_random_engine generator;
-std::uniform_int_distribution<int> int_uniform_0_N(0,N-1);
-
 int main()
 {
-	generator.seed(12345);
-
 int i, n, k, f, mu, iii, ttt, x;
 int  fine, intempo, numero, Mumax, Mumaxold;
 double t, Mmax, lunghezza;
@@ -88,7 +81,7 @@ last = fopen("last.dat","w");
 //lulu = fopen("lunghezza.dat","w");
 Passi=fopen("passi.txt","a");		///###########################################################################
 
-
+srand48( time(NULL) );
 
 getmemory();
 read_pattern();
@@ -98,7 +91,6 @@ n0=500*N;
 
 
 
-//for(f=0;f<p;f++)   ///	 per  diversi pattern di inizio
 for(f=0;f<1;f++)   ///	 per  diversi pattern di inizio
 {
 lunghezza=0;
@@ -138,10 +130,11 @@ for(ttt=0;ttt<Trete;ttt++)
 	for(iii=0;iii<N;iii++)
 	{
 		//i=Permut[iii][x];
-		update_stato(iii,n);																	///update di s[][] di un neu per ogni stato
+		i=iii;
+		update_stato(i,n);																	///update di s[][] di un neu per ogni stato
 
 
-		if(false)//if((n%tempostampa)==0)																/// stampo gli overlap
+		if((n%tempostampa)==0)																/// stampo gli overlap
 		{
 		t=(double)n/N;																			/// effective time
 		calcolo_m();
@@ -186,23 +179,20 @@ for(ttt=0;ttt<Trete;ttt++)
 				mu=p;
 			}
 		}
-
 		if((fine!=0) && (n>n0+100*N))
 		{
 			lunghezza=t;
 			ttt=Trete;
 			iii=N;
 		}
-
 		}
+
 	n++;
 	}
 if(ttt==(Trete-1))  lunghezza=t;
 }
 
 print_states("updated_states.dat");
-
-
 fprintf(ksequenza, "  999999 \n");
 fflush(ksequenza);
 
@@ -211,7 +201,7 @@ fclose(mvari);
 finesim=time(0);
 // printf( "simulazione finita:	%ld		\n", finesim);
 printf( "durata		%ld secondi\n", finesim-iniziosim);
-
+printf("Latching length: %f\n", lunghezza);
 printf( "p=%d	retr=%d	passi %d	lunghezza = %.1f	\n",p,f, numero, lunghezza);
 /*fprintf( lulu,"%d	%.1f	\n",f, lunghezza);
 fflush(lulu);*/
@@ -221,8 +211,6 @@ fflush(last);
 fprintf(Passi,"%d	%d	%.1f\n",f,numero,lunghezza);
 fflush(Passi);
 }
-
-
 fclose(Passi);
 deletememory();
 fclose(ksequenza);

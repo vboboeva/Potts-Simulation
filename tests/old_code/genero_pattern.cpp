@@ -1,91 +1,80 @@
-#include <stdio.h>
+#include <stdio.h>                              
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#include <iostream>
-#include <random>
-#include <iomanip>
+
 #include <time.h>
 
 #include "const_potts.h"
 
 
 int Factors[N_fact][Num_fact];
-int Patt[p][N];
+int Patt[p][N];	
 double	C[p][p];
 
 FILE *fpattern;
 
 void SetFactors(void);
 void SetPatterns(void);
-void save_pattern(int);
+void save_pattern(int);		
 double floor (double);
 
-std::default_random_engine generator;
-
-std::uniform_int_distribution<int> int_uniform_0_N(0,N-1);
-std::uniform_int_distribution<int> int_uniform_0_S(0,S);
-std::uniform_real_distribution<double> double_uniform_0_1(0,1);
-std::uniform_real_distribution<double> double_uniform_0_eps(0,eps);
 
 int main()
 {
+int mu, nu, i;
+//srand48( 6789 );
+srand48( time(NULL) );
+SetFactors();								/// genero i fattori
 
-	generator.seed(12345);
-
-
-			int mu, nu, i;
-			//srand48( 6789 );
-			SetFactors();								/// genero i fattori
-
-			SetPatterns();								/// genero i pattern
+SetPatterns();								/// genero i pattern
 
 
 
-			///		calcolo la correlazione
-			for(mu=0;mu<p;mu++)
-			{
-			for(nu=0;nu<p;nu++)
-			{
-			C[mu][nu]=0.0;
+///		calcolo la correlazione
+for(mu=0;mu<p;mu++)
+{
+for(nu=0;nu<p;nu++)
+{
+C[mu][nu]=0.0;
 
-			for(i=0;i<N;i++)
-			C[mu][nu]+= (Patt[mu][i]==Patt[nu][i]);
+for(i=0;i<N;i++)
+C[mu][nu]+= (Patt[mu][i]==Patt[nu][i]);
 
-			C[mu][nu]=C[mu][nu]/N;
-			}
-			}
-
-
-			///	calcolo il valor medio e la deviazione standard
-			double coppie, media, varianza, mC, vC;
-			coppie=0.0;
-
-			media=0.0;
-			varianza=0.0;
-
-			for(mu=0;mu<(p-1);mu++)
-			{
-				for(nu=(mu+1);nu<p;nu++)
-				{
-				media+= C[mu][nu];
-				coppie++;
-				}
-			}
-			mC=media/coppie;
+C[mu][nu]=C[mu][nu]/N;
+}
+}
 
 
-			for(mu=0;mu<(p-1);mu++)
-			{
-				for(nu=(mu+1);nu<p;nu++)
-				{
-				varianza+= C[mu][nu]* C[mu][nu]-mC*mC;
-				}
-			}
-			vC=varianza/coppie;
+///	calcolo il valor medio e la deviazione standard
+double coppie, media, varianza, mC, vC;
+coppie=0.0;
+
+media=0.0;
+varianza=0.0;
+
+for(mu=0;mu<(p-1);mu++)
+{
+	for(nu=(mu+1);nu<p;nu++)
+	{
+	media+= C[mu][nu];
+	coppie++;		
+	}
+}
+mC=media/coppie;
 
 
-			printf("<C>:		m= %.4f	sd=%.4f\n",mC, sqrt(vC));
+for(mu=0;mu<(p-1);mu++)
+{
+	for(nu=(mu+1);nu<p;nu++)
+	{
+	varianza+= C[mu][nu]* C[mu][nu]-mC*mC;
+	}
+}
+vC=varianza/coppie;
+
+
+printf("<C>:		m= %.4f	sd=%.4f\n",mC, sqrt(vC));
 
 
 
@@ -93,13 +82,13 @@ int main()
 
 
 
-			fpattern = fopen("pattern.dat","w");
+fpattern = fopen("pattern.dat","w");
 
-			for(mu=0;mu<Num_p;mu++)						/// salvo i pattern nel file    "dati/spatt.txt"
-			{
-			save_pattern(mu);
-			}
-			fclose (fpattern);
+for(mu=0;mu<Num_p;mu++)						/// salvo i pattern nel file    "dati/spatt.txt"
+{
+save_pattern(mu);
+}
+fclose (fpattern);
 }
 
 
@@ -113,7 +102,7 @@ void SetFactors(void)
    {
       for(i=0; i<N_fact; i++)
       {
-         Factors[i][k] = int_uniform_0_N(generator);
+         Factors[i][k] = (int)((double)Num_u*drand48());
       }
    }
 }
@@ -121,8 +110,8 @@ void SetFactors(void)
 void SetPatterns(void)
 {
    int N_p,i,ii,k,m,s1,u1,u2,unit;
-   double y, h_max, eigen_fact, sum_e, piccolo, a_pa,  a_patt, dh, h000,expon,fluct,bb;
-   double hh[Num_u][Num_s],hhh[Num_s],ss[Num_s];
+   float y, h_max, eigen_fact, sum_e, piccolo, a_pa,  a_patt, dh, h000,expon,fluct,bb;
+   float hh[Num_u][Num_s],hhh[Num_s],ss[Num_s];
 
    piccolo = log(eps);
    a_patt = 0.0;
@@ -145,14 +134,14 @@ void SetPatterns(void)
 
          expon = -fact_eigen_slope*k;
          if((k+2) > Num_fact)expon = 2.*piccolo;
-         y = double_uniform_0_1(generator);
+         y = (float)drand48();
          if(y<=a_pf)
          {
             eigen_fact = exp(expon)*y/a_pf;
-            s1 = int_uniform_0_S(generator);
+            s1 = (int)((double)Num_s*drand48());
             for(ii=0; ii<N_fact; ii++)
             {
-               hh[Factors[ii][k]][s1] += eigen_fact+double_uniform_0_eps(generator);
+               hh[Factors[ii][k]][s1] += eigen_fact+eps*drand48();
             }
          }
          k++;
@@ -163,21 +152,21 @@ void SetPatterns(void)
       a_pa = 0.0;
       h000 = Num_fact;
       k = 0;
-      if(fact_eigen_slope > (1./(double)Num_fact))
+      if(fact_eigen_slope > (1./(float)Num_fact))
 	h000 = 1./fact_eigen_slope;
-      h000 *= 0.5*a_pf*a_fact/(double)Num_s;
+      h000 *= 0.5*a_pf*a_fact/(float)Num_s;
       bb = beta;
 
       while(((a_pa-a_mod)*(a_pa-a_mod))>=eps)
       {
       N_p = 0;
-      fluct = sqrt(eps)*(double)k;
+      fluct = sqrt(eps)*(float)k;
       for(unit=0;unit<Num_u;unit++)
       {
          h_max = 0.0;
          for(s1=0; s1<Num_s; s1++)
          {
-            hhh[s1] = hh[unit][s1]+fluct*double_uniform_0_1(generator);
+            hhh[s1] = hh[unit][s1]+fluct*drand48();
             if(hhh[s1]>h_max)h_max = hhh[s1];
          }
 
@@ -203,17 +192,17 @@ void SetPatterns(void)
          }
       }
 
-      a_pa = (double)N_p/(double)Num_u;
+      a_pa = (float)N_p/(float)Num_u;
       h000 += 0.1*(a_pa-a_mod);
 
-      k++;
+      k++;   
       }
-      a_patt += a_pa/(double)Num_p;
-
+      a_patt += a_pa/(float)Num_p;
+       
    }
    printf("Average pattern sparsity %f\n",a_patt);
 }
-
+    
 void save_pattern(int mu)
 {
 int i;
@@ -223,6 +212,19 @@ for(i=0;i<N;i++)
 fprintf(fpattern, "%d ", Patt[mu][i]);						//to save one pattern on savepatterns
 }
 
-fprintf(fpattern, "\n");
+fprintf(fpattern, "\n ");
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,13 +1,10 @@
-///	%%%%%%%%%%%%%%%%%%		CONNECTIVITY		%%%%%%%%%%%%%%%%%
 #include <iostream>
-#include <random>
 #include <time.h>
 #include <iomanip>
 #include <fstream>
-#include <algorithm>
 #include <cstring>
 #include <string>
-
+///	%%%%%%%%%%%%%%%%%%		CONNECTIVITY		%%%%%%%%%%%%%%%%%
 extern int    	 	**xi;
 extern double   	**s;
 extern double    	**sold;
@@ -31,9 +28,6 @@ extern double	ws;
 extern double SS1[N][S+1];
 extern double theta1[N][S];
 extern double rr1[N][S+1];
-
-extern std::default_random_engine generator;
-extern std::uniform_int_distribution<int> int_uniform_0_N;
 
 extern FILE *pat;
 extern FILE *mvari;
@@ -98,6 +92,23 @@ void print_states(std::string filename){
 	ofile.close();
 }
 
+void print_connectivity(){
+	int i;
+	int i_c;
+	std::ofstream ofile;
+	ofile.open("init_connections2.dat");
+	for(i=0; i<N; i++)
+{
+	for(i_c=0; i_c<Cm;i_c++)
+	{
+		ofile << C[i][i_c] << " ";
+	}
+	ofile << std::endl;
+}
+
+ofile.close();
+
+}
 void print_J(std::string filename){
 
 	int i,j,k,l;
@@ -118,6 +129,22 @@ void print_J(std::string filename){
 	ofile.close();
 }
 
+void read_connectivity()
+{
+	int i, c;
+	FILE * con;
+	con=fopen("init_connections.dat","r");
+	//	pat=fopen("spatt.txt","r");
+	for(i=0;i<N;i++)
+	{
+		for(c=0;c<Cm;++c)
+		{
+			fscanf(con, "%d", &C[i][c]);
+		}
+	}
+	fclose(con);
+}
+
 void initializing()
 {
 int i, j, l, k, mu;
@@ -126,59 +153,25 @@ int i_c, x, new_one;
 
 /// inizializzo da file
 
-//inizializza e stampa s
-std::ofstream ofile;
-ofile.open("init_states.dat");
-ofile.precision(15);
-ofile << std::scientific;
 
 for(i=0;i<N;i++)
 {
 	for(k=0;k<S;k++)
 	{
 	s[i][k]=(-2*beta-2*exp(beta*U)-2*S+sqrt(pow(2*beta+2*exp(beta*U)+2*S,2)+8*(-beta*beta-2*beta*S+2*beta*S*exp(beta*U))))/(2*(-beta*beta-2*beta*S+2*beta*S*exp(beta*U)));  //soluzione per lo stato sazionario sviluppata attorno a s[i][k]=0
-	ofile << s[i][k] << " ";
 	}
 s[i][S]=1.-S*s[i][0];
 r[i][S]=1.-s[i][S];
-ofile << s[i][S] << " "<< std::endl;
 }
-ofile.close();
+
+print_states("init_states.dat");
+
 
 ///		Cij		///33333333333333333333333333333333333333333
-
-
-int seq[N];
-
-for(i=0; i<N;i++){
-	seq[i] = i;
-}
-
-generator.seed(12345);
-
-ofile.open("init_connections.dat");
-
-for(i=0; i<N; i++)
-{
-
-	std::shuffle(&seq[0], &seq[N], generator);
-	for(i_c=0; i_c<Cm;i_c++)
-	{
-
-
-
-		C[i][i_c] = seq[i_c];
-
-		ofile << C[i][i_c] << " ";
-	}
-	ofile << std::endl;
-}
-
-ofile.close();
-
+read_connectivity();
 printf("dopo	\n");
 
-
+print_connectivity();
 /// stampo la matrice delle connessioni  Cij
 // FILE *cij;
 // cij=fopen("Cij.txt","w");
@@ -196,24 +189,25 @@ printf("dopo	\n");
 
 ///		Jixkl		///33333333333333333333333333333333333333333
 
-	for(i=0; i<N; i++)
-	{
-		for(x=0; x<Cm; x++)
-		{
-			for(k=0; k<S; k++)
-			{
-				for(l=0; l<S; l++)
-				{
-				J[i][x][k][l]=0;
 
-				for(mu=0; mu<p; mu++)
-						J[i][x][k][l]+=((double)(xi[i][mu]==k)-as)*((double)(xi[C[i][x]][mu]==l)-as);
-				J[i][x][k][l]=J[i][x][k][l]/denCm;
-	//			J[i][x][k][l]=(J[i][x][k][l]*(double)((k==0)*(l==0)))/denCm;
-				}
+for(i=0; i<N; i++)
+{
+	for(x=0; x<Cm; x++)
+	{
+		for(k=0; k<S; k++)
+		{
+			for(l=0; l<S; l++)
+			{
+			J[i][x][k][l]=0;
+
+			for(mu=0; mu<p; mu++)
+					J[i][x][k][l]+=((double)(xi[i][mu]==k)-as)*((double)(xi[C[i][x]][mu]==l)-as);
+			J[i][x][k][l]=J[i][x][k][l]/denCm;
+//			J[i][x][k][l]=(J[i][x][k][l]*(double)((k==0)*(l==0)))/denCm;
 			}
 		}
 	}
+}
 printf("dopo3	\n");
 
 
@@ -298,38 +292,22 @@ self=ws*self;
 
 INcost	=	(double)(n>n0)*g*exp(-((n-n0)/((double)tau)));			/// campo iniziale &&&&&&&&&&&&@@@@@@@@@@@@@@@@@@
 
-
-
 for(k=0;k<S;k++)
 {
 	///	di  h
 	h[i][k]=0.;
 	 for(x=0;x<Cm;x++)
 	{
-
 		for(l=0;l<S;l++)
 		{
 		 h[i][k]+=	J[i][x][k][l]*s[C[i][x]][l];
-
 		}
-
 	}
-
-	if(i == 30){
-	std::cout.precision(15);
-				std::cout << std::scientific;
-				std::cout << xi[i][retr] << std::endl;
-			}
-
-	h[i][k]+=w*s[i][k]-self+ INcost*(xi[i][retr]==k);
-
-											//tolgo l`auto eccitazione
+	h[i][k]+=w*s[i][k]-self+ INcost*(xi[i][retr]==k);										//tolgo l`auto eccitazione
 	/// di sold, thteta, r
 	sold[i][k]=s[i][k];
 
-	theta[i][k]+=b2*(s[i][k]-theta[i][k]);
-									//update theta
-
+	theta[i][k]+=b2*(s[i][k]-theta[i][k]);								//update theta
 	r[i][k]+=b1*(h[i][k]-theta[i][k]-r[i][k]);								//update r
 
 	if(r[i][k]>rmax)												//(per evitare l'overflow calcolando s)
@@ -337,14 +315,11 @@ for(k=0;k<S;k++)
 		rmax=r[i][k];
 	}
 
-
-
 }
 
 /// //////////	update rS e sold per S	///
 sold[i][S]=s[i][S];
 r[i][S]+=b3*(1.-s[i][S]-r[i][S]);
-
 
 /// //////////    UPDATE stato PER T!=0    ///////////////
 Z=0.;
@@ -354,14 +329,21 @@ for(k=0;k<S;k++)
 }
 Z+=exp(beta*(r[i][S]+U-rmax));							//modificato con nuova concezione di U
 
+double invZ;
+
+//invZ=1./Z;
 
 for(k=0;k<S;k++)
 {
 	s[i][k]=exp(beta*(r[i][k]-rmax))/Z;
-						//update of s[]
-
+	/*
+	if(i == 0){
+		std::cout.precision(30);
+					std::cout << std::scientific;
+					std::cout << r[i][k] << std::endl;
+				}					//update of s[]
+				*/
 }
-
 s[i][S]=exp(beta*(r[i][S]-rmax+U))/Z;
 
 
@@ -483,7 +465,6 @@ void calcolo_m()
 int  k,i, l, mu;
 double ma, maa;
 ///		M		///33333333333333333333333333333333333333333
-
 for(mu=0;mu<p;mu++)
 {
 	maa=0.;
@@ -497,6 +478,7 @@ for(mu=0;mu<p;mu++)
 		maa+=ma;
 	}
 m[mu]=maa*invdenN;									//value of m[mu] for each mu
+
 }
 
 
@@ -603,10 +585,7 @@ int item, jtem, info;
 int fatto, kk;
 
 //srand48(time(0));
-std::default_random_engine generator2;
-//generator.seed(12345);
-
-
+srand48(6937);
 for(kk=0; kk<NumSet; kk++)
 {
 	item = 0;
@@ -615,7 +594,7 @@ for(kk=0; kk<NumSet; kk++)
 	{
 
 
-	info =(int)((double)int_uniform_0_N(generator2));
+	info =(int)((double)N*drand48());
 
 	fatto=0;
 	while(fatto==0)

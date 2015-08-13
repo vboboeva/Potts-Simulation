@@ -1,6 +1,6 @@
 CPPC=icc
 CFLAGS= -std=c++11 -Wall
-PRJ_ROOT=../..
+PRJ_ROOT=../../
 OPTFLAGS=-O0
 
 MACROS_LIST=_TEST _DOUBLE_PRECISION
@@ -20,7 +20,7 @@ main.x : main.cpp $(LIB_FILES)
 	$(CPPC) $(CFLAGS) $(CINCLUDE) $(OPTFLAGS) $(CMACROS) -o $@ $^
 
 run: main.x
-	@./main.x 1>/dev/null
+	@./main.x 
 
 clean:
 	@rm -rf *.x *.dat
