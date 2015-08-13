@@ -23,3 +23,4 @@ clean:
 	@$(MAKE) -s -C $(LC) clean
 	@$(MAKE) -s -C $(VLC) clean
 	@$(MAKE) -s -C $(HC) clean
+	@trash *.dat *.png

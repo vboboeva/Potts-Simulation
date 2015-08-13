@@ -1,7 +1,7 @@
 
 #define      Retr   		3
-#define      N   			200
-#define      Cm			50
+#define      N   			600
+#define      Cm			300
 #define      p				10
 #define      S				3
 #define      a				0.25
@@ -15,11 +15,11 @@
 #define      g				5.0
 #define      tau			10*N
 #define      T				1*N
-#define      Trete			2000
+#define      Trete			1000
 //#define      T				6000*N
 //#define      Trete			6000
 #define      as			a/S
-#define      tempostampa		10000
+#define      tempostampa		5000
 #define      tstampato	(int)T/tempostampa
 
 #define      NumSet  		10

@@ -144,10 +144,8 @@ for(ttt=0;ttt<Trete;ttt++)
 		i=Permut[iii][x];
 		update_stato(i,n);																	///update di s[][] di un neu per ogni stato
 
-				if(false)
-				//if((n%tempostampa)==0)																/// stampo gli overlap
+				if((n%tempostampa)==0)																/// stampo gli overlap
 				{
-					std::cout << "STAMPA: "<< n << std::endl;
 				t=(float)n/N;																			/// effective time
 				calcolo_m();
 
@@ -202,6 +200,7 @@ for(ttt=0;ttt<Trete;ttt++)
 	}
 
 }
+
 t2 = std::chrono::high_resolution_clock::now();
 duration = std::chrono::duration_cast<std::chrono::milliseconds>( t2 - t1 ).count();
 std::cout << "TOTAL UPDATE ELAPSED TIME(ms): "<< duration << std::endl;
