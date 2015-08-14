@@ -76,4 +76,4 @@ debug: $(ODIR)/$(EXE)
 PASSWORDLESS_CLUSTER_DOMAIN=ulisse
 
 push:
-	@rsync --delete -avzhe ssh --progress . $(PASSWORDLESS_CLUSTER_DOMAIN):
+	@rsync --delete -avzhe ssh --progress . $(PASSWORDLESS_CLUSTER_DOMAIN):Potts_code/
