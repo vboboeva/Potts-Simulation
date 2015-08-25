@@ -1,19 +1,15 @@
 
 #!/bin/bash
-#PBS -N iozone_bench
+#PBS -N PottsBench
 #PBS -l walltime=10:00:00
 #PBS -l nodes=1:ppn=1
 #PBS -m abe
 #PBS -M leonardo.romor@gmail.com
 
-cd $PBS_O_WORKDIR
+cd /home/lromor/Potts_code/bench
 
 module purge
 module load gnu/4.9.2
 source /u/shared/programs/x86_64/intel/parallel_studio_xe_2015/composer_xe_2015.0.090/bin/iccvars.sh intel64
 
-
-cd bench
-
-#Run the parameter sweeping
 make bench=parameters_sweeping

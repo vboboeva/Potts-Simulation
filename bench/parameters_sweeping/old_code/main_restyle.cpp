@@ -92,7 +92,7 @@ srand48( time(NULL) );
 
 getmemory();
 read_pattern();
-SetUpTables();							/// per creare vettori shaffle di unita
+//SetUpTables();							/// per creare vettori shaffle di unita
 
 n0=500*N;
 
@@ -137,12 +137,14 @@ std::cout << "INIT2 "<< duration << std::endl;
 t1 = std::chrono::high_resolution_clock::now();
 for(ttt=0;ttt<Trete;ttt++)
 {
-	x=(int)(NumSet*drand48());
+	//x=(int)(NumSet*drand48());
 
 	for(iii=0;iii<N;iii++)
 	{
-		i=Permut[iii][x];
+		//i=Permut[iii][x];
+		i=iii;
 		update_stato(i,n);																	///update di s[][] di un neu per ogni stato
+
 
 				if((n%tempostampa)==0)																/// stampo gli overlap
 				{
@@ -198,6 +200,7 @@ for(ttt=0;ttt<Trete;ttt++)
 				}
 	n++;
 	}
+	lunghezza=t;
 
 }
 

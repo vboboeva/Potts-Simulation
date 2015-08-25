@@ -5,4 +5,4 @@ clean:
 	@rm -rf *.dat *.txt *.out *.x
 
 run: master.x
-	@./master.x &>/dev/null
+	@./master.x 

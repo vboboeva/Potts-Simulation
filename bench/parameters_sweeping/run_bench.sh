@@ -7,7 +7,7 @@ do
     :>bench_times_$i.dat
     echo "N   C   INIT_HC   DYN_HC   TOT_HC   INIT_LC   DYN_LC   TOT_LC   INIT_VLC   DYN_VLC   TOT_VLC   INIT_OLD   DYN_OLD   TOT_OLD"  >> bench_times_$i.dat
 
-    for j in 2 3 4 5 7 8 10 13 17 21 27 34 41 55
+    for j in 55
     do
 
         sed -i -e "s/\(N *= *\).*/\1$i/" -e "s/\(C *= *\).*/\1$(($i/$j))/" lc/params.cfg

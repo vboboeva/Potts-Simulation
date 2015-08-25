@@ -45,7 +45,6 @@ int main(int argc, char *argv[]){
                params.fact_eigen_slope //fact_eigen_slope
                );
 
-    pgen.set_random_generator(generator);
     pgen.generate();
 
 

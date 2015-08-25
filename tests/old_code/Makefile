@@ -7,3 +7,7 @@ clean:
 
 run: master.x
 	@./master.x 1>/dev/null
+
+patterns:
+	@icc -O0 genero_pattern.cpp -o gen.out
+	@./gen.out

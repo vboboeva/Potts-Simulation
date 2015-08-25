@@ -25,8 +25,6 @@ class PatternGen{
 
         int * Patt; // Dynamic array of dimension p * N
 
-        std::default_random_engine * generator;
-
     public:
         PatternGen(const int N,
                    const int p,
@@ -42,7 +40,6 @@ class PatternGen{
                    );
         ~PatternGen();
 
-        void set_random_generator(std::default_random_engine & generator);
         void generate();
         void eval_stats();
         void save_pattern_to_file(const std::string filename);

@@ -68,7 +68,7 @@ void VLC_PNet::start_dynamics(std::default_random_engine & generator, const int 
 
     RandomSequence sequence(this->N);
 
-    __fpv latching_length;
+    __fpv latching_length = 0;
     bool stop = false;
     int Mumax = p + 5, Mumaxold = p + 5, steps = 0;
 
@@ -78,7 +78,7 @@ void VLC_PNet::start_dynamics(std::default_random_engine & generator, const int 
     for(i = 0; i < nupdates; ++i){
 
         //Shuffle the random sequence
-        #ifndef _TEST
+        #ifndef _NO_SHUFFLE
         sequence.shuffle(generator);
         #endif
 
@@ -86,7 +86,8 @@ void VLC_PNet::start_dynamics(std::default_random_engine & generator, const int 
         for(j = 0; j < N; ++j){
 
 
-            unit = sequence.get(j);
+            //unit = sequence.get(j);
+            unit = j;
 
             //Update the unit
             this->update_rule(unit,
@@ -104,6 +105,7 @@ void VLC_PNet::start_dynamics(std::default_random_engine & generator, const int 
                              );
 
             if((t % tstatus) == 0){
+                latching_length = (double)t / N;
                 this->get_status(p,tx,t,xi,a,Mumaxold,Mumax,steps,stop);
                 if(stop &&  (t > tx + 100 * N)) goto end;
             }
@@ -116,7 +118,6 @@ void VLC_PNet::start_dynamics(std::default_random_engine & generator, const int 
     end:
 
     if(t > tx + 100 * N){
-        latching_length = t*1.0 / N*1.0;
         std::cout << "Latching length: " <<  latching_length << std::endl;
     }else{
         std::cout << "Simulation finished before reaching minimum steps" << std::endl;

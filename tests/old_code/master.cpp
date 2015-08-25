@@ -21,7 +21,7 @@ fclose(Passi);
 
 for(k=0;k<1;k++)
 {
- 	//printf("genero %d\n",k);
+ 	printf("genero %d\n",k);
 	//system("icc -O0 genero_pattern.cpp -o gen.out");
 	//system("./gen.out");
 

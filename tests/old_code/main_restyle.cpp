@@ -8,6 +8,7 @@
 #include "const_potts.h"
 #include "funzioni_restyle.cpp"
 #include <cstdlib>
+#include <iostream>
 
 int       	**xi;							//pattern
 double    	**s;
@@ -131,6 +132,7 @@ for(ttt=0;ttt<Trete;ttt++)
 	{
 		//i=Permut[iii][x];
 		i=iii;
+
 		update_stato(i,n);																	///update di s[][] di un neu per ogni stato
 
 
@@ -182,6 +184,7 @@ for(ttt=0;ttt<Trete;ttt++)
 		if((fine!=0) && (n>n0+100*N))
 		{
 			lunghezza=t;
+
 			ttt=Trete;
 			iii=N;
 		}
@@ -202,7 +205,7 @@ finesim=time(0);
 // printf( "simulazione finita:	%ld		\n", finesim);
 printf( "durata		%ld secondi\n", finesim-iniziosim);
 printf("Latching length: %f\n", lunghezza);
-printf( "p=%d	retr=%d	passi %d	lunghezza = %.1f	\n",p,f, numero, lunghezza);
+printf( "p=%d	retr=%d	passi %d	lunghezza = %.1f\n",p,f, numero, lunghezza);
 /*fprintf( lulu,"%d	%.1f	\n",f, lunghezza);
 fflush(lulu);*/
 fprintf(last,"%d	%d	%d	\n", retr, numero, Mumax);

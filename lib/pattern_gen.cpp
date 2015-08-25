@@ -2,6 +2,8 @@
 #include <random>
 #include <iomanip>
 #include <fstream>
+#include <chrono>
+#include <cstdlib>
 
 #include "config.h"
 #include "pattern_gen.h"
@@ -24,10 +26,6 @@ PatternGen::PatternGen(int N, int p, int S, __fpv a, __fpv beta, int N_fact, int
 
 }
 
-void PatternGen::set_random_generator(std::default_random_engine & generator){
-    this->generator = &generator;
-}
-
 PatternGen::~PatternGen(){
     delete[] this->Patt;
 }
@@ -39,15 +37,17 @@ void PatternGen::generate(){
     __fpv hh[this->N][this->S],hhh[this->S],ss[this->S];
     int Factors[N_fact][Num_fact];
 
+    //std::default_random_engine generator;
+    //generator.seed(12345);
+
     std::uniform_int_distribution<int> int_uniform_0_Nm1(0,this->N-1);
-    std::uniform_int_distribution<int> int_uniform_0_S(0,this->S);
-    std::uniform_real_distribution<__fpv> real_uniform_0_1(0,1);
-    std::uniform_real_distribution<__fpv> real_uniform_0_eps(0,this->eps);
+
+    srand48( 12345 );
 
     //Set factors
     for(i=0; i<this->Num_fact; i++){
         for(j=0; j<this->N_fact; j++){
-            Factors[j][i] = int_uniform_0_Nm1(*this->generator);
+            Factors[j][i] = (int)((double)this->N*drand48());//int_uniform_0_Nm1(generator);
         }
     }
 
@@ -56,7 +56,7 @@ void PatternGen::generate(){
     piccolo = log(this->eps);
     a_patt = 0.0;
 
-    for(m=0; m<this->p; m++){
+    for(m=0; m<p; m++){
 
         //Init hh to 0
         for(j=0; j<this->N; j++){
@@ -70,6 +70,7 @@ void PatternGen::generate(){
         k = 0;
         expon = 0.0;
 
+
         while(expon > piccolo){
 
             expon = -fact_eigen_slope * k;
@@ -78,20 +79,21 @@ void PatternGen::generate(){
                 expon = 2.*piccolo;
             }
 
-            y = real_uniform_0_1(*this->generator);
+            y = drand48();
 
             if(y <= this->a_pf){
 
                 eigen_fact = exp(expon)*y/this->a_pf;
-                s1 = int_uniform_0_S(*this->generator);
+                s1 = (int)((float)this->S*drand48());
 
                 for(j=0; j<this->N_fact; j++){
-                    hh[Factors[j][k]][s1] += eigen_fact + real_uniform_0_eps(*this->generator);
+                    hh[Factors[j][k]][s1] += eigen_fact + this->eps * drand48();
                 }
             }
 
             k++;
         }
+
 
         a_pa = 0.0;
         h000 = this->Num_fact;
@@ -109,12 +111,13 @@ void PatternGen::generate(){
             N_p = 0;
             fluct = sqrt(this->eps)*k;
 
+
             for(unit=0;unit<this->N;unit++){
 
                 h_max = 0.0;
 
                 for(s1=0; s1<this->S; s1++){
-                    hhh[s1] = hh[unit][s1] + fluct*real_uniform_0_1(*this->generator);
+                    hhh[s1] = hh[unit][s1] + fluct*drand48();//std::rand()/RAND_MAX;//real_uniform_0_1(*this->generator);
                     if(hhh[s1]>h_max)h_max = hhh[s1];
                 }
 
@@ -142,12 +145,13 @@ void PatternGen::generate(){
                         Patt[unit*this->p + m] = s1;
                     }
                 }
+
             }
 
-        a_pa = N_p*1.0/this->N;
-        h000 += 0.1*(a_pa - this->a);
+            a_pa = (float)N_p/this->N;
+            h000 += 0.1*(a_pa - this->a);
 
-        k++;
+            k++;
 
         }
 
