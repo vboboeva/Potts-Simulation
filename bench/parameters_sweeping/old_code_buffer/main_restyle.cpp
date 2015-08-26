@@ -14,7 +14,7 @@
 int       	**xi;							//pattern
 float    	**s;
 float    	**sold;
-float    	****J;
+float    	*J;
 //float	mark[N];  	/// //////////////////////////////////////////////////// per costruire una cue correlata con un pattern
 float    	m[p];								//m
 float    	mS[p];
@@ -72,6 +72,11 @@ extern void calcolo_m();
 
 int main()
 {
+	std::chrono::high_resolution_clock::time_point t1;
+std::chrono::high_resolution_clock::time_point t2;
+
+t1 = std::chrono::high_resolution_clock::now();
+
 int i, n, k, f, mu, iii, ttt, x;
 int  fine, intempo, numero, Mumax, Mumaxold;
 float t, Mmax, lunghezza;
@@ -123,8 +128,12 @@ mvari=fopen("andamento_m.txt","w");
 fineiniz=time(0);
 printf( "durata inizializzazione		%ld secondi\n", fineiniz-iniziosim);
 
-print_J("init_J.dat");
 
+t2 = std::chrono::high_resolution_clock::now();
+auto duration = std::chrono::duration_cast<std::chrono::milliseconds>( t2 - t1 ).count();
+std::cout << "INIT2 "<< duration << std::endl;
+
+t1 = std::chrono::high_resolution_clock::now();
 for(ttt=0;ttt<Trete;ttt++)
 {
 	//x=(int)(NumSet*drand48());
@@ -135,7 +144,6 @@ for(ttt=0;ttt<Trete;ttt++)
 		i=iii;
 
 		update_stato(i,n);																	///update di s[][] di un neu per ogni stato
-
 
 		if((n%tempostampa)==0)																/// stampo gli overlap
 		{
@@ -196,8 +204,10 @@ for(ttt=0;ttt<Trete;ttt++)
 	}
 if(ttt==(Trete-1))  lunghezza=t;
 }
+t2 = std::chrono::high_resolution_clock::now();
+duration = std::chrono::duration_cast<std::chrono::milliseconds>( t2 - t1 ).count();
+std::cout << "TOTAL UPDATE ELAPSED TIME(ms): "<< duration << std::endl;
 
-print_states("updated_states.dat");
 fprintf(ksequenza, "  999999 \n");
 fflush(ksequenza);
 
@@ -205,9 +215,9 @@ fclose(mvari);
 
 finesim=time(0);
 // printf( "simulazione finita:	%ld		\n", finesim);
-//printf( "durata		%ld secondi\n", finesim-iniziosim);
-//printf("Latching length: %f\n", lunghezza);
-//printf( "p=%d	retr=%d	passi %d	lunghezza = %.1f\n",p,f, numero, lunghezza);
+printf( "durata		%ld secondi\n", finesim-iniziosim);
+printf("Latching length: %f\n", lunghezza);
+printf( "p=%d	retr=%d	passi %d	lunghezza = %.1f\n",p,f, numero, lunghezza);
 /*fprintf( lulu,"%d	%.1f	\n",f, lunghezza);
 fflush(lulu);*/
 fprintf(last,"%d	%d	%d	\n", retr, numero, Mumax);

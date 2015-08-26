@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <string>
 #include <sstream>
+#include <chrono>
 
 #include "lc_pnet.h"
 #include "config.h"
@@ -138,14 +139,13 @@ void LC_PNet::init_network(const __fpv & beta, const __fpv & U, const int & p, c
 }
 
 void LC_PNet::update_rule(const int & unit, const __fpv buffer[], const int & pattern, const __fpv & U, const __fpv & w, const __fpv & g, const __fpv & tau, const __fpv & b1, const __fpv & b2, const __fpv & b3, const __fpv & beta, const int & tx, const int & t){
+
     //tx == n0 in the old code, "time 'x' "
     int i,j;
     __fpv self=0, INcost, rmax, Z;
     int tsize = this->C * this->S;
 
     rmax = this->inactive_r[unit];
-
-
 
     for(i = 0; i < this->S; ++i){
         self += this->active_states[unit*S + i];
@@ -196,6 +196,7 @@ void LC_PNet::update_rule(const int & unit, const __fpv buffer[], const int & pa
 
     this->inactive_states[unit]=exp(beta * (this->inactive_r[unit] - rmax + U)) / Z;
 
+
 }
 
 void LC_PNet::start_dynamics(std::default_random_engine & generator, const int & p,const int & tstatus, const int & nupdates, const int * xi, const int & pattern, const __fpv & a, const __fpv & U, const __fpv & w, const __fpv & g, const __fpv & tau, const __fpv & b1, const __fpv & b2, const __fpv & b3, const __fpv & beta, const int & tx){
@@ -232,6 +233,8 @@ void LC_PNet::start_dynamics(std::default_random_engine & generator, const int &
                 }
             }
 
+
+
             //Update the unit
             this->update_rule(unit,
                              buffer,
@@ -248,6 +251,8 @@ void LC_PNet::start_dynamics(std::default_random_engine & generator, const int &
                              t
                              );
 
+
+
             if((t % tstatus) == 0){
                 latching_length = (double)t / N;
                 this->get_status(p,tx,t,xi,a,Mumaxold,Mumax,steps,stop);
@@ -259,6 +264,7 @@ void LC_PNet::start_dynamics(std::default_random_engine & generator, const int &
         }
 
     }
+
     end:
 
     if(t > tx + 100 * N){

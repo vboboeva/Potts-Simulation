@@ -48,7 +48,7 @@ int main(int argc, char *argv[]){
     generator.seed(12345);
 
     //Create the network
-    HC_PNet pnet(params.N,
+    LC_PNet pnet(params.N,
                 params.C,
                 params.S
                     );
@@ -91,6 +91,6 @@ int main(int argc, char *argv[]){
     //Check states
     pnet.save_states_to_file("updated_states.dat");
 
-    std::cout << "End of the simulation" << std::endl;
+    //std::cout << "End of the simulation" << std::endl;
     return 0;
 }

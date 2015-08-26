@@ -8,7 +8,7 @@
 extern int    	 	**xi;
 extern float   	**s;
 extern float    	**sold;
-extern float    	****J;		/// 33333333333333333333333
+extern float    	*J;		/// 33333333333333333333333
 //extern float	mark[N]; 				/// per costruire una cue correlata con un pattern
 extern float    	m[p];
 extern float    	mS[p];
@@ -28,6 +28,7 @@ extern float	ws;
 extern float SS1[N][S+1];
 extern float theta1[N][S];
 extern float rr1[N][S+1];
+float buffer[Cm*S];
 
 extern FILE *pat;
 extern FILE *mvari;
@@ -120,7 +121,7 @@ void print_J(std::string filename){
         for(j = 0; j < S; ++j){
             for(k = 0; k < Cm; ++k){
                 for(l = 0; l < S; ++l){
-                    ofile << J[i][k][j][l] << " ";
+                    ofile << J[i*S*Cm*S + j*Cm*S + k*S + l] << " ";
                 }
             }
         }
@@ -164,7 +165,6 @@ s[i][S]=1.-S*s[i][0];
 r[i][S]=1.-s[i][S];
 }
 
-print_states("init_states.dat");
 
 
 
@@ -233,14 +233,14 @@ for(i=0; i<N; i++)
 		{
 			for(l=0; l<S; l++)
 			{
-			J[i][x][k][l]=0;
+			J[i*S*Cm*S + k*Cm*S + x*S + l]=0;
 
 			for(mu=0; mu<p; mu++){
 
-					J[i][x][k][l]+=((float)(xi[i][mu]==k)-as)*((float)(xi[C[i][x]][mu]==l)-as);
+					J[i*S*Cm*S + k*Cm*S + x*S + l] += ((float)(xi[i][mu]==k)-as)*((float)(xi[C[i][x]][mu]==l)-as);
 			}
 
-			J[i][x][k][l]=J[i][x][k][l]/denCm;
+			J[i*S*Cm*S + k*Cm*S + x*S + l] =J[i*S*Cm*S + k*Cm*S + x*S + l]/denCm;
 
 //			J[i][x][k][l]=(J[i][x][k][l]*(float)((k==0)*(l==0)))/denCm;
 			}
@@ -290,6 +290,8 @@ for(i=0;i<N;i++)								//to calculate h, r, theta
 }*/
 
 ///		H , R , T 		///33333333333333333333333333333333333333333
+
+
 for(i=0;i<N;i++)								//to calculate h, r, theta
 {
 	for(k=0;k<S;k++)
@@ -299,7 +301,7 @@ for(i=0;i<N;i++)								//to calculate h, r, theta
 	{
 		for(l=0;l<S;l++)
 		{
-		 h[i][k]+=	J[i][x][k][l]*s[C[i][x]][l];	///	333333333333333333333333333333333333333
+		 h[i][k]+=	J[i*S*Cm*S + k*Cm*S + x*S + l]*s[C[i][x]][l];	///	333333333333333333333333333333333333333
 		}
 	}
 	r[i][k]=h[i][k];			//valgono nello stato stazionario
@@ -333,17 +335,24 @@ self=ws*self;
 
 INcost	=	(float)(n>n0)*g*exp(-((n-n0)/((float)tau)));			/// campo iniziale &&&&&&&&&&&&@@@@@@@@@@@@@@@@@@
 
+//UPDATE buffer
+for(x=0;x<Cm;x++)
+{
+for(l=0;l<S;l++)
+{
+	buffer[x*S + l] = s[C[i][x]][l];
+}
+}
 
 for(k=0;k<S;k++)
 {
 	///	di  h
 	h[i][k]=0.;
-	 for(x=0;x<Cm;x++)
+	 for(x=0;x<Cm*S;x++)
 	{
-		for(l=0;l<S;l++)
-		{
-		 h[i][k]+=	J[i][x][k][l]*s[C[i][x]][l];
-		}
+
+		h[i][k]+=	J[i*S*Cm*S + k*Cm*S + x]*buffer[x];
+
 	}
 	h[i][k]+=w*s[i][k]-self+ INcost*(xi[i][retr]==k);										//tolgo l`auto eccitazione
 	/// di sold, thteta, r
@@ -382,19 +391,17 @@ float invZ;
 for(k=0;k<S;k++)
 {
 	s[i][k]=exp(beta*(r[i][k]-rmax))/Z;
-
-				//update of s[]
-
+	/*
+	if(i == 0){
+		std::cout.precision(30);
+					std::cout << std::scientific;
+					std::cout << r[i][k] << std::endl;
+				}					//update of s[]
+				*/
 }
-
 s[i][S]=exp(beta*(r[i][S]-rmax+U))/Z;
-/*
-if(i == 599){
-	std::cout.precision(30);
-				std::cout << std::scientific;
-				std::cout << s[i][S] << std::endl;
-			}
-*/
+
+
 /*
 /// //////////    UPDATE H
 t=(float)n/N;
@@ -568,6 +575,10 @@ overlap= new float*[tstampato];
 for(i=0; i<tstampato; i++)
 	overlap[i]=new float[p];
 */
+
+J = new float[N*Cm*S*S];
+
+/*
 J= new float***[N];
 for(i=0; i<N; i++)
 {
@@ -580,7 +591,7 @@ for(i=0; i<N; i++)
 	}
 }
 
-
+*/
 
 C= new int*[N];
 for(i=0; i<N; i++)

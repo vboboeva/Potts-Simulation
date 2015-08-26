@@ -28,6 +28,7 @@ int main(int argc, char *argv[]){
     std::cout << "loading parameters" << std::endl;
     struct parameters params;
     load_params("params.cfg", params);
+    print_params(params);
 
     /***************************************************************************
     INITIALIZATION
@@ -58,7 +59,7 @@ int main(int argc, char *argv[]){
                     );
 
     //Connect units
-    pnet.connect_units(generator);
+    //pnet.connect_units(generator);
     t2 = std::chrono::high_resolution_clock::now();
     ////////////////////////////////////////////////////////////////////////////
     pnet.import_connections("../old_code/init_connections2.dat");
