@@ -7,16 +7,27 @@
 
 class LC_PNet : public PNet {
     protected:
+        // int N; //Number of units
+        // int C; //Number of connections per unit
+        // int S; //Number of states
+        // int * cm; //Connection matrix
+        // __fpv * J; // Connection tensor
+        // __fpv * active_states; // N * S
+        // __fpv * inactive_states; // N
+        // int * ucm; //1-0 connection matrix
+        // __fpv * active_r; //inputs array
+        // __fpv * inactive_r;
+        // __fpv * h;
+        // __fpv * theta;
+        // int * xi;
         int N; //Number of units
         int C; //Number of connections per unit
         int S; //Number of states
         int * cm; //Connection matrix
         __fpv * J; // Connection tensor
-        __fpv * active_states; // N * S
-        __fpv * inactive_states; // N
+        __fpv ** states;
         int * ucm; //1-0 connection matrix
-        __fpv * active_r; //inputs array
-        __fpv * inactive_r;
+        __fpv ** r;
         __fpv * h;
         __fpv * theta;
         int * xi;
