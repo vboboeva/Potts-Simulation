@@ -327,9 +327,12 @@ for(l=0;l<S;l++)
 {
 	self+=s[i][l];
 }
+
+
 self=ws*self;
 
 INcost	=	(float)(n>n0)*g*exp(-((n-n0)/((float)tau)));			/// campo iniziale &&&&&&&&&&&&@@@@@@@@@@@@@@@@@@
+
 
 for(k=0;k<S;k++)
 {
@@ -358,7 +361,9 @@ for(k=0;k<S;k++)
 
 /// //////////	update rS e sold per S	///
 sold[i][S]=s[i][S];
-r[i][S]+=b3*(1.-s[i][S]-r[i][S]);
+
+
+r[i][S]+=b3*(1.0-s[i][S]-r[i][S]);
 
 /// //////////    UPDATE stato PER T!=0    ///////////////
 Z=0.;
@@ -366,7 +371,9 @@ for(k=0;k<S;k++)
 {
 	Z+=exp(beta*(r[i][k]-rmax));
 }
+
 Z+=exp(beta*(r[i][S]+U-rmax));							//modificato con nuova concezione di U
+
 
 float invZ;
 

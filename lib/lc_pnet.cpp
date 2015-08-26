@@ -145,10 +145,13 @@ void LC_PNet::update_rule(const int & unit, const __fpv buffer[], const int & pa
 
     rmax = this->inactive_r[unit];
 
+
+
     for(i = 0; i < this->S; ++i){
         self += this->active_states[unit*S + i];
         this->h[unit*S + i] = 0; //Maybe h can be even a small array of size S, since it's erased at each update
     }
+
     self = (w / this->S) * self;
 
     INcost = (t > tx) * g * exp(-(t-tx)/tau);
@@ -176,7 +179,7 @@ void LC_PNet::update_rule(const int & unit, const __fpv buffer[], const int & pa
 
     }
 
-    this->inactive_r[unit] += b3 * (1 - this->inactive_states[unit] - this->inactive_r[unit]);
+    this->inactive_r[unit] += b3 * (1.0 - this->inactive_states[unit] - this->inactive_r[unit]);
 
     Z=0;
 
@@ -185,6 +188,7 @@ void LC_PNet::update_rule(const int & unit, const __fpv buffer[], const int & pa
     }
 
     Z += exp(beta * (this->inactive_r[unit] + U - rmax));
+
 
     for(i = 0; i < S; ++i){
     	this->active_states[unit*S + i] = exp(beta * (this->active_r[unit*S + i] - rmax)) / Z;
