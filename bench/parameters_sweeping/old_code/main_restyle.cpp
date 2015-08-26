@@ -144,7 +144,7 @@ for(ttt=0;ttt<Trete;ttt++)
 		i=iii;
 
 		update_stato(i,n);																	///update di s[][] di un neu per ogni stato
-
+		
 		if((n%tempostampa)==0)																/// stampo gli overlap
 		{
 		t=(float)n/N;																			/// effective time
