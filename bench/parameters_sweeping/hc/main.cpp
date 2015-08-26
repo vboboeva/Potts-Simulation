@@ -47,24 +47,24 @@ int main(int argc, char *argv[]){
                params.fact_eigen_slope //fact_eigen_slope
                );
 
-
     pgen.generate();
     //Create the network
+    generator.seed(12345);
+
+
     HC_PNet pnet(params.N,
                 params.C,
                 params.S
                     );
 
     //Connect units
-    pnet.connect_units(generator);
+    //pnet.connect_units(generator);
     t2 = std::chrono::high_resolution_clock::now();
     ////////////////////////////////////////////////////////////////////////////
-    pnet.import_connections("../old_code/init_connections.dat");
+    pnet.import_connections("../old_code/init_connections2.dat");
     ////////////////////////////////////////////////////////////////////////////
     t3 = std::chrono::high_resolution_clock::now();
-
     pnet.init_network(params.beta,params.U,params.p,params.a,pgen.get_patt());
-
     t4 = std::chrono::high_resolution_clock::now(); //STOP TIMER
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>( (t4 - t3) + (t2 - t1) ).count();
     std::cout << "INITIALIZATION ELAPSED TIME(ms): "<< duration << std::endl;
@@ -74,10 +74,11 @@ int main(int argc, char *argv[]){
     ***************************************************************************/
     t1 = std::chrono::high_resolution_clock::now(); //START TIMER
 
+
     //Start the dynamics
     pnet.start_dynamics(generator,
                         params.p,
-                        params.nupdates*params.N,//params.tstatus, //tstatus (tempostampa)
+                        params.tstatus, //tstatus (tempostampa)
                         params.nupdates,  //Number of updates
                         pgen.get_patt(),
                         0, //Pattern number

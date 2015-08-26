@@ -10,6 +10,7 @@
 #include <cstdlib>
 #include <chrono>
 #include <iostream>
+
 int       	**xi;							//pattern
 float    	**s;
 float    	**sold;
@@ -72,9 +73,9 @@ extern void calcolo_m();
 int main()
 {
 	std::chrono::high_resolution_clock::time_point t1;
-	std::chrono::high_resolution_clock::time_point t2;
+std::chrono::high_resolution_clock::time_point t2;
 
-	t1 = std::chrono::high_resolution_clock::now();
+t1 = std::chrono::high_resolution_clock::now();
 
 int i, n, k, f, mu, iii, ttt, x;
 int  fine, intempo, numero, Mumax, Mumaxold;
@@ -82,17 +83,16 @@ float t, Mmax, lunghezza;
 float Q;
 time_t iniziosim, finesim, fineiniz;
 
-
 ksequenza=fopen("ksequenza.txt","w");
 last = fopen("last.dat","w");
 //lulu = fopen("lunghezza.dat","w");
 Passi=fopen("passi.txt","a");		///###########################################################################
 
-//srand48( time(NULL) );
+srand48( time(NULL) );
 
 getmemory();
 read_pattern();
-//SetUpTables();							/// per creare vettori shaffle di unita
+SetUpTables();							/// per creare vettori shaffle di unita
 
 n0=500*N;
 
@@ -133,9 +133,7 @@ t2 = std::chrono::high_resolution_clock::now();
 auto duration = std::chrono::duration_cast<std::chrono::milliseconds>( t2 - t1 ).count();
 std::cout << "INIT2 "<< duration << std::endl;
 
-
 t1 = std::chrono::high_resolution_clock::now();
-print_J("init_J.dat");
 for(ttt=0;ttt<Trete;ttt++)
 {
 	//x=(int)(NumSet*drand48());
@@ -144,67 +142,68 @@ for(ttt=0;ttt<Trete;ttt++)
 	{
 		//i=Permut[iii][x];
 		i=iii;
+
 		update_stato(i,n);																	///update di s[][] di un neu per ogni stato
 
+		if((n%tempostampa)==0)																/// stampo gli overlap
+		{
+		t=(float)n/N;																			/// effective time
+		calcolo_m();
 
-				if((n%tempostampa)==0)																/// stampo gli overlap
-				{
-				t=(float)n/N;																			/// effective time
-				calcolo_m();
+// 			for(mu=0;mu<p;mu++)
+// 			{
+// 					fprintf(mvari, "%.2f	%.4f	%d\n", t, m[mu], mu);
+// 					fflush(mvari);
+// 			}
 
-		// 			for(mu=0;mu<p;mu++)
-		// 			{
-		// 					fprintf(mvari, "%.2f	%.4f	%d\n", t, m[mu], mu);
-		// 					fflush(mvari);
-		// 			}
-
-					if(n>n0+10*N)																/// stampo gli overlap
-					{
-						Mmax=-1.;
-						Mumax=p+1;
-						for(mu=0;mu<p;mu++)
-						{
-							if(m[mu]>Mmax)
-							{
-							Mmax=m[mu];
-							Mumax=mu;
-							}
-						}
-
-						if(Mumaxold!=Mumax && Mmax>0.5)
-						{
-						numero=numero+1;
-						Mumaxold=Mumax;
-		//				printf( "t=%f\n",t);
-					fprintf(ksequenza, "%d	", Mumax);
-		//			printf("%d	", Mumax);
-					fflush (ksequenza);
-						}
-					}
-
-				///per vedere se la sequenza di latching e` finita
+			if(n>n0+10*N)																/// stampo gli overlap
+			{
+				Mmax=-1.;
+				Mumax=p+1;
 				for(mu=0;mu<p;mu++)
 				{
-					fine=1;
-					if(m[mu]>0.02)
+					if(m[mu]>Mmax)
 					{
-						fine=0;
-						mu=p;
+					Mmax=m[mu];
+					Mumax=mu;
 					}
 				}
-				if((fine!=0) && (n>n0+100*N))
+
+				if(Mumaxold!=Mumax && Mmax>0.5)
 				{
-					lunghezza=t;
-					ttt=Trete;
-					iii=N;
+				numero=numero+1;
+				Mumaxold=Mumax;
+//				printf( "t=%f\n",t);
+			fprintf(ksequenza, "%d	", Mumax);
+//			printf("%d	", Mumax);
+			fflush (ksequenza);
 				}
-				}
+			}
+
+		///per vedere se la sequenza di latching e` finita
+		for(mu=0;mu<p;mu++)
+		{
+			fine=1;
+			if(m[mu]>0.02)
+			{
+				fine=0;
+				mu=p;
+			}
+		}
+		if((fine!=0) && (n>n0+100*N))
+		{
+			lunghezza=t;
+
+			ttt=Trete;
+			iii=N;
+		}
+		}
+
+
 	n++;
 	}
-	lunghezza=t;
-
+if(ttt==(Trete-1))  lunghezza=t;
 }
-
 t2 = std::chrono::high_resolution_clock::now();
 duration = std::chrono::duration_cast<std::chrono::milliseconds>( t2 - t1 ).count();
 std::cout << "TOTAL UPDATE ELAPSED TIME(ms): "<< duration << std::endl;
@@ -217,8 +216,8 @@ fclose(mvari);
 finesim=time(0);
 // printf( "simulazione finita:	%ld		\n", finesim);
 printf( "durata		%ld secondi\n", finesim-iniziosim);
-
-printf( "p=%d	retr=%d	passi %d	lunghezza = %.1f	\n",p,f, numero, lunghezza);
+printf("Latching length: %f\n", lunghezza);
+printf( "p=%d	retr=%d	passi %d	lunghezza = %.1f\n",p,f, numero, lunghezza);
 /*fprintf( lulu,"%d	%.1f	\n",f, lunghezza);
 fflush(lulu);*/
 fprintf(last,"%d	%d	%d	\n", retr, numero, Mumax);
