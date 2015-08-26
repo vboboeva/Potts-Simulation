@@ -358,7 +358,7 @@ for(k=0;k<S;k++)
 
 }
 
-/// //////////	update rS e sold per S	///
+//////////	update rS e sold per S	///
 sold[i][S]=s[i][S];
 
 
@@ -366,30 +366,30 @@ r[i][S]+=b3*(1.0-s[i][S]-r[i][S]);
 
 /// //////////    UPDATE stato PER T!=0    ///////////////
 Z=0.;
-for(k=0;k<S;k++)
-{
-	Z+=exp(beta*(r[i][k]-rmax));
-}
-
-Z+=exp(beta*(r[i][S]+U-rmax));							//modificato con nuova concezione di U
-
-
-float invZ;
-
-//invZ=1./Z;
-
-for(k=0;k<S;k++)
-{
-	s[i][k]=exp(beta*(r[i][k]-rmax))/Z;
-	/*
-	if(i == 0){
-		std::cout.precision(30);
-					std::cout << std::scientific;
-					std::cout << r[i][k] << std::endl;
-				}					//update of s[]
-				*/
-}
-s[i][S]=exp(beta*(r[i][S]-rmax+U))/Z;
+// for(k=0;k<S;k++)
+// {
+// 	Z+=exp(beta*(r[i][k]-rmax));
+// }
+//
+// Z+=exp(beta*(r[i][S]+U-rmax));							//modificato con nuova concezione di U
+//
+//
+// float invZ;
+//
+// //invZ=1./Z;
+//
+// for(k=0;k<S;k++)
+// {
+// 	s[i][k]=exp(beta*(r[i][k]-rmax))/Z;
+// 	/*
+// 	if(i == 0){
+// 		std::cout.precision(30);
+// 					std::cout << std::scientific;
+// 					std::cout << r[i][k] << std::endl;
+// 				}					//update of s[]
+// 				*/
+// }
+// s[i][S]=exp(beta*(r[i][S]-rmax+U))/Z;
 
 
 /*

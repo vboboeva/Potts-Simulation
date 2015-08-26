@@ -144,7 +144,7 @@ for(ttt=0;ttt<Trete;ttt++)
 		i=iii;
 
 		update_stato(i,n);																	///update di s[][] di un neu per ogni stato
-		
+		/*
 		if((n%tempostampa)==0)																/// stampo gli overlap
 		{
 		t=(float)n/N;																			/// effective time
@@ -198,11 +198,11 @@ for(ttt=0;ttt<Trete;ttt++)
 			iii=N;
 		}
 		}
-
+		*/
 
 	n++;
 	}
-if(ttt==(Trete-1))  lunghezza=t;
+//if(ttt==(Trete-1))  lunghezza=t;
 }
 t2 = std::chrono::high_resolution_clock::now();
 duration = std::chrono::duration_cast<std::chrono::milliseconds>( t2 - t1 ).count();

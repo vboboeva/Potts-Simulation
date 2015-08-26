@@ -211,6 +211,11 @@ void LC_PNet::start_dynamics(std::default_random_engine & generator, const int &
     bool stop = false;
     int Mumax = p + 5, Mumaxold = p + 5, steps = 0;
 
+    int l,m,ts;
+    __fpv self=0, INcost, rmax, Z;
+    int tsize = this->C * this->S;
+
+
     t = 0;
 
     //First loop = times the whole network has to be updated
@@ -225,8 +230,8 @@ void LC_PNet::start_dynamics(std::default_random_engine & generator, const int &
         for(j = 0; j < N; ++j){
 
             unit = sequence.get(j);
+            ts = unit * S;
 
-            //Fill the buffer containing all the states requested
             for(k = 0; k < this->C; ++k){
                 for(n = 0; n < this->S; ++n){
                     buffer[k*S + n] = this->active_states[S*cm[unit * C + k] + n];
@@ -234,7 +239,7 @@ void LC_PNet::start_dynamics(std::default_random_engine & generator, const int &
             }
 
 
-
+            /*
             //Update the unit
             this->update_rule(unit,
                              buffer,
@@ -250,8 +255,63 @@ void LC_PNet::start_dynamics(std::default_random_engine & generator, const int &
                              tx,
                              t
                              );
+            */
+            ////////////////////////////////////////////////////////////////////
+            //tx == n0 in the old code, "time 'x' "
+            rmax = this->inactive_r[unit];
+            self = 0;
+            for(l = 0; l < this->S; ++l){
+                self += this->active_states[ts + l];
+                this->h[ts + l] = 0; //Maybe h can be even a small array of size S, since it's erased at each update
+            }
+
+            self = (w / this->S) * self;
+
+            INcost = (t > tx) * g * exp(-(t-tx)/tau);
+
+            for(l = 0; l < this->S; ++l){
+
+                //Inside here maybe different order of + and * so slightly different solutions, have to check.
+                for(m = 0; m < tsize; ++m){
+                    this->h[ts + l] += this->J[S*C*S*unit + C*S*l + m] * buffer[m];
+                }
 
 
+                this->h[ts + l] += w * this->active_states[ts + l] - self + INcost * (xi[p * unit + pattern] == l);
+
+                this->theta[ts + l] += b2 * (this->active_states[ts + l]-this->theta[ts + l]);
+                this->active_r[ts + l] += b1 * (this->h[ts + l]-this->theta[ts + l]-this->active_r[ts + l]);
+
+                rmax = this->active_r[ts + l] * (this->active_r[ts + l] > rmax) - ((this->active_r[ts + l] > rmax) - 1) * rmax;
+
+                /*
+                if(this->active_r[ts + i]>rmax){
+                    rmax=this->active_r[ts + i];
+                }
+                */
+
+
+            }
+
+            this->inactive_r[unit] += b3 * (1.0 - this->inactive_states[unit] - this->inactive_r[unit]);
+
+            Z=0;
+
+            for(l = 0; l < S; ++l){
+                Z += exp(beta * (this->active_r[ts + l] - rmax));
+            }
+
+            Z += exp(beta * (this->inactive_r[unit] + U - rmax));
+
+
+            for(l = 0; l < S; ++l){
+                this->active_states[ts + l] = exp(beta * (this->active_r[ts + l] - rmax)) / Z;
+            }
+
+            this->inactive_states[unit]=exp(beta * (this->inactive_r[unit] - rmax + U)) / Z;
+
+
+            ////////////////////////////////////////////////////////////////////
 
             if((t % tstatus) == 0){
                 latching_length = (double)t / N;

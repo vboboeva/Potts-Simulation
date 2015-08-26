@@ -70,6 +70,7 @@ int main(int argc, char *argv[]){
     pnet.save_J_to_file("init_J.dat");
 
     //Start the dynamics
+
     pnet.start_dynamics(generator,
                         params.p,
                         params.tstatus, //tstatus (tempostampa)

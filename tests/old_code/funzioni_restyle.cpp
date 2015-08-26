@@ -345,7 +345,9 @@ for(k=0;k<S;k++)
 		 h[i][k]+=	J[i][x][k][l]*s[C[i][x]][l];
 		}
 	}
+
 	h[i][k]+=w*s[i][k]-self+ INcost*(xi[i][retr]==k);										//tolgo l`auto eccitazione
+
 	/// di sold, thteta, r
 	sold[i][k]=s[i][k];
 

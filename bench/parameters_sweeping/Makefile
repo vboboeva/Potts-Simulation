@@ -2,7 +2,7 @@ LC=lc
 HC=hc
 VLC=vlc
 OLD_CODE=old_code
-
+OLD_CODE_BUFFER=old_code_buffer
 .PHONY: compile bench clean
 
 .DEFAULT_GOAL := compile
@@ -23,4 +23,5 @@ clean:
 	@$(MAKE) -s -C $(LC) clean
 	@$(MAKE) -s -C $(VLC) clean
 	@$(MAKE) -s -C $(HC) clean
+	@$(MAKE) -s -C $(OLD_CODE_BUFFER) clean
 	@trash *.dat *.png
