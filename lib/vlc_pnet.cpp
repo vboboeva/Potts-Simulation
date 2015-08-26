@@ -42,7 +42,7 @@ void VLC_PNet::update_rule(const int & unit, const int & pattern, const __fpv & 
 
     }
 
-    this->inactive_r[unit] += b3 * (1 - this->inactive_states[unit] - this->inactive_r[unit]);
+    this->inactive_r[unit] += b3 * (1.0 - this->inactive_states[unit] - this->inactive_r[unit]);
 
     Z=0;
 

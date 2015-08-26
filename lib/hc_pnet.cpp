@@ -110,7 +110,7 @@ void HC_PNet::init_J(const int & p, const __fpv & a, const int * xi){
                             this->J[S*N*S*i + N*S*j + S*k + l] += ((xi[p * i + m]==j)-as)*((xi[p * k + m]==l)-as);
                         }
 
-                        this->J[S*N*S*i + N*S*j + S*k + l] /= a * (1 - as)* C;
+                        this->J[S*N*S*i + N*S*j + S*k + l] /= (__fpv)(a * (1.0 - as)*(__fpv)C);;
 
                         this->h[S*i + j] += this->J[S*N*S*i + N*S*j + S*k + l] * this->active_states[S*k + l];
                     }
@@ -350,6 +350,7 @@ void HC_PNet::import_connections(const std::string & filename){
     for(i = 0; i < this->N; ++i){
     	for(j = 0; j < this->C; ++j){
     		ifile >> this->cm[this->C*i + j];
+            this->ucm[i*N + this->cm[this->C*i + j]] = 1;
     	}
 
     }
