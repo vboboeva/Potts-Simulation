@@ -347,6 +347,13 @@ void HC_PNet::import_connections(const std::string & filename){
     std::ifstream ifile;
     ifile.open(filename);
 
+    //Reset to 0 "1-0 matrix"
+    for(i = 0; i < N; ++i){
+        for(j = 0; j < N; ++j){
+            this->ucm[i*N + j] = 0;
+        }
+    }
+
     for(i = 0; i < this->N; ++i){
     	for(j = 0; j < this->C; ++j){
     		ifile >> this->cm[this->C*i + j];

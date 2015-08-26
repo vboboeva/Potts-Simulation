@@ -204,10 +204,10 @@ fflush(ksequenza);
 fclose(mvari);
 
 finesim=time(0);
-// printf( "simulazione finita:	%ld		\n", finesim);
-//printf( "durata		%ld secondi\n", finesim-iniziosim);
-//printf("Latching length: %f\n", lunghezza);
-//printf( "p=%d	retr=%d	passi %d	lunghezza = %.1f\n",p,f, numero, lunghezza);
+printf( "simulazione finita:	%ld		\n", finesim);
+printf( "durata		%ld secondi\n", finesim-iniziosim);
+printf("Latching length: %f\n", lunghezza);
+printf( "p=%d	retr=%d	passi %d	lunghezza = %.1f\n",p,f, numero, lunghezza);
 /*fprintf( lulu,"%d	%.1f	\n",f, lunghezza);
 fflush(lulu);*/
 fprintf(last,"%d	%d	%d	\n", retr, numero, Mumax);

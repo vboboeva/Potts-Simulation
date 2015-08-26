@@ -24,4 +24,4 @@ clean:
 	@$(MAKE) -s -C $(VLC) clean
 	@$(MAKE) -s -C $(HC) clean
 	@$(MAKE) -s -C $(OLD_CODE_BUFFER) clean
-	@trash *.dat *.png
+	@rm -f *.dat *.png

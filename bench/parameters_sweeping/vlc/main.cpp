@@ -62,7 +62,6 @@ int main(int argc, char *argv[]){
     t2 = std::chrono::high_resolution_clock::now();
     ////////////////////////////////////////////////////////////////////////////
     pnet.import_connections("../old_code/init_connections2.dat");
-    pnet.save_connections_to_file("conn.dat");
     ////////////////////////////////////////////////////////////////////////////
     t3 = std::chrono::high_resolution_clock::now();
     pnet.init_network(params.beta,params.U,params.p,params.a,pgen.get_patt());

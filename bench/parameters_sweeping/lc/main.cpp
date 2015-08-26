@@ -28,7 +28,6 @@ int main(int argc, char *argv[]){
     std::cout << "loading parameters" << std::endl;
     struct parameters params;
     load_params("params.cfg", params);
-    print_params(params);
 
     /***************************************************************************
     INITIALIZATION
@@ -95,12 +94,10 @@ int main(int argc, char *argv[]){
                         500*params.N //tx (n0)
                         );
 
-
     t2 = std::chrono::high_resolution_clock::now(); //STOP TIMER
     duration = std::chrono::duration_cast<std::chrono::milliseconds>( t2 - t1 ).count();
     std::cout << "TOTAL UPDATE ELAPSED TIME(ms): "<< duration << std::endl;
 
-    pnet.save_states_to_file("updated_states.dat");
 
     std::cout << "End of the simulation" << std::endl;
     return 0;
