@@ -59,10 +59,10 @@ int main(int argc, char *argv[]){
                     );
 
     //Connect units
-    pnet.connect_units(generator);
+    //pnet.connect_units(generator);
     t2 = std::chrono::high_resolution_clock::now();
     ////////////////////////////////////////////////////////////////////////////
-    //pnet.import_connections("../old_code/init_connections2.dat");
+    pnet.import_connections("../old_code/init_connections2.dat");
     ////////////////////////////////////////////////////////////////////////////
     t3 = std::chrono::high_resolution_clock::now();
     pnet.init_network(params.beta,params.U,params.p,params.a,pgen.get_patt());
