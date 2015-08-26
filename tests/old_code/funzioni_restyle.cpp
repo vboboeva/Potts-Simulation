@@ -6,28 +6,28 @@
 #include <string>
 ///	%%%%%%%%%%%%%%%%%%		CONNECTIVITY		%%%%%%%%%%%%%%%%%
 extern int    	 	**xi;
-extern double   	**s;
-extern double    	**sold;
-extern double    	****J;		/// 33333333333333333333333
-//extern double	mark[N]; 				/// per costruire una cue correlata con un pattern
-extern double    	m[p];
-extern double    	mS[p];
+extern float   	**s;
+extern float    	**sold;
+extern float    	****J;		/// 33333333333333333333333
+//extern float	mark[N]; 				/// per costruire una cue correlata con un pattern
+extern float    	m[p];
+extern float    	mS[p];
 extern int       	retr;
-extern double    	**h;
-extern double		**r;
-extern double    	q;
-extern double		**theta;
-extern double		n0;
-extern double    	invdenN;
-extern double    	denCm;
-extern double   	**overlap;
+extern float    	**h;
+extern float		**r;
+extern float    	q;
+extern float		**theta;
+extern float		n0;
+extern float    	invdenN;
+extern float    	denCm;
+extern float   	**overlap;
 extern int 		**Permut;
 extern int 		**C;		/// 33333333333333333333333
-extern double		H, Hq, Hht, A;
-extern double	ws;
-extern double SS1[N][S+1];
-extern double theta1[N][S];
-extern double rr1[N][S+1];
+extern float		H, Hq, Hht, A;
+extern float	ws;
+extern float SS1[N][S+1];
+extern float theta1[N][S];
+extern float rr1[N][S+1];
 
 extern FILE *pat;
 extern FILE *mvari;
@@ -48,7 +48,7 @@ extern FILE *r1;
 extern FILE *h1;
 extern FILE *Qfile;
 
-void print_m(double tempo)
+void print_m(float tempo)
 {
 int mu;
 
@@ -148,7 +148,7 @@ void read_connectivity()
 void initializing()
 {
 int i, j, l, k, mu;
-double qs, ma, maa;
+float qs, ma, maa;
 int i_c, x, new_one;
 
 /// inizializzo da file
@@ -167,9 +167,44 @@ r[i][S]=1.-s[i][S];
 print_states("init_states.dat");
 
 
+
 ///		Cij		///33333333333333333333333333333333333333333
-read_connectivity();
+
+for(i=0; i<N; i++)
+{
+//	C[i][0] = i;									/// per self sustained serve per stabilizzare il campo
+//	i_c = 1;
+	i_c = 0; 										/// considero Cii=0 ma poi per stabilizzare il campo agisco direttamente quando calcolo h
+	while(i_c<Cm)
+	{
+		new_one = 1;
+///		FULLY connected
+// 		j=i_c;
+// 		if(j==i)
+// 		{
+// 			new_one = 0;
+// 			i_c++;
+// //printf("%d	\n", i_c);
+// 		}
+///		SPARSE connected
+		j = (int)((float)N*drand48());
+		if(j==i) new_one = 0;						/// per porre Cii=0
+		for(x=0; x<i_c; x++)						/// per controllare di non averlo gia` preso
+		{
+			if(C[i][x]==j) new_one = 0;
+		}
+///
+		if(new_one)
+		{
+			C[i][i_c] = j;
+			i_c++;
+		}
+	}
+}
 printf("dopo	\n");
+
+//read_connectivity();
+
 
 print_connectivity();
 /// stampo la matrice delle connessioni  Cij
@@ -200,10 +235,14 @@ for(i=0; i<N; i++)
 			{
 			J[i][x][k][l]=0;
 
-			for(mu=0; mu<p; mu++)
-					J[i][x][k][l]+=((double)(xi[i][mu]==k)-as)*((double)(xi[C[i][x]][mu]==l)-as);
+			for(mu=0; mu<p; mu++){
+
+					J[i][x][k][l]+=((float)(xi[i][mu]==k)-as)*((float)(xi[C[i][x]][mu]==l)-as);
+			}
+
 			J[i][x][k][l]=J[i][x][k][l]/denCm;
-//			J[i][x][k][l]=(J[i][x][k][l]*(double)((k==0)*(l==0)))/denCm;
+
+//			J[i][x][k][l]=(J[i][x][k][l]*(float)((k==0)*(l==0)))/denCm;
 			}
 		}
 	}
@@ -221,7 +260,7 @@ for(mu=0;mu<p;mu++)
 		ma=0.;
 		for(k=0;k<S;k++)
 		{
-			ma+=((double)(xi[i][mu]==k)-as)*s[i][k];				//to calculate m
+			ma+=((float)(xi[i][mu]==k)-as)*s[i][k];				//to calculate m
 		}
 		maa+=ma;
 	}
@@ -273,10 +312,10 @@ for(i=0;i<N;i++)								//to calculate h, r, theta
 void update_stato(int i, int n)
 {
 int   mu, k, x, v, l;
-double Z, rmax, t;
-double II[p], self;
-double INcost;
-double mII;
+float Z, rmax, t;
+float II[p], self;
+float INcost;
+float mII;
 int MKcost;
 
 rmax=r[i][S];
@@ -290,7 +329,7 @@ for(l=0;l<S;l++)
 }
 self=ws*self;
 
-INcost	=	(double)(n>n0)*g*exp(-((n-n0)/((double)tau)));			/// campo iniziale &&&&&&&&&&&&@@@@@@@@@@@@@@@@@@
+INcost	=	(float)(n>n0)*g*exp(-((n-n0)/((float)tau)));			/// campo iniziale &&&&&&&&&&&&@@@@@@@@@@@@@@@@@@
 
 for(k=0;k<S;k++)
 {
@@ -329,7 +368,7 @@ for(k=0;k<S;k++)
 }
 Z+=exp(beta*(r[i][S]+U-rmax));							//modificato con nuova concezione di U
 
-double invZ;
+float invZ;
 
 //invZ=1./Z;
 
@@ -349,7 +388,7 @@ s[i][S]=exp(beta*(r[i][S]-rmax+U))/Z;
 
 /*
 /// //////////    UPDATE H
-t=(double)n/N;
+t=(float)n/N;
 //if((n%tempostampa)==0 && n>=10000*N)
 if((n%tempostampa)==0)
 {
@@ -374,7 +413,7 @@ fflush(Hqfile);
 fflush(Hfile);
 fflush(Hhtfile);
 
-double A1, A2;
+float A1, A2;
 A=0.;
 A1=0.;
 A2=0.;
@@ -397,16 +436,16 @@ fflush(Afile);
 fflush(A1file);
 fflush(A2file);
 
-double TT, R0;
+float TT, R0;
 TT=0.;
 R0=0.;
 for(v=0;v<N;v++)
 {
 	for(k=0;k<S;k++)
 	{
-	TT+=theta[v][k]/(double)N;
+	TT+=theta[v][k]/(float)N;
 	}
-R0+=r[v][S]/(double)N;
+R0+=r[v][S]/(float)N;
 }
 fprintf(Tfile, "%.2f	%.2f\n", t, TT);
 fprintf(R0file, "%.2f	%.2f\n", t, R0);
@@ -416,7 +455,7 @@ fflush(R0file);
 
 /// STAMPO DERIVATE
 
-double DT, DT0, DS;
+float DT, DT0, DS;
 
 DT=0.;
 DT0=0.;
@@ -463,7 +502,7 @@ fflush(DSfile);
 void calcolo_m()
 {
 int  k,i, l, mu;
-double ma, maa;
+float ma, maa;
 ///		M		///33333333333333333333333333333333333333333
 for(mu=0;mu<p;mu++)
 {
@@ -473,7 +512,7 @@ for(mu=0;mu<p;mu++)
 		ma=0.;
 		for(k=0;k<S;k++)
 		{
-			ma+=((double)(xi[i][mu]==k)-as)*s[i][k];				//to calculate m
+			ma+=((float)(xi[i][mu]==k)-as)*s[i][k];				//to calculate m
 		}
 		maa+=ma;
 	}
@@ -496,39 +535,39 @@ xi= new int*[N];
 for(i=0; i<N; i++)
 	xi[i]=new int[p];
 
-s= new double*[N];
+s= new float*[N];
 for(i=0; i<N; i++)
-	s[i]=new double[S+1];
+	s[i]=new float[S+1];
 
-sold= new double*[N];
+sold= new float*[N];
 for(i=0; i<N; i++)
-	sold[i]=new double[S+1];
+	sold[i]=new float[S+1];
 
-h= new double*[N];
+h= new float*[N];
 for(i=0; i<N; i++)
-	h[i]=new double[S];
+	h[i]=new float[S];
 
-r= new double*[N];
+r= new float*[N];
 for(i=0; i<N; i++)
-	r[i]=new double[S+1];
+	r[i]=new float[S+1];
 
-theta= new double*[N];
+theta= new float*[N];
 for(i=0; i<N; i++)
-	theta[i]=new double[S];
+	theta[i]=new float[S];
 /*
-overlap= new double*[tstampato];
+overlap= new float*[tstampato];
 for(i=0; i<tstampato; i++)
-	overlap[i]=new double[p];
+	overlap[i]=new float[p];
 */
-J= new double***[N];
+J= new float***[N];
 for(i=0; i<N; i++)
 {
-	J[i]=new double**[N];
+	J[i]=new float**[N];
 	 for(x=0; x<Cm; x++)
 	{
-		J[i][x]=new double*[S];
+		J[i][x]=new float*[S];
 		 for(z=0; z<S; z++)
-			J[i][x][z]=new double[S];
+			J[i][x][z]=new float[S];
 	}
 }
 
@@ -594,7 +633,7 @@ for(kk=0; kk<NumSet; kk++)
 	{
 
 
-	info =(int)((double)N*drand48());
+	info =(int)((float)N*drand48());
 
 	fatto=0;
 	while(fatto==0)

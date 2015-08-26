@@ -46,6 +46,7 @@ class HC_PNet : public PNet {
         HC_PNet(const int & N, const int & C, const int & S);
         ~HC_PNet();
 
+        void import_connections(const std::string & filename);
         void print_cm();
         void save_states_to_file(const std::string & filename);
         void save_connections_to_file(const std::string & filename);

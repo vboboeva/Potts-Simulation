@@ -3,7 +3,9 @@
 #include <random>
 #include <fstream>
 #include <iomanip>
-
+#include <stdio.h>
+#include <string>
+#include <sstream>
 
 #include "lc_pnet.h"
 #include "config.h"
@@ -108,7 +110,7 @@ void LC_PNet::init_J(const int & p, const __fpv & a, const int * xi){
                         this->J[S*C*S*i + C*S*j + S*k + l] += ((xi[p * i + m]==j)-as)*((xi[p * cm[C*i + k] + m]==l)-as);
                     }
 
-                    this->J[S*C*S*i + C*S*j + S*k + l] /= a * (1 - as)* C;
+                    this->J[S*C*S*i + C*S*j + S*k + l] /= (__fpv)(a * (1.0 - as)*(__fpv)C);
 
                     this->h[S*i + j] += this->J[S*C*S*i + C*S*j + S*k + l] * this->active_states[S*cm[C*i + k] + l];
 
@@ -217,9 +219,8 @@ void LC_PNet::start_dynamics(std::default_random_engine & generator, const int &
         //Second loop = loop on all neurons serially
         for(j = 0; j < N; ++j){
 
-            //unit = sequence.get(j);
-            unit = j;
-            
+            unit = sequence.get(j);
+
             //Fill the buffer containing all the states requested
             for(k = 0; k < this->C; ++k){
                 for(n = 0; n < this->S; ++n){
@@ -354,4 +355,20 @@ void LC_PNet::save_J_to_file(const std::string & filename){
     }
 
     ofile.close();
+}
+
+void LC_PNet::import_connections(const std::string & filename){
+
+    int i, j;
+    std::ifstream ifile;
+    ifile.open(filename);
+
+    for(i = 0; i < this->N; ++i){
+    	for(j = 0; j < this->C; ++j){
+    		ifile >> this->cm[this->C*i + j];
+    	}
+
+    }
+
+    ifile.close();
 }

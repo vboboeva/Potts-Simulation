@@ -85,9 +85,7 @@ void VLC_PNet::start_dynamics(std::default_random_engine & generator, const int 
         //Second loop = loop on all neurons serially
         for(j = 0; j < N; ++j){
 
-
-            //unit = sequence.get(j);
-            unit = j;
+            unit = sequence.get(j);
 
             //Update the unit
             this->update_rule(unit,

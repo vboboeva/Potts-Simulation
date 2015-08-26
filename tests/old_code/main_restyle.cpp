@@ -11,30 +11,30 @@
 #include <iostream>
 
 int       	**xi;							//pattern
-double    	**s;
-double    	**sold;
-double    	****J;
-//double	mark[N];  	/// //////////////////////////////////////////////////// per costruire una cue correlata con un pattern
-double    	m[p];								//m
-double    	mS[p];
+float    	**s;
+float    	**sold;
+float    	****J;
+//float	mark[N];  	/// //////////////////////////////////////////////////// per costruire una cue correlata con un pattern
+float    	m[p];								//m
+float    	mS[p];
 int       	retr;								//pattern that I want to retrieve
-double    	**h;
-double		**r;					//the field
-double    	q;									//activation of the network
-double		**theta;						//threshold
-double		n0;
-//double    	den=a*(1.-as)*(double)N;		//costante al denominatore (per velocizzare)		///
-double    	invdenN=1./(a*(1.-as)*(double)N);		///#####################################costante al  denominatore (per velocizzare)
-double    	denCm=a*(1.-as)*(double)Cm;
-double	ws=w/S;
+float    	**h;
+float		**r;					//the field
+float    	q;									//activation of the network
+float		**theta;						//threshold
+float		n0;
+//float    	den=a*(1.-as)*(float)N;		//costante al denominatore (per velocizzare)		///
+float    	invdenN=1./(a*(1.-as)*(float)N);		///#####################################costante al  denominatore (per velocizzare)
+float    	denCm=a*(1.-as)*(float)Cm;
+float	ws=w/S;
 
-double   	**overlap;			//mi da` l'overlap del sistema col pattern mu al tempo t
+float   	**overlap;			//mi da` l'overlap del sistema col pattern mu al tempo t
 int 		**Permut;
 int 		**C;
-double	H, Hq, Hht, A;
-double SS1[N][S+1];
-double theta1[N][S];
-double rr1[N][S+1];
+float	H, Hq, Hht, A;
+float SS1[N][S+1];
+float theta1[N][S];
+float rr1[N][S+1];
 
 FILE *pat;
 FILE *mvari;
@@ -65,7 +65,7 @@ extern void update_mq(int);
 extern void getmemory();
 extern void deletememory();
 extern void SetUpTables();
-extern void print_m(double);
+extern void print_m(float);
 extern void calcolo_m();
 /***************************************************    DYNAMICS   ****************************************************/
 
@@ -73,8 +73,8 @@ int main()
 {
 int i, n, k, f, mu, iii, ttt, x;
 int  fine, intempo, numero, Mumax, Mumaxold;
-double t, Mmax, lunghezza;
-double Q;
+float t, Mmax, lunghezza;
+float Q;
 time_t iniziosim, finesim, fineiniz;
 
 ksequenza=fopen("ksequenza.txt","w");
@@ -126,7 +126,7 @@ print_J("init_J.dat");
 
 for(ttt=0;ttt<Trete;ttt++)
 {
-	x=(int)(NumSet*drand48());
+	//x=(int)(NumSet*drand48());
 
 	for(iii=0;iii<N;iii++)
 	{
@@ -138,7 +138,7 @@ for(ttt=0;ttt<Trete;ttt++)
 
 		if((n%tempostampa)==0)																/// stampo gli overlap
 		{
-		t=(double)n/N;																			/// effective time
+		t=(float)n/N;																			/// effective time
 		calcolo_m();
 
 // 			for(mu=0;mu<p;mu++)

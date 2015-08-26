@@ -2,10 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#include <chrono>
+#include <time.h>
 #include <iostream>
 
-#include <time.h>
-#include <chrono>
 #include "const_potts.h"
 
 
@@ -24,16 +24,14 @@ float floor (float);
 int main()
 {
 
-	std::chrono::high_resolution_clock::time_point t1;
-	std::chrono::high_resolution_clock::time_point t2;
-	t1 = std::chrono::high_resolution_clock::now();
 
+	std::chrono::high_resolution_clock::time_point t1;
+		std::chrono::high_resolution_clock::time_point t2;
+		t1 = std::chrono::high_resolution_clock::now();
 
 int mu, nu, i;
-
-
-//srand48( 6789 );
-srand48( time(NULL) );
+srand48( 12345 );
+//srand48( time(NULL) );
 SetFactors();								/// genero i fattori
 
 SetPatterns();								/// genero i pattern
@@ -98,6 +96,7 @@ for(mu=0;mu<Num_p;mu++)						/// salvo i pattern nel file    "dati/spatt.txt"
 save_pattern(mu);
 }
 fclose (fpattern);
+
 t2 = std::chrono::high_resolution_clock::now();
 auto duration = std::chrono::duration_cast<std::chrono::milliseconds>( t2 - t1 ).count();
 std::cout << "INIT1 "<< duration << std::endl;
@@ -213,8 +212,6 @@ void SetPatterns(void)
 
    }
    printf("Average pattern sparsity %f\n",a_patt);
-
-
 }
 
 void save_pattern(int mu)
@@ -226,6 +223,6 @@ for(i=0;i<N;i++)
 fprintf(fpattern, "%d ", Patt[mu][i]);						//to save one pattern on savepatterns
 }
 
-fprintf(fpattern, "\n ");
+fprintf(fpattern, "\n");
 
 }

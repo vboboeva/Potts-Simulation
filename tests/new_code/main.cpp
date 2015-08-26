@@ -55,8 +55,8 @@ int main(int argc, char *argv[]){
 
 
     //Connect units (generate connection matrix)
-    pnet.connect_units(generator);
-
+    //pnet.connect_units(generator);
+    pnet.import_connections("../old_code/init_connections2.dat");
     //Initialize the network
     pnet.init_network(params.beta,params.U,params.p,params.a,pgen.get_patt());
 

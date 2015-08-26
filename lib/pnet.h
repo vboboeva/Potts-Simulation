@@ -50,6 +50,7 @@ class PNet{
                             const __fpv & beta,
                             const int & tx
                         ) = 0;
+
 };
 
 #endif

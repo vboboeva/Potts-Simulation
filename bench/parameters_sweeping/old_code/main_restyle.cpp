@@ -88,7 +88,7 @@ last = fopen("last.dat","w");
 //lulu = fopen("lunghezza.dat","w");
 Passi=fopen("passi.txt","a");		///###########################################################################
 
-srand48( time(NULL) );
+//srand48( time(NULL) );
 
 getmemory();
 read_pattern();
@@ -135,6 +135,7 @@ std::cout << "INIT2 "<< duration << std::endl;
 
 
 t1 = std::chrono::high_resolution_clock::now();
+print_J("init_J.dat");
 for(ttt=0;ttt<Trete;ttt++)
 {
 	//x=(int)(NumSet*drand48());

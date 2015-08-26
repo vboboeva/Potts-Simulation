@@ -212,9 +212,7 @@ void HC_PNet::start_dynamics(std::default_random_engine & generator, const int &
         //Second loop = loop on all neurons serially
         for(j = 0; j < N; ++j){
 
-
-            //unit = sequence.get(j);
-            unit = j;
+            unit = sequence.get(j);
 
             //Update the unit
             this->update_rule(unit,
@@ -341,4 +339,20 @@ void HC_PNet::save_J_to_file(const std::string & filename){
     }
 
     ofile.close();
+}
+
+void HC_PNet::import_connections(const std::string & filename){
+
+    int i, j;
+    std::ifstream ifile;
+    ifile.open(filename);
+
+    for(i = 0; i < this->N; ++i){
+    	for(j = 0; j < this->C; ++j){
+    		ifile >> this->cm[this->C*i + j];
+    	}
+
+    }
+
+    ifile.close();
 }

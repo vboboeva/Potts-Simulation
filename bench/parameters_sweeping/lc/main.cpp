@@ -12,6 +12,8 @@ int main(int argc, char *argv[]){
 
     std::chrono::high_resolution_clock::time_point t1;
     std::chrono::high_resolution_clock::time_point t2;
+    std::chrono::high_resolution_clock::time_point t3;
+    std::chrono::high_resolution_clock::time_point t4;
 
     std::cout << "Potts simulation" << std::endl;
 
@@ -46,7 +48,6 @@ int main(int argc, char *argv[]){
                );
 
     pgen.generate();
-
     //Create the network
     LC_PNet pnet(params.N,
                 params.C,
@@ -55,11 +56,25 @@ int main(int argc, char *argv[]){
 
     //Connect units
     pnet.connect_units(generator);
+    t2 = std::chrono::high_resolution_clock::now();
+    ////////////////////////////////////////////////////////////////////////////
+    pnet.import_connections("../old_code/init_connections2.dat");
+    pnet.save_connections_to_file("conn.dat");
+    ////////////////////////////////////////////////////////////////////////////
+    t3 = std::chrono::high_resolution_clock::now();
 
     pnet.init_network(params.beta,params.U,params.p,params.a,pgen.get_patt());
+    //Write states to file
+    pnet.save_states_to_file("init_states.dat");
 
-    t2 = std::chrono::high_resolution_clock::now(); //STOP TIMER
-    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>( t2 - t1 ).count();
+    //Write connections to file
+    pnet.save_connections_to_file("init_connections.dat");
+
+    //Write the J tensor file
+    pnet.save_J_to_file("init_J.dat");
+
+    t4 = std::chrono::high_resolution_clock::now(); //STOP TIMER
+    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>( (t4 - t3) + (t2 - t1) ).count();
     std::cout << "INITIALIZATION ELAPSED TIME(ms): "<< duration << std::endl;
 
     /***************************************************************************
@@ -74,7 +89,7 @@ int main(int argc, char *argv[]){
                         params.nupdates*params.N,//params.tstatus, //tstatus (tempostampa)
                         params.nupdates,  //Number of updates
                         pgen.get_patt(),
-                        1, //Pattern number
+                        0, //Pattern number
                         params.a,
                         params.U,
                         params.w,

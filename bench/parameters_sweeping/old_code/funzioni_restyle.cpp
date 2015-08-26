@@ -1,3 +1,9 @@
+#include <iostream>
+#include <time.h>
+#include <iomanip>
+#include <fstream>
+#include <cstring>
+#include <string>
 ///	%%%%%%%%%%%%%%%%%%		CONNECTIVITY		%%%%%%%%%%%%%%%%%
 extern int    	 	**xi;
 extern float   	**s;
@@ -68,6 +74,77 @@ for(mu=0;mu<p;mu++)
 fclose(pat);
 }
 
+void print_states(std::string filename){
+
+	int i,k;
+	std::ofstream ofile;
+	ofile.open(filename);
+	ofile.precision(15);
+    ofile << std::scientific;
+	for(i=0;i<N;i++)
+	{
+		for(k=0;k<S;k++)
+		{
+		ofile << s[i][k] << " ";
+		}
+	ofile << s[i][S] << " "<< std::endl;
+	}
+	ofile.close();
+}
+
+void print_connectivity(){
+	int i;
+	int i_c;
+	std::ofstream ofile;
+	ofile.open("init_connections2.dat");
+	for(i=0; i<N; i++)
+{
+	for(i_c=0; i_c<Cm;i_c++)
+	{
+		ofile << C[i][i_c] << " ";
+	}
+	ofile << std::endl;
+}
+
+ofile.close();
+
+}
+void print_J(std::string filename){
+
+	int i,j,k,l;
+	std::ofstream ofile;
+	ofile.open(filename);
+	ofile.precision(15);
+    ofile << std::scientific;
+	for(i = 0; i < N; ++i){
+        for(j = 0; j < S; ++j){
+            for(k = 0; k < Cm; ++k){
+                for(l = 0; l < S; ++l){
+                    ofile << J[i][k][j][l] << " ";
+                }
+            }
+        }
+        ofile << std::endl;
+    }
+	ofile.close();
+}
+
+void read_connectivity()
+{
+	int i, c;
+	FILE * con;
+	con=fopen("init_connections.dat","r");
+	//	pat=fopen("spatt.txt","r");
+	for(i=0;i<N;i++)
+	{
+		for(c=0;c<Cm;++c)
+		{
+			fscanf(con, "%d", &C[i][c]);
+		}
+	}
+	fclose(con);
+}
+
 void initializing()
 {
 int i, j, l, k, mu;
@@ -75,6 +152,7 @@ float qs, ma, maa;
 int i_c, x, new_one;
 
 /// inizializzo da file
+
 
 for(i=0;i<N;i++)
 {
@@ -85,6 +163,10 @@ for(i=0;i<N;i++)
 s[i][S]=1.-S*s[i][0];
 r[i][S]=1.-s[i][S];
 }
+
+print_states("init_states.dat");
+
+
 
 ///		Cij		///33333333333333333333333333333333333333333
 
@@ -121,6 +203,10 @@ for(i=0; i<N; i++)
 }
 printf("dopo	\n");
 
+//read_connectivity();
+
+
+print_connectivity();
 /// stampo la matrice delle connessioni  Cij
 // FILE *cij;
 // cij=fopen("Cij.txt","w");
@@ -137,6 +223,7 @@ printf("dopo	\n");
 
 
 ///		Jixkl		///33333333333333333333333333333333333333333
+
 
 for(i=0; i<N; i++)
 {
@@ -262,6 +349,7 @@ for(k=0;k<S;k++)
 	{
 		rmax=r[i][k];
 	}
+
 }
 
 /// //////////	update rS e sold per S	///
@@ -278,13 +366,20 @@ Z+=exp(beta*(r[i][S]+U-rmax));							//modificato con nuova concezione di U
 
 float invZ;
 
-invZ=1./Z;
+//invZ=1./Z;
 
 for(k=0;k<S;k++)
 {
-	s[i][k]=invZ*exp(beta*(r[i][k]-rmax));						//update of s[]
+	s[i][k]=exp(beta*(r[i][k]-rmax))/Z;
+	/*
+	if(i == 0){
+		std::cout.precision(30);
+					std::cout << std::scientific;
+					std::cout << r[i][k] << std::endl;
+				}					//update of s[]
+				*/
 }
-s[i][S]=invZ*exp(beta*(r[i][S]-rmax+U));
+s[i][S]=exp(beta*(r[i][S]-rmax+U))/Z;
 
 
 /*
@@ -405,7 +500,6 @@ void calcolo_m()
 int  k,i, l, mu;
 float ma, maa;
 ///		M		///33333333333333333333333333333333333333333
-
 for(mu=0;mu<p;mu++)
 {
 	maa=0.;
@@ -419,6 +513,7 @@ for(mu=0;mu<p;mu++)
 		maa+=ma;
 	}
 m[mu]=maa*invdenN;									//value of m[mu] for each mu
+
 }
 
 

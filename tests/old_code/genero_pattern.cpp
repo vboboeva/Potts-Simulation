@@ -10,14 +10,14 @@
 
 int Factors[N_fact][Num_fact];
 int Patt[p][N];
-double	C[p][p];
+float	C[p][p];
 
 FILE *fpattern;
 
 void SetFactors(void);
 void SetPatterns(void);
 void save_pattern(int);
-double floor (double);
+float floor (float);
 
 
 int main()
@@ -47,7 +47,7 @@ C[mu][nu]=C[mu][nu]/N;
 
 
 ///	calcolo il valor medio e la deviazione standard
-double coppie, media, varianza, mC, vC;
+float coppie, media, varianza, mC, vC;
 coppie=0.0;
 
 media=0.0;
@@ -102,7 +102,7 @@ void SetFactors(void)
    {
       for(i=0; i<N_fact; i++)
       {
-         Factors[i][k] = (int)((double)Num_u*drand48());
+         Factors[i][k] = (int)((float)Num_u*drand48());
       }
    }
 }
@@ -110,8 +110,8 @@ void SetFactors(void)
 void SetPatterns(void)
 {
    int N_p,i,ii,k,m,s1,u1,u2,unit;
-   double y, h_max, eigen_fact, sum_e, piccolo, a_pa,  a_patt, dh, h000,expon,fluct,bb;
-   double hh[Num_u][Num_s],hhh[Num_s],ss[Num_s];
+   float y, h_max, eigen_fact, sum_e, piccolo, a_pa,  a_patt, dh, h000,expon,fluct,bb;
+   float hh[Num_u][Num_s],hhh[Num_s],ss[Num_s];
 
    piccolo = log(eps);
    a_patt = 0.0;
@@ -134,11 +134,11 @@ void SetPatterns(void)
 
          expon = -fact_eigen_slope*k;
          if((k+2) > Num_fact)expon = 2.*piccolo;
-         y = (double)drand48();
+         y = (float)drand48();
          if(y<=a_pf)
          {
             eigen_fact = exp(expon)*y/a_pf;
-            s1 = (int)((double)Num_s*drand48());
+            s1 = (int)((float)Num_s*drand48());
             for(ii=0; ii<N_fact; ii++)
             {
                hh[Factors[ii][k]][s1] += eigen_fact+eps*drand48();
@@ -152,15 +152,15 @@ void SetPatterns(void)
       a_pa = 0.0;
       h000 = Num_fact;
       k = 0;
-      if(fact_eigen_slope > (1./(double)Num_fact))
+      if(fact_eigen_slope > (1./(float)Num_fact))
 	h000 = 1./fact_eigen_slope;
-      h000 *= 0.5*a_pf*a_fact/(double)Num_s;
+      h000 *= 0.5*a_pf*a_fact/(float)Num_s;
       bb = beta;
 
       while(((a_pa-a_mod)*(a_pa-a_mod))>=eps)
       {
       N_p = 0;
-      fluct = sqrt(eps)*(double)k;
+      fluct = sqrt(eps)*(float)k;
       for(unit=0;unit<Num_u;unit++)
       {
          h_max = 0.0;
@@ -192,12 +192,12 @@ void SetPatterns(void)
          }
       }
 
-      a_pa = (double)N_p/(double)Num_u;
+      a_pa = (float)N_p/(float)Num_u;
       h000 += 0.1*(a_pa-a_mod);
 
       k++;
       }
-      a_patt += a_pa/(double)Num_p;
+      a_patt += a_pa/(float)Num_p;
 
    }
    printf("Average pattern sparsity %f\n",a_patt);
