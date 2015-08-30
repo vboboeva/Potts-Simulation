@@ -1,5 +1,3 @@
-
-
 set term pngcairo dashed size 1200, 800
 set key left top
 set xrange [0:1000]
@@ -26,9 +24,9 @@ set style line 7 lt 1 lc rgb "black" lw 2
 set style line 8 lt 2 lc rgb "black" lw 2
 
 
-title1="benchmarks on local machine with N=500 connected network"
-title2="benchmarks on local machine with N=1000 connected network"
-title3="benchmarks on local machine with N=10000 connected network"
+title1="benchmarks on ulisse with N=1000 connected network"
+title2="benchmarks on ulisse with N=1500 connected network"
+title3="benchmarks on ulisse with N=2000 connected network"
 
 
 a="dynamic_time hc"
@@ -38,8 +36,44 @@ d="dynamics time old code"
 
 
 set autoscale
+set output 'test1000.png'
+plot "bench_times_1000.dat" every ::1 using 2:4 w l title a ls 1, \
+     '' every ::1 using 2:7 w l title b ls 3, \
+     '' every ::1 using 2:10 w l title c ls 5, \
+     '' every ::1 using 2:13 w l title d ls 7
+
+
 set output 'test1500.png'
 plot "bench_times_1500.dat" every ::1 using 2:4 w l title a ls 1, \
      '' every ::1 using 2:7 w l title b ls 3, \
      '' every ::1 using 2:10 w l title c ls 5, \
      '' every ::1 using 2:13 w l title d ls 7
+
+
+set output 'test2000.png'
+plot "bench_times_2000.dat" every ::1 using 2:4 w l title a ls 1, \
+     '' every ::1 using 2:7 w l title b ls 3, \
+     '' every ::1 using 2:10 w l title c ls 5, \
+     '' every ::1 using 2:13 w l title d ls 7
+
+
+
+
+set output 'scale1000.png'
+plot "bench_times_1000.dat" every ::1 using 2:($13/$4) w l title a ls 1, \
+     '' every ::1 using 2:($13/$7) w l title b ls 3, \
+     '' every ::1 using 2:($13/$10) w l title c ls 5, \
+     '' every ::1 using 2:($13/$13) w l title d ls 7
+
+set output 'scale1500.png'
+plot "bench_times_1500.dat" every ::1 using 2:($13/$4) w l title a ls 1, \
+     '' every ::1 using 2:($13/$7) w l title b ls 3, \
+     '' every ::1 using 2:($13/$10) w l title c ls 5, \
+     '' every ::1 using 2:($13/$13) w l title d ls 7
+
+
+set output 'scale2000.png'
+plot "bench_times_2000.dat" every ::1 using 2:($13/$4) w l title a ls 1, \
+     '' every ::1 using 2:($13/$7) w l title b ls 3, \
+     '' every ::1 using 2:($13/$10) w l title c ls 5, \
+     '' every ::1 using 2:($13/$13) w l title d ls 7
