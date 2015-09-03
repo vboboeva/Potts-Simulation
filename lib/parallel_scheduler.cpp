@@ -5,6 +5,10 @@
 #include <iostream>
 #include "utils.h"
 
+#include <chrono>
+#include <thread>
+
+
 #define GET_READY 1
 #define EXIT_PROCESS 0
 
@@ -100,6 +104,10 @@ void PPS::start(){
 
             if(status == GET_READY){
                 //wait to receive parameters
+
+                //\\
+                //std::this_thread::sleep_for(std::chrono::seconds(PPS::pid));
+                
                 MPI::COMM_WORLD.Recv(&recvparams, 1, MPIPPSTRUCT, 0, 0);
                 //Start sim
                 std::cout << "//////////////////////////////////////////////////////////////////////////////////"<< std::endl;
