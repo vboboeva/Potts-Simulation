@@ -3,6 +3,7 @@
 #include "parameters_struct.h"
 #include "parallel_scheduler.h"
 #include <iostream>
+#include "utils.h"
 
 #define GET_READY 1
 #define EXIT_PROCESS 0
@@ -14,16 +15,10 @@
 #endif
 
 std::vector<parameters> PPS::plist;
+int PPS::comm_size; //Set global variable
+int PPS::pid; //Set global variable
 
 void PPS::start(){
-
-    //MPI OPEN
-    /********************************************/
-    MPI::Init();
-
-    int comm_size =  MPI::COMM_WORLD.Get_size(); //Set global variable
-    int pid = MPI::COMM_WORLD.Get_rank(); //Set global variable
-    /********************************************/
 
     //Define parameters struct for mpi
     //Refer to this as an example http://lists.mcs.anl.gov/pipermail/mpich-discuss/2009-April/004880.html
@@ -46,55 +41,71 @@ void PPS::start(){
     MPIPPSTRUCT = MPIPPSTRUCT.Create_struct(2,blockcounts,offsets, datatypes);
     MPIPPSTRUCT.Commit();
 
-    if(pid == 0){
+    if(PPS::pid == 0){
 
-        int i;
-        int start = 1,ready;
+
+        std::cout << "SAY HI: "<< PPS::pid << std::endl;
+
+        struct parameters temp;
+        int i,countdown = PPS::comm_size-1;
+        bool start = GET_READY,ready;
         MPI::Status status;
 
         while(true){
 
 
+            if(countdown == 0) break;
 
             //Check first ready-to-compute process
-            MPI::COMM_WORLD.Recv(&ready, 1, MPI::INT, MPI_ANY_SOURCE, 0, status);
+            MPI::COMM_WORLD.Recv(&ready, 1, MPI::BOOL, MPI_ANY_SOURCE, 0, status);
 
 
             //Send a 0 status to all the process to stop
-            if(PPS::plist.size() == 0 ){
-                start = 0;
-                MPI::COMM_WORLD.Send(&start, 1, MPI::INT, status.Get_source(), 0);
-            }else{
-                //Prepare him to receive the params and start the sim (a boolean, 0 exit 1 get ready)
-                MPI::COMM_WORLD.Send(&start, 1, MPI::INT, status.Get_source(), 0);
+            if(ready){
+                if(PPS::plist.size() == 0 ){
+                    start = EXIT_PROCESS;
+                    MPI::COMM_WORLD.Send(&start, 1, MPI::BOOL, status.Get_source(), 0);
+                    countdown = countdown - 1;
+                }else{
+                    //Prepare him to receive the params and start the sim (a boolean, 0 exit 1 get ready)
+                    MPI::COMM_WORLD.Send(&start, 1, MPI::BOOL, status.Get_source(), 0);
 
+                    temp = PPS::plist.back();
 
-                //Deploy the parameterer struct
+                    //Deploy the parameterer struct
+                    MPI::COMM_WORLD.Send(&temp, 1, MPIPPSTRUCT, status.Get_source(), 0);
 
-
-                //Pullout the parameter struct from the list
+                    //Pullout the parameter struct from the list
+                    plist.pop_back();
+                }
             }
-
+            ready = false;
         }
 
 
 
     }else{
 
-        bool status;
+
+        bool status = false, ready = true;
 
         struct parameters recvparams;
         while(true){
-            status == 0;
+            status == EXIT_PROCESS;
             //Send with a point to point that you are free
-            MPI::COMM_WORLD.Send(&status, 1, MPI::BOOL, 0, 0);
+            MPI::COMM_WORLD.Send(&ready, 1, MPI::BOOL, 0, 0);
 
             //receive status value to exit or to receive a new params struct to start new sim
+            MPI::COMM_WORLD.Recv(&status, 1, MPI::BOOL, 0, 0);
 
             if(status == GET_READY){
                 //wait to receive parameters
-
+                MPI::COMM_WORLD.Recv(&recvparams, 1, MPIPPSTRUCT, 0, 0);
                 //Start sim
+                std::cout << "//////////////////////////////////////////////////////////////////////////////////"<< std::endl;
+                std::cout << "SAY HI: "<< PPS::pid << std::endl;
+                print_params(recvparams);
+                std::cout << "//////////////////////////////////////////////////////////////////////////////////"<< std::endl;
 
             }else if(status == EXIT_PROCESS){
                 break;
@@ -104,11 +115,7 @@ void PPS::start(){
 
     }
 
-
     MPIPPSTRUCT.Free();
-    //MPI CLOSE
-    /**************************************************************************/
-    MPI::Finalize();
-    /**************************************************************************/
+
 
 }
