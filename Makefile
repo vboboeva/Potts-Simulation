@@ -1,7 +1,7 @@
 ################################################################################
 # CONFIGURATION
 ################################################################################
-CPPC=icc
+CPPC=mpicxx
 CFLAGS= -std=c++11 -Wall
 OPTFLAGS= -O3
 CFLAGS+= -qopt-report
@@ -60,8 +60,6 @@ run: $(ODIR)/$(EXE)
 ################################################################################
 clean:
 	@rm -rf $(ODIR)/*.x $(ODIR)/*.dat $(ODIR)/*.txt $(ODIR)/*.o $(ODIR)/*.optrpt
-	@$(MAKE) -s -C bench clean
-	@$(MAKE) -s -C tests clean
 
 clean_obj:
 	@rm -rf $(ODIR)/*.o $(ODIR)/*.optrpt

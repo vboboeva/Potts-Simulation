@@ -9,6 +9,11 @@ struct parameters{
     int C;
     int p;
     int S;
+    int nupdates;
+    int NumSet;
+    int N_fact;
+    int Num_fact;
+    int tstatus;
     __fpv a;
     __fpv U;
     __fpv b1;
@@ -18,15 +23,10 @@ struct parameters{
     __fpv w;
     __fpv g;
     __fpv tau;
-    int nupdates;
-    int NumSet;
-    int N_fact;
-    int Num_fact;
     __fpv a_fact;
     __fpv eps;
     __fpv a_pf;
     __fpv fact_eigen_slope;
-    int tstatus;
 };
 
 #endif
