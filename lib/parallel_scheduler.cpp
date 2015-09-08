@@ -4,6 +4,8 @@
 #include "parallel_scheduler.h"
 #include <iostream>
 #include "utils.h"
+#include "simulation.h"
+#include <string>
 
 #include <chrono>
 #include <thread>
@@ -76,6 +78,7 @@ void PPS::start(){
 
                     temp = PPS::plist.back();
 
+                    //temp.N = status.Get_source() * 10;
                     //Deploy the parameterer struct
                     MPI::COMM_WORLD.Send(&temp, 1, MPIPPSTRUCT, status.Get_source(), 0);
 
@@ -92,6 +95,7 @@ void PPS::start(){
 
 
         bool status = false, ready = true;
+        const std::string filename = PPS::pid + "_proc_output.dat";
 
         struct parameters recvparams;
         while(true){
@@ -105,15 +109,17 @@ void PPS::start(){
             if(status == GET_READY){
                 //wait to receive parameters
 
-                //\\
+
                 //std::this_thread::sleep_for(std::chrono::seconds(PPS::pid));
-                
+
                 MPI::COMM_WORLD.Recv(&recvparams, 1, MPIPPSTRUCT, 0, 0);
                 //Start sim
-                std::cout << "//////////////////////////////////////////////////////////////////////////////////"<< std::endl;
-                std::cout << "SAY HI: "<< PPS::pid << std::endl;
-                print_params(recvparams);
-                std::cout << "//////////////////////////////////////////////////////////////////////////////////"<< std::endl;
+                //std::cout << "//////////////////////////////////////////////////////////////////////////////////"<< std::endl;
+                //std::cout << "SAY HI: "<< PPS::pid << std::endl;
+                //print_params(recvparams);
+                //std::cout << "STARTING REAL SIM"<< std::endl;
+                PottsSim(recvparams,);
+                //std::cout << "//////////////////////////////////////////////////////////////////////////////////"<< std::endl;
 
             }else if(status == EXIT_PROCESS){
                 break;

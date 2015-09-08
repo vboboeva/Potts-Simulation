@@ -1,4 +1,4 @@
-CPPC=icc
+CPPC=mpic++
 CFLAGS= -std=c++11 -Wall
 PRJ_ROOT=../../..
 OPTFLAGS= -O2

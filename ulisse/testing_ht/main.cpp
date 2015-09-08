@@ -1,3 +1,5 @@
+
+
 #include "parallel_scheduler.h"
 
 #include <iostream>
@@ -16,15 +18,19 @@ int main(int argc, char *argv[]){
     PPS::pid = MPI::COMM_WORLD.Get_rank(); //Set global variable
     /********************************************/
 
+    double t1,t2;
 
     if(PPS::pid == 0){
         int i;
+
+
+        t1 = MPI::Wtime();
         std::cout << "Potts simulation" << std::endl;
 
         struct parameters params;
         load_params("params.cfg", params);
 
-        for(i = 0; i < 3; ++i) PPS::plist.push_back(params);
+        for(i = 0; i < 19; ++i) PPS::plist.push_back(params);
 
     }
 
@@ -33,6 +39,8 @@ int main(int argc, char *argv[]){
     PPS::start();
 
     if(PPS::pid == 0){
+        t2 = MPI::Wtime();
+        std::cout << t2-t1 << std::endl;
         std::cout << "End of the simulation" << std::endl;
     }
 
