@@ -2,6 +2,8 @@
 #include <random>
 #include <string>
 #include <chrono>
+#include <fstream>
+#include <iomanip>
 
 #include "pattern_gen.h"
 #include "random_seq.h"
@@ -11,12 +13,14 @@
 #include "simulation.h"
 #include "config.h"
 
-void PottsSim(struct parameters params, std::string filename, std::string mode){
+void PottsSim(struct parameters params, std::string filename, const int & id, std::string mode){
 
     std::chrono::high_resolution_clock::time_point t1;
     std::chrono::high_resolution_clock::time_point t2;
-    // std::string strategy;
-    //
+    std::string strategy;
+    std::ofstream ofile;
+    ofile.open(filename, std::ios::app);
+
     // if(mode == "auto"){
     //     if( ((__fpv)params.N / params.C < 1.7) && (params.N > 1500) ){
     //         strategy = "hc";
@@ -25,6 +29,8 @@ void PottsSim(struct parameters params, std::string filename, std::string mode){
     //     }
     // }
 
+
+    t1 = std::chrono::high_resolution_clock::now();
     //Random seed init
     std::default_random_engine generator;
     generator.seed(12345);
@@ -65,7 +71,7 @@ void PottsSim(struct parameters params, std::string filename, std::string mode){
     ***************************************************************************/
     std::cout << "STARTING DYNAMICS" << std::endl;
     //Start the dynamics
-    t1 = std::chrono::high_resolution_clock::now();
+
     pnet.start_dynamics(generator,
                         params.p,
                         params.tstatus, //tstatus (tempostampa)
@@ -85,7 +91,19 @@ void PottsSim(struct parameters params, std::string filename, std::string mode){
                         );
 
     t2 = std::chrono::high_resolution_clock::now();
-    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>( t2 - t1 ).count();
-    std::cout << "DYN ELAPSED TIME(ms): "<< duration << std::endl;
 
+    //Save all the data needed in a file
+    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>( t2 - t1 ).count();
+
+    ofile << "\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"<< std::endl;
+    ofile << std::setw(30) << std::left << "SIM #" << id << std::endl;
+    ofile << "---------------------------------------------------------------------------------"<< std::endl;
+    ofile << std::setw(30) << std::left << "SIM ELAPSED TIME(ms): "<< duration << std::endl;
+    ofile << "---------------------------------------------------------------------------------"<< std::endl;
+    ofile << std::setw(30) << std::left << "LATCHING LENGTH: "<< pnet.latching_length << std::endl;
+    ofile << "//////////////////////////////////////////////////////////////////////////////////"<< std::endl;
+
+
+
+    ofile.close();
 }

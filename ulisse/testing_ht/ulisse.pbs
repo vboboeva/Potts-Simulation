@@ -19,4 +19,12 @@ make
 
 module purge
 module load openmpi/1.8.3/intel/14.0
-mpirun -np 20 ./main.x
+
+:>data.txt
+
+for i in 19 100 200 400
+do
+    rm  -f output/*
+    mpirun -np 20 ./main.x $i >> data.txt
+
+done

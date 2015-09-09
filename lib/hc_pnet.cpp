@@ -196,7 +196,7 @@ void HC_PNet::start_dynamics(std::default_random_engine & generator, const int &
     int unit;
 
     RandomSequence sequence(this->N);
-    __fpv latching_length = 0;
+    this->latching_length = 0;
     bool stop = false;
     int Mumax = p + 5, Mumaxold = p + 5, steps = 0;
 

@@ -21,16 +21,16 @@ int main(int argc, char *argv[]){
     double t1,t2;
 
     if(PPS::pid == 0){
-        int i;
+        int i,nsim;
 
+        nsim = std::atoi(argv[1]);
 
         t1 = MPI::Wtime();
         std::cout << "Potts simulation" << std::endl;
-
         struct parameters params;
         load_params("params.cfg", params);
 
-        for(i = 0; i < 19; ++i) PPS::plist.push_back(params);
+        for(i = 0; i < nsim; ++i) PPS::plist.push_back(params);
 
     }
 
@@ -40,7 +40,7 @@ int main(int argc, char *argv[]){
 
     if(PPS::pid == 0){
         t2 = MPI::Wtime();
-        std::cout << t2-t1 << std::endl;
+        std::cout << "[NSIM] [ELAPSED TIME] " << std::atoi(argv[1]) << " " << t2-t1 << std::endl;
         std::cout << "End of the simulation" << std::endl;
     }
 

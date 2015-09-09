@@ -11,8 +11,7 @@
 #include <thread>
 
 
-#define GET_READY 1
-#define EXIT_PROCESS 0
+#define EXIT_PROCESS -1
 
 #ifdef _FLOAT_PRECISION
 #define MPIFPV MPI::FLOAT
@@ -49,12 +48,9 @@ void PPS::start(){
 
     if(PPS::pid == 0){
 
-
-        std::cout << "SAY HI: "<< PPS::pid << std::endl;
-
         struct parameters temp;
-        int i,countdown = PPS::comm_size-1;
-        bool start = GET_READY,ready;
+        int start,i,countdown = PPS::comm_size-1;
+        bool ready = false;
         MPI::Status status;
 
         while(true){
@@ -70,11 +66,12 @@ void PPS::start(){
             if(ready){
                 if(PPS::plist.size() == 0 ){
                     start = EXIT_PROCESS;
-                    MPI::COMM_WORLD.Send(&start, 1, MPI::BOOL, status.Get_source(), 0);
+                    MPI::COMM_WORLD.Send(&start, 1, MPI::INT, status.Get_source(), 0);
                     countdown = countdown - 1;
                 }else{
-                    //Prepare him to receive the params and start the sim (a boolean, 0 exit 1 get ready)
-                    MPI::COMM_WORLD.Send(&start, 1, MPI::BOOL, status.Get_source(), 0);
+                    //Prepare him to receive the params and start the sim (an int that contains the simulation number (-1 = exit))
+                    start = PPS::plist.size() - 1;
+                    MPI::COMM_WORLD.Send(&start, 1, MPI::INT, status.Get_source(), 0);
 
                     temp = PPS::plist.back();
 
@@ -93,20 +90,19 @@ void PPS::start(){
 
     }else{
 
-
-        bool status = false, ready = true;
-        const std::string filename = PPS::pid + "_proc_output.dat";
-
+        int status;
+        bool ready = true;
         struct parameters recvparams;
+
         while(true){
             status == EXIT_PROCESS;
             //Send with a point to point that you are free
             MPI::COMM_WORLD.Send(&ready, 1, MPI::BOOL, 0, 0);
 
             //receive status value to exit or to receive a new params struct to start new sim
-            MPI::COMM_WORLD.Recv(&status, 1, MPI::BOOL, 0, 0);
+            MPI::COMM_WORLD.Recv(&status, 1, MPI::INT, 0, 0);
 
-            if(status == GET_READY){
+            if(status != EXIT_PROCESS){
                 //wait to receive parameters
 
 
@@ -118,10 +114,10 @@ void PPS::start(){
                 //std::cout << "SAY HI: "<< PPS::pid << std::endl;
                 //print_params(recvparams);
                 //std::cout << "STARTING REAL SIM"<< std::endl;
-                PottsSim(recvparams,);
+                PottsSim(recvparams,"output/"+ std::to_string(PPS::pid) + "_proc_output.dat", status);
                 //std::cout << "//////////////////////////////////////////////////////////////////////////////////"<< std::endl;
 
-            }else if(status == EXIT_PROCESS){
+            }else{
                 break;
             }
 

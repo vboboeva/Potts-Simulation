@@ -24,3 +24,4 @@ run: main.x
 
 clean:
 	@rm -rf *.x *.dat
+	@rm -rf output/*
