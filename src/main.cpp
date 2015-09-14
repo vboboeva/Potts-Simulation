@@ -11,7 +11,7 @@ int main(int argc, char *argv[]){
     struct parameters params;
     load_params("params.cfg", params);
 
-    PottsSim(params);
+    PottsSim(params,"output.dat");
 
     std::cout << "End of the simulation" << std::endl;
     return 0;

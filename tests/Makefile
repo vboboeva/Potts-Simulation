@@ -4,6 +4,9 @@ NEW_CODE=new_code
 
 .PHONY: test run clean
 
+test: run clean
+
+
 run:
 	@echo "Compiling and running old code..."
 	$(MAKE) -s -C $(OLD_CODE) run
@@ -14,7 +17,6 @@ run:
 
 	@./run_test.sh
 
-test: run clean
 
 clean:
 	$(MAKE) -s -C $(OLD_CODE) clean
