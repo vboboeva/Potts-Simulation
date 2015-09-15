@@ -1,3 +1,9 @@
-*.txt
-# Except this file
+**/*.optrpt
+**/*.o
+**/*.x
+**/*.dat
+**/*.txt
+**/*.out
+
+!.gitkeep
 !.gitignore
