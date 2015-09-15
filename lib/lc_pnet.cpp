@@ -162,6 +162,7 @@ void LC_PNet::update_rule(const int & unit, const __fpv buffer[], const int & pa
     for(i = 0; i < this->S; ++i){
 
         //Inside here maybe different order of + and * so slightly different solutions, have to check.
+        //#pragma novector
         for(j = 0; j < tsize; ++j){
             this->h[unit*S + i] += this->J[S*C*S*unit + C*S*i + j] * buffer[j];
         }
