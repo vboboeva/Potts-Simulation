@@ -383,13 +383,13 @@ float invZ;
 
 for(k=0;k<S;k++)
 {
-	s[i][k]=exp(beta*(r[i][k]-rmax))/Z;
+	s[i][k]=exp(beta*(r[i][k]-rmax))*Z;
 
 				//update of s[]
 
 }
 
-s[i][S]=exp(beta*(r[i][S]-rmax+U))/Z;
+s[i][S]=exp(beta*(r[i][S]-rmax+U))*Z;
 /*
 if(i == 599){
 	std::cout.precision(30);

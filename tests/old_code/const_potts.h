@@ -1,8 +1,8 @@
 
 #define      Retr   		3
 #define N 1000
-#define Cm 50
-#define      p				50
+#define Cm 300
+#define      p				100
 #define      S				3
 #define      a				0.25f
 #define      U				0.1f

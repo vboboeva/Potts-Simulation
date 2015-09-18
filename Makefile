@@ -3,7 +3,7 @@
 ################################################################################
 CPPC=mpic++
 CFLAGS= -std=c++11 -Wall
-OPTFLAGS= -O3
+OPTFLAGS= -O2 -xAVX
 CFLAGS+= -qopt-report
 CMACRO=-D_FLOAT_PRECISION
 
