@@ -152,10 +152,10 @@ void LC_PNet::update_rule(const int & unit, const __fpv buffer[], const int & pa
     const __fpv tbeta = beta;
 
     //Temp variables
-    __fpv temp;
-    __fpv * Jt = this->J + S*C*S*unit;
+    //__fpv temp;
+    //__fpv * Jt = this->J + S*C*S*unit;
 
-    __fpv e1[this->S],e2[this->S];
+    //__fpv e1[this->S],e2[this->S];
     //Second optimization END
 
 
@@ -174,23 +174,27 @@ void LC_PNet::update_rule(const int & unit, const __fpv buffer[], const int & pa
 
         //Inside here maybe different order of + and * so slightly different solutions, have to check.
         //#pragma novector
-        __assume_aligned(&buffer, 64);
-        __assume_aligned(&Jt, 64);
+        //__assume_aligned(&buffer, 64);
+        //__assume_aligned(&Jt, 64);
 
-        temp = 0;
+        //temp = 0;
 
 
-        #pragma vector aligned
+        //#pragma vector aligned
         //#pragma novector
-        for(j = 0; j < tsize; ++j){
-            temp += *(Jt++) * buffer[j];
-        }
+        // for(j = 0; j < tsize; ++j){
+        //     temp += *(Jt++) * buffer[j];
+        // }
+
         // int tmp = S*C*S*unit + C*S*i;
         // Jt = this->J + tmp;
         // const int ONE = 1;
         // float temp = sdot(&tsize, Jt, &ONE, buffer, &ONE);
+        for(j = 0; j < tsize; ++j){
+            this->h[unit*S + i] += this->J[S*C*S*unit + C*S*i + j] * buffer[j];
+        }
 
-        this->h[unit*S + i] = temp + (w * this->active_states[unit*S + i] - self + INcost * (pattern == i));
+        this->h[unit*S + i] += (w * this->active_states[unit*S + i] - self + INcost * (pattern == i));
 
         this->theta[unit*S + i] += tb2 * (this->active_states[unit*S + i]-this->theta[unit*S + i]);
 	    this->active_r[unit*S + i] += tb1 * (this->h[unit*S + i]-this->theta[unit*S + i]-this->active_r[unit*S + i]);
@@ -208,32 +212,32 @@ void LC_PNet::update_rule(const int & unit, const __fpv buffer[], const int & pa
 
     this->inactive_r[unit] += tb3 * (1.0 - this->inactive_states[unit] - this->inactive_r[unit]);
 
-    // Z=0;
-    //
-    // for(i = 0; i < S; ++i){
-    //     Z += exp(tbeta * (this->active_r[unit*S + i] - rmax));
-    // }
-    //
-    // Z += exp(beta * (this->inactive_r[unit] + U - rmax));
-    //
-    // for(i = 0; i < S; ++i){
-    // 	this->active_states[unit*S + i] = exp(tbeta * (this->active_r[unit*S + i] - rmax)) * Z;
-    // }
-    //
-    // this->inactive_states[unit]=exp(beta * (this->inactive_r[unit] - rmax + U)) * Z;
+    Z=0;
 
-    Z = 0;
-    __fpv ermax=0;
     for(i = 0; i < S; ++i){
-        e1[i]= exp(tbeta * (this->active_r[unit*S + i] - rmax));
-        Z += e1[i];
+        Z += exp(tbeta * (this->active_r[unit*S + i] - rmax));
     }
-    ermax = exp(tbeta * (this->inactive_r[unit] + U - rmax));
-    Z += ermax;
+
+    Z += exp(beta * (this->inactive_r[unit] + U - rmax));
+
     for(i = 0; i < S; ++i){
-        this->active_states[unit*S + i] = e1[i] * Z;
+    	this->active_states[unit*S + i] = exp(tbeta * (this->active_r[unit*S + i] - rmax)) * Z;
     }
-    this->inactive_states[unit] = ermax*Z;
+
+    this->inactive_states[unit]=exp(beta * (this->inactive_r[unit] - rmax + U)) * Z;
+
+    // Z = 0;
+    // __fpv ermax=0;
+    // for(i = 0; i < S; ++i){
+    //     e1[i]= exp(tbeta * (this->active_r[unit*S + i] - rmax));
+    //     Z += e1[i];
+    // }
+    // ermax = exp(tbeta * (this->inactive_r[unit] + U - rmax));
+    // Z += ermax;
+    // for(i = 0; i < S; ++i){
+    //     this->active_states[unit*S + i] = e1[i] * Z;
+    // }
+    // this->inactive_states[unit] = ermax*Z;
 
 }
 
@@ -270,7 +274,7 @@ void LC_PNet::start_dynamics(std::default_random_engine & generator, const int &
 
             unit = sequence.get(j);
 
-            __assume_aligned(&buffer, 64);
+            //__assume_aligned(&buffer, 64);
 
             //Fill the buffer containing all the states requested
             for(k = 0; k < this->C; ++k){
