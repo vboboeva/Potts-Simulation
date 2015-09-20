@@ -311,7 +311,7 @@ void LC_PNet::start_dynamics(std::default_random_engine & generator, const int &
         }
 
     }
-
+    latching_length = (double)t / N;
     end:
 
     if(t > tx + 100 * N){
