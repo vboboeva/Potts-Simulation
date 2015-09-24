@@ -380,6 +380,7 @@ Z+=exp(beta*(r[i][S]+U-rmax));							//modificato con nuova concezione di U
 float invZ;
 
 //invZ=1./Z;
+Z = 1.0/Z;
 
 for(k=0;k<S;k++)
 {

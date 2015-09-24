@@ -78,13 +78,13 @@ void LC_PNet::init_states(const __fpv & beta, const __fpv & U){
 
     int i,j;
 
-    __fpv n = -2 * beta - 2 * exp(beta * U) - 2 * S+sqrt(pow(2 * beta + 2 * exp(beta * U)+2 * S,2)+8 * (-beta * beta - 2 * beta * S + 2 * beta *S * exp(beta * U)));
-    __fpv d = 2 * (-beta * beta - 2 * beta * S + 2 * beta * S * exp(beta * U));
+    double n = -2 * beta - 2 * exp(beta * U) - 2 * S+sqrt(pow(2 * beta + 2 * exp(beta * U)+2 * S,2)+8 * (-beta * beta - 2 * beta * S + 2 * beta *S * exp(beta * U)));
+    n /= 2 * (-beta * beta - 2 * beta * S + 2 * beta * S * exp(beta * U));
 
     for(i = 0; i < this->N; ++i){
 
         for(j = 0; j < this->S; ++j){
-            this->active_states[i * S + j] = n / d;
+            this->active_states[i * S + j] = n;
         }
 
         this->inactive_states[i] = 1 - this->S*this->active_states[i * S];
@@ -182,10 +182,10 @@ void LC_PNet::update_rule(const int & unit, const __fpv buffer[], const int & pa
 
         //#pragma vector aligned
         //#pragma novector
-        #pragma vector always
+        //#pragma vector always
         for(j = 0; j < tsize; ++j){
             temp += *(Jt++) * buffer[j];
-            std::cout << temp << std::endl;
+            //std::cout << temp << std::endl;
         }
 
         // int tmp = S*C*S*unit + C*S*i;
@@ -223,6 +223,8 @@ void LC_PNet::update_rule(const int & unit, const __fpv buffer[], const int & pa
     }
 
     Z += exp(beta * (this->inactive_r[unit] + U - rmax));
+
+    Z = 1.0/Z;
 
     for(i = 0; i < S; ++i){
     	this->active_states[unit*S + i] = exp(tbeta * (this->active_r[unit*S + i] - rmax)) * Z;

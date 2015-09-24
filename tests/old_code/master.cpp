@@ -22,10 +22,10 @@ fclose(Passi);
 for(k=0;k<1;k++)
 {
  	printf("genero %d\n",k);
-	system("icpc -O0 -no-vec -fp-model strict genero_pattern.cpp -o gen.out");
+	system("icpc -O0 genero_pattern.cpp -o gen.out -std=c++11");
 	system("./gen.out");
 
-	system("icpc -O0 -no-vec -fp-model strict main_restyle.cpp -o main.out -std=c++11");
+	system("icpc -O0 main_restyle.cpp -o main.out -std=c++11");
 	system("./main.out");
 }
 
