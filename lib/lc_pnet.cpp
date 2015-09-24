@@ -152,10 +152,10 @@ void LC_PNet::update_rule(const int & unit, const __fpv buffer[], const int & pa
     const __fpv tbeta = beta;
 
     //Temp variables
-    //__fpv temp;
-    //__fpv * Jt = this->J + S*C*S*unit;
+    __fpv temp;
+    __fpv * Jt = this->J + S*C*S*unit;
 
-    //__fpv e1[this->S],e2[this->S];
+    __fpv e1[this->S],e2[this->S];
     //Second optimization END
 
 
@@ -177,24 +177,28 @@ void LC_PNet::update_rule(const int & unit, const __fpv buffer[], const int & pa
         //__assume_aligned(&buffer, 64);
         //__assume_aligned(&Jt, 64);
 
-        //temp = 0;
+        temp = 0;
 
 
         //#pragma vector aligned
         //#pragma novector
-        // for(j = 0; j < tsize; ++j){
-        //     temp += *(Jt++) * buffer[j];
-        // }
+        #pragma vector always
+        for(j = 0; j < tsize; ++j){
+            temp += *(Jt++) * buffer[j];
+            std::cout << temp << std::endl;
+        }
 
         // int tmp = S*C*S*unit + C*S*i;
         // Jt = this->J + tmp;
         // const int ONE = 1;
         // float temp = sdot(&tsize, Jt, &ONE, buffer, &ONE);
-        for(j = 0; j < tsize; ++j){
-            this->h[unit*S + i] += this->J[S*C*S*unit + C*S*i + j] * buffer[j];
-        }
 
-        this->h[unit*S + i] += (w * this->active_states[unit*S + i] - self + INcost * (pattern == i));
+
+        // for(j = 0; j < tsize; ++j){
+        //     this->h[unit*S + i] += this->J[S*C*S*unit + C*S*i + j] * buffer[j];
+        // }
+
+        this->h[unit*S + i] += temp + (w * this->active_states[unit*S + i] - self + INcost * (pattern == i));
 
         this->theta[unit*S + i] += tb2 * (this->active_states[unit*S + i]-this->theta[unit*S + i]);
 	    this->active_r[unit*S + i] += tb1 * (this->h[unit*S + i]-this->theta[unit*S + i]-this->active_r[unit*S + i]);
