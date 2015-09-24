@@ -278,13 +278,14 @@ Z+=exp(beta*(r[i][S]+U-rmax));							//modificato con nuova concezione di U
 
 float invZ;
 
-invZ=1./Z;
+//invZ=1./Z;
+Z = 1.0/Z;
 
 for(k=0;k<S;k++)
 {
-	s[i][k]=invZ*exp(beta*(r[i][k]-rmax));						//update of s[]
+	s[i][k]=Z*exp(beta*(r[i][k]-rmax));						//update of s[]
 }
-s[i][S]=invZ*exp(beta*(r[i][S]-rmax+U));
+s[i][S]=Z*exp(beta*(r[i][S]-rmax+U));
 
 
 /*

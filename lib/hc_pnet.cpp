@@ -181,11 +181,13 @@ void HC_PNet::update_rule(const int & unit, const int & pattern, const __fpv & U
 
     Z += exp(beta * (this->inactive_r[unit] + U - rmax));
 
+    Z = 1.0/Z;
+
     for(i = 0; i < S; ++i){
-    	this->active_states[unit*S + i] = exp(beta * (this->active_r[unit*S + i] - rmax)) / Z;
+    	this->active_states[unit*S + i] = exp(beta * (this->active_r[unit*S + i] - rmax)) * Z;
     }
 
-    this->inactive_states[unit]=exp(beta * (this->inactive_r[unit] - rmax + U)) / Z;
+    this->inactive_states[unit]=exp(beta * (this->inactive_r[unit] - rmax + U)) * Z;
 
 }
 

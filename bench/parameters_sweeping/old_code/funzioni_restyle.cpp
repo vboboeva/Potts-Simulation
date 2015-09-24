@@ -377,10 +377,11 @@ Z+=exp(beta*(r[i][S]+U-rmax));							//modificato con nuova concezione di U
 float invZ;
 
 //invZ=1./Z;
+Z = 1.0/Z;
 
 for(k=0;k<S;k++)
 {
-	s[i][k]=exp(beta*(r[i][k]-rmax))/Z;
+	s[i][k]=exp(beta*(r[i][k]-rmax))*Z;
 	/*
 	if(i == 0){
 		std::cout.precision(30);
@@ -389,7 +390,7 @@ for(k=0;k<S;k++)
 				}					//update of s[]
 				*/
 }
-s[i][S]=exp(beta*(r[i][S]-rmax+U))/Z;
+s[i][S]=exp(beta*(r[i][S]-rmax+U))*Z;
 
 
 /*
