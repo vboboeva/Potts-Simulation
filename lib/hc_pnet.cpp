@@ -13,10 +13,11 @@
 /*******************************************************************************
 HIGH CONNECTIVITY POTTS NETWORK
 *******************************************************************************/
-HC_PNet::HC_PNet(const int & N, const int & C, const int & S) : N(N),C(C),S(S){
+HC_PNet::HC_PNet(const int & N, const int & C, const int & S) : PNet(N){
 
     int i,j;
-
+    this->C = C;
+    this->S = S;
     this->cm = new int[N * C];
     this->ucm = new int[N * N];
     this->J = new __fpv[N * S * N * S];
@@ -75,13 +76,13 @@ void HC_PNet::init_states(const __fpv & beta, const __fpv & U){
 
     int i,j;
 
-    __fpv n = -2 * beta - 2 * exp(beta * U) - 2 * S+sqrt(pow(2 * beta + 2 * exp(beta * U)+2 * S,2)+8 * (-beta * beta - 2 * beta * S + 2 * beta *S * exp(beta * U)));
-    __fpv d = 2 * (-beta * beta - 2 * beta * S + 2 * beta * S * exp(beta * U));
+    double n = -2 * beta - 2 * exp(beta * U) - 2 * S+sqrt(pow(2 * beta + 2 * exp(beta * U)+2 * S,2)+8 * (-beta * beta - 2 * beta * S + 2 * beta *S * exp(beta * U)));
+    n /= 2 * (-beta * beta - 2 * beta * S + 2 * beta * S * exp(beta * U));
 
     for(i = 0; i < this->N; ++i){
 
         for(j = 0; j < this->S; ++j){
-            this->active_states[i * S + j] = n / d;
+            this->active_states[i * S + j] = n;
         }
 
         this->inactive_states[i] = 1 - this->S*this->active_states[i * S];

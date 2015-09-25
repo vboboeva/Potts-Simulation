@@ -16,10 +16,11 @@
 /*******************************************************************************
 HIGH CONNECTIVITY POTTS NETWORK
 *******************************************************************************/
-LC_PNet::LC_PNet(const int & N, const int & C, const int & S) : N(N),C(C),S(S){
+LC_PNet::LC_PNet(const int & N, const int & C, const int & S) : PNet(N){
 
     int i,j;
-
+    this->C = C;
+    this->S = S;
     this->cm = new int[N * C];
     this->ucm = new int[N * N];
     this->J = new __fpv[N * S * C * S]; //!"£"
@@ -317,7 +318,6 @@ void LC_PNet::start_dynamics(std::default_random_engine & generator, const int &
         }
 
     }
-    latching_length = (double)t / N;
     end:
 
     if(t > tx + 100 * N){

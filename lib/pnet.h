@@ -19,6 +19,7 @@ class PNet{
         void get_status(const int & p, const int & tx, const int & t, const int * xi, const __fpv & a, int & Mumaxold, int & Mumax, int & steps, bool & stop);
 
     public:
+        PNet(const int & N){this->N = N;}
         __fpv latching_length;
         virtual void print_cm() = 0;
         virtual void save_states_to_file(const std::string & filename) = 0;

@@ -7,7 +7,7 @@
 
 class LC_PNet : public PNet {
     protected:
-        int N; //Number of units
+        //int N; //Number of units (Now is defined on parent class PNet)
         int C; //Number of connections per unit
         int S; //Number of states
         int * cm; //Connection matrix

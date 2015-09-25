@@ -6,7 +6,7 @@ clean:
 	@rm -rf *.out *.x *.dat *.txt
 
 run: master.x
-	@./master.x 1>/dev/null
+	@./master.x
 
 patterns:
 	@icc -O0 genero_pattern.cpp -o gen.out

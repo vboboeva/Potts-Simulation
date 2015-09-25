@@ -26,7 +26,6 @@ void PNet::get_status(const int & p, const int & tx, const int & t, const int * 
             Mumaxold = Mumax;
         }
     }
-
     for(mu = 0; mu < p; ++mu){
 
         stop = true;
