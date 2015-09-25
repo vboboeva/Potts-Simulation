@@ -112,7 +112,10 @@ void VLC_PNet::start_dynamics(std::default_random_engine & generator, const int 
             if((t % tstatus) == 0){
                 latching_length = (double)t / N;
                 this->get_status(p,tx,t,xi,a,Mumaxold,Mumax,steps,stop);
+
+                #ifndef _NO_END_CONDITION
                 if(stop &&  (t > tx + 100 * N)) goto end;
+                #endif
             }
 
             t++;
@@ -120,12 +123,14 @@ void VLC_PNet::start_dynamics(std::default_random_engine & generator, const int 
         }
 
     }
+    #ifndef _NO_END_CONDITION
     end:
+    #endif
 
     if(t > tx + 100 * N){
-        std::cout << "Latching length: " <<  latching_length << std::endl;;
+        std::cout << "Latching length: " <<  latching_length << std::endl;
     }else{
-        std::cout << "Simulation finished before reaching minimum steps" << std::endl;
+        std::cout << "Simulation finished before reaching minimum steps (" << (double)t / N << ")" << std::endl;
     }
 
 
