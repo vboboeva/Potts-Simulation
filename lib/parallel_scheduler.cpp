@@ -19,6 +19,12 @@
 #define MPIFPV MPI::DOUBLE
 #endif
 
+
+/*
+Send/Receive queue
+Check http://stackoverflow.com/questions/10850716/what-exactly-happens-when-we-use-mpi-send-receive-functions
+*/
+
 std::vector<parameters> PPS::plist;
 int PPS::comm_size; //Set global variable
 int PPS::pid; //Set global variable

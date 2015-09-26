@@ -1,4 +1,3 @@
-
 #ifndef __PARAMETERS_STRUCT
 #define __PARAMETERS_STRUCT
 

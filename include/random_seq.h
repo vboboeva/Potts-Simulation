@@ -1,4 +1,3 @@
-
 #ifndef __RANDOM_SEQ_H
 #define __RANDOM_SEQ_H
 
