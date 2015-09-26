@@ -75,3 +75,6 @@ PASSWORDLESS_CLUSTER_DOMAIN=ulisse
 
 push:
 	@rsync --delete -avzhe ssh --progress . $(PASSWORDLESS_CLUSTER_DOMAIN):Potts_code/
+
+pull:
+	scp ulisse:Potts_code/bench/parameters_sweeping/*.dat bench/parameters_sweeping/
