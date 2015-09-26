@@ -48,7 +48,7 @@ int main(int argc, char *argv[]){
     generator.seed(12345);
 
     //Create the network
-    LC_PNet pnet(params.N,
+    VLC_PNet pnet(params.N,
                 params.C,
                 params.S
                     );

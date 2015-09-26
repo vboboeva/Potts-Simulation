@@ -204,7 +204,6 @@ for(ttt=0;ttt<Trete;ttt++)
 
 		}
 		#endif
-		
 		}
 
 
@@ -213,6 +212,7 @@ for(ttt=0;ttt<Trete;ttt++)
 if(ttt==(Trete-1))  lunghezza=t;
 }
 t2 = std::chrono::high_resolution_clock::now();
+//print_states("updated_states.dat");
 duration = std::chrono::duration_cast<std::chrono::milliseconds>( t2 - t1 ).count();
 std::cout << "TOTAL UPDATE ELAPSED TIME(ms): "<< duration << std::endl;
 

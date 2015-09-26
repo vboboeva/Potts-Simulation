@@ -156,7 +156,7 @@ void LC_PNet::update_rule(const int & unit, const __fpv buffer[], const int & pa
     __fpv temp;
     __fpv * Jt = this->J + S*C*S*unit;
 
-    __fpv e1[this->S],e2[this->S];
+    double e1[this->S];
     //Second optimization END
 
 
@@ -217,35 +217,51 @@ void LC_PNet::update_rule(const int & unit, const __fpv buffer[], const int & pa
 
     this->inactive_r[unit] += tb3 * (1.0 - this->inactive_states[unit] - this->inactive_r[unit]);
 
-    Z=0;
+    /*
+    VERSION 1.0 "last part", just a copy of the old code
+    */
+    //
+    // Z=0;
+    //
+    // for(i = 0; i < S; ++i){
+    //     Z += exp(tbeta * (this->active_r[unit*S + i] - rmax));
+    // }
+    //
+    // Z += exp(beta * (this->inactive_r[unit] + U - rmax));
+    //
+    // Z = 1.0/Z;
+    //
+    // for(i = 0; i < S; ++i){
+    // 	this->active_states[unit*S + i] = exp(tbeta * (this->active_r[unit*S + i] - rmax)) * Z;
+    // }
+    //
+    // this->inactive_states[unit]=exp(beta * (this->inactive_r[unit] - rmax + U)) * Z;
+    /*
+    END OF VERSION 1.0 "last part", just a copy of the old code
+    */
 
+
+    /*
+    VERSION 2.0 "last part"
+    */
+    Z = 0;
     for(i = 0; i < S; ++i){
-        Z += exp(tbeta * (this->active_r[unit*S + i] - rmax));
+        e1[i]= exp(tbeta * (this->active_r[unit*S + i] - rmax));
+        Z += e1[i];
     }
 
-    Z += exp(beta * (this->inactive_r[unit] + U - rmax));
-
-    Z = 1.0/Z;
+    Z += exp(tbeta * (this->inactive_r[unit] + U - rmax));
+    Z=1.0/Z;
 
     for(i = 0; i < S; ++i){
-    	this->active_states[unit*S + i] = exp(tbeta * (this->active_r[unit*S + i] - rmax)) * Z;
+        this->active_states[unit*S + i] = e1[i] * Z;
     }
-
-    this->inactive_states[unit]=exp(beta * (this->inactive_r[unit] - rmax + U)) * Z;
-
-    // Z = 0;
-    // __fpv ermax=0;
-    // for(i = 0; i < S; ++i){
-    //     e1[i]= exp(tbeta * (this->active_r[unit*S + i] - rmax));
-    //     Z += e1[i];
-    // }
-    // ermax = exp(tbeta * (this->inactive_r[unit] + U - rmax));
-    // Z += ermax;
-    // for(i = 0; i < S; ++i){
-    //     this->active_states[unit*S + i] = e1[i] * Z;
-    // }
-    // this->inactive_states[unit] = ermax*Z;
-
+    //Just changing the rmax and U sum order change for some configurations the output of the simulation.
+    //that it could go faster without reevaluating exp(tbeta * (this->inactive_r[unit] + U - rmax))
+    this->inactive_states[unit] = exp(beta * (this->inactive_r[unit] - rmax + U))*Z;
+    /*
+    END OF VERSION 2.0 "last part"
+    */
 }
 
 void LC_PNet::start_dynamics(std::default_random_engine & generator, const int & p,const int & tstatus, const int & nupdates, const int * xi, const int & pattern, const __fpv & a, const __fpv & U, const __fpv & w, const __fpv & g, const __fpv & tau, const __fpv & b1, const __fpv & b2, const __fpv & b3, const __fpv & beta, const int & tx){

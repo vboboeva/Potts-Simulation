@@ -143,6 +143,15 @@ void HC_PNet::update_rule(const int & unit, const int & pattern, const __fpv & U
     __fpv self=0, INcost, rmax, Z;
     int tsize = this->N * this->S;
 
+    //Second optimization START
+    const __fpv tb3 = b3;
+    const __fpv tb1 = b1;
+    const __fpv tb2 = b2;
+    const __fpv tbeta = beta;
+
+    double e1[this->S];
+    //Second optimization END
+
     rmax = this->inactive_r[unit];
 
     for(i = 0; i < this->S; ++i){
@@ -174,21 +183,51 @@ void HC_PNet::update_rule(const int & unit, const int & pattern, const __fpv & U
     }
     this->inactive_r[unit] += b3 * (1 - this->inactive_states[unit] - this->inactive_r[unit]);
 
-    Z=0;
+    /*
+    VERSION 1.0 "last part", just a copy of the old code
+    */
+    //
+    // Z=0;
+    //
+    // for(i = 0; i < S; ++i){
+    //     Z += exp(tbeta * (this->active_r[unit*S + i] - rmax));
+    // }
+    //
+    // Z += exp(beta * (this->inactive_r[unit] + U - rmax));
+    //
+    // Z = 1.0/Z;
+    //
+    // for(i = 0; i < S; ++i){
+    // 	this->active_states[unit*S + i] = exp(tbeta * (this->active_r[unit*S + i] - rmax)) * Z;
+    // }
+    //
+    // this->inactive_states[unit]=exp(beta * (this->inactive_r[unit] - rmax + U)) * Z;
+    /*
+    END OF VERSION 1.0 "last part", just a copy of the old code
+    */
 
+
+    /*
+    VERSION 2.0 "last part"
+    */
+    Z = 0;
     for(i = 0; i < S; ++i){
-        Z += exp(beta * (this->active_r[unit*S + i] - rmax));
+        e1[i]= exp(tbeta * (this->active_r[unit*S + i] - rmax));
+        Z += e1[i];
     }
 
-    Z += exp(beta * (this->inactive_r[unit] + U - rmax));
-
-    Z = 1.0/Z;
+    Z += exp(tbeta * (this->inactive_r[unit] + U - rmax));
+    Z=1.0/Z;
 
     for(i = 0; i < S; ++i){
-    	this->active_states[unit*S + i] = exp(beta * (this->active_r[unit*S + i] - rmax)) * Z;
+        this->active_states[unit*S + i] = e1[i] * Z;
     }
-
-    this->inactive_states[unit]=exp(beta * (this->inactive_r[unit] - rmax + U)) * Z;
+    //Just changing the rmax and U sum order change for some configurations the output of the simulation.
+    //that it could go faster without reevaluating exp(tbeta * (this->inactive_r[unit] + U - rmax))
+    this->inactive_states[unit] = exp(beta * (this->inactive_r[unit] - rmax + U))*Z;
+    /*
+    END OF VERSION 2.0 "last part"
+    */
 
 }
 

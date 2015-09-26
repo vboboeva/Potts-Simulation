@@ -98,7 +98,7 @@ int main(int argc, char *argv[]){
     duration = std::chrono::duration_cast<std::chrono::milliseconds>( t2 - t1 ).count();
     std::cout << "TOTAL UPDATE ELAPSED TIME(ms): "<< duration << std::endl;
 
-
+    //pnet.save_states_to_file("updated_states.dat");
     std::cout << "End of the simulation" << std::endl;
     return 0;
 }
