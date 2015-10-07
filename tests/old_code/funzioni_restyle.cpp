@@ -636,7 +636,7 @@ int item, jtem, info;
 int fatto, kk;
 
 //srand48(time(0));
-srand48(6937);
+srand48(4);
 for(kk=0; kk<NumSet; kk++)
 {
 	item = 0;

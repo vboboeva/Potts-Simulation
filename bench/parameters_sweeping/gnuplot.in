@@ -1,79 +1,85 @@
-set term pngcairo dashed size 1200, 800
-set key left top
+reset
+
+set term pngcairo dashed size 1200, 800 enhanced font 'Verdana,10'
+
+set key left top title 'Algorithms'
+set key spacing 1.5
+set key samplen 5
+
 set xrange [0:1000]
 
 
-set xlabel "# CONNECTIONS"
-set ylabel "time(ms)"
+set xlabel "Number of connections"
+set ylabel "Improvement"
 
 
 set for [i=1:5] linetype i dt i
 
 set datafile separator " "
 
-set style line 1 lt 1 lc rgb "blue" lw 2
-set style line 2 lt 2 lc rgb "blue" lw 2
+set style line 1 lc rgb "#004358" pt 5 ps 1 lt 1 lw 2
+set style line 2 lc rgb "#1F8A70" pt 7 ps 1 lt 1 lw 2
+set style line 3 lc rgb "#BEDB39" pt 9 ps 1 lt 1 lw 2
+set style line 4 lc rgb "#FD7400" pt 15 ps 1 lt 1 lw 2
 
-set style line 3 lt 1 lc rgb "green" lw 2
-set style line 4 lt 2 lc rgb "green" lw 2
-
-set style line 5 lt 1 lc rgb "red" lw 2
-set style line 6 lt 2 lc rgb "red" lw 2
-
-set style line 7 lt 1 lc rgb "black" lw 2
-set style line 8 lt 2 lc rgb "black" lw 2
 
 
 title1="benchmarks on ulisse with N=1000 connected network"
 title2="benchmarks on ulisse with N=1500 connected network"
 title3="benchmarks on ulisse with N=2000 connected network"
 
+set style line 11 lc rgb '#808080' lt 1
+set border 3 back ls 11
+set tics nomirror
 
-a="dynamic_time hc"
-b="dynamic_time lc"
-c="dynamic_time vlc"
-d="dynamics time old code"
+set style line 12 lc rgb '#808080' lt 0 lw 1
+set grid back ls 12
+
+a="hc"
+b="lc"
+c="vlc"
+d="old code"
 
 
 set autoscale
-set output 'test1000.png'
-plot "bench_times_1000.dat" every ::1 using 2:4 w l title a ls 1, \
-     '' every ::1 using 2:7 w l title b ls 3, \
-     '' every ::1 using 2:10 w l title c ls 5, \
-     '' every ::1 using 2:13 w l title d ls 7
-
-
-set output 'test1500.png'
-plot "bench_times_1500.dat" every ::1 using 2:4 w l title a ls 1, \
-     '' every ::1 using 2:7 w l title b ls 3, \
-     '' every ::1 using 2:10 w l title c ls 5, \
-     '' every ::1 using 2:13 w l title d ls 7
-
-
-set output 'test2000.png'
-plot "bench_times_2000.dat" every ::1 using 2:4 w l title a ls 1, \
-     '' every ::1 using 2:7 w l title b ls 3, \
-     '' every ::1 using 2:10 w l title c ls 5, \
-     '' every ::1 using 2:13 w l title d ls 7
-
+# set output 'test1000.png'
+# plot "bench_times_1000.dat" every ::1 using 2:4 w l title a ls 1, \
+#      '' every ::1 using 2:7 w l title b ls 3, \
+#      '' every ::1 using 2:10 w l title c ls 5, \
+#      '' every ::1 using 2:13 w l title d ls 7
+#
+#
+# set output 'test1500.png'
+# plot "bench_times_1500.dat" every ::1 using 2:4 w l title a ls 1, \
+#      '' every ::1 using 2:7 w l title b ls 3, \
+#      '' every ::1 using 2:10 w l title c ls 5, \
+#      '' every ::1 using 2:13 w l title d ls 7
+#
+#
+# set output 'test2000.png'
+# plot "bench_times_2000.dat" every ::1 using 2:4 w l title a ls 1, \
+#      '' every ::1 using 2:7 w l title b ls 3, \
+#      '' every ::1 using 2:10 w l title c ls 5, \
+#      '' every ::1 using 2:13 w l title d ls 7
+#
 
 
 
 set output 'scale1000.png'
-plot "bench_times_1000.dat" every ::1 using 2:($13/$4) w l title a ls 1, \
-     '' every ::1 using 2:($13/$7) w l title b ls 3, \
-     '' every ::1 using 2:($13/$10) w l title c ls 5, \
-     '' every ::1 using 2:($13/$13) w l title d ls 7
+plot "bench_times_1000.dat" every ::1 using 2:($13/$4) w lp title a ls 1, \
+     '' every ::1 using 2:($13/$7) w lp title b ls 2, \
+     '' every ::1 using 2:($13/$10) w lp title c ls 3, \
+     '' every ::1 using 2:($13/$13) w lp title d ls 4
 
 set output 'scale1500.png'
-plot "bench_times_1500.dat" every ::1 using 2:($13/$4) w l title a ls 1, \
-     '' every ::1 using 2:($13/$7) w l title b ls 3, \
-     '' every ::1 using 2:($13/$10) w l title c ls 5, \
-     '' every ::1 using 2:($13/$13) w l title d ls 7
+plot "bench_times_1500.dat" every ::1 using 2:($13/$4) w lp title a ls 1, \
+     '' every ::1 using 2:($13/$7) w lp title b ls 2, \
+     '' every ::1 using 2:($13/$10) w lp title c ls 3, \
+     '' every ::1 using 2:($13/$13) w lp title d ls 4
 
 
 set output 'scale2000.png'
-plot "bench_times_2000.dat" every ::1 using 2:($13/$4) w l title a ls 1, \
-     '' every ::1 using 2:($13/$7) w l title b ls 3, \
-     '' every ::1 using 2:($13/$10) w l title c ls 5, \
-     '' every ::1 using 2:($13/$13) w l title d ls 7
+plot "bench_times_2000.dat" every ::1 using 2:($13/$4) w lp title a ls 1, \
+     '' every ::1 using 2:($13/$7) w lp title b ls 2, \
+     '' every ::1 using 2:($13/$10) w lp title c ls 3, \
+     '' every ::1 using 2:($13/$13) w lp title d ls 4

@@ -1,18 +1,5 @@
 #!/bin/bash
 
-function run()
-{
-    dir=$1
-    exe=$2
-    pushd $dir || return
-    $exe | awk '
-        /INITIALIZATION ELAPSED/{TI=$4}
-        /TOTAL UPDATE ELAPSED/{TU=$5}
-        END{print TI,TU,TI+TU}
-    '
-    popd
-}
-
 # {500..1500..500}
 #2 3 4 5 6 7 8 9 10 12 14 16 18 20 24 28 34 40 48 58
 for i in 1000 1500 2000
@@ -35,11 +22,29 @@ do
         TIOLD=$(echo "$TEMP" | grep "INIT" | awk '{ SUM += $2} END { print SUM }')
         TUOLD=$(echo "$TEMP" | grep "TOTAL UPDATE ELAPSED" | awk '{print $5}')
 
-        HC="$(run hc ./main.x)"
-        LC="$(run lc ./main.x)"
-        VLC="$(run vlc ./main.x)"
+        cd ..
 
-        echo "$i $(($i/$j)) $HC $LC $VLC $TIOLD $TUOLD $(($TIOLD+$TUOLD))" # >> bench_times_$i.dat
+        cd hc
+        TEMP=$(./main.x | grep "TOTAL UPDATE ELAPSED\|INITIALIZATION ELAPSED")
+        TIHC=$(echo "$TEMP" | grep "INITIALIZATION ELAPSED" | awk '{print $4}')
+        TUHC=$(echo "$TEMP" | grep "TOTAL UPDATE ELAPSED" | awk '{print $5}')
+
+        cd ..
+        cd lc
+        TEMP=$(./main.x | grep "TOTAL UPDATE ELAPSED\|INITIALIZATION ELAPSED")
+        TILC=$(echo "$TEMP" | grep "INITIALIZATION ELAPSED" | awk '{print $4}')
+        TULC=$(echo "$TEMP" | grep "TOTAL UPDATE ELAPSED" | awk '{print $5}')
+
+        cd ..
+        cd vlc
+        TEMP=$(./main.x | grep "TOTAL UPDATE ELAPSED\|INITIALIZATION ELAPSED")
+        TIVLC=$(echo "$TEMP" | grep "INITIALIZATION ELAPSED" | awk '{print $4}')
+        TUVLC=$(echo "$TEMP" | grep "TOTAL UPDATE ELAPSED" | awk '{print $5}')
+
+        cd ..
+
+
+        echo "$i $(($i/$j)) $TIHC $TUHC $(($TIHC+$TUHC)) $TILC $TULC $(($TILC+$TULC)) $TIVLC $TUVLC $(($TIVLC+$TUVLC)) $TIOLD $TUOLD $(($TIOLD+$TUOLD))" >> bench_times_$i.dat
 
     done
 done
