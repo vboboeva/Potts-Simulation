@@ -6,8 +6,8 @@ clean:
 	@rm -rf *.out *.x *.dat *.txt
 
 run: master.x
-	@./master.x
+	./master.x
 
 patterns:
-	@icc -O0 genero_pattern.cpp -o gen.out
+	@icpc -O0 genero_pattern.cpp -o gen.out
 	@./gen.out

@@ -1,3 +1,4 @@
+#include <iostream>
 #include "pnet.h"
 
 
@@ -24,6 +25,12 @@ void PNet::get_status(const int & p, const int & tx, const int & t, const int * 
         if(Mumaxold != Mumax && Mmax > 0.5){
             steps++;
             Mumaxold = Mumax;
+
+            #ifdef _TEST
+            std::cout << "k: " <<Mumax << " n " << t << std::endl;
+            #endif
+
+            this->ksequence.push_back(Mumax);
         }
     }
     for(mu = 0; mu < p; ++mu){
@@ -36,4 +43,13 @@ void PNet::get_status(const int & p, const int & tx, const int & t, const int * 
         }
     }
 
+}
+
+void PNet::print_ksequence(){
+    int i;
+    std::cout << "ksequence: ";
+    for(i = 0; i < this->ksequence.size(); ++i){
+        std::cout << this->ksequence[i] << " ";
+    }
+    std::cout << std::endl;
 }

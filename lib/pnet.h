@@ -4,6 +4,7 @@
 
 #include <fstream>
 #include <random>
+#include <vector>
 #include "config.h"
 
 /**********************************
@@ -14,6 +15,7 @@ PNet family can be handled with those methods
 class PNet{
     protected:
         int N;
+        std::vector<int> ksequence;
         virtual void evaluate_m(const int & p, const __fpv & a, const int * xi, __fpv m[]) = 0;
         virtual void init_J(const int & p, const __fpv & a, const int * xi) = 0;
         void get_status(const int & p, const int & tx, const int & t, const int * xi, const __fpv & a, int & Mumaxold, int & Mumax, int & steps, bool & stop);
@@ -21,6 +23,7 @@ class PNet{
     public:
         PNet(const int & N){this->N = N;}
         __fpv latching_length;
+        void print_ksequence();
         virtual void print_cm() = 0;
         virtual void save_states_to_file(const std::string & filename) = 0;
         virtual void save_connections_to_file(const std::string & filename) = 0;

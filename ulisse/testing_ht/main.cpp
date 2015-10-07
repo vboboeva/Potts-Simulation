@@ -23,6 +23,12 @@ int main(int argc, char *argv[]){
     if(PPS::pid == 0){
         int i,nsim;
 
+        if(argc == 1){
+            std::cout << "Error, this program requires the number of simulation to launch as argument" << std::endl;
+            MPI::COMM_WORLD.Abort(0);
+            //MPI::Finalize();
+            return 1;
+        }
         nsim = std::atoi(argv[1]);
 
         t1 = MPI::Wtime();

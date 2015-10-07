@@ -166,6 +166,7 @@ for(ttt=0;ttt<Trete;ttt++)
 				numero=numero+1;
 				Mumaxold=Mumax;
 //				printf( "t=%f\n",t);
+				std::cout << "k: " <<Mumax << " n " << n << std::endl;
 			fprintf(ksequenza, "%d	", Mumax);
 //			printf("%d	", Mumax);
 			fflush (ksequenza);
@@ -182,6 +183,8 @@ for(ttt=0;ttt<Trete;ttt++)
 				mu=p;
 			}
 		}
+
+		#ifndef _NO_END_CONDITION
 		if((fine!=0) && (n>n0+100*N))
 		{
 			lunghezza=t;
@@ -189,6 +192,7 @@ for(ttt=0;ttt<Trete;ttt++)
 			ttt=Trete;
 			iii=N;
 		}
+		#endif
 		}
 
 
