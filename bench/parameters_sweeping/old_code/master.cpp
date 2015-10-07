@@ -21,10 +21,10 @@ fclose(Passi);
 
 
 printf("genero %d\n",k);
-system("icc -O3 genero_pattern.cpp -o gen.out -std=c++11");
+system("icc -O3 -g genero_pattern.cpp -o gen.out -std=c++11");
 system("./gen.out");
 
-system("icc -O3 main_restyle.cpp -D_NO_END_CONDITION -o main.out -std=c++11");
+system("icc -O3 -g main_restyle.cpp -D_NO_END_CONDITION -o main.out -std=c++11");
 system("./main.out");
 
 
