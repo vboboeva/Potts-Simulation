@@ -35,13 +35,15 @@ set tics nomirror
 set style line 12 lc rgb '#808080' lt 0 lw 1
 set grid back ls 12
 
-a="hc"
-b="lc"
-c="vlc"
-d="old code"
+a="N=1000"
+b="N=1500"
+c="N=2000"
+
 
 
 set autoscale
+
+set style fill transparent solid 0.2 noborder
 # set output 'test1000.png'
 # plot "bench_times_1000.dat" every ::1 using 2:4 w l title a ls 1, \
 #      '' every ::1 using 2:7 w l title b ls 3, \
@@ -65,21 +67,61 @@ set autoscale
 
 
 
-set output 'scale1000.png'
-plot "bench_times_1000.dat" every ::1 using 2:($13/$4) w lp title a ls 1, \
-     '' every ::1 using 2:($13/$7) w lp title b ls 2, \
-     '' every ::1 using 2:($13/$10) w lp title c ls 3, \
-     '' every ::1 using 2:($13/$13) w lp title d ls 4
+set output 'hc.png'
 
-set output 'scale1500.png'
-plot "bench_times_1500.dat" every ::1 using 2:($13/$4) w lp title a ls 1, \
-     '' every ::1 using 2:($13/$7) w lp title b ls 2, \
-     '' every ::1 using 2:($13/$10) w lp title c ls 3, \
-     '' every ::1 using 2:($13/$13) w lp title d ls 4
+set multiplot layout 2, 1 title "High connectivity" font ",14"
+set tmargin 2
+set title "Scaling"
+plot "1000.txt" using 2:(1) w lp title a ls 1, \
+    "1000.txt" using 2:($33/$6) w lp title a ls 2, \
+    "1000.txt" using 2:($33/$7):($33/$8) with filledcurves notitle, \
+    "1500.txt" using 2:($33/$6) w lp title b ls 3, \
+    "1500.txt" using 2:($33/$7):($33/$8) with filledcurves notitle, \
+    "2000.txt" using 2:($33/$6) w lp title c ls 4, \
+    "2000.txt" using 2:($33/$7):($33/$8) with filledcurves notitle
 
+set title "Timings"
+plot "1000.txt" using 2:33 w lp title a ls 1, \
+    "1000.txt" using 2:6 w lp title a ls 2, \
+    "1000.txt" using 2:7:8 with filledcurves notitle, \
+    "1500.txt" using 2:6 w lp title b ls 3, \
+    "1500.txt" using 2:7:8 with filledcurves notitle, \
+    "2000.txt" using 2:6 w lp title c ls 4, \
+    "2000.txt" using 2:7:8 with filledcurves notitle
 
-set output 'scale2000.png'
-plot "bench_times_2000.dat" every ::1 using 2:($13/$4) w lp title a ls 1, \
-     '' every ::1 using 2:($13/$7) w lp title b ls 2, \
-     '' every ::1 using 2:($13/$10) w lp title c ls 3, \
-     '' every ::1 using 2:($13/$13) w lp title d ls 4
+unset multiplot
+
+set output 'lc.png'
+plot "1000.txt" using 2:($33/$15) w lp title a ls 1, \
+    "1000.txt" using 2:($33/$16):($33/$17) with filledcurves notitle, \
+    "1500.txt" using 2:($33/$15) w lp title b ls 2, \
+    "1500.txt" using 2:($33/$16):($33/$17) with filledcurves notitle, \
+    "2000.txt" using 2:($33/$15) w lp title c ls 3, \
+    "2000.txt" using 2:($33/$16):($33/$17) with filledcurves notitle
+
+set output 'vlc.png'
+plot "1000.txt" using 2:($33/$24) w lp title a ls 1, \
+    "1000.txt" using 2:($33/$25):($33/$26) with filledcurves notitle, \
+    "1500.txt" using 2:($33/$24) w lp title b ls 2, \
+    "1500.txt" using 2:($33/$25):($33/$26) with filledcurves notitle, \
+    "2000.txt" using 2:($33/$24) w lp title c ls 3, \
+    "2000.txt" using 2:($33/$25):($33/$26) with filledcurves notitle
+
+# set output 'scale1000.png'
+# plot "bench_times_1000.dat" every ::1 using 2:($13/$4) w lp title a ls 1, \
+#      '' every ::1 using 2:($13/$7) w lp title b ls 2, \
+#      '' every ::1 using 2:($13/$10) w lp title c ls 3, \
+#      '' every ::1 using 2:($13/$13) w lp title d ls 4
+#
+# set output 'scale1500.png'
+# plot "bench_times_1500.dat" every ::1 using 2:($13/$4) w lp title a ls 1, \
+#      '' every ::1 using 2:($13/$7) w lp title b ls 2, \
+#      '' every ::1 using 2:($13/$10) w lp title c ls 3, \
+#      '' every ::1 using 2:($13/$13) w lp title d ls 4
+#
+#
+# set output 'scale2000.png'
+# plot "bench_times_2000.dat" every ::1 using 2:($13/$4) w lp title a ls 1, \
+#      '' every ::1 using 2:($13/$7) w lp title b ls 2, \
+#      '' every ::1 using 2:($13/$10) w lp title c ls 3, \
+#      '' every ::1 using 2:($13/$13) w lp title d ls 4
