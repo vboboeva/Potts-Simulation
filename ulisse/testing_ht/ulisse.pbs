@@ -22,9 +22,12 @@ module load openmpi/1.8.3/intel/14.0
 
 :>data.txt
 
-for i in 19 100 200 400
+for j in 1 10 20
 do
-    rm  -f output/*
-    mpirun -np 20 ./main.x $i >> data.txt
+    for i in 19 39 79
+    do
+        rm  -f output/*
+        mpirun -np $j ./main.x $i >> data.txt
 
+    done
 done

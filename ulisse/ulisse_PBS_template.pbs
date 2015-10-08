@@ -9,9 +9,9 @@
 cd /home/lromor/Potts_code/bench/parameters_sweeping
 
 #NORMAL
-module purge
-module load gnu/4.9.2
-source /u/shared/programs/x86_64/intel/parallel_studio_xe_2015/composer_xe_2015.0.090/bin/iccvars.sh intel64
+# module purge
+# module load gnu/4.9.2
+# source /u/shared/programs/x86_64/intel/parallel_studio_xe_2015/composer_xe_2015.0.090/bin/iccvars.sh intel64
 
 #MPI
 # module load openmpi/1.8.3/intel/14.0

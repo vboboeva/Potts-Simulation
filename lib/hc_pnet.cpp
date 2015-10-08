@@ -149,6 +149,10 @@ void HC_PNet::update_rule(const int & unit, const int & pattern, const __fpv & U
     const __fpv tb2 = b2;
     const __fpv tbeta = beta;
 
+    //Temp variables
+    __fpv temp;
+    __fpv * Jt = this->J + S*N*S*unit;
+
     double e1[this->S];
     //Second optimization END
 
@@ -164,11 +168,13 @@ void HC_PNet::update_rule(const int & unit, const int & pattern, const __fpv & U
 
     for(i = 0; i < this->S; ++i){
 
+        temp = 0;
+
         for(j = 0; j < tsize; ++j){
-            this->h[unit*S + i] += this->J[S*N*S*unit + N*S*i + j] * this->active_states[j];
+            temp += *(Jt++) * this->active_states[j];
         }
 
-        this->h[unit*S + i] += w * this->active_states[unit*S + i] - self + INcost * (pattern == i);
+        this->h[unit*S + i] += temp + w * this->active_states[unit*S + i] - self + INcost * (pattern == i);
 
         this->theta[unit*S + i] += b2 * (this->active_states[unit*S + i]-this->theta[unit*S + i]);
 	    this->active_r[unit*S + i] += b1 * (this->h[unit*S + i]-this->theta[unit*S + i]-this->active_r[unit*S + i]);
