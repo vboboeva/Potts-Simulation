@@ -36,7 +36,17 @@ int main(int argc, char *argv[]){
         struct parameters params;
         load_params("params.cfg", params);
 
-        for(i = 0; i < nsim; ++i) PPS::plist.push_back(params);
+        std::default_random_engine generator;
+        generator.seed(12345);
+        std::uniform_int_distribution<int> randC(0,params.N / 2);
+        std::uniform_int_distribution<int> randp(0,100);
+        std::uniform_int_distribution<int> rands(0,5);
+        for(i = 0; i < nsim; ++i){
+            params.C = randC(generator);
+            params.p = randp(generator);
+            params.S = rands(generator);
+            PPS::plist.push_back(params);
+        }
 
     }
 

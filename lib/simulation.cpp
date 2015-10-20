@@ -33,7 +33,7 @@ void PottsSim(struct parameters params, std::string filename, const int & id, st
     t1 = std::chrono::high_resolution_clock::now();
     //Random seed init
     std::default_random_engine generator;
-    generator.seed(12345);
+    //generator.seed(12345);
 
     /***************************************************************************
     INITIALIZATION
@@ -54,7 +54,7 @@ void PottsSim(struct parameters params, std::string filename, const int & id, st
 
     pgen.generate();
     //Create the network
-    generator.seed(12345);
+    //generator.seed(12345);
 
 
     LC_PNet pnet(params.N,
