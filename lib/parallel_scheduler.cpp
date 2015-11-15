@@ -6,10 +6,12 @@
 #include "utils.h"
 #include "simulation.h"
 #include <string>
+#include <fstream>
 
 #include <chrono>
 #include <thread>
 
+#include "master.h"
 
 #define EXIT_PROCESS -1
 
@@ -59,6 +61,10 @@ void PPS::start(){
         bool ready = false;
         MPI::Status status;
 
+        //Logs
+        std::ofstream logsfile;
+        logsfile.open("tslogs.txt",  std::fstream::out | std::fstream::trunc);
+
         while(true){
 
 
@@ -67,6 +73,8 @@ void PPS::start(){
             //Check first ready-to-compute process
             MPI::COMM_WORLD.Recv(&ready, 1, MPI::BOOL, MPI_ANY_SOURCE, 0, status);
 
+            //Logs
+            logsfile << "Remaining sims: " << PPS::plist.size()  << " process countdown: " << countdown << std::endl;
 
             //Send a 0 status to all the process to stop
             if(ready){
@@ -82,6 +90,7 @@ void PPS::start(){
                     temp = PPS::plist.back();
 
                     //temp.N = status.Get_source() * 10;
+
                     //Deploy the parameterer struct
                     MPI::COMM_WORLD.Send(&temp, 1, MPIPPSTRUCT, status.Get_source(), 0);
 
@@ -91,6 +100,8 @@ void PPS::start(){
             }
             ready = false;
         }
+
+        logsfile.close();
 
 
 
@@ -120,10 +131,11 @@ void PPS::start(){
                 //std::cout << "SAY HI: "<< PPS::pid << std::endl;
                 //print_params(recvparams);
                 //std::cout << "STARTING REAL SIM"<< std::endl;
-                PottsSim(recvparams,"output/"+ std::to_string(PPS::pid) + "_proc_output.dat", status);
+                //PottsSim(recvparams,"output/"+ std::to_string(PPS::pid) + "_proc_output.dat", status);
+                old_code( PPS::pid );
                 //std::cout << "//////////////////////////////////////////////////////////////////////////////////"<< std::endl;
-
             }else{
+                std::cout << "I'm the process "<< PPS::pid << ", ready to die." << std::endl;
                 break;
             }
 

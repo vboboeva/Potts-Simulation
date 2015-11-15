@@ -1,0 +1,42 @@
+reset
+
+set term pngcairo dashed size 1200, 800 enhanced font 'Verdana,10'
+
+set key left top
+set key spacing 1.5
+set key samplen 5
+
+set xlabel "Number of simulations"
+
+
+
+
+set for [i=1:5] linetype i dt i
+
+set datafile separator " "
+
+set style line 1 lc rgb "#004358" pt 5 ps 1 lt 1 lw 2
+set style line 2 lc rgb "#1F8A70" pt 7 ps 1 lt 1 lw 2
+set style line 3 lc rgb "#BEDB39" pt 9 ps 1 lt 1 lw 2
+set style line 4 lc rgb "#FD7400" pt 15 ps 1 lt 1 lw 2
+
+
+set style line 11 lc rgb '#808080' lt 1
+set border 3 back ls 11
+set tics nomirror
+
+set style line 12 lc rgb '#808080' lt 0 lw 1
+set grid back ls 12
+
+
+set autoscale
+
+set style fill transparent solid 0.2 noborder
+
+
+set output 'tmo.png'
+
+set ylabel "Seconds"
+
+set title "Task manager on ulisse with #N procs and #N-1 simulations each run"
+plot "data.txt" using 1:2 w lp title "N procs N-1 sim" ls 1

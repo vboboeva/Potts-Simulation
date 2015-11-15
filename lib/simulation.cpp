@@ -71,7 +71,7 @@ void PottsSim(struct parameters params, std::string filename, const int & id, st
     ***************************************************************************/
     std::cout << "STARTING DYNAMICS" << std::endl;
     //Start the dynamics
-
+    t1 = std::chrono::high_resolution_clock::now();
     pnet.start_dynamics(generator,
                         params.p,
                         params.tstatus, //tstatus (tempostampa)
@@ -94,7 +94,7 @@ void PottsSim(struct parameters params, std::string filename, const int & id, st
 
     //Save all the data needed in a file
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>( t2 - t1 ).count();
-
+    std::cout << "DURATION: " << duration << std::endl;
     ofile << "\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"<< std::endl;
     ofile << std::setw(30) << std::left << "SIM #" << id << std::endl;
     ofile << "---------------------------------------------------------------------------------"<< std::endl;

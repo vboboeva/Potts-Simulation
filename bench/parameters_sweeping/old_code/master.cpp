@@ -27,7 +27,4 @@ system("./gen.out");
 system("icc -O3 main_restyle.cpp -D_NO_END_CONDITION -o main.out -std=c++11");
 system("./main.out");
 
-
-
-
 }

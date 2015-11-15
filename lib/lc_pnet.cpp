@@ -300,11 +300,11 @@ void LC_PNet::start_dynamics(std::default_random_engine & generator, const int &
             //__assume_aligned(&buffer, 64);
 
             //Fill the buffer containing all the states requested
-            for(k = 0; k < this->C; ++k){
-                for(n = 0; n < this->S; ++n){
-                    buffer[k*S + n] = this->active_states[S*cm[unit * C + k] + n];
-                }
-            }
+            // for(k = 0; k < this->C; ++k){
+            //     for(n = 0; n < this->S; ++n){
+            //         buffer[k*S + n] = this->active_states[S*cm[unit * C + k] + n];
+            //     }
+            // }
 
             //Update the unit
             this->update_rule(unit,
