@@ -220,21 +220,15 @@ void LC_PNet::update_rule(const int & unit, const __fpv buffer[], const int & pa
     /*
     VERSION 1.0 "last part", just a copy of the old code
     */
-    //
     // Z=0;
-    //
     // for(i = 0; i < S; ++i){
     //     Z += exp(tbeta * (this->active_r[unit*S + i] - rmax));
     // }
-    //
     // Z += exp(beta * (this->inactive_r[unit] + U - rmax));
-    //
     // Z = 1.0/Z;
-    //
     // for(i = 0; i < S; ++i){
     // 	this->active_states[unit*S + i] = exp(tbeta * (this->active_r[unit*S + i] - rmax)) * Z;
     // }
-    //
     // this->inactive_states[unit]=exp(beta * (this->inactive_r[unit] - rmax + U)) * Z;
     /*
     END OF VERSION 1.0 "last part", just a copy of the old code
@@ -300,11 +294,11 @@ void LC_PNet::start_dynamics(std::default_random_engine & generator, const int &
             //__assume_aligned(&buffer, 64);
 
             //Fill the buffer containing all the states requested
-            // for(k = 0; k < this->C; ++k){
-            //     for(n = 0; n < this->S; ++n){
-            //         buffer[k*S + n] = this->active_states[S*cm[unit * C + k] + n];
-            //     }
-            // }
+            for(k = 0; k < this->C; ++k){
+                for(n = 0; n < this->S; ++n){
+                    buffer[k*S + n] = this->active_states[S*cm[unit * C + k] + n];
+                }
+            }
 
             //Update the unit
             this->update_rule(unit,

@@ -1,0 +1,4217 @@
+Potts simulation
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Latching length: 2950
+DURATION: 91
+I'm the process 1, ready to die.
+[NSIM] [ELAPSED TIME] 1 0.112037
+End of the simulation
+Potts simulation
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Latching length: 2950
+DURATION: 89
+I'm the process 1, ready to die.
+Latching length: 2950
+DURATION: 95
+I'm the process 2, ready to die.
+[NSIM] [ELAPSED TIME] 2 0.11285
+End of the simulation
+Potts simulation
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Latching length: 2950
+DURATION: 91
+I'm the process 2, ready to die.
+Latching length: 2950
+DURATION: 91
+I'm the process 3, ready to die.
+Latching length: 2950
+DURATION: 91
+I'm the process 1, ready to die.
+[NSIM] [ELAPSED TIME] 3 0.113387
+End of the simulation
+Potts simulation
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Latching length: 2950
+DURATION: 91
+Latching length: 2950
+DURATION: 91
+I'm the process 1, ready to die.
+I'm the process 3, ready to die.
+Latching length: 2950
+DURATION: 94
+I'm the process 4, ready to die.
+Latching length: 2950
+DURATION: 94
+I'm the process 2, ready to die.
+[NSIM] [ELAPSED TIME] 4 0.112561
+End of the simulation
+Potts simulation
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Latching length: 2950
+DURATION: 94
+Latching length: 2950
+DURATION: 94
+Latching length: 2950
+DURATION: 94
+I'm the process 4, ready to die.
+Latching length: 2950
+DURATION: 94
+I'm the process 2, ready to die.
+Latching length: 2950
+DURATION: 94
+I'm the process 1, ready to die.
+I'm the process 5, ready to die.
+I'm the process 3, ready to die.
+[NSIM] [ELAPSED TIME] 5 0.114908
+End of the simulation
+Potts simulation
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Latching length: 2950
+DURATION: 97
+Latching length: 2950
+DURATION: 94
+Latching length: 2950
+DURATION: 94
+Latching length: 2950
+DURATION: 97
+Latching length: 2950
+DURATION: 94
+I'm the process 1, ready to die.
+Latching length: 2950
+DURATION: 97
+I'm the process 5, ready to die.
+I'm the process 4, ready to die.
+I'm the process 6, ready to die.
+I'm the process 3, ready to die.
+I'm the process 2, ready to die.
+[NSIM] [ELAPSED TIME] 6 0.120481
+End of the simulation
+Potts simulation
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Latching length: 2950
+DURATION: 97
+Latching length: 2950
+DURATION: 97
+Latching length: 2950
+DURATION: 96
+I'm the process 4, ready to die.
+I'm the process 2, ready to die.
+I'm the process 6, ready to die.
+Latching length: 2950
+DURATION: 97
+Latching length: 2950
+DURATION: 97
+Latching length: 2950
+DURATION: 97
+I'm the process 1, ready to die.
+Latching length: 2950
+DURATION: 97
+I'm the process 3, ready to die.
+I'm the process 5, ready to die.
+I'm the process 7, ready to die.
+[NSIM] [ELAPSED TIME] 7 0.118014
+End of the simulation
+Potts simulation
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Latching length: 2950
+DURATION: 97
+Latching length: 2950
+DURATION: 97
+Latching length: 2950
+DURATION: 96
+I'm the process 3, ready to die.
+I'm the process 5, ready to die.
+I'm the process 1, ready to die.
+Latching length: 2950
+DURATION: 97
+I'm the process 7, ready to die.
+Latching length: 2950
+DURATION: 100
+Latching length: 2950
+DURATION: 100
+Latching length: 2950
+DURATION: 100
+Latching length: 2950
+DURATION: 100
+I'm the process 8, ready to die.
+I'm the process 4, ready to die.
+I'm the process 6, ready to die.
+I'm the process 2, ready to die.
+[NSIM] [ELAPSED TIME] 8 0.121088
+End of the simulation
+Potts simulation
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Latching length: 2950
+DURATION: 99
+Latching length: 2950
+DURATION: 100
+Latching length: 2950
+DURATION: 99
+Latching length: 2950
+DURATION: 100
+I'm the process 6, ready to die.
+Latching length: 2950
+DURATION: 99
+I'm the process 4, ready to die.
+I'm the process 2, ready to die.
+Latching length: 2950
+DURATION: 101
+I'm the process 3, ready to die.
+Latching length: 2950
+DURATION: 100
+I'm the process 8, ready to die.
+Latching length: 2950
+DURATION: 101
+I'm the process 5, ready to die.
+I'm the process 1, ready to die.
+Latching length: 2950
+DURATION: 100
+I'm the process 7, ready to die.
+I'm the process 9, ready to die.
+[NSIM] [ELAPSED TIME] 9 0.122433
+End of the simulation
+Potts simulation
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Latching length: 2950
+DURATION: 100
+Latching length: 2950
+DURATION: 100
+Latching length: 2950
+DURATION: 100
+I'm the process 1, ready to die.
+Latching length: 2950
+DURATION: 100
+I'm the process 3, ready to die.
+I'm the process 5, ready to die.
+I'm the process 7, ready to die.
+Latching length: 2950
+DURATION: 100
+Latching length: 2950
+DURATION: 103
+I'm the process 9, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 4, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 2, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 8, ready to die.
+I'm the process 6, ready to die.
+I'm the process 10, ready to die.
+[NSIM] [ELAPSED TIME] 10 0.127502
+End of the simulation
+Potts simulation
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 7, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 1, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 5, ready to die.
+I'm the process 3, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 2, ready to die.
+I'm the process 9, ready to die.
+I'm the process 4, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 10, ready to die.
+I'm the process 6, ready to die.
+I'm the process 8, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 11, ready to die.
+[NSIM] [ELAPSED TIME] 11 0.128842
+End of the simulation
+Potts simulation
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 4, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 8, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 6, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 2, ready to die.
+I'm the process 7, ready to die.
+I'm the process 1, ready to die.
+I'm the process 12, ready to die.
+I'm the process 3, ready to die.
+I'm the process 10, ready to die.
+I'm the process 9, ready to die.
+I'm the process 5, ready to die.
+I'm the process 11, ready to die.
+[NSIM] [ELAPSED TIME] 12 0.128299
+End of the simulation
+Potts simulation
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 2, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 9, ready to die.
+I'm the process 10, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 1, ready to die.
+I'm the process 3, ready to die.
+I'm the process 4, ready to die.
+I'm the process 8, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 6, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 7, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 11, ready to die.
+I'm the process 13, ready to die.
+Latching length: 2950
+DURATION: 107
+I'm the process 5, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 12, ready to die.
+[NSIM] [ELAPSED TIME] 13 0.149282
+End of the simulation
+Potts simulation
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 5, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 4, ready to die.
+I'm the process 8, ready to die.
+I'm the process 1, ready to die.
+I'm the process 13, ready to die.
+I'm the process 14, ready to die.
+I'm the process 11, ready to die.
+I'm the process 3, ready to die.
+I'm the process 7, ready to die.
+I'm the process 10, ready to die.
+I'm the process 2, ready to die.
+I'm the process 6, ready to die.
+I'm the process 12, ready to die.
+I'm the process 9, ready to die.
+[NSIM] [ELAPSED TIME] 14 0.188636
+End of the simulation
+Potts simulation
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 3, ready to die.
+I'm the process 4, ready to die.
+I'm the process 6, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 11, ready to die.
+I'm the process 1, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 13, ready to die.
+I'm the process 12, ready to die.
+I'm the process 15, ready to die.
+I'm the process 10, ready to die.
+I'm the process 9, ready to die.
+I'm the process 5, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 2, ready to die.
+I'm the process 7, ready to die.
+I'm the process 8, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 14, ready to die.
+[NSIM] [ELAPSED TIME] 15 0.191066
+End of the simulation
+cn07-29.12539ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.12568ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+Potts simulation
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 11, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 9, ready to die.
+I'm the process 13, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 8, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 10, ready to die.
+I'm the process 15, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 14, ready to die.
+I'm the process 12, ready to die.
+I'm the process 16, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 1, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 2, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 5, ready to die.
+I'm the process 3, ready to die.
+I'm the process 6, ready to die.
+I'm the process 7, ready to die.
+I'm the process 4, ready to die.
+[NSIM] [ELAPSED TIME] 16 0.125878
+End of the simulation
+cn07-29.12593ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.12594ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.12622ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.12624ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+Potts simulation
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 102
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 16, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 4, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 102
+I'm the process 12, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 14, ready to die.
+I'm the process 13, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 17, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 6, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 15, ready to die.
+I'm the process 3, ready to die.
+I'm the process 2, ready to die.
+I'm the process 5, ready to die.
+I'm the process 1, ready to die.
+I'm the process 9, ready to die.
+I'm the process 10, ready to die.
+I'm the process 7, ready to die.
+I'm the process 11, ready to die.
+I'm the process 8, ready to die.
+[NSIM] [ELAPSED TIME] 17 0.128863
+End of the simulation
+cn07-29.12652ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.12650ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.12651ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.12679ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.12681ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.12683ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+Potts simulation
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 2, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 1, ready to die.
+I'm the process 13, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 5, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 4, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 7, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 6, ready to die.
+I'm the process 8, ready to die.
+Latching length: 2950
+DURATION: 106
+I'm the process 9, ready to die.
+I'm the process 3, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 11, ready to die.
+I'm the process 10, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 14, ready to die.
+I'm the process 16, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 18, ready to die.
+I'm the process 12, ready to die.
+I'm the process 17, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 15, ready to die.
+[NSIM] [ELAPSED TIME] 18 0.131703
+End of the simulation
+cn07-29.12711ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.12710ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.12712ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.12713ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.12739ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.12741ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.12743ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.12745ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+Potts simulation
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 1, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 19, ready to die.
+I'm the process 15, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 4, ready to die.
+I'm the process 3, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 2, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 6, ready to die.
+I'm the process 5, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 7, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 10, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 9, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 14, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 13, ready to die.
+I'm the process 16, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 12, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 17, ready to die.
+Latching length: 2950
+DURATION: 106
+I'm the process 11, ready to die.
+I'm the process 18, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 8, ready to die.
+[NSIM] [ELAPSED TIME] 19 0.134592
+End of the simulation
+cn07-29.12776ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.12773ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.12774ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.12775ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.12802ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.12804ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.12806ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.12808ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+Potts simulation
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 12, ready to die.
+I'm the process 8, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 10, ready to die.
+I'm the process 6, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 11, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 7, ready to die.
+I'm the process 14, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 16, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 13, ready to die.
+I'm the process 17, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 19, ready to die.
+I'm the process 2, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 18, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 1, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 5, ready to die.
+I'm the process 4, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 3, ready to die.
+I'm the process 9, ready to die.
+Latching length: 2950
+DURATION: 88
+I'm the process 20, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 15, ready to die.
+[NSIM] [ELAPSED TIME] 20 0.150734
+End of the simulation
+cn07-29.12837ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.12836ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.12838ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.12839ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.12865ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.12867ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.12869ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.12871ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+Potts simulation
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 1, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 11, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 15, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 2, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 4, ready to die.
+I'm the process 6, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 3, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 5, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 12, ready to die.
+I'm the process 7, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 18, ready to die.
+I'm the process 10, ready to die.
+I'm the process 14, ready to die.
+I'm the process 13, ready to die.
+I'm the process 9, ready to die.
+I'm the process 16, ready to die.
+I'm the process 17, ready to die.
+I'm the process 19, ready to die.
+I'm the process 8, ready to die.
+Latching length: 2950
+DURATION: 89
+Latching length: 2950
+DURATION: 90
+I'm the process 20, ready to die.
+I'm the process 21, ready to die.
+[NSIM] [ELAPSED TIME] 21 0.144043
+End of the simulation
+cn07-29.12900ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.12899ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.12901ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.12902ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.12928ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.12930ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.12932ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.12934ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+Potts simulation
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 2, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 104
+I'm the process 3, ready to die.
+I'm the process 5, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 4, ready to die.
+Latching length: 2950
+DURATION: 102
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 1, ready to die.
+I'm the process 19, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 6, ready to die.
+Latching length: 2950
+DURATION: 106
+I'm the process 14, ready to die.
+I'm the process 10, ready to die.
+I'm the process 9, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 7, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 12, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 11, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 15, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 13, ready to die.
+I'm the process 16, ready to die.
+I'm the process 8, ready to die.
+I'm the process 18, ready to die.
+I'm the process 17, ready to die.
+Latching length: 2950
+DURATION: 88
+I'm the process 21, ready to die.
+Latching length: 2950
+DURATION: 91
+I'm the process 22, ready to die.
+Latching length: 2950
+DURATION: 91
+I'm the process 20, ready to die.
+[NSIM] [ELAPSED TIME] 22 0.147656
+End of the simulation
+cn07-29.12964ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.12962ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.12963ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.12965ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.12991ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.12993ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.12995ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.12997ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+Potts simulation
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 1, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 12, ready to die.
+I'm the process 15, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 3, ready to die.
+I'm the process 4, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 6, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 7, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 5, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 10, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 14, ready to die.
+I'm the process 9, ready to die.
+I'm the process 17, ready to die.
+I'm the process 8, ready to die.
+I'm the process 16, ready to die.
+I'm the process 18, ready to die.
+I'm the process 19, ready to die.
+Latching length: 2950
+DURATION: 106
+Latching length: 2950
+DURATION: 103
+I'm the process 11, ready to die.
+I'm the process 13, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 2, ready to die.
+Latching length: 2950
+DURATION: 91
+Latching length: 2950
+DURATION: 91
+Latching length: 2950
+DURATION: 91
+Latching length: 2950
+DURATION: 91
+I'm the process 22, ready to die.
+I'm the process 21, ready to die.
+I'm the process 23, ready to die.
+I'm the process 20, ready to die.
+[NSIM] [ELAPSED TIME] 23 0.147657
+End of the simulation
+cn07-29.13025ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13027ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13028ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13026ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13054ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13056ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13058ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13060ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+Potts simulation
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 12, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 14, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 5, ready to die.
+I'm the process 1, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 3, ready to die.
+I'm the process 2, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 6, ready to die.
+I'm the process 4, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 7, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 9, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 8, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 15, ready to die.
+I'm the process 13, ready to die.
+I'm the process 10, ready to die.
+I'm the process 16, ready to die.
+I'm the process 17, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 18, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 19, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 11, ready to die.
+Latching length: 2950
+DURATION: 91
+Latching length: 2950
+DURATION: 91
+I'm the process 23, ready to die.
+I'm the process 21, ready to die.
+Latching length: 2950
+DURATION: 94
+Latching length: 2950
+DURATION: 94
+Latching length: 2950
+DURATION: 94
+I'm the process 22, ready to die.
+I'm the process 24, ready to die.
+I'm the process 20, ready to die.
+[NSIM] [ELAPSED TIME] 24 0.150632
+End of the simulation
+cn07-29.13092ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13093ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13094ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13095ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13121ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13123ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13125ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13127ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+Potts simulation
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 3, ready to die.
+I'm the process 15, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 12, ready to die.
+I'm the process 2, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 5, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 4, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 102
+Latching length: 2950
+DURATION: 103
+I'm the process 8, ready to die.
+I'm the process 9, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 7, ready to die.
+I'm the process 13, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 10, ready to die.
+I'm the process 16, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 14, ready to die.
+Latching length: 2950
+DURATION: 107
+I'm the process 19, ready to die.
+I'm the process 17, ready to die.
+I'm the process 18, ready to die.
+I'm the process 1, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 11, ready to die.
+Latching length: 2950
+DURATION: 94
+Latching length: 2950
+DURATION: 94
+I'm the process 22, ready to die.
+Latching length: 2950
+DURATION: 94
+Latching length: 2950
+DURATION: 94
+Latching length: 2950
+DURATION: 94
+I'm the process 21, ready to die.
+I'm the process 24, ready to die.
+I'm the process 23, ready to die.
+I'm the process 25, ready to die.
+Latching length: 2950
+DURATION: 98
+I'm the process 20, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 6, ready to die.
+[NSIM] [ELAPSED TIME] 25 0.194517
+End of the simulation
+cn07-29.13156ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13155ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13157ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13158ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13184ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13188ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13186ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13190ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+Potts simulation
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 19, ready to die.
+I'm the process 1, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 15, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 3, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 2, ready to die.
+I'm the process 4, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 5, ready to die.
+I'm the process 7, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 8, ready to die.
+I'm the process 6, ready to die.
+I'm the process 10, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 12, ready to die.
+Latching length: 2950
+DURATION: 104
+Latching length: 2950
+DURATION: 103
+I'm the process 9, ready to die.
+I'm the process 13, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 16, ready to die.
+Latching length: 2950
+DURATION: 104
+I'm the process 18, ready to die.
+I'm the process 17, ready to die.
+Latching length: 2950
+DURATION: 107
+Latching length: 2950
+DURATION: 104
+I'm the process 14, ready to die.
+I'm the process 11, ready to die.
+Latching length: 2950
+DURATION: 95
+I'm the process 23, ready to die.
+Latching length: 2950
+DURATION: 99
+Latching length: 2950
+DURATION: 98
+I'm the process 21, ready to die.
+I'm the process 26, ready to die.
+Latching length: 2950
+DURATION: 98
+I'm the process 20, ready to die.
+Latching length: 2950
+DURATION: 101
+I'm the process 24, ready to die.
+Latching length: 2950
+DURATION: 104
+I'm the process 22, ready to die.
+Latching length: 2950
+DURATION: 96
+I'm the process 25, ready to die.
+[NSIM] [ELAPSED TIME] 26 0.168379
+End of the simulation
+cn07-29.13220ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13221ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13219ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13218ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13249ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13251ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13247ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13253ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+Potts simulation
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 5, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 2, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 8, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 6, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 7, ready to die.
+I'm the process 10, ready to die.
+I'm the process 13, ready to die.
+I'm the process 14, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 18, ready to die.
+I'm the process 19, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 16, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 1, ready to die.
+I'm the process 4, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 15, ready to die.
+Latching length: 2950
+DURATION: 105
+I'm the process 3, ready to die.
+I'm the process 17, ready to die.
+Latching length: 2950
+DURATION: 104
+I'm the process 9, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 11, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 12, ready to die.
+Latching length: 2950
+DURATION: 97
+Latching length: 2950
+DURATION: 97
+Latching length: 2950
+DURATION: 97
+I'm the process 20, ready to die.
+I'm the process 26, ready to die.
+I'm the process 22, ready to die.
+Latching length: 2950
+DURATION: 97
+I'm the process 24, ready to die.
+Latching length: 2950
+DURATION: 100
+Latching length: 2950
+DURATION: 100
+Latching length: 2950
+DURATION: 100
+Latching length: 2950
+DURATION: 100
+I'm the process 27, ready to die.
+I'm the process 25, ready to die.
+I'm the process 21, ready to die.
+I'm the process 23, ready to die.
+[NSIM] [ELAPSED TIME] 27 0.158969
+End of the simulation
+cn07-29.13281ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13284ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13283ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13282ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13310ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13314ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13312ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13316ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+Potts simulation
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 16, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 12, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 2, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 4, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 3, ready to die.
+I'm the process 7, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 5, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 6, ready to die.
+I'm the process 8, ready to die.
+I'm the process 1, ready to die.
+I'm the process 11, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 15, ready to die.
+Latching length: 2950
+DURATION: 106
+I'm the process 10, ready to die.
+I'm the process 13, ready to die.
+I'm the process 9, ready to die.
+I'm the process 19, ready to die.
+I'm the process 18, ready to die.
+I'm the process 17, ready to die.
+I'm the process 14, ready to die.
+Latching length: 2950
+DURATION: 99
+Latching length: 2950
+DURATION: 99
+Latching length: 2950
+DURATION: 99
+I'm the process 28, ready to die.
+Latching length: 2950
+DURATION: 100
+I'm the process 22, ready to die.
+I'm the process 26, ready to die.
+I'm the process 25, ready to die.
+Latching length: 2950
+DURATION: 100
+Latching length: 2950
+DURATION: 100
+Latching length: 2950
+DURATION: 100
+Latching length: 2950
+DURATION: 100
+I'm the process 21, ready to die.
+Latching length: 2950
+DURATION: 100
+I'm the process 24, ready to die.
+I'm the process 20, ready to die.
+I'm the process 27, ready to die.
+I'm the process 23, ready to die.
+[NSIM] [ELAPSED TIME] 28 0.159944
+End of the simulation
+cn07-29.13345ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13346ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13347ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13344ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13373ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13375ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13377ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13379ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+Potts simulation
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Latching length: 2950
+DURATION: 103
+I'm the process 3, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 17, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 12, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 15, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 4, ready to die.
+Latching length: 2950
+DURATION: 102
+I'm the process 5, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 2, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 14, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 10, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 8, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 19, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 16, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 6, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 13, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 18, ready to die.
+Average pattern sparsity=0.25
+Latching length: 2950
+DURATION: 103
+I'm the process 11, ready to die.
+Latching length: 2950
+DURATION: 107
+I'm the process 1, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 9, ready to die.
+Latching length: 2950
+DURATION: 106
+I'm the process 7, ready to die.
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+[NSIM] [ELAPSED TIME] 29 0.161817
+End of the simulation
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Latching length: 2950
+DURATION: 100
+Latching length: 2950
+DURATION: 99
+Latching length: 2950
+DURATION: 100
+I'm the process 21, ready to die.
+Latching length: 2950
+DURATION: 100
+I'm the process 23, ready to die.
+Latching length: 2950
+DURATION: 100
+I'm the process 25, ready to die.
+Latching length: 2950
+DURATION: 102
+Latching length: 2950
+DURATION: 102
+I'm the process 27, ready to die.
+Latching length: 2950
+DURATION: 102
+I'm the process 29, ready to die.
+I'm the process 22, ready to die.
+I'm the process 20, ready to die.
+Latching length: 2950
+DURATION: 102
+I'm the process 24, ready to die.
+Latching length: 2950
+DURATION: 102
+I'm the process 26, ready to die.
+I'm the process 28, ready to die.
+cn07-29.13407ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13409ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13410ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13436ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13440ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13442ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13408ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13438ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+Potts simulation
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Latching length: 2950
+DURATION: 103
+I'm the process 15, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 10, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 1, ready to die.
+Latching length: 2950
+DURATION: 102
+I'm the process 4, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 7, ready to die.
+I'm the process 11, ready to die.
+I'm the process 12, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 9, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 16, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 13, ready to die.
+I'm the process 17, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 6, ready to die.
+I'm the process 19, ready to die.
+I'm the process 8, ready to die.
+I'm the process 18, ready to die.
+I'm the process 2, ready to die.
+Latching length: 2950
+DURATION: 109
+I'm the process 3, ready to die.
+Latching length: 2950
+DURATION: 106
+I'm the process 14, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 5, ready to die.
+Latching length: 2950
+DURATION: 100
+I'm the process 27, ready to die.
+Latching length: 2950
+DURATION: 100
+I'm the process 29, ready to die.
+Latching length: 2950
+DURATION: 100
+Latching length: 2950
+DURATION: 100
+Latching length: 2950
+DURATION: 100
+I'm the process 25, ready to die.
+I'm the process 21, ready to die.
+I'm the process 23, ready to die.
+Latching length: 2950
+DURATION: 102
+Latching length: 2950
+DURATION: 103
+I'm the process 26, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 22, ready to die.
+I'm the process 28, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 20, ready to die.
+Latching length: 2950
+DURATION: 102
+I'm the process 24, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 30, ready to die.
+[NSIM] [ELAPSED TIME] 30 0.18551
+End of the simulation
+cn07-29.13473ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13474ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13471ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13472ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13500ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13502ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13504ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13506ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+Potts simulation
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 1, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 12, ready to die.
+I'm the process 3, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 15, ready to die.
+I'm the process 4, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 2, ready to die.
+I'm the process 5, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 8, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 10, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 13, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 14, ready to die.
+I'm the process 7, ready to die.
+I'm the process 11, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 16, ready to die.
+I'm the process 17, ready to die.
+I'm the process 18, ready to die.
+I'm the process 19, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 9, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 6, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 26, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 22, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 25, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 27, ready to die.
+I'm the process 24, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 20, ready to die.
+I'm the process 21, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 29, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 28, ready to die.
+I'm the process 23, ready to die.
+I'm the process 31, ready to die.
+I'm the process 30, ready to die.
+[NSIM] [ELAPSED TIME] 31 0.163708
+End of the simulation
+cn07-29.13535ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13534ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13536ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13537ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13563ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13565ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13567ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13569ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+Potts simulation
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 15, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 12, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 1, ready to die.
+I'm the process 4, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 5, ready to die.
+I'm the process 2, ready to die.
+I'm the process 7, ready to die.
+I'm the process 3, ready to die.
+I'm the process 6, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 8, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 11, ready to die.
+I'm the process 13, ready to die.
+I'm the process 14, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 10, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 16, ready to die.
+I'm the process 19, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 18, ready to die.
+I'm the process 17, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 9, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 29, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 27, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 30, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 28, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 31, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 32, ready to die.
+I'm the process 22, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 21, ready to die.
+I'm the process 20, ready to die.
+I'm the process 24, ready to die.
+I'm the process 25, ready to die.
+I'm the process 23, ready to die.
+I'm the process 26, ready to die.
+[NSIM] [ELAPSED TIME] 32 0.16362
+End of the simulation
+cn07-29.13599ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13597ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13598ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13600ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13626ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13628ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13630ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13632ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+Potts simulation
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 4, ready to die.
+I'm the process 2, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 13, ready to die.
+I'm the process 15, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 5, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 31, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 8, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 6, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 3, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 29, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 10, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 25, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 7, ready to die.
+I'm the process 23, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 26, ready to die.
+I'm the process 14, ready to die.
+I'm the process 21, ready to die.
+I'm the process 12, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 32, ready to die.
+I'm the process 9, ready to die.
+I'm the process 28, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 11, ready to die.
+I'm the process 17, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 107
+Latching length: 2950
+DURATION: 103
+I'm the process 27, ready to die.
+I'm the process 19, ready to die.
+I'm the process 22, ready to die.
+I'm the process 16, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 24, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 18, ready to die.
+I'm the process 1, ready to die.
+I'm the process 20, ready to die.
+I'm the process 30, ready to die.
+Latching length: 2950
+DURATION: 106
+I'm the process 33, ready to die.
+[NSIM] [ELAPSED TIME] 33 0.146733
+End of the simulation
+cn07-29.13660ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13661ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13689ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13691ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13663ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13693ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13695ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13662ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+Potts simulation
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Latching length: 2950
+DURATION: 103
+I'm the process 8, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 6, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 10, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 17, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 7, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 9, ready to die.
+I'm the process 15, ready to die.
+I'm the process 12, ready to die.
+I'm the process 11, ready to die.
+I'm the process 13, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 18, ready to die.
+I'm the process 16, ready to die.
+I'm the process 19, ready to die.
+I'm the process 4, ready to die.
+I'm the process 5, ready to die.
+Latching length: 2950
+DURATION: 104
+I'm the process 1, ready to die.
+Latching length: 2950
+DURATION: 106
+I'm the process 3, ready to die.
+I'm the process 14, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 2, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 22, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 20, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 34, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 24, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 27, ready to die.
+I'm the process 31, ready to die.
+I'm the process 23, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 21, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 25, ready to die.
+I'm the process 33, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 28, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 26, ready to die.
+I'm the process 30, ready to die.
+I'm the process 32, ready to die.
+Latching length: 2950
+DURATION: 106
+[NSIM] [ELAPSED TIME] 34 0.166837
+End of the simulation
+I'm the process 29, ready to die.
+cn07-29.13724ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13723ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13725ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13726ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13752ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13756ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13754ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13758ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+Potts simulation
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 15, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 3, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 9, ready to die.
+I'm the process 18, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 26, ready to die.
+I'm the process 1, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 28, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 22, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 27, ready to die.
+I'm the process 4, ready to die.
+Latching length: 2950
+DURATION: 102
+Latching length: 2950
+DURATION: 103
+I'm the process 2, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 25, ready to die.
+I'm the process 6, ready to die.
+I'm the process 5, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 24, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 20, ready to die.
+I'm the process 7, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 14, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 10, ready to die.
+I'm the process 8, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 29, ready to die.
+I'm the process 16, ready to die.
+I'm the process 12, ready to die.
+I'm the process 32, ready to die.
+I'm the process 13, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 21, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 34, ready to die.
+I'm the process 23, ready to die.
+I'm the process 19, ready to die.
+I'm the process 31, ready to die.
+I'm the process 17, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 33, ready to die.
+I'm the process 35, ready to die.
+Latching length: 2950
+DURATION: 106
+I'm the process 11, ready to die.
+[NSIM] [ELAPSED TIME] 35 0.12973
+End of the simulation
+Latching length: 2950
+DURATION: 106
+I'm the process 30, ready to die.
+cn07-30.11608ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13787ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13786ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13788ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13789ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-30.11636ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13816ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13818ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13820ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13822ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+Potts simulation
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 22, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 24, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 20, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 31, ready to die.
+I'm the process 16, ready to die.
+I'm the process 32, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 23, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 25, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 1, ready to die.
+I'm the process 21, ready to die.
+I'm the process 28, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 2, ready to die.
+I'm the process 27, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 29, ready to die.
+I'm the process 19, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 30, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 33, ready to die.
+I'm the process 6, ready to die.
+I'm the process 36, ready to die.
+I'm the process 4, ready to die.
+I'm the process 35, ready to die.
+I'm the process 34, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 3, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 5, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 15, ready to die.
+I'm the process 7, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 9, ready to die.
+I'm the process 10, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 12, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 11, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 13, ready to die.
+I'm the process 14, ready to die.
+I'm the process 8, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 18, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 26, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 17, ready to die.
+[NSIM] [ELAPSED TIME] 36 0.153281
+End of the simulation
+cn07-30.11660ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-30.11661ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13852ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13854ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13853ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13851ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13880ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13882ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13884ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13886ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-30.11690ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-30.11688ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+Potts simulation
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 1, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 16, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 3, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 6, ready to die.
+I'm the process 30, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 8, ready to die.
+I'm the process 36, ready to die.
+I'm the process 7, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 34, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 32, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 27, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 12, ready to die.
+Latching length: 2950
+DURATION: 106
+I'm the process 28, ready to die.
+I'm the process 9, ready to die.
+I'm the process 26, ready to die.
+I'm the process 10, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 29, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 17, ready to die.
+I'm the process 35, ready to die.
+Latching length: 2950
+DURATION: 106
+Latching length: 2950
+DURATION: 103
+I'm the process 11, ready to die.
+I'm the process 13, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 15, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 14, ready to die.
+I'm the process 31, ready to die.
+Latching length: 2950
+DURATION: 107
+I'm the process 37, ready to die.
+I'm the process 18, ready to die.
+I'm the process 33, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 2, ready to die.
+I'm the process 25, ready to die.
+I'm the process 19, ready to die.
+Latching length: 2950
+DURATION: 107
+I'm the process 4, ready to die.
+I'm the process 21, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 23, ready to die.
+I'm the process 22, ready to die.
+I'm the process 5, ready to die.
+I'm the process 20, ready to die.
+I'm the process 24, ready to die.
+[NSIM] [ELAPSED TIME] 37 0.128456
+End of the simulation
+cn07-30.11715ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-30.11716ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-30.11717ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13916ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13917ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13915ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13914ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13947ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13943ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-30.11743ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13945ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13949ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-30.11745ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-30.11747ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+Potts simulation
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 3, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 16, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 15, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 1, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 4, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 6, ready to die.
+I'm the process 21, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 27, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 2, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 22, ready to die.
+I'm the process 5, ready to die.
+I'm the process 7, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 24, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 9, ready to die.
+I'm the process 23, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 10, ready to die.
+I'm the process 28, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 12, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 26, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 11, ready to die.
+I'm the process 30, ready to die.
+I'm the process 31, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 25, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 33, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 13, ready to die.
+I'm the process 17, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 14, ready to die.
+I'm the process 29, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 36, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 19, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 18, ready to die.
+I'm the process 32, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 37, ready to die.
+Latching length: 2950
+DURATION: 106
+I'm the process 35, ready to die.
+I'm the process 38, ready to die.
+I'm the process 34, ready to die.
+I'm the process 8, ready to die.
+Latching length: 2950
+DURATION: 104
+I'm the process 20, ready to die.
+[NSIM] [ELAPSED TIME] 38 0.130658
+End of the simulation
+cn07-30.11774ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-30.11775ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-30.11776ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-30.11777ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13978ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13977ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13979ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.13980ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-30.11802ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-30.11804ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-30.11807ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-30.11808ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.14006ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.14008ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.14010ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+cn07-29.14012ipath_userinit: Mismatched user minor version (12) and driver minor version (11) while context sharing. Ensure that driver and library are from the same release.
+Potts simulation
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+STARTING DYNAMICS
+Average pattern sparsity=0.25
+STARTING DYNAMICS
+Latching length: 2950
+DURATION: 103
+I'm the process 15, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 13, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 104
+I'm the process 19, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 6, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 2, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 4, ready to die.
+I'm the process 3, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 5, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 8, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 7, ready to die.
+I'm the process 12, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 11, ready to die.
+Latching length: 2950
+DURATION: 107
+Latching length: 2950
+DURATION: 103
+I'm the process 16, ready to die.
+I'm the process 18, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 9, ready to die.
+I'm the process 1, ready to die.
+I'm the process 14, ready to die.
+I'm the process 17, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 10, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 28, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 30, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 32, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 34, ready to die.
+I'm the process 22, ready to die.
+I'm the process 31, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 29, ready to die.
+I'm the process 33, ready to die.
+I'm the process 36, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 37, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 38, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 35, ready to die.
+Latching length: 2950
+DURATION: 103
+Latching length: 2950
+DURATION: 103
+I'm the process 24, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 21, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 23, ready to die.
+Latching length: 2950
+DURATION: 103
+I'm the process 39, ready to die.
+I'm the process 25, ready to die.
+I'm the process 26, ready to die.
+I'm the process 27, ready to die.
+Latching length: 2950
+DURATION: 104
+I'm the process 20, ready to die.
+[NSIM] [ELAPSED TIME] 39 0.167554
+End of the simulation

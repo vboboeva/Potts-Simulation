@@ -72,6 +72,13 @@ extern void calcolo_m();
 
 int main()
 {
+
+
+clock_t t1 = 0;
+clock_t t2 = 0;
+
+t1 = clock();
+
 int i, n, k, f, mu, iii, ttt, x;
 int  fine, intempo, numero, Mumax, Mumaxold;
 float t, Mmax, lunghezza;
@@ -83,7 +90,7 @@ last = fopen("last.dat","w");
 //lulu = fopen("lunghezza.dat","w");
 Passi=fopen("passi.txt","a");		///###########################################################################
 
-//srand48( time(NULL) );
+srand48( time(NULL) );
 
 getmemory();
 read_pattern();
@@ -92,6 +99,9 @@ SetUpTables();							/// per creare vettori shaffle di unita
 n0=500*N;
 
 
+t1 = clock() - t1;
+
+std::cout << "INIT "<< t1 << std::endl;
 
 for(f=0;f<1;f++)   ///	 per  diversi pattern di inizio
 {
@@ -123,7 +133,6 @@ mvari=fopen("andamento_m.txt","w");
 fineiniz=time(0);
 printf( "durata inizializzazione		%ld secondi\n", fineiniz-iniziosim);
 
-print_J("init_J.dat");
 
 for(ttt=0;ttt<Trete;ttt++)
 {
@@ -133,8 +142,12 @@ for(ttt=0;ttt<Trete;ttt++)
 	{
 		//i=Permut[iii][x];
 		i=iii;
-
+		t1 = clock();
 		update_stato(i,n);																	///update di s[][] di un neu per ogni stato
+		t1 = clock() - t1;
+
+		t2 += t1;
+
 
 
 		if((n%tempostampa)==0)																/// stampo gli overlap
@@ -166,7 +179,6 @@ for(ttt=0;ttt<Trete;ttt++)
 				numero=numero+1;
 				Mumaxold=Mumax;
 //				printf( "t=%f\n",t);
-				std::cout << "k: " <<Mumax << " n " << n << std::endl;
 			fprintf(ksequenza, "%d	", Mumax);
 //			printf("%d	", Mumax);
 			fflush (ksequenza);
@@ -187,10 +199,14 @@ for(ttt=0;ttt<Trete;ttt++)
 		#ifndef _NO_END_CONDITION
 		if((fine!=0) && (n>n0+100*N))
 		{
+
+
 			lunghezza=t;
 
 			ttt=Trete;
 			iii=N;
+
+
 		}
 		#endif
 		}
@@ -201,14 +217,17 @@ for(ttt=0;ttt<Trete;ttt++)
 if(ttt==(Trete-1))  lunghezza=t;
 }
 
-print_states("updated_states.dat");
+
 fprintf(ksequenza, "  999999 \n");
 fflush(ksequenza);
 
 fclose(mvari);
 
+std::cout << "UTIME "<< t2 << std::endl;
+std::cout << "ENNE "<< n << std::endl;
+
 finesim=time(0);
-printf( "simulazione finita:	%ld		\n", finesim);
+// printf( "simulazione finita:	%ld		\n", finesim);
 printf( "durata		%ld secondi\n", finesim-iniziosim);
 printf("Latching length: %f\n", lunghezza);
 printf( "p=%d	retr=%d	passi %d	lunghezza = %.1f\n",p,f, numero, lunghezza);

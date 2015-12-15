@@ -34,6 +34,7 @@ set autoscale
 
 set style fill transparent solid 0.2 noborder
 
+set yrange [0:20]
 
 set output 'tmo.pdf'
 

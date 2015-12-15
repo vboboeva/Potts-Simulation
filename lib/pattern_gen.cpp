@@ -13,7 +13,7 @@ PatternGen::PatternGen(int N, int p, int S, __fpv a, __fpv beta, int N_fact, int
     this->N = N;
     this->p = p;
     this->S = S;
-    this->a = a;
+    this->a = a; //Sparsity parameter
     this->beta = beta;
     this->N_fact = N_fact;
     this->Num_fact = Num_fact;
@@ -73,7 +73,7 @@ void PatternGen::generate(){
 
         while(expon > piccolo){
 
-            expon = -fact_eigen_slope * k;
+            expon = -fact_eigen_slope * k; //gamma in the paper
 
             if((k+2) > this->Num_fact){
                 expon = 2.*piccolo;
@@ -83,7 +83,7 @@ void PatternGen::generate(){
 
             if(y <= this->a_pf){
 
-                eigen_fact = exp(expon)*y/this->a_pf;
+                eigen_fact = exp(expon)*y/this->a_pf; //a_pf is a in the paper
                 s1 = (int)((float)this->S*drand48());
 
                 for(j=0; j<this->N_fact; j++){

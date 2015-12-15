@@ -45,7 +45,7 @@ int main(int argc, char *argv[]){
 
     //Reset generator, this is because the old code run 2 different files and
     //generators. This is just to check that everything is as in the old code.
-    generator.seed(4);
+    generator.seed(12345);
 
     //Create the network
     LC_PNet pnet(params.N,

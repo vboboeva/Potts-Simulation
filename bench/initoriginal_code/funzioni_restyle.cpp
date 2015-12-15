@@ -164,7 +164,6 @@ s[i][S]=1.-S*s[i][0];
 r[i][S]=1.-s[i][S];
 }
 
-print_states("init_states.dat");
 
 
 
@@ -345,9 +344,7 @@ for(k=0;k<S;k++)
 		 h[i][k]+=	J[i][x][k][l]*s[C[i][x]][l];
 		}
 	}
-
 	h[i][k]+=w*s[i][k]-self+ INcost*(xi[i][retr]==k);										//tolgo l`auto eccitazione
-
 	/// di sold, thteta, r
 	sold[i][k]=s[i][k];
 
@@ -361,7 +358,7 @@ for(k=0;k<S;k++)
 
 }
 
-/// //////////	update rS e sold per S	///
+//////////	update rS e sold per S	///
 sold[i][S]=s[i][S];
 
 
@@ -385,19 +382,17 @@ Z = 1.0/Z;
 for(k=0;k<S;k++)
 {
 	s[i][k]=exp(beta*(r[i][k]-rmax))*Z;
-
-				//update of s[]
-
+	/*
+	if(i == 0){
+		std::cout.precision(30);
+					std::cout << std::scientific;
+					std::cout << r[i][k] << std::endl;
+				}					//update of s[]
+				*/
 }
-
 s[i][S]=exp(beta*(r[i][S]-rmax+U))*Z;
-/*
-if(i == 599){
-	std::cout.precision(30);
-				std::cout << std::scientific;
-				std::cout << s[i][S] << std::endl;
-			}
-*/
+
+
 /*
 /// //////////    UPDATE H
 t=(float)n/N;
@@ -636,7 +631,7 @@ int item, jtem, info;
 int fatto, kk;
 
 //srand48(time(0));
-srand48(12345);
+srand48(6937);
 for(kk=0; kk<NumSet; kk++)
 {
 	item = 0;

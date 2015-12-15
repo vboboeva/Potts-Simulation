@@ -1,7 +1,7 @@
 reset
 
-set term pngcairo dashed size 1200, 800 enhanced font 'Verdana,10'
-
+#set term pngcairo dashed size 1200, 1000 enhanced font 'Verdana,14'
+set terminal pdfcairo dashed enhanced color dashed size 23cm,25cm font 'Verdana,14'
 set key left top
 set key spacing 1.5
 set key samplen 5
@@ -33,7 +33,7 @@ set tics nomirror
 set style line 12 lc rgb '#808080' lt 0 lw 1
 set grid back ls 12
 
-a="old"
+a="original"
 b="hc"
 c="lc"
 d="vlc"
@@ -44,21 +44,21 @@ d="vlc"
 set autoscale
 
 set style fill transparent solid 0.2 noborder
-# set output 'test1000.png'
+# set output 'test1000.pdf'
 # plot "bench_times_1000.dat" every ::1 using 2:4 w l title a ls 1, \
 #      '' every ::1 using 2:7 w l title b ls 3, \
 #      '' every ::1 using 2:10 w l title c ls 5, \
 #      '' every ::1 using 2:13 w l title d ls 7
 #
 #
-# set output 'test1500.png'
+# set output 'test1500.pdf'
 # plot "bench_times_1500.dat" every ::1 using 2:4 w l title a ls 1, \
 #      '' every ::1 using 2:7 w l title b ls 3, \
 #      '' every ::1 using 2:10 w l title c ls 5, \
 #      '' every ::1 using 2:13 w l title d ls 7
 #
 #
-# set output 'test2000.png'
+# set output 'test2000.pdf'
 # plot "bench_times_2000.dat" every ::1 using 2:4 w l title a ls 1, \
 #      '' every ::1 using 2:7 w l title b ls 3, \
 #      '' every ::1 using 2:10 w l title c ls 5, \
@@ -67,7 +67,7 @@ set style fill transparent solid 0.2 noborder
 
 
 
-set output '1000.png'
+set output '1000.pdf'
 
 set multiplot layout 2, 1 title "N=1000 Network update performance" font ",14"
 set tmargin 3.5
@@ -80,26 +80,23 @@ plot "1000.txt" using 2:33 w lp title a ls 1, \
     "" using 2:6 w lp title b ls 2, \
     "" using 2:7:8 with filledcurves ls 2 notitle, \
     "" using 2:15 w lp title c ls 3, \
-    "" using 2:16:17 with filledcurves ls 3 notitle, \
-    "" using 2:24 w lp title d ls 4, \
-    "" using 2:25:26 with filledcurves ls 4 notitle
+    "" using 2:16:17 with filledcurves ls 3 notitle
 
-set ylabel "Improvement"
+
+set ylabel "Speedup"
 set title "Scaling" font ",12"
 plot "1000.txt" using 2:($33/$33) w lp title a ls 1, \
     "" using 2:($33/$34):($33/$35) with filledcurves ls 1 notitle, \
     "" using 2:($33/$6) w lp title b ls 2, \
     "" using 2:($33/$7):($33/$8) with filledcurves ls 2 notitle, \
     "" using 2:($33/$15) w lp title c ls 3, \
-    "" using 2:($33/$16):($33/$17) with filledcurves ls 3 notitle, \
-    "" using 2:($33/$24) w lp title d ls 4, \
-    "" using 2:($33/$25):($33/$26) with filledcurves ls 4 notitle
+    "" using 2:($33/$16):($33/$17) with filledcurves ls 3 notitle
 
 
 unset multiplot
 
 
-set output '1500.png'
+set output '1500.pdf'
 
 set multiplot layout 2, 1 title "N=1500 Network update performance" font ",14"
 set tmargin 3.5
@@ -112,26 +109,21 @@ plot "1500.txt" using 2:33 w lp title a ls 1, \
     "" using 2:6 w lp title b ls 2, \
     "" using 2:7:8 with filledcurves ls 2 notitle, \
     "" using 2:15 w lp title c ls 3, \
-    "" using 2:16:17 with filledcurves ls 3 notitle, \
-    "" using 2:24 w lp title d ls 4, \
-    "" using 2:25:26 with filledcurves ls 4 notitle
+    "" using 2:16:17 with filledcurves ls 3 notitle
 
-set ylabel "Improvement"
+set ylabel "Speedup"
 set title "Scaling" font ",12"
 plot "1500.txt" using 2:($33/$33) w lp title a ls 1, \
     "" using 2:($33/$34):($33/$35) with filledcurves ls 1 notitle, \
     "" using 2:($33/$6) w lp title b ls 2, \
     "" using 2:($33/$7):($33/$8) with filledcurves ls 2 notitle, \
     "" using 2:($33/$15) w lp title c ls 3, \
-    "" using 2:($33/$16):($33/$17) with filledcurves ls 3 notitle, \
-    "" using 2:($33/$24) w lp title d ls 4, \
-    "" using 2:($33/$25):($33/$26) with filledcurves ls 4 notitle
-
+    "" using 2:($33/$16):($33/$17) with filledcurves ls 3 notitle
 
 unset multiplot
 
 
-set output '2000.png'
+set output '2000.pdf'
 
 set multiplot layout 2, 1 title "N=2000 Network update performance" font ",14"
 set tmargin 3.5
@@ -144,20 +136,16 @@ plot "2000.txt" using 2:33 w lp title a ls 1, \
     "" using 2:6 w lp title b ls 2, \
     "" using 2:7:8 with filledcurves ls 2 notitle, \
     "" using 2:15 w lp title c ls 3, \
-    "" using 2:16:17 with filledcurves ls 3 notitle, \
-    "" using 2:24 w lp title d ls 4, \
-    "" using 2:25:26 with filledcurves ls 4 notitle
+    "" using 2:16:17 with filledcurves ls 3 notitle
 
-set ylabel "Improvement"
+set ylabel "Speedup"
 set title "Scaling" font ",12"
 plot "2000.txt" using 2:($33/$33) w lp title a ls 1, \
     "" using 2:($33/$34):($33/$35) with filledcurves ls 1 notitle, \
     "" using 2:($33/$6) w lp title b ls 2, \
     "" using 2:($33/$7):($33/$8) with filledcurves ls 2 notitle, \
     "" using 2:($33/$15) w lp title c ls 3, \
-    "" using 2:($33/$16):($33/$17) with filledcurves ls 3 notitle, \
-    "" using 2:($33/$24) w lp title d ls 4, \
-    "" using 2:($33/$25):($33/$26) with filledcurves ls 4 notitle
+    "" using 2:($33/$16):($33/$17) with filledcurves ls 3 notitle
 
 
 unset multiplot
@@ -166,47 +154,52 @@ unset multiplot
 # SINGLE ALGORITHM
 ################################################################################
 
-set ylabel "Improvement"
+set ylabel "Speedup"
 
-set output 'hc.png'
-
-set title "High connectivity" font ",12"
-plot "1000.txt" using 2:($33/$33) w lp title "old" ls 1, \
+set output 'hc.pdf'
+set title "High connectivity (N=1000)" font ",20"
+plot "1000.txt" using 2:($33/$33) w lp title "original code" ls 1, \
     "" using 2:($33/$34):($33/$35) with filledcurves ls 1 notitle, \
-    "" using 2:($33/$6) w lp title "N=1000" ls 2, \
+    "" using 2:($33/$6) w lp title "high connectivity code" ls 2, \
     "" using 2:($33/$7):($33/$8) with filledcurves ls 2 notitle
 
 
-set output 'lc.png'
-set title "Low connectivity" font ",12"
-plot "1000.txt" using 2:($33/$33) w lp title "old" ls 1, \
+set output 'lc.pdf'
+set title "Low connectivity (N=1000)" font ",20"
+plot "1000.txt" using 2:($33/$33) w lp title "original code" ls 1, \
     "" using 2:($33/$34):($33/$35) with filledcurves ls 1 notitle, \
-    "" using 2:($33/$15) w lp title "N=1000" ls 2, \
+    "" using 2:($33/$15) w lp title "low connectivity code" ls 2, \
     "" using 2:($33/$16):($33/$17) with filledcurves ls 2 notitle
 
 
-set output 'vlc.png'
-set title "Very low connectivity" font ",12"
-plot "1000.txt" using 2:($33/$33) w lp title "old" ls 1, \
+set output 'vlc.pdf'
+set title "Very low connectivity (N=1000)" font ",20"
+plot "1000.txt" using 2:($33/$33) w lp title "original code" ls 1, \
     "" using 2:($33/$34):($33/$35) with filledcurves ls 1 notitle, \
-    "" using 2:($33/$24) w lp title "N=1000" ls 2, \
+    "" using 2:($33/$24) w lp title "very low connectivity code" ls 2, \
     "" using 2:($33/$25):($33/$26) with filledcurves ls 2 notitle
 
+set output 'initt.pdf'
+set title "Initialization time (nupdates=3000)" font ",20"
+plot "1000.txt" using 2:($33/$33) w lp title "original code" ls 1, \
+    "" using 2:($33/$34):($33/$35) with filledcurves ls 1 notitle, \
+    "" using 2:($33/$24) w lp title "very low connectivity code" ls 2, \
+    "" using 2:($33/$25):($33/$26) with filledcurves ls 2 notitle
 
-# set output 'scale1000.png'
+# set output 'scale1000.pdf'
 # plot "bench_times_1000.dat" every ::1 using 2:($13/$4) w lp title a ls 1, \
 #      '' every ::1 using 2:($13/$7) w lp title b ls 2, \
 #      '' every ::1 using 2:($13/$10) w lp title c ls 3, \
 #      '' every ::1 using 2:($13/$13) w lp title d ls 4
 #
-# set output 'scale1500.png'
+# set output 'scale1500.pdf'
 # plot "bench_times_1500.dat" every ::1 using 2:($13/$4) w lp title a ls 1, \
 #      '' every ::1 using 2:($13/$7) w lp title b ls 2, \
 #      '' every ::1 using 2:($13/$10) w lp title c ls 3, \
 #      '' every ::1 using 2:($13/$13) w lp title d ls 4
 #
 #
-# set output 'scale2000.png'
+# set output 'scale2000.pdf'
 # plot "bench_times_2000.dat" every ::1 using 2:($13/$4) w lp title a ls 1, \
 #      '' every ::1 using 2:($13/$7) w lp title b ls 2, \
 #      '' every ::1 using 2:($13/$10) w lp title c ls 3, \

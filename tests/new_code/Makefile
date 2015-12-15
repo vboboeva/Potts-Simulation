@@ -1,8 +1,8 @@
 CPPC=mpic++
 CFLAGS= -std=c++11 -Wall
 PRJ_ROOT=../../
-OPTFLAGS=-O2 -fp-model precise
-#OPTFLAGS=-O2
+#OPTFLAGS=-O2 -fp-model precise
+OPTFLAGS=-O2
 
 MACROS_LIST=_NO_SHUFFLE _FLOAT_PRECISION _TEST
 CMACROS=$(foreach d, $(MACROS_LIST), -D$d)

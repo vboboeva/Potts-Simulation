@@ -11,7 +11,7 @@
 #include <chrono>
 #include <thread>
 
-#include "master.h"
+//#include "master.h"
 
 #define EXIT_PROCESS -1
 
@@ -131,8 +131,8 @@ void PPS::start(){
                 //std::cout << "SAY HI: "<< PPS::pid << std::endl;
                 //print_params(recvparams);
                 //std::cout << "STARTING REAL SIM"<< std::endl;
-                //PottsSim(recvparams,"output/"+ std::to_string(PPS::pid) + "_proc_output.dat", status);
-                old_code( PPS::pid );
+                PottsSim(recvparams,"output/"+ std::to_string(PPS::pid) + "_proc_output.dat", status);
+                //old_code( PPS::pid );
                 //std::cout << "//////////////////////////////////////////////////////////////////////////////////"<< std::endl;
             }else{
                 std::cout << "I'm the process "<< PPS::pid << ", ready to die." << std::endl;
