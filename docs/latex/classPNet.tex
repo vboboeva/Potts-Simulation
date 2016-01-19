@@ -1,0 +1,68 @@
+\hypertarget{classPNet}{}\section{P\+Net Class Reference}
+\label{classPNet}\index{P\+Net@{P\+Net}}
+Inheritance diagram for P\+Net\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classPNet}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries P\+Net} (const int \&N)\hypertarget{classPNet_ae7bb66e9b6e3cc8bebf69f0acc467978}{}\label{classPNet_ae7bb66e9b6e3cc8bebf69f0acc467978}
+
+\item 
+void {\bfseries print\+\_\+ksequence} ()\hypertarget{classPNet_af8319c3b3ec476d5008df5fe45c3544d}{}\label{classPNet_af8319c3b3ec476d5008df5fe45c3544d}
+
+\item 
+virtual void {\bfseries print\+\_\+cm} ()=0\hypertarget{classPNet_a0f0c008ac7f00564bfdedfd3febd3602}{}\label{classPNet_a0f0c008ac7f00564bfdedfd3febd3602}
+
+\item 
+virtual void {\bfseries save\+\_\+states\+\_\+to\+\_\+file} (const std\+::string \&filename)=0\hypertarget{classPNet_a2cac2b992ff0b0520f5dbb1a029676b1}{}\label{classPNet_a2cac2b992ff0b0520f5dbb1a029676b1}
+
+\item 
+virtual void {\bfseries save\+\_\+connections\+\_\+to\+\_\+file} (const std\+::string \&filename)=0\hypertarget{classPNet_aad8dbda7540a1ed7d3fa142583770c0d}{}\label{classPNet_aad8dbda7540a1ed7d3fa142583770c0d}
+
+\item 
+virtual void {\bfseries save\+\_\+\+J\+\_\+to\+\_\+file} (const std\+::string \&filename)=0\hypertarget{classPNet_a98feeb763aa03d366e6bf5b05c240f25}{}\label{classPNet_a98feeb763aa03d366e6bf5b05c240f25}
+
+\item 
+virtual void {\bfseries init\+\_\+network} (const \+\_\+\+\_\+fpv \&beta, const \+\_\+\+\_\+fpv \&U, const int \&p, const \+\_\+\+\_\+fpv \&a, const int $\ast$xi)=0\hypertarget{classPNet_a63efd6e2d7c5a38e0a6ae77af655a405}{}\label{classPNet_a63efd6e2d7c5a38e0a6ae77af655a405}
+
+\item 
+virtual void {\bfseries start\+\_\+dynamics} (std\+::default\+\_\+random\+\_\+engine \&generator, const int \&p, const int \&tstatus, const int \&nupdates, const int $\ast$xi, const int \&pattern, const \+\_\+\+\_\+fpv \&a, const \+\_\+\+\_\+fpv \&U, const \+\_\+\+\_\+fpv \&w, const \+\_\+\+\_\+fpv \&g, const \+\_\+\+\_\+fpv \&tau, const \+\_\+\+\_\+fpv \&b1, const \+\_\+\+\_\+fpv \&b2, const \+\_\+\+\_\+fpv \&b3, const \+\_\+\+\_\+fpv \&beta, const int \&tx)=0\hypertarget{classPNet_afb427ff3050f26969782aec6bc76a5a7}{}\label{classPNet_afb427ff3050f26969782aec6bc76a5a7}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\+\_\+\+\_\+fpv {\bfseries latching\+\_\+length}\hypertarget{classPNet_ac21a9a2f6de2fc6094bdfacc78142ffe}{}\label{classPNet_ac21a9a2f6de2fc6094bdfacc78142ffe}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void {\bfseries evaluate\+\_\+m} (const int \&p, const \+\_\+\+\_\+fpv \&a, const int $\ast$xi, \+\_\+\+\_\+fpv m\mbox{[}$\,$\mbox{]})=0\hypertarget{classPNet_a6d519b171b571fccbc1d263ff40822e3}{}\label{classPNet_a6d519b171b571fccbc1d263ff40822e3}
+
+\item 
+virtual void {\bfseries init\+\_\+J} (const int \&p, const \+\_\+\+\_\+fpv \&a, const int $\ast$xi)=0\hypertarget{classPNet_aeef297a15dc839818cd560228c9b8236}{}\label{classPNet_aeef297a15dc839818cd560228c9b8236}
+
+\item 
+void {\bfseries get\+\_\+status} (const int \&p, const int \&tx, const int \&t, const int $\ast$xi, const \+\_\+\+\_\+fpv \&a, int \&Mumaxold, int \&Mumax, int \&steps, bool \&stop)\hypertarget{classPNet_a3c22be54795d659f2ebab3725ad93946}{}\label{classPNet_a3c22be54795d659f2ebab3725ad93946}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int {\bfseries N}\hypertarget{classPNet_a165f64c0fb771ebbcb5851b27373cf30}{}\label{classPNet_a165f64c0fb771ebbcb5851b27373cf30}
+
+\item 
+std\+::vector$<$ int $>$ {\bfseries ksequence}\hypertarget{classPNet_ab636bd102fd68c5801c1b907dba52e9d}{}\label{classPNet_ab636bd102fd68c5801c1b907dba52e9d}
+
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/deathquasar/\+Projects/\+M\+H\+P\+C/\+Thesis/\+Code/\+Potts\+\_\+code/lib/pnet.\+h\item 
+/home/deathquasar/\+Projects/\+M\+H\+P\+C/\+Thesis/\+Code/\+Potts\+\_\+code/lib/pnet.\+cpp\end{DoxyCompactItemize}

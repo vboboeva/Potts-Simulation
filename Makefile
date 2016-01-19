@@ -22,7 +22,7 @@ LIB_FILES := $(wildcard $(LIB)/*.cpp)
 SRC_OBJ_FILES := $(addprefix $(ODIR)/,$(notdir $(SRC_FILES:.cpp=.o)))
 LIB_OBJ_FILES := $(addprefix $(ODIR)/,$(notdir $(LIB_FILES:.cpp=.o)))
 
-.PHONY: all clean run test bench compile clean_obj
+.PHONY: all clean run test bench compile clean_obj docs
 
 ################################################################################
 # COMPILE AND LINK
@@ -67,6 +67,8 @@ clean_obj:
 debug: CFLAGS+=-g
 debug: $(ODIR)/$(EXE)
 
+docs:
+	@echo "Not implemented yet, just go inside the docs folder and run --doxygen doxy.conf--"
 ################################################################################
 # PUSH ON CLUSTER
 ################################################################################

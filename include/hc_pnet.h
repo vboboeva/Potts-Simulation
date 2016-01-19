@@ -5,13 +5,14 @@
 
 #include "pnet.h"
 
+/*! Class defining the High connectivity network */
 class HC_PNet : public PNet {
     private:
         //int N; //Number of units (Now defined on parent class PNet)
-        int C; //Number of connections per unit
-        int S; //Number of states
-        int * cm; //Connection matrix
-        __fpv * J; // Connection tensor
+        int C; /*!< Number of connections per unit */
+        int S; /*!< Number of states per unit */
+        int * cm; /*!< Connectivity matrix */
+        __fpv * J; /*!< J tensor */
         __fpv * active_states; // N * S
         __fpv * inactive_states; // N
         int * ucm; //1-0 connection matrix

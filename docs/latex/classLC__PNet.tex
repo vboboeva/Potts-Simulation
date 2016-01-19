@@ -1,0 +1,110 @@
+\hypertarget{classLC__PNet}{}\section{L\+C\+\_\+\+P\+Net Class Reference}
+\label{classLC__PNet}\index{L\+C\+\_\+\+P\+Net@{L\+C\+\_\+\+P\+Net}}
+Inheritance diagram for L\+C\+\_\+\+P\+Net\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classLC__PNet}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classLC__PNet_a24f5b64eb7d135f812b05cfe747ddcc3}{L\+C\+\_\+\+P\+Net} (const int \&N, const int \&C, const int \&S)
+\item 
+void {\bfseries import\+\_\+connections} (const std\+::string \&filename)\hypertarget{classLC__PNet_a699f289ae423aa2af17139502654ab81}{}\label{classLC__PNet_a699f289ae423aa2af17139502654ab81}
+
+\item 
+void {\bfseries print\+\_\+cm} ()\hypertarget{classLC__PNet_afedba98cfd4a57742b963bf1fefdebed}{}\label{classLC__PNet_afedba98cfd4a57742b963bf1fefdebed}
+
+\item 
+void {\bfseries save\+\_\+states\+\_\+to\+\_\+file} (const std\+::string \&filename)\hypertarget{classLC__PNet_ac66589462b8882839a7a9849ce2025fa}{}\label{classLC__PNet_ac66589462b8882839a7a9849ce2025fa}
+
+\item 
+void {\bfseries save\+\_\+connections\+\_\+to\+\_\+file} (const std\+::string \&filename)\hypertarget{classLC__PNet_a1a66a51c4b649d64812d8c7eb49bda56}{}\label{classLC__PNet_a1a66a51c4b649d64812d8c7eb49bda56}
+
+\item 
+void {\bfseries save\+\_\+\+J\+\_\+to\+\_\+file} (const std\+::string \&filename)\hypertarget{classLC__PNet_afef840ecfc8b5b3a9180ca3c8e7f821f}{}\label{classLC__PNet_afef840ecfc8b5b3a9180ca3c8e7f821f}
+
+\item 
+void {\bfseries connect\+\_\+units} (std\+::default\+\_\+random\+\_\+engine \&generator)\hypertarget{classLC__PNet_ab9a618c5fc495ee199b420d0aa16758a}{}\label{classLC__PNet_ab9a618c5fc495ee199b420d0aa16758a}
+
+\item 
+void {\bfseries init\+\_\+network} (const \+\_\+\+\_\+fpv \&beta, const \+\_\+\+\_\+fpv \&U, const int \&p, const \+\_\+\+\_\+fpv \&a, const int $\ast$xi)\hypertarget{classLC__PNet_a0308d587505adab982a9e4322b8ac9ba}{}\label{classLC__PNet_a0308d587505adab982a9e4322b8ac9ba}
+
+\item 
+void {\bfseries start\+\_\+dynamics} (std\+::default\+\_\+random\+\_\+engine \&generator, const int \&p, const int \&tstatus, const int \&nupdates, const int $\ast$xi, const int \&pattern, const \+\_\+\+\_\+fpv \&a, const \+\_\+\+\_\+fpv \&U, const \+\_\+\+\_\+fpv \&w, const \+\_\+\+\_\+fpv \&g, const \+\_\+\+\_\+fpv \&tau, const \+\_\+\+\_\+fpv \&b1, const \+\_\+\+\_\+fpv \&b2, const \+\_\+\+\_\+fpv \&b3, const \+\_\+\+\_\+fpv \&beta, const int \&tx)\hypertarget{classLC__PNet_adadf57b63af5fc9238bb97df3b56381d}{}\label{classLC__PNet_adadf57b63af5fc9238bb97df3b56381d}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries init\+\_\+states} (const \+\_\+\+\_\+fpv \&beta, const \+\_\+\+\_\+fpv \&U)\hypertarget{classLC__PNet_a2925dc1c225646f4be3e466383812f14}{}\label{classLC__PNet_a2925dc1c225646f4be3e466383812f14}
+
+\item 
+void {\bfseries update\+\_\+rule} (const int \&unit, const \+\_\+\+\_\+fpv buffer\mbox{[}$\,$\mbox{]}, const int \&pattern, const \+\_\+\+\_\+fpv \&U, const \+\_\+\+\_\+fpv \&w, const \+\_\+\+\_\+fpv \&g, const \+\_\+\+\_\+fpv \&tau, const \+\_\+\+\_\+fpv \&b1, const \+\_\+\+\_\+fpv \&b2, const \+\_\+\+\_\+fpv \&b3, const \+\_\+\+\_\+fpv \&beta, const int \&tx, const int \&t)\hypertarget{classLC__PNet_aef7091aa9525fb95c3f1df19f801b535}{}\label{classLC__PNet_aef7091aa9525fb95c3f1df19f801b535}
+
+\item 
+void {\bfseries evaluate\+\_\+m} (const int \&p, const \+\_\+\+\_\+fpv \&a, const int $\ast$xi, \+\_\+\+\_\+fpv m\mbox{[}$\,$\mbox{]})\hypertarget{classLC__PNet_a184fb2c6b021c7a814954e9750347b1c}{}\label{classLC__PNet_a184fb2c6b021c7a814954e9750347b1c}
+
+\item 
+void {\bfseries init\+\_\+J} (const int \&p, const \+\_\+\+\_\+fpv \&a, const int $\ast$xi)\hypertarget{classLC__PNet_a22278003507e1871152e4024002a7ff9}{}\label{classLC__PNet_a22278003507e1871152e4024002a7ff9}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int {\bfseries C}\hypertarget{classLC__PNet_ac6fbf61a77df3fefd1add38665e7b717}{}\label{classLC__PNet_ac6fbf61a77df3fefd1add38665e7b717}
+
+\item 
+int {\bfseries S}\hypertarget{classLC__PNet_ab6a71cf2a87d2a84ef26d63da7cb28c7}{}\label{classLC__PNet_ab6a71cf2a87d2a84ef26d63da7cb28c7}
+
+\item 
+int $\ast$ {\bfseries cm}\hypertarget{classLC__PNet_a4d5e6bfeff710d069640abaabf92e9d8}{}\label{classLC__PNet_a4d5e6bfeff710d069640abaabf92e9d8}
+
+\item 
+\+\_\+\+\_\+fpv $\ast$ {\bfseries J}\hypertarget{classLC__PNet_a07424445de5664c7840fa76867d01491}{}\label{classLC__PNet_a07424445de5664c7840fa76867d01491}
+
+\item 
+\+\_\+\+\_\+fpv $\ast$ {\bfseries active\+\_\+states}\hypertarget{classLC__PNet_a4c085a26d4bc5cc9c048f5652bf7d3c7}{}\label{classLC__PNet_a4c085a26d4bc5cc9c048f5652bf7d3c7}
+
+\item 
+\+\_\+\+\_\+fpv $\ast$ {\bfseries inactive\+\_\+states}\hypertarget{classLC__PNet_aa286239886cffadfb0098b4af9391cfd}{}\label{classLC__PNet_aa286239886cffadfb0098b4af9391cfd}
+
+\item 
+int $\ast$ {\bfseries ucm}\hypertarget{classLC__PNet_af1e4cb3b01d9eea8dc4ee932ac486f5f}{}\label{classLC__PNet_af1e4cb3b01d9eea8dc4ee932ac486f5f}
+
+\item 
+\+\_\+\+\_\+fpv $\ast$ {\bfseries active\+\_\+r}\hypertarget{classLC__PNet_a232191ada434e427069b9d73a32c6c11}{}\label{classLC__PNet_a232191ada434e427069b9d73a32c6c11}
+
+\item 
+\+\_\+\+\_\+fpv $\ast$ {\bfseries inactive\+\_\+r}\hypertarget{classLC__PNet_a4eefb8f8377ce107099d63bbc3b129bf}{}\label{classLC__PNet_a4eefb8f8377ce107099d63bbc3b129bf}
+
+\item 
+\+\_\+\+\_\+fpv $\ast$ {\bfseries h}\hypertarget{classLC__PNet_a0f89876853795e0366d6f771295ec785}{}\label{classLC__PNet_a0f89876853795e0366d6f771295ec785}
+
+\item 
+\+\_\+\+\_\+fpv $\ast$ {\bfseries theta}\hypertarget{classLC__PNet_ab4352d5dd32171b45a3471be0de07a77}{}\label{classLC__PNet_ab4352d5dd32171b45a3471be0de07a77}
+
+\item 
+int $\ast$ {\bfseries xi}\hypertarget{classLC__PNet_ade19ecf3ac391db683a740bde9fde66b}{}\label{classLC__PNet_ade19ecf3ac391db683a740bde9fde66b}
+
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\index{L\+C\+\_\+\+P\+Net@{L\+C\+\_\+\+P\+Net}!L\+C\+\_\+\+P\+Net@{L\+C\+\_\+\+P\+Net}}
+\index{L\+C\+\_\+\+P\+Net@{L\+C\+\_\+\+P\+Net}!L\+C\+\_\+\+P\+Net@{L\+C\+\_\+\+P\+Net}}
+\subsubsection[{\texorpdfstring{L\+C\+\_\+\+P\+Net(const int \&\+N, const int \&\+C, const int \&\+S)}{LC_PNet(const int &N, const int &C, const int &S)}}]{\setlength{\rightskip}{0pt plus 5cm}L\+C\+\_\+\+P\+Net\+::\+L\+C\+\_\+\+P\+Net (
+\begin{DoxyParamCaption}
+\item[{const int \&}]{N, }
+\item[{const int \&}]{C, }
+\item[{const int \&}]{S}
+\end{DoxyParamCaption}
+)}\hypertarget{classLC__PNet_a24f5b64eb7d135f812b05cfe747ddcc3}{}\label{classLC__PNet_a24f5b64eb7d135f812b05cfe747ddcc3}
+\char`\"{}£\char`\"{} 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/deathquasar/\+Projects/\+M\+H\+P\+C/\+Thesis/\+Code/\+Potts\+\_\+code/include/lc\+\_\+pnet.\+h\item 
+/home/deathquasar/\+Projects/\+M\+H\+P\+C/\+Thesis/\+Code/\+Potts\+\_\+code/lib/lc\+\_\+pnet.\+cpp\end{DoxyCompactItemize}
