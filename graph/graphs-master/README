@@ -1,0 +1,4 @@
+Simulations and analytical results for the giant component phase transition in random networks with power law 
+times exponential degree distribution.
+Numerical simulations in C using the igraph library.
+Mathematica notebooks also with analytical treatment.
