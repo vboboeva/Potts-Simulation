@@ -48,7 +48,7 @@ LIB_OBJ_FILES := $(addprefix $(ODIR)/,$(notdir $(LIB_FILES:.cpp=.o)))
 PARALLEL_SRC_OBJ_FILES := $(addprefix $(PODIR)/,$(notdir $(PARALLEL_LIB_FILES:.cpp=.o)))
 PARALLEL_LIB_OBJ_FILES := $(addprefix $(PODIR)/,$(notdir $(PARALLEL_SRC_FILES:.cpp=.o)))
 
-.PHONY: all clean run test bench compile clean_obj
+.PHONY: all exe pexe build clean lib plib src clean_obj debug
 
 ################################################################################
 # COMPILE AND LINK
@@ -92,9 +92,6 @@ src: $(SRC_OBJ_FILES)
 
 plib: $(PARALLEL_LIB_OBJ_FILES)
 
-run: $(ODIR)/$(EXE)
-	(cd $(ODIR) && ./$(EXE))
-
 
 ################################################################################
 # UTILITIES
@@ -108,16 +105,4 @@ clean_obj:
 	@rm -rf $(PODIR)/*.o $(PODIR)/*.optrpt
 
 debug: CFLAGS+=-g
-debug: $(ODIR)/$(EXE)
-
-################################################################################
-# PUSH ON CLUSTER
-################################################################################
-
-PASSWORDLESS_CLUSTER_DOMAIN=ulisse
-
-push:
-	@rsync --delete -avzhe ssh --progress . $(PASSWORDLESS_CLUSTER_DOMAIN):Potts_code/
-
-pull:
-	scp $(PASSWORDLESS_CLUSTER_DOMAIN):Potts_code/bench/parameters_sweeping/*.dat bench/parameters_sweeping/
+debug: all
