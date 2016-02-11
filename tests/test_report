@@ -1,6 +1,0 @@
-observed behavior:
-flags new flags old   comment
--O1 -O1 same values
--O0 -O0 same values
--O2 -O2 different values
--O2 -O2 -no-vec same values
