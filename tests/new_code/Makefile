@@ -1,7 +1,9 @@
 CPPC=mpic++
 CFLAGS= -std=c++11 -Wall
 PRJ_ROOT=../../
+#Remove numerical issues (test pass, slower code)
 #OPTFLAGS=-O2 -fp-model precise
+#Numerical issues due to vectorzation (faster code)
 OPTFLAGS=-O2
 
 MACROS_LIST=_NO_SHUFFLE _FLOAT_PRECISION _TEST

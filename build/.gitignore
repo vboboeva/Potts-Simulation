@@ -1,0 +1,9 @@
+**/*.optrpt
+**/*.o
+**/*.x
+**/*.dat
+**/*.txt
+**/*.out
+
+!.gitkeep
+!.gitignore
