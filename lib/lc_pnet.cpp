@@ -335,12 +335,15 @@ void LC_PNet::start_dynamics(std::default_random_engine & generator, const int &
     end:
     #endif
 
+    #ifdef _TEST
     if(t > tx + 100 * N){
+
         std::cout << "Latching length: " <<  latching_length << std::endl;
     }else{
         std::cout << "Simulation finished before reaching minimum steps (" << (double)t / N << ")" << std::endl;
     }
-
+    #endif
+    std::cout;
 
 }
 

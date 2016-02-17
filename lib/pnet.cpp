@@ -28,9 +28,11 @@ void PNet::get_status(const int & p, const int & tx, const int & t, const int * 
 
             #ifdef _TEST
             std::cout << "k: " <<Mumax << " n " << t << std::endl;
+            std::cout << "m: " <<Mmax << " n " << t << std::endl;
             #endif
 
             this->ksequence.push_back(Mumax);
+            this->msequence.push_back(Mmax);
         }
     }
     for(mu = 0; mu < p; ++mu){

@@ -36,8 +36,8 @@ int main(int argc, char *argv[]){
         struct parameters params;
         load_params("params.cfg", params);
 
-        std::default_random_engine generator;
-        generator.seed(12345);
+        //std::default_random_engine generator;
+        //generator.seed(12345);
         //std::uniform_int_distribution<int> randC(1,params.N / 2);
         //std::uniform_int_distribution<int> randp(1,100);
         //std::uniform_int_distribution<int> rands(1,5);

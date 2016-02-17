@@ -18,8 +18,9 @@ void PottsSim(struct parameters params, std::string filename, const int & id, st
     std::chrono::high_resolution_clock::time_point t1;
     std::chrono::high_resolution_clock::time_point t2;
     std::string strategy;
-    std::ofstream ofile;
-    ofile.open(filename, std::ios::app);
+    //std::ofstream ofile;
+    std::ostream & ofile = std::cout;
+    //ofile.open(filename, std::ios::app);
 
     // if(mode == "auto"){
     //     if( ((__fpv)params.N / params.C < 1.7) && (params.N > 1500) ){
@@ -72,38 +73,71 @@ void PottsSim(struct parameters params, std::string filename, const int & id, st
     std::cout << "STARTING DYNAMICS" << std::endl;
     //Start the dynamics
     t1 = std::chrono::high_resolution_clock::now();
-    pnet.start_dynamics(generator,
-                        params.p,
-                        params.tstatus, //tstatus (tempostampa)
-                        params.nupdates,  //Number of updates
-                        pgen.get_patt(),
-                        0, //Pattern number
-                        params.a,
-                        params.U,
-                        params.w,
-                        params.g,
-                        params.tau * params.N, //tau
-                        params.b1, //b1
-                        params.b2, //b2
-                        params.b3, //b3
-                        params.beta, //beta
-                        500*params.N //tx (n0)
-                        );
+
+    int patt_cued;
+
+    std::vector<int>::iterator k;
+    std::vector<__fpv>::iterator m;
+
+    ofile << "\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"<< std::endl;
+    for(patt_cued=0; patt_cued<params.p;patt_cued++){
+
+        pnet.init_states(params.beta,params.U);
+
+        pnet.ksequence.clear();
+        pnet.msequence.clear();
+
+        pnet.start_dynamics(generator,
+                            params.p,
+                            params.tstatus, //tstatus (tempostampa)
+                            params.nupdates,  //Number of updates
+                            pgen.get_patt(),
+                            patt_cued, //Pattern cued
+                            params.a,
+                            params.U,
+                            params.w,
+                            params.g,
+                            params.tau * params.N, //tau
+                            params.b1, //b1
+                            params.b2, //b2
+                            params.b3, //b3
+                            params.beta, //beta
+                            500*params.N //tx (n0)
+                            );
+
+        k = pnet.ksequence.begin();
+        ofile << std::setw(30) << std::left << "KSEQUENCE: ";
+        while( k!= pnet.ksequence.end()){
+            ofile << *k << " ";
+            k++;
+        }
+        ofile << std::endl;
+
+        m = pnet.msequence.begin();
+        ofile << std::setw(30) << std::left << "MSEQUENCE: ";
+        while( m!= pnet.msequence.end()){
+            ofile << *m << " ";
+            m++;
+        }
+        ofile << std::endl;
+        //pnet.ksequence.get(i)
+        ofile << std::setw(30) << std::left << "LATCHING LENGTH: "<< pnet.latching_length << std::endl;
+        ofile << "---------------------------------------------------------------------------------"<< std::endl;
+
+    }
 
     t2 = std::chrono::high_resolution_clock::now();
-
-    //Save all the data needed in a file
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>( t2 - t1 ).count();
-    std::cout << "DURATION: " << duration << std::endl;
-    ofile << "\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"<< std::endl;
+
     ofile << std::setw(30) << std::left << "SIM #" << id << std::endl;
     ofile << "---------------------------------------------------------------------------------"<< std::endl;
     ofile << std::setw(30) << std::left << "SIM ELAPSED TIME(ms): "<< duration << std::endl;
     ofile << "---------------------------------------------------------------------------------"<< std::endl;
-    ofile << std::setw(30) << std::left << "LATCHING LENGTH: "<< pnet.latching_length << std::endl;
     ofile << "//////////////////////////////////////////////////////////////////////////////////"<< std::endl;
+    ofile << std::endl;
+
+    std::cout << "DURATION: " << duration << std::endl;
 
 
-
-    ofile.close();
+    //ofile.close();
 }

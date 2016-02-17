@@ -10,8 +10,8 @@ class HC_PNet : public PNet {
         //int N; //Number of units (Now defined on parent class PNet)
         int C; //Number of connections per unit
         int S; //Number of states
-        int * cm; //Connection matrix
         __fpv * J; // Connection tensor
+        int * cm; //Connection matrix
         __fpv * active_states; // N * S
         __fpv * inactive_states; // N
         int * ucm; //1-0 connection matrix

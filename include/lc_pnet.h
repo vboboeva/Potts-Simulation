@@ -22,7 +22,6 @@ class LC_PNet : public PNet {
         int * xi;
 
 
-        void init_states(const __fpv & beta, const __fpv & U);
         void update_rule(const int & unit,
                          const __fpv buffer[],
                          const int & pattern,
@@ -54,6 +53,7 @@ class LC_PNet : public PNet {
 
 
         void connect_units(std::default_random_engine & generator);
+        void init_states(const __fpv & beta, const __fpv & U);
 
         void init_network(const __fpv & beta,
                           const __fpv & U,
