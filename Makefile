@@ -10,7 +10,7 @@ PCPPC=mpic++
 CFLAGS= -std=c++11 -Wall
 OPTFLAGS= -O2 -xAVX
 CFLAGS+= -qopt-report
-CMACRO=-D_FLOAT_PRECISION #-D_TEST
+CMACRO=-D_DOUBLE_PRECISION -D_TEST
 
 #Source files dir
 SRC=src

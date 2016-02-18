@@ -36,7 +36,7 @@ void PottsSim(struct parameters params, std::string filename, const int & id, st
     t1 = std::chrono::high_resolution_clock::now();
     //Random seed init
     std::default_random_engine generator;
-    generator.seed(12345);
+    generator.seed(54321);
 
     /***************************************************************************
     INITIALIZATION
@@ -57,7 +57,7 @@ void PottsSim(struct parameters params, std::string filename, const int & id, st
 
     pgen.generate();
     //Create the network
-    //generator.seed(12345);
+    generator.seed(12345);
 
 
     LC_PNet pnet(params.N,
@@ -143,26 +143,24 @@ void PottsSim(struct parameters params, std::string filename, const int & id, st
         llseq.push_back(pnet.latching_length);
         bool inf;
         __fpv value = pnet.latching_length;//The maximum latching length
-        if(patt_cued > 9){
+        if(patt_cued > 10){
             inf = true;
             l = llseq.end();
-            for(i = 0; i < 10; ++i){
-                if(value != *l) inf = false;
+            for(i = 0; i < 9; ++i){
                 l--;
+                if(value != *l) inf = false;
             }
 
             if(inf == true && value > 500000){
+                std::cout << "Infinite latching regime" << std::endl;
                 break;
             }
         }
-
     }
 
     t2 = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>( t2 - t1 ).count();
 
     std::cout << "DURATION: " << duration << std::endl;
-
-
 
 }

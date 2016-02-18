@@ -42,10 +42,11 @@ int main(int argc, char *argv[]){
         //std::uniform_int_distribution<int> randp(1,100);
         //std::uniform_int_distribution<int> rands(1,5);
 
-        for(i = 0; i < 2; ++i){
+        for(i = 0; i < 1; ++i){
             params.S = 3+2*i;
-            for(j = 0; j < 2; ++j ){
-                params.p = 10 + 50*j;
+            for(j = 0; j < 1; ++j ){
+                //params.p = 10 + 50*j;
+                params.p = 200;
                 //params.C = randC(generator);
                 //params.p = randp(generator);
                 //params.S = rands(generator);
