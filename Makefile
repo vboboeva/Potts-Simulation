@@ -73,7 +73,7 @@ $(ODIR)/%.o : $(LIB)/%.cpp
 
 #COMPILE PARALLEL SOURCE FILES
 $(PODIR)/%.o : $(PSRC)/%.cpp
-	$(CPPC) $(INC_PARAMS) $(CFLAGS) $(CMACRO) $(OPTFLAGS) -c -o $@ $<
+	$(PCPPC) $(INC_PARAMS) $(CFLAGS) $(CMACRO) $(OPTFLAGS) -c -o $@ $<
 
 #COMPILER PARALLEL LIBRARY
 $(PODIR)/%.o : $(PLIB)/%.cpp
