@@ -131,7 +131,7 @@ void PPS::start(){
                 //std::cout << "SAY HI: "<< PPS::pid << std::endl;
                 //print_params(recvparams);
                 //std::cout << "STARTING REAL SIM"<< std::endl;
-                PottsSim(recvparams,"output/"+ std::to_string(PPS::pid) + "_proc_output.dat", status);
+                PottsSim(recvparams,"output/"+ std::to_string(PPS::pid) + "_", status);
                 //old_code( PPS::pid );
                 //std::cout << "//////////////////////////////////////////////////////////////////////////////////"<< std::endl;
             }else{

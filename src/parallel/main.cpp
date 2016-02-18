@@ -21,7 +21,7 @@ int main(int argc, char *argv[]){
     double t1,t2;
 
     if(PPS::pid == 0){
-        int i,nsim;
+        int i,j,nsim;
 
         if(argc == 1){
             std::cout << "Error, this program requires the number of simulation to launch as argument" << std::endl;
@@ -41,11 +41,16 @@ int main(int argc, char *argv[]){
         //std::uniform_int_distribution<int> randC(1,params.N / 2);
         //std::uniform_int_distribution<int> randp(1,100);
         //std::uniform_int_distribution<int> rands(1,5);
-        for(i = 0; i < nsim; ++i){
-            //params.C = randC(generator);
-            //params.p = randp(generator);
-            //params.S = rands(generator);
-            PPS::plist.push_back(params);
+
+        for(i = 0; i < 2; ++i){
+            params.S = 3+2*i;
+            for(j = 0; j < 2; ++j ){
+                params.p = 10 + 50*j;
+                //params.C = randC(generator);
+                //params.p = randp(generator);
+                //params.S = rands(generator);
+                PPS::plist.push_back(params);
+            }
         }
 
     }
