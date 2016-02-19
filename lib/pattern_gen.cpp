@@ -4,7 +4,7 @@
 #include <fstream>
 #include <chrono>
 #include <cstdlib>
-
+#include <time.h>
 #include "config.h"
 #include "pattern_gen.h"
 
@@ -37,12 +37,9 @@ void PatternGen::generate(){
     __fpv hh[this->N][this->S],hhh[this->S],ss[this->S];
     int Factors[N_fact][Num_fact];
 
-    //std::default_random_engine generator;
-    //generator.seed(12345);
-
     std::uniform_int_distribution<int> int_uniform_0_Nm1(0,this->N-1);
 
-    srand48( 12345 );
+    srand48( time(NULL) );
 
     //Set factors
     for(i=0; i<this->Num_fact; i++){

@@ -21,15 +21,15 @@ int main(int argc, char *argv[]){
     double t1,t2;
 
     if(PPS::pid == 0){
-        int i,j,nsim;
+        int i,j;
 
-        if(argc == 1){
-            std::cout << "Error, this program requires the number of simulation to launch as argument" << std::endl;
-            MPI::COMM_WORLD.Abort(0);
-            //MPI::Finalize();
-            return 1;
-        }
-        nsim = std::atoi(argv[1]);
+        // if(argc == 1){
+        //     std::cout << "Error, this program requires the number of simulation to launch as argument" << std::endl;
+        //     MPI::COMM_WORLD.Abort(0);
+        //     //MPI::Finalize();
+        //     return 1;
+        // }
+        // nsim = std::atoi(argv[1]);
 
         t1 = MPI::Wtime();
         std::cout << "Potts simulation" << std::endl;
@@ -41,15 +41,12 @@ int main(int argc, char *argv[]){
         //std::uniform_int_distribution<int> randC(1,params.N / 2);
         //std::uniform_int_distribution<int> randp(1,100);
         //std::uniform_int_distribution<int> rands(1,5);
-
-        for(i = 0; i < 1; ++i){
-            params.S = 3+2*i;
-            for(j = 0; j < 1; ++j ){
-                //params.p = 10 + 50*j;
-                params.p = 200;
-                //params.C = randC(generator);
-                //params.p = randp(generator);
-                //params.S = rands(generator);
+        
+        int S[] = {3, 5, 7, 9};
+        for(i = 0; i < 4; ++i){
+            params.S = S[i];
+            for(j = 10; j < 1000; j+=50 ){
+                params.p = j;
                 PPS::plist.push_back(params);
             }
         }

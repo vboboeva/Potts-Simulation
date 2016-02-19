@@ -4,6 +4,7 @@
 #include <chrono>
 #include <fstream>
 #include <iomanip>
+#include <time.h>
 
 #include "pattern_gen.h"
 #include "random_seq.h"
@@ -18,7 +19,7 @@ void PottsSim(struct parameters params, std::string filename, const int & id, st
     std::chrono::high_resolution_clock::time_point t1;
     std::chrono::high_resolution_clock::time_point t2;
     std::string strategy;
-    
+
     std::ofstream ksequence;
     std::ofstream msequence;
     std::ofstream llength;
@@ -37,7 +38,7 @@ void PottsSim(struct parameters params, std::string filename, const int & id, st
     t1 = std::chrono::high_resolution_clock::now();
     //Random seed init
     std::default_random_engine generator;
-    generator.seed(54321);
+    //generator.seed(53434321); Inside pattern gen I'm using srand48
 
     /***************************************************************************
     INITIALIZATION
@@ -57,10 +58,11 @@ void PottsSim(struct parameters params, std::string filename, const int & id, st
                );
 
     pgen.generate();
+
+    //Seed for the update shuffle
+    generator.seed(time(NULL));
+
     //Create the network
-    generator.seed(12345);
-
-
     LC_PNet pnet(params.N,
                 params.C,
                 params.S
@@ -85,7 +87,7 @@ void PottsSim(struct parameters params, std::string filename, const int & id, st
     std::vector<int>::iterator k;
     std::vector<__fpv>::iterator m;
 
-    for(patt_cued=0; patt_cued < params.p ;patt_cued++){
+    for(patt_cued=0; patt_cued < params.p ; patt_cued++){
 
         std::cout << "S: "<< params.S << " p: "<< params.p << " cued: " << patt_cued << std::endl;
         pnet.init_states(params.beta,params.U);
@@ -147,12 +149,12 @@ void PottsSim(struct parameters params, std::string filename, const int & id, st
         if(patt_cued > 10){
             inf = true;
             l = llseq.end();
-            for(i = 0; i < 9; ++i){
+            for(i = 0; i < 10; ++i){
                 l--;
                 if(value != *l) inf = false;
             }
 
-            if(inf == true && value > 500000){
+            if(inf == true && value > (params.nupdates - params.tstatus){
                 std::cout << "Infinite latching regime" << std::endl;
                 break;
             }

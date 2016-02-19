@@ -1,26 +1,19 @@
 #!/bin/bash
-#PBS -N PottsBench
-#PBS -l walltime=10:00:00
+#PBS -N PottsSweep
+#PBS -l walltime=45:00:00
 #PBS -l nodes=4:ppn=20
 #PBS -m abe
 #PBS -M leonardo.romor@gmail.com
 
+module purge
+module load testing
+module load openmpi/1.10.1/intel/15.0
+
 cd $PBS_O_WORKDIR
 cd ../../
-
-module purge
-
-module load openmpi/1.8.3/intel/14.0
-module unload intel
-module load gnu/4.9.2
-source /u/shared/programs/x86_64/intel/parallel_studio_xe_2015/composer_xe_2015.0.090/bin/iccvars.sh intel64
-
 
 make
 
 cd $PBS_O_WORKDIR
 
-module purge
-module load openmpi/1.8.3/intel/14.0
-
-mpirun --bind-to socket -np 80 ./pscheduler_psim.x 79 > logs.txt
+mpirun --bind-to socket -np 80 ./pscheduler_psim.x > stdout.txt
