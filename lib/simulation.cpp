@@ -154,7 +154,7 @@ void PottsSim(struct parameters params, std::string filename, const int & id, st
                 if(value != *l) inf = false;
             }
 
-            if(inf == true && value > (params.nupdates - params.tstatus){
+            if(inf == true && value > (params.nupdates - params.tstatus)){
                 std::cout << "Infinite latching regime" << std::endl;
                 break;
             }

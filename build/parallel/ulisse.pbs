@@ -2,6 +2,7 @@
 #PBS -N PottsSweep
 #PBS -l walltime=45:00:00
 #PBS -l nodes=4:ppn=20
+#PBS -q long
 #PBS -m abe
 #PBS -M leonardo.romor@gmail.com
 
