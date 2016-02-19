@@ -118,7 +118,6 @@ void PottsSim(struct parameters params, std::string filename, const int & id, st
         ksequence.open("output/ksequence_S"+std::to_string(params.S)+"_p"+std::to_string(params.p)+".dat",std::ios::app);
         msequence.open("output/msequence_S"+std::to_string(params.S)+"_p"+std::to_string(params.p)+".dat",std::ios::app);
         llength.open("output/llength_S"+std::to_string(params.S)+"_p"+std::to_string(params.p)+".dat",std::ios::app);
-        //ofile.open(, std::ios::app);
 
         ksequence << patt_cued << " ";
         k = pnet.ksequence.begin();

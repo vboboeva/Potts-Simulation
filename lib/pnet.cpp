@@ -27,8 +27,7 @@ void PNet::get_status(const int & p, const int & tx, const int & t, const int * 
             Mumaxold = Mumax;
 
             #ifdef _TEST
-            std::cout << "k: " <<Mumax << " n " << t << std::endl;
-            std::cout << "m: " <<Mmax << " n " << t << std::endl;
+            std::cout << "k: " <<Mumax << " m: " << Mmax << " t " << (double)t/N << std::endl;
             #endif
 
             this->ksequence.push_back(Mumax);
