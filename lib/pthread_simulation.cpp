@@ -15,38 +15,55 @@
 #include "simulation.h"
 #include "config.h"
 
+//Struct definition for the data to be passed as arguments to the threads
 struct thread_data{
-   int thread_id;
-   int total_threads;
+   int thread_id; //Will have the thread id
+   int total_threads; //Will store the total number of threads
 };
 
+//Struct definition of the simulation values to be shared
 struct global_data{
-    struct parameters params;
-    __fpv * J; //Global heap J
-    int * cm; //Global heap cm
-    int * ucm; //Global heap ucm
-    int * xi; //Global heap xi
+    struct parameters params; //Stores an hard copy of the parameters
+    __fpv * J; //Link to the global heap J
+    int * cm; //Link to the global heap cm
+    int * ucm; //Link to the global heap ucm
+    int * xi; //Link to the global heap xi
+    bool stop; //Flag where all the threads will look in order to stop
 };
 
+//Files
 std::ofstream ksequence;
 std::ofstream msequence;
 std::ofstream llength;
 
+int max_length_counter; //Counter which stores: "How many different cues take to the maximum length?"
+int max_sim_max_length; //Value that stores the maximum number of maximum lenght
+//simulation before the sim exits sayn "ok, for any other cue the sim is infinite"
 
-struct global_data gp;
-struct thread_data * thread_data_array;
+struct global_data gp; //Instance of the global data of the simulation
+struct thread_data * thread_data_array; //Pointer to link to the array of arguments to be passed to the threads
 
-void *fthreads(void *threadarg)
-{
+
+pthread_mutex_t kseq,mseq,llen,inf,stop; //Different mutexes for file or variable to lock
+
+
+//Thread function
+void *fthreads(void *threadarg){
+
     struct thread_data *d;
     d = (struct thread_data *) threadarg;
 
     struct parameters params = gp.params;
-    int * a;
-    __fpv * b;
+    int p_cued = params.p;
+
+    //p_cued = params.p;
+
+    //If the number of pattern is higher than 100 simply run the sim for 100 different cues
+    if(params.p >= 100) p_cued = 100;
+
     int rem, patt, num_sim, i;
-    rem = params.p % d->total_threads;
-    num_sim = params.p / d->total_threads;
+    rem = p_cued % d->total_threads;
+    num_sim = p_cued / d->total_threads;
 
     if(d->thread_id < rem){
         num_sim++;
@@ -55,15 +72,18 @@ void *fthreads(void *threadarg)
     std::default_random_engine generator;
     std::cout << "ID: " << d->thread_id << " NUM_SIM: " << num_sim << std::endl;
 
+    std::vector<__fpv>::iterator l;
+    std::vector<int>::iterator k;
+    std::vector<__fpv>::iterator m;
+
     LC_PNet mysim(params.N,params.C,params.S,gp.cm,gp.ucm,gp.J);
+    mysim.stop = &gp.stop; //Set the parameter to watch to stop the simulation
 
     for( i = 0; i < num_sim; ++i){
+
         patt = d->thread_id + i*d->total_threads;
 
-        mysim.ksequence.clear();
-        mysim.msequence.clear();
-
-        mysim.init_states(params.beta,params.U);
+        mysim.reset(params.beta,params.U);
         //std::cout << "XI0: " << gp.xi[1] << " J: " << gp.J[1] << std::endl;
         mysim.start_dynamics(generator,
                             params.p,
@@ -83,10 +103,49 @@ void *fthreads(void *threadarg)
                             500*params.N //tx (n0)
                             );
 
+
+
+        pthread_mutex_lock(&inf);
+        if(gp.stop){
+            pthread_mutex_unlock(&inf);
+            break;
+        }else if(mysim.infinite){
+            max_length_counter++;
+            if(max_length_counter == max_sim_max_length){
+                gp.stop = true;
+            }
+        }
+        pthread_mutex_unlock(&inf);
+
         std::cout << "thread id: " << d->thread_id << " ";
         mysim.print_ksequence();
-    }
 
+        //Print in files
+        pthread_mutex_lock(&kseq);
+        ksequence << patt << " ";
+        k = mysim.ksequence.begin();
+        while( k!= mysim.ksequence.end()){
+            ksequence << *k << " ";
+            k++;
+        }
+        ksequence << std::endl;
+        pthread_mutex_unlock(&kseq);
+
+        pthread_mutex_lock(&mseq);
+        msequence << patt << " ";
+        m = mysim.msequence.begin();
+        while( m!= mysim.msequence.end()){
+            msequence << *m << " ";
+            m++;
+        }
+        msequence << std::endl;
+        pthread_mutex_unlock(&mseq);
+
+        pthread_mutex_lock(&llen);
+        llength << patt << " ";
+        llength << mysim.latching_length << std::endl;
+        pthread_mutex_unlock(&llen);
+    }
     pthread_exit(NULL);
 }
 
@@ -96,12 +155,20 @@ void PottsSim(struct parameters params, const int & threads){
     std::chrono::high_resolution_clock::time_point t2;
 
     int i;
+
+    max_length_counter = 0;
+    max_sim_max_length = 5;
+
     thread_data_array = new struct thread_data[threads];
 
     for(i = 0; i < threads; ++i){
         thread_data_array[i].thread_id = i;
         thread_data_array[i].total_threads = threads;
     }
+
+    ksequence.open("output/ksequence_S"+std::to_string(params.S)+"_p"+std::to_string(params.p)+".dat",std::ios::app);
+    msequence.open("output/msequence_S"+std::to_string(params.S)+"_p"+std::to_string(params.p)+".dat",std::ios::app);
+    llength.open("output/llength_S"+std::to_string(params.S)+"_p"+std::to_string(params.p)+".dat",std::ios::app);
 
     //Random seed init
     std::default_random_engine generator;
@@ -149,6 +216,7 @@ void PottsSim(struct parameters params, const int & threads){
     gp.xi = pgen.get_patt();
     gp.cm = pnet.get_cm();
     gp.ucm = pnet.get_ucm();
+    gp.stop = false;
 
     t1 = std::chrono::high_resolution_clock::now();
 
@@ -175,6 +243,10 @@ void PottsSim(struct parameters params, const int & threads){
             std::cout << "ERROR; return code from pthread_join() is " << rc << std::endl;
         }
     }
+
+    ksequence.close();
+    msequence.close();
+    llength.close();
 
     t2 = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>( t2 - t1 ).count();

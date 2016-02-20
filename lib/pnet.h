@@ -20,7 +20,7 @@ class PNet{
         void get_status(const int & p, const int & tx, const int & t, const int * xi, const __fpv & a, int & Mumaxold, int & Mumax, int & steps, bool & stop);
 
     public:
-        PNet(const int & N){this->N = N;}
+        PNet(const int & N){this->N = N; this->infinite = false;}
 
         std::vector<int> ksequence;
         std::vector<__fpv> msequence;
@@ -31,7 +31,8 @@ class PNet{
         virtual void save_states_to_file(const std::string & filename) = 0;
         virtual void save_connections_to_file(const std::string & filename) = 0;
         virtual void save_J_to_file(const std::string & filename) = 0;
-
+        bool infinite;
+        bool * stop;
 
         virtual void init_network(const __fpv & beta,
                           const __fpv & U,

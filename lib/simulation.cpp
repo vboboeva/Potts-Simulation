@@ -83,7 +83,6 @@ void PottsSim(struct parameters params, std::string filename, const int & id, st
 
     std::vector<__fpv> llseq;
     std::vector<__fpv>::iterator l;
-
     std::vector<int>::iterator k;
     std::vector<__fpv>::iterator m;
 

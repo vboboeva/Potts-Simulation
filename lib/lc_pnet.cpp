@@ -349,6 +349,9 @@ void LC_PNet::start_dynamics(std::default_random_engine & generator, const int &
 
 
             if((t % tstatus) == 0){
+                if(*this->stop){
+                    goto end;
+                }
                 latching_length = (double)t / N;
                 this->get_status(p,tx,t,xi,a,Mumaxold,Mumax,steps,stop);
 
@@ -362,6 +365,8 @@ void LC_PNet::start_dynamics(std::default_random_engine & generator, const int &
         }
 
     }
+    this->infinite = true;
+
     #ifndef _NO_END_CONDITION
     end:
     #endif
@@ -376,6 +381,13 @@ void LC_PNet::start_dynamics(std::default_random_engine & generator, const int &
     #endif
     std::cout;
 
+}
+
+void LC_PNet::reset(const __fpv & beta, const __fpv & U){
+    this->ksequence.clear();
+    this->msequence.clear();
+    this->infinite = false;
+    this->init_states(beta,U);
 }
 
 void LC_PNet::evaluate_m(const int & p, const __fpv & a, const int * xi, __fpv m[]){

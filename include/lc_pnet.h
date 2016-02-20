@@ -50,6 +50,7 @@ class LC_PNet : public PNet {
         void save_states_to_file(const std::string & filename);
         void save_connections_to_file(const std::string & filename);
         void save_J_to_file(const std::string & filename);
+        void reset(const __fpv & beta, const __fpv & U);
 
         __fpv * get_J(){return this->J;}
         int * get_cm(){return this->cm;}
