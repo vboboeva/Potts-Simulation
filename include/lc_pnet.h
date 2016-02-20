@@ -18,7 +18,7 @@ class LC_PNet : public PNet {
         __fpv * inactive_r;
         __fpv * h;
         __fpv * theta;
-        bool red;
+        bool space_cmJ;
 
         void update_rule(const int & unit,
                          const __fpv buffer[],
@@ -41,7 +41,7 @@ class LC_PNet : public PNet {
 
     public:
         LC_PNet(const int & N, const int & C, const int & S);
-        LC_PNet(const int & N);
+        LC_PNet(const int & N, const int & C, const int & S, int * cm, int * ucm, __fpv * J);
 
         ~LC_PNet();
 
@@ -53,8 +53,10 @@ class LC_PNet : public PNet {
 
         __fpv * get_J(){return this->J;}
         int * get_cm(){return this->cm;}
+        int * get_ucm(){return this->ucm;}
         void set_J(__fpv * J){this->J = J;}
         void set_cm(int * cm){this->cm = cm;}
+        void set_ucm(int * ucm){this->ucm = ucm;}
 
         void connect_units(std::default_random_engine & generator);
         void init_states(const __fpv & beta, const __fpv & U);

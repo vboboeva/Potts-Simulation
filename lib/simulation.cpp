@@ -87,6 +87,10 @@ void PottsSim(struct parameters params, std::string filename, const int & id, st
     std::vector<int>::iterator k;
     std::vector<__fpv>::iterator m;
 
+    ksequence.open("output/ksequence_S"+std::to_string(params.S)+"_p"+std::to_string(params.p)+".dat",std::ios::app);
+    msequence.open("output/msequence_S"+std::to_string(params.S)+"_p"+std::to_string(params.p)+".dat",std::ios::app);
+    llength.open("output/llength_S"+std::to_string(params.S)+"_p"+std::to_string(params.p)+".dat",std::ios::app);
+
     for(patt_cued=0; patt_cued < params.p ; patt_cued++){
 
         std::cout << "S: "<< params.S << " p: "<< params.p << " cued: " << patt_cued << std::endl;
@@ -115,9 +119,6 @@ void PottsSim(struct parameters params, std::string filename, const int & id, st
 
 
 
-        ksequence.open("output/ksequence_S"+std::to_string(params.S)+"_p"+std::to_string(params.p)+".dat",std::ios::app);
-        msequence.open("output/msequence_S"+std::to_string(params.S)+"_p"+std::to_string(params.p)+".dat",std::ios::app);
-        llength.open("output/llength_S"+std::to_string(params.S)+"_p"+std::to_string(params.p)+".dat",std::ios::app);
 
         ksequence << patt_cued << " ";
         k = pnet.ksequence.begin();
@@ -138,10 +139,6 @@ void PottsSim(struct parameters params, std::string filename, const int & id, st
         llength << patt_cued << " ";
         llength << pnet.latching_length << std::endl;
 
-        ksequence.close();
-        msequence.close();
-        llength.close();
-
         llseq.push_back(pnet.latching_length);
         bool inf;
         __fpv value = pnet.latching_length;//The maximum latching length
@@ -159,6 +156,10 @@ void PottsSim(struct parameters params, std::string filename, const int & id, st
             }
         }
     }
+
+    ksequence.close();
+    msequence.close();
+    llength.close();
 
     t2 = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>( t2 - t1 ).count();

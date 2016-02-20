@@ -7,10 +7,10 @@ CPPC=icpc
 PCPPC=mpic++
 
 #Optimization flags
-CFLAGS= -std=c++11 -Wall -lpthread
+CFLAGS= -std=c++11 -Wall
 OPTFLAGS= -O2 -xAVX
 CFLAGS+= -qopt-report
-CMACRO=-D_FLOAT_PRECISION -D_TEST
+CMACRO=-D_FLOAT_PRECISION
 
 #Source files dir
 SRC=src

@@ -11,7 +11,6 @@
 #include "random_seq.h"
 #include "hc_pnet.h"
 #include "lc_pnet.h"
-#include "lc_pnet_reduced.h"
 #include "parameters_struct.h"
 #include "simulation.h"
 #include "config.h"
@@ -25,8 +24,14 @@ struct global_data{
     struct parameters params;
     __fpv * J; //Global heap J
     int * cm; //Global heap cm
+    int * ucm; //Global heap ucm
     int * xi; //Global heap xi
 };
+
+std::ofstream ksequence;
+std::ofstream msequence;
+std::ofstream llength;
+
 
 struct global_data gp;
 struct thread_data * thread_data_array;
@@ -48,17 +53,15 @@ void *fthreads(void *threadarg)
     }
 
     std::default_random_engine generator;
-    //std::cout << "ID: " << d->thread_id << " NUM_SIM: " << num_sim << std::endl;
+    std::cout << "ID: " << d->thread_id << " NUM_SIM: " << num_sim << std::endl;
 
+    LC_PNet mysim(params.N,params.C,params.S,gp.cm,gp.ucm,gp.J);
 
-
-    LC_PNet_Reduced mysim(params.N,params.C,params.S,a,b);
-
-    mysim.set_J(gp.J);
-    mysim.set_cm(gp.cm);
-    
     for( i = 0; i < num_sim; ++i){
-        patt = d->thread_id + d->total_threads;
+        patt = d->thread_id + i*d->total_threads;
+
+        mysim.ksequence.clear();
+        mysim.msequence.clear();
 
         mysim.init_states(params.beta,params.U);
         //std::cout << "XI0: " << gp.xi[1] << " J: " << gp.J[1] << std::endl;
@@ -79,6 +82,9 @@ void *fthreads(void *threadarg)
                             params.beta, //beta
                             500*params.N //tx (n0)
                             );
+
+        std::cout << "thread id: " << d->thread_id << " ";
+        mysim.print_ksequence();
     }
 
     pthread_exit(NULL);
@@ -142,6 +148,7 @@ void PottsSim(struct parameters params, const int & threads){
     gp.J = pnet.get_J();
     gp.xi = pgen.get_patt();
     gp.cm = pnet.get_cm();
+    gp.ucm = pnet.get_ucm();
 
     t1 = std::chrono::high_resolution_clock::now();
 

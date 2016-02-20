@@ -31,7 +31,7 @@ LC_PNet::LC_PNet(const int & N, const int & C, const int & S) : PNet(N){
     this->active_r = new __fpv[N * S];
     this->h = new __fpv[N*S];
     this->theta = new __fpv[N*S];
-    this->red = false;
+    this->space_cmJ = false;
     //Init to 0 "1-0 matrix"
     for(i = 0; i < N; ++i){
         for(j = 0; j < N; ++j){
@@ -41,11 +41,28 @@ LC_PNet::LC_PNet(const int & N, const int & C, const int & S) : PNet(N){
 
 }
 
-LC_PNet::LC_PNet(const int & N):PNet(N){this->red = true;}
+LC_PNet::LC_PNet(const int & N, const int & C, const int & S, int * cm, int * ucm, __fpv * J) : PNet(N){
+
+    int i,j;
+    this->space_cmJ = true;
+
+    this->C = C;
+    this->S = S;
+    this->cm = cm;
+    this->ucm = ucm;
+    this->J = J; //!"£"
+    this->inactive_states = new __fpv[N];
+    this->active_states = new __fpv[N * S];
+    this->inactive_r = new __fpv[N];
+    this->active_r = new __fpv[N * S];
+    this->h = new __fpv[N*S];
+    this->theta = new __fpv[N*S];
+
+}
 
 LC_PNet::~LC_PNet(){
 
-    if(!this->red){
+    if(!this->space_cmJ){
         delete[] this->cm;
         delete[] this->ucm;
         delete[] this->J;
