@@ -39,7 +39,8 @@ void PatternGen::generate(){
 
     std::uniform_int_distribution<int> int_uniform_0_Nm1(0,this->N-1);
 
-    srand48( time(NULL) );
+    srand48( 12345 );
+    //srand48( time(NULL) );
 
     //Set factors
     for(i=0; i<this->Num_fact; i++){

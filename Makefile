@@ -7,7 +7,7 @@ CPPC=icpc
 PCPPC=mpic++
 
 #Optimization flags
-CFLAGS= -std=c++11 -Wall
+CFLAGS= -std=c++11 -Wall -lpthread
 OPTFLAGS= -O2 -xAVX
 CFLAGS+= -qopt-report
 CMACRO=-D_FLOAT_PRECISION -D_TEST
@@ -80,10 +80,10 @@ $(ODIR)/%.o : $(LIB)/%.cpp
 
 #LINKING
 $(ODIR)/$(EXE): $(SRC_OBJ_FILES) $(LIB_OBJ_FILES)
-	$(CPPC) $^ -o $@
+	$(CPPC) $^ -o $@ -lpthread
 
 $(PODIR)/$(PEXE): $(PARALLEL_SRC_OBJ_FILES) $(PARALLEL_LIB_OBJ_FILES) $(LIB_OBJ_FILES)
-	$(PCPPC) $^ -o $@
+	$(PCPPC) $^ -o $@ -lpthread
 
 lib: $(LIB_OBJ_FILES)
 

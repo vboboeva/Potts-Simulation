@@ -7,6 +7,7 @@
 #include <string>
 #include <sstream>
 #include <chrono>
+#include <typeinfo>
 
 #include "lc_pnet.h"
 #include "config.h"
@@ -30,7 +31,7 @@ LC_PNet::LC_PNet(const int & N, const int & C, const int & S) : PNet(N){
     this->active_r = new __fpv[N * S];
     this->h = new __fpv[N*S];
     this->theta = new __fpv[N*S];
-
+    this->red = false;
     //Init to 0 "1-0 matrix"
     for(i = 0; i < N; ++i){
         for(j = 0; j < N; ++j){
@@ -40,11 +41,16 @@ LC_PNet::LC_PNet(const int & N, const int & C, const int & S) : PNet(N){
 
 }
 
+LC_PNet::LC_PNet(const int & N):PNet(N){this->red = true;}
+
 LC_PNet::~LC_PNet(){
 
-    delete[] this->cm;
-    delete[] this->ucm;
-    delete[] this->J;
+    if(!this->red){
+        delete[] this->cm;
+        delete[] this->ucm;
+        delete[] this->J;
+    }
+
     delete[] this->inactive_states;
     delete[] this->active_states;
     delete[] this->inactive_r;
@@ -291,7 +297,7 @@ void LC_PNet::start_dynamics(std::default_random_engine & generator, const int &
 
             unit = sequence.get(j);
 
-            //__assume_aligned(&buffer, 64);
+            __assume_aligned(&buffer, 64);
 
             //Fill the buffer containing all the states requested
             for(k = 0; k < this->C; ++k){

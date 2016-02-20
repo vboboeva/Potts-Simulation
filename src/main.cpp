@@ -1,8 +1,9 @@
 #include <iostream>
 
 #include "utils.h"
-#include "simulation.h"
+#include "pthread_simulation.h"
 #include "parameters_struct.h"
+
 
 int main(int argc, char *argv[]){
 
@@ -11,7 +12,8 @@ int main(int argc, char *argv[]){
     struct parameters params;
     load_params("params.cfg", params);
 
-    PottsSim(params,"output.dat");
+    //PottsSim(params,"output.dat");
+    PottsSim(params,6);
 
     std::cout << "End of the simulation" << std::endl;
     return 0;
