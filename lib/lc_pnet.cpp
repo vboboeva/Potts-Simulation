@@ -62,7 +62,7 @@ LC_PNet::~LC_PNet(){
 
 void LC_PNet::connect_units(std::default_random_engine & generator){
 
-    int i,j;
+    int i,j,Ctemp = C;
     RandomSequence sequence(this->N); //Sequence between 0 and N-1
 
     //Fill cm matrix with indices of potts units
@@ -71,10 +71,18 @@ void LC_PNet::connect_units(std::default_random_engine & generator){
         sequence.shuffle(generator);
 
         //Store in the inverse cm
-        for(j = 0; j < C; ++j){
+        for(j = 0; j < Ctemp; ++j){
+            // Error, I have to avoid having the self connection
+            if(sequence.begin()[j] == i){
+                Ctemp++;
+                continue;
+            }
+
             this->cm[C*i + j] = sequence.begin()[j];
             this->ucm[i*N + sequence.begin()[j]] = 1;
         }
+
+        Ctemp = C;
     }
 
 }

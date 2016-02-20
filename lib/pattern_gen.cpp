@@ -37,7 +37,7 @@ void PatternGen::generate(){
     __fpv hh[this->N][this->S],hhh[this->S],ss[this->S];
     int Factors[N_fact][Num_fact];
 
-    std::uniform_int_distribution<int> int_uniform_0_Nm1(0,this->N-1);
+    //std::uniform_int_distribution<int> int_uniform_0_Nm1(0,this->N-1);
 
     srand48( 12345 );
     //srand48( time(NULL) );

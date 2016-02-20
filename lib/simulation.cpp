@@ -60,7 +60,7 @@ void PottsSim(struct parameters params, std::string filename, const int & id, st
     pgen.generate();
 
     //Seed for the update shuffle
-    generator.seed(time(NULL));
+    //generator.seed(time(NULL));
 
     //Create the network
     LC_PNet pnet(params.N,
