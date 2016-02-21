@@ -19,29 +19,16 @@ int main(int argc, char *argv[]){
     /********************************************/
 
     double t1,t2;
+    int sims; //count the total sims
 
     if(PPS::pid == 0){
         int i,j;
-
-        // if(argc == 1){
-        //     std::cout << "Error, this program requires the number of simulation to launch as argument" << std::endl;
-        //     MPI::COMM_WORLD.Abort(0);
-        //     //MPI::Finalize();
-        //     return 1;
-        // }
-        // nsim = std::atoi(argv[1]);
 
         t1 = MPI::Wtime();
         std::cout << "Potts simulation" << std::endl;
         struct parameters params;
         load_params("params.cfg", params);
 
-        //std::default_random_engine generator;
-        //generator.seed(12345);
-        //std::uniform_int_distribution<int> randC(1,params.N / 2);
-        //std::uniform_int_distribution<int> randp(1,100);
-        //std::uniform_int_distribution<int> rands(1,5);
-        
         int S[] = {3, 5, 7, 9};
         for(i = 0; i < 4; ++i){
             params.S = S[i];
@@ -51,6 +38,8 @@ int main(int argc, char *argv[]){
             }
         }
 
+        sims = PPS::plist.size();
+
     }
 
 
@@ -59,7 +48,7 @@ int main(int argc, char *argv[]){
 
     if(PPS::pid == 0){
         t2 = MPI::Wtime();
-        std::cout << "[NSIM] [ELAPSED TIME] " << std::atoi(argv[1]) << " " << t2-t1 << std::endl;
+        std::cout << "[NSIM] [ELAPSED TIME] " << sims << " " << t2-t1 << std::endl;
         std::cout << "End of the simulation" << std::endl;
     }
 

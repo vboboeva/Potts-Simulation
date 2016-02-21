@@ -4,7 +4,7 @@
 #PBS -l nodes=4:ppn=20
 #PBS -q long
 #PBS -m abe
-#PBS -M leonardo.romor@gmail.com
+#PBS -M yourmail@test123.com
 
 module purge
 module load testing
@@ -17,4 +17,13 @@ make
 
 cd $PBS_O_WORKDIR
 
+#Create the thread directory if it doesn't exit
+mkdir -p thread
+#Clean it
+rm thread/*
+
+#Start the simulation, remember to select the correct number of threads and processes.
+#The maximum performance number of threads in ulisse is 10, (10 physical cores per socket, each node has 2 sockets)
+#the number of processes per node should be then 2, 1 process per socket, each process will then spawn 10 threads each,
+#filling in this way with 20 threads the whole node.
 mpirun --bind-to socket -np 80 ./pscheduler_psim.x > stdout.txt

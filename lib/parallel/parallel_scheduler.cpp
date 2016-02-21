@@ -1,16 +1,14 @@
-
 #include <mpi.h>
-#include "parameters_struct.h"
-#include "parallel_scheduler.h"
 #include <iostream>
-#include "utils.h"
-#include "simulation.h"
 #include <string>
 #include <fstream>
-
 #include <chrono>
-#include <thread>
 
+#include "parameters_struct.h"
+#include "parallel_scheduler.h"
+#include "utils.h"
+#include "pthread_simulation.h"
+#include "simulation.h"
 //#include "master.h"
 
 #define EXIT_PROCESS -1
@@ -54,6 +52,7 @@ void PPS::start(){
     MPIPPSTRUCT = MPIPPSTRUCT.Create_struct(2,blockcounts,offsets, datatypes);
     MPIPPSTRUCT.Commit();
 
+    //MASTER
     if(PPS::pid == 0){
 
         struct parameters temp;
@@ -106,7 +105,7 @@ void PPS::start(){
 
 
     }else{
-
+        //SLAVES
         int status;
         bool ready = true;
         struct parameters recvparams;
@@ -122,19 +121,12 @@ void PPS::start(){
             if(status != EXIT_PROCESS){
                 //wait to receive parameters
 
-
-                //std::this_thread::sleep_for(std::chrono::seconds(PPS::pid));
-
                 MPI::COMM_WORLD.Recv(&recvparams, 1, MPIPPSTRUCT, 0, 0);
                 //Start sim
-                //std::cout << "//////////////////////////////////////////////////////////////////////////////////"<< std::endl;
-                //std::cout << "SAY HI: "<< PPS::pid << std::endl;
-                //print_params(recvparams);
-                //std::cout << "STARTING REAL SIM"<< std::endl;
                 //PottsSim(recvparams,"output/"+ std::to_string(PPS::pid) + "_", status);
-                PottsSim(recvparams);
-                //old_code( PPS::pid );
-                //std::cout << "//////////////////////////////////////////////////////////////////////////////////"<< std::endl;
+                //PottsSim(recvparams);
+                ThreadedPottsSim(recvparams,10,50);
+
             }else{
                 std::cout << "I'm the process "<< PPS::pid << ", ready to die." << std::endl;
                 break;
@@ -145,6 +137,5 @@ void PPS::start(){
     }
 
     MPIPPSTRUCT.Free();
-
 
 }
