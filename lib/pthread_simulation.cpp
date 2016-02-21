@@ -60,7 +60,7 @@ void *fthreads(void *threadarg){
     struct parameters params = gp.params;
     int p_cued = params.p;
     //If the number of pattern is higher than 100 simply run the sim for 100 different cues
-    if(params.p >= 100) p_cued = 100;
+    if(params.p >= 50) p_cued = 50;
 
     int rem, patt, num_sim, i;
     rem = p_cued % d->total_threads;
@@ -89,17 +89,17 @@ void *fthreads(void *threadarg){
         patt = d->thread_id + i*d->total_threads;
 
         //Automatic reset (slower, it's better copy the initial values from the global arrays)
-        //mysim.reset(params.beta,params.U);
+        mysim.reset(params.beta,params.U);
 
         //Manual reset (copy from the global arrays)
-        mysim.ksequence.clear();
-        mysim.msequence.clear();
-        mysim.infinite = false;
-
-        std::memcpy(mysim.get_active_states(),gp.i_active_states,cp);
-        std::memcpy(mysim.get_active_r(),gp.i_active_r,cp);
-        std::memcpy(mysim.get_theta(),gp.i_theta,cp);
-
+        // mysim.ksequence.clear();
+        // mysim.msequence.clear();
+        // mysim.infinite = false;
+        //
+        // std::memcpy(mysim.get_active_states(),gp.i_active_states,cp);
+        // std::memcpy(mysim.get_active_r(),gp.i_active_r,cp);
+        // std::memcpy(mysim.get_theta(),gp.i_theta,cp);
+        //
 
         //Start the dynamics passing the global array of patterns
         mysim.start_dynamics(generator,

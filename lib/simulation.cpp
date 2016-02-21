@@ -71,7 +71,7 @@ void PottsSim(struct parameters params, const int & pid, const int & msml){
     int patt,i;
     int p_cued = params.p;
     //If the number of pattern is higher than 100 simply run the sim for 100 different cues
-    if(params.p >= 100) p_cued = 100;
+    if(params.p >= 50) p_cued = 50;
 
     std::vector<bool> llseq;
     std::vector<bool>::iterator l;

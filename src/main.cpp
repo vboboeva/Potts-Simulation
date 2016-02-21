@@ -15,7 +15,7 @@ int main(int argc, char *argv[]){
 
     PottsSim(params,0,50);
 
-    ThreadedPottsSim(params,7,50);
+    //ThreadedPottsSim(params,7,50);
 
     std::cout << "End of the simulation" << std::endl;
     return 0;
