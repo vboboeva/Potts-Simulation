@@ -66,7 +66,7 @@ void *fthreads(void *threadarg){
     struct parameters params = gp.params;
     int p_cued = params.p;
     //If the number of pattern is higher than 100 simply run the sim for 100 different cues
-    if(params.p >= 8) p_cued = 8;
+    if(params.p >= 100) p_cued = 100;
 
     int rem, patt, num_sim, i;
     rem = p_cued % d->total_threads;
