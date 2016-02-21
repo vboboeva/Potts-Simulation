@@ -13,7 +13,7 @@ int main(int argc, char *argv[]){
     struct parameters params;
     load_params("params.cfg", params);
 
-    PottsSim(params,0,50);
+    //PottsSim(params,0,50);
 
     ThreadedPottsSim(params,8,50);
 
