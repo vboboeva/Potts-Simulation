@@ -83,11 +83,12 @@ void PottsSim(struct parameters params, const int & pid, const int & msml){
     llength.open("serial/llength_S"+std::to_string(params.S)+"_p"+std::to_string(params.p)+".dat",std::ios::app);
 
 
-    generator.seed(12345);
+
 
     for(patt=0; patt < p_cued ; patt++){
 
         std::cout << "S: "<< params.S << " p: "<< params.p << " cued: " << patt << std::endl;
+        generator.seed(12345);
         pnet.reset(params.beta,params.U);
 
 

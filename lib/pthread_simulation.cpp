@@ -82,12 +82,15 @@ void *fthreads(void *threadarg){
 
     //Evaluate the size in bytes of the active states, theta and r arrays
     int cp = sizeof(__fpv)*params.N * params.S;
-    generator.seed(12345);
+
 
     for( i = 0; i < num_sim; ++i){
 
         patt = d->thread_id + i*d->total_threads;
 
+        //In order to have the same result as with the Psim without threads remember to reset the seed to the
+        //same value each time
+        generator.seed(12345);
         //Automatic reset (slower, it's better copy the initial values from the global arrays)
         mysim.reset(params.beta,params.U);
 
