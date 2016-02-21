@@ -24,14 +24,20 @@ struct thread_data{
 
 //Struct definition of the simulation values to be shared
 struct global_data{
-    struct parameters params; //Stores an hard copy of the parameters
-    __fpv * J; //Link to the global heap J
+    //Stores an hard copy of the parameters
+    struct parameters params;
+    //Links to the initial arrays
+    ////////////////////////////
+    __fpv * J;
     __fpv * i_active_r;
     __fpv * i_theta;
     __fpv * i_active_states;
-    int * cm; //Link to the global heap cm
-    int * ucm; //Link to the global heap ucm
-    int * xi; //Link to the global heap xi
+    __fpv * i_inactive_states;
+    __fpv * i_inactive_r;
+    int * cm;
+    int * ucm;
+    int * xi;
+    //*************************
     bool stop; //Flag where all the threads will look in order to stop
 };
 
@@ -48,7 +54,7 @@ struct global_data gp; //Instance of the global data of the simulation
 struct thread_data * thread_data_array; //Pointer to link to the array of arguments to be passed to the threads
 
 
-pthread_mutex_t kseq,mseq,llen,inf,stop; //Different mutexes for file or variable to lock
+pthread_mutex_t kseq,mseq,llen,inf; //Different mutexes for file or variable to lock
 
 
 //Thread function
@@ -60,7 +66,7 @@ void *fthreads(void *threadarg){
     struct parameters params = gp.params;
     int p_cued = params.p;
     //If the number of pattern is higher than 100 simply run the sim for 100 different cues
-    if(params.p >= 50) p_cued = 50;
+    if(params.p >= 8) p_cued = 8;
 
     int rem, patt, num_sim, i;
     rem = p_cued % d->total_threads;
@@ -81,7 +87,7 @@ void *fthreads(void *threadarg){
     mysim.stop = &gp.stop; //Set the parameter to watch to stop the simulation
 
     //Evaluate the size in bytes of the active states, theta and r arrays
-    int cp = sizeof(__fpv)*params.N * params.S;
+    int cp = sizeof(__fpv)*params.N * params.S, cpinactive = sizeof(__fpv)*params.N;
 
 
     for( i = 0; i < num_sim; ++i){
@@ -92,17 +98,17 @@ void *fthreads(void *threadarg){
         //same value each time
         generator.seed(12345);
         //Automatic reset (slower, it's better copy the initial values from the global arrays)
-        mysim.reset(params.beta,params.U);
+        //mysim.reset(params.beta,params.U);
 
         //Manual reset (copy from the global arrays)
-        // mysim.ksequence.clear();
-        // mysim.msequence.clear();
-        // mysim.infinite = false;
-        //
-        // std::memcpy(mysim.get_active_states(),gp.i_active_states,cp);
-        // std::memcpy(mysim.get_active_r(),gp.i_active_r,cp);
-        // std::memcpy(mysim.get_theta(),gp.i_theta,cp);
-        //
+        mysim.ksequence.clear();
+        mysim.msequence.clear();
+        mysim.infinite = false;
+        std::memcpy(mysim.get_active_states(),gp.i_active_states,cp);
+        std::memcpy(mysim.get_active_r(),gp.i_active_r,cp);
+        std::memcpy(mysim.get_theta(),gp.i_theta,cp);
+        std::memcpy(mysim.get_inactive_r(),gp.i_inactive_r,cpinactive);
+        std::memcpy(mysim.get_inactive_states(),gp.i_inactive_states,cpinactive);
 
         //Start the dynamics passing the global array of patterns
         mysim.start_dynamics(generator,
@@ -248,6 +254,9 @@ void ThreadedPottsSim(struct parameters params, const int & threads, const int &
     gp.i_active_states = pnet.get_active_states();
     gp.i_active_r = pnet.get_active_r();
     gp.i_theta = pnet.get_theta();
+    gp.i_inactive_r = pnet.get_inactive_r();
+    gp.i_inactive_states = pnet.get_inactive_states();
+
 
     gp.stop = false;
 

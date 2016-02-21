@@ -56,6 +56,8 @@ class LC_PNet : public PNet {
         __fpv * get_active_r(){return this->active_r;}
         __fpv * get_theta(){return this->theta;}
         __fpv * get_active_states(){return this->active_states;}
+        __fpv * get_inactive_r(){return this->inactive_r;}
+        __fpv * get_inactive_states(){return this->inactive_states;}
         int * get_cm(){return this->cm;}
         int * get_ucm(){return this->ucm;}
 
