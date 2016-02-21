@@ -44,6 +44,7 @@ class PatternGen{
         void eval_stats();
         void save_pattern_to_file(const std::string filename);
         void import_pattern(const std::string filename);
+        void set_pattern(int * xi){this->Patt = xi;}
         int * get_patt();
         int * get_patt(const int n);
 

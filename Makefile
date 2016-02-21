@@ -7,8 +7,8 @@ CPPC=icpc
 PCPPC=mpic++
 
 #Optimization flags
-CFLAGS= -std=c++11 -Wall
-OPTFLAGS= -O2 -xAVX
+CFLAGS= -std=c++11 -Wall -g
+OPTFLAGS=-O2 -xAVX
 CFLAGS+= -qopt-report
 CMACRO=-D_FLOAT_PRECISION
 
@@ -98,6 +98,7 @@ plib: $(PARALLEL_LIB_OBJ_FILES)
 clean:
 	@rm -rf $(ODIR)/*.x $(ODIR)/*.dat $(ODIR)/*.txt $(ODIR)/*.o $(ODIR)/*.optrpt
 	@rm -rf $(PODIR)/*.x $(PODIR)/*.dat $(PODIR)/*.txt $(PODIR)/*.o $(PODIR)/*.optrpt
+	@rm -rf $(ODIR)/serial/* $(ODIR)/thread/* $(ODIR)/output/* $(ODIR)/output_bak/*
 
 clean_obj:
 	@rm -rf $(ODIR)/*.o $(ODIR)/*.optrpt

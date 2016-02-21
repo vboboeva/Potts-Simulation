@@ -79,7 +79,7 @@ LC_PNet::~LC_PNet(){
 
 void LC_PNet::connect_units(std::default_random_engine & generator){
 
-    int i,j,Ctemp = C;
+    int i,j,Ctemp = 0;
     RandomSequence sequence(this->N); //Sequence between 0 and N-1
 
     //Fill cm matrix with indices of potts units
@@ -88,18 +88,17 @@ void LC_PNet::connect_units(std::default_random_engine & generator){
         sequence.shuffle(generator);
 
         //Store in the inverse cm
-        for(j = 0; j < Ctemp; ++j){
+        for(j = 0; j < C; ++j){
             // Error, I have to avoid having the self connection
             if(sequence.begin()[j] == i){
-                Ctemp++;
-                continue;
+                Ctemp = 1;
             }
 
-            this->cm[C*i + j] = sequence.begin()[j];
-            this->ucm[i*N + sequence.begin()[j]] = 1;
+            this->cm[C*i + j] = sequence.begin()[j + Ctemp];
+            this->ucm[i*N + sequence.begin()[j + Ctemp]] = 1;
         }
 
-        Ctemp = C;
+        Ctemp = 0;
     }
 
 }
@@ -140,7 +139,7 @@ void LC_PNet::init_J(const int & p, const __fpv & a, const int * xi){
                     this->J[S*C*S*i + C*S*j + S*k + l] = 0;
 
                     for(m = 0; m < p; ++m){
-                        this->J[S*C*S*i + C*S*j + S*k + l] += ((xi[p * i + m]==j)-as)*((xi[p * cm[C*i + k] + m]==l)-as);
+                        this->J[S*C*S*i + C*S*j + S*k + l] += ((xi[p * i + m]==j)-as)*((xi[p * this->cm[C*i + k] + m]==l)-as);
                     }
 
                     this->J[S*C*S*i + C*S*j + S*k + l] /= (__fpv)(a * (1.0 - as)*(__fpv)C);
@@ -232,6 +231,7 @@ void LC_PNet::update_rule(const int & unit, const __fpv buffer[], const int & pa
 
         this->h[unit*S + i] += temp + (w * this->active_states[unit*S + i] - self + INcost * (pattern == i));
 
+
         this->theta[unit*S + i] += tb2 * (this->active_states[unit*S + i]-this->theta[unit*S + i]);
 	    this->active_r[unit*S + i] += tb1 * (this->h[unit*S + i]-this->theta[unit*S + i]-this->active_r[unit*S + i]);
 
@@ -275,6 +275,7 @@ void LC_PNet::update_rule(const int & unit, const __fpv buffer[], const int & pa
         Z += e1[i];
     }
 
+
     Z += exp(tbeta * (this->inactive_r[unit] + U - rmax));
     Z=1.0/Z;
 
@@ -287,6 +288,13 @@ void LC_PNet::update_rule(const int & unit, const __fpv buffer[], const int & pa
     /*
     END OF VERSION 2.0 "last part"
     */
+
+    //Not best practice but still good tool for debugging
+    // if(i == i){
+    //     std::cout.precision(30);
+    //     std::cout << std::scientific;
+    //     std::cout << this->theta[unit*S + i] << std::endl;
+    // }
 }
 
 void LC_PNet::start_dynamics(std::default_random_engine & generator, const int & p,const int & tstatus, const int & nupdates, const int * xi, const int & pattern, const __fpv & a, const __fpv & U, const __fpv & w, const __fpv & g, const __fpv & tau, const __fpv & b1, const __fpv & b2, const __fpv & b3, const __fpv & beta, const int & tx){
@@ -349,7 +357,7 @@ void LC_PNet::start_dynamics(std::default_random_engine & generator, const int &
 
 
             if((t % tstatus) == 0){
-                if(*this->stop){
+                if(this->stop != NULL && *this->stop){
                     goto end;
                 }
                 latching_length = (double)t / N;
@@ -388,6 +396,24 @@ void LC_PNet::reset(const __fpv & beta, const __fpv & U){
     this->msequence.clear();
     this->infinite = false;
     this->init_states(beta,U);
+
+    int i,j,k,l;
+
+    for(i = 0; i < N; ++i){
+        for(j = 0; j < S; ++j){
+            this->h[S*i + j] = 0;
+            for(k = 0; k < C; ++k){
+                for(l = 0; l < S; ++l){
+                    this->h[S*i + j] += this->J[S*C*S*i + C*S*j + S*k + l] * this->active_states[S*cm[C*i + k] + l];
+                }
+            }
+
+            this->active_r[S*i + j] = this->h[S*i + j];
+            this->theta[S*i + j] = this->active_states[S*i + j];
+
+        }
+    }
+
 }
 
 void LC_PNet::evaluate_m(const int & p, const __fpv & a, const int * xi, __fpv m[]){

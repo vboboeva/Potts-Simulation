@@ -14,28 +14,18 @@
 #include "simulation.h"
 #include "config.h"
 
-void PottsSim(struct parameters params, std::string filename, const int & id, std::string mode){
+void PottsSim(struct parameters params, const int & pid, const int & msml){
 
     std::chrono::high_resolution_clock::time_point t1;
     std::chrono::high_resolution_clock::time_point t2;
-    std::string strategy;
+
+    t1 = std::chrono::high_resolution_clock::now();
 
     std::ofstream ksequence;
     std::ofstream msequence;
     std::ofstream llength;
-    //std::ostream & ofile = std::cout;
-    //ofile.open(filename, std::ios::app);
-
-    // if(mode == "auto"){
-    //     if( ((__fpv)params.N / params.C < 1.7) && (params.N > 1500) ){
-    //         strategy = "hc";
-    //     }else{
-    //         strategy = "lc";
-    //     }
-    // }
 
 
-    t1 = std::chrono::high_resolution_clock::now();
     //Random seed init
     std::default_random_engine generator;
     //generator.seed(53434321); Inside pattern gen I'm using srand48
@@ -77,33 +67,36 @@ void PottsSim(struct parameters params, std::string filename, const int & id, st
     ***************************************************************************/
     std::cout << "STARTING DYNAMICS" << std::endl;
     //Start the dynamics
-    t1 = std::chrono::high_resolution_clock::now();
 
-    int patt_cued,i;
+    int patt,i;
+    int p_cued = params.p;
+    //If the number of pattern is higher than 100 simply run the sim for 100 different cues
+    if(params.p >= 100) p_cued = 100;
 
-    std::vector<__fpv> llseq;
-    std::vector<__fpv>::iterator l;
+    std::vector<bool> llseq;
+    std::vector<bool>::iterator l;
     std::vector<int>::iterator k;
     std::vector<__fpv>::iterator m;
 
-    ksequence.open("output/ksequence_S"+std::to_string(params.S)+"_p"+std::to_string(params.p)+".dat",std::ios::app);
-    msequence.open("output/msequence_S"+std::to_string(params.S)+"_p"+std::to_string(params.p)+".dat",std::ios::app);
-    llength.open("output/llength_S"+std::to_string(params.S)+"_p"+std::to_string(params.p)+".dat",std::ios::app);
+    ksequence.open("serial/ksequence_S"+std::to_string(params.S)+"_p"+std::to_string(params.p)+".dat",std::ios::app);
+    msequence.open("serial/msequence_S"+std::to_string(params.S)+"_p"+std::to_string(params.p)+".dat",std::ios::app);
+    llength.open("serial/llength_S"+std::to_string(params.S)+"_p"+std::to_string(params.p)+".dat",std::ios::app);
 
-    for(patt_cued=0; patt_cued < params.p ; patt_cued++){
 
-        std::cout << "S: "<< params.S << " p: "<< params.p << " cued: " << patt_cued << std::endl;
-        pnet.init_states(params.beta,params.U);
+    generator.seed(12345);
 
-        pnet.ksequence.clear();
-        pnet.msequence.clear();
+    for(patt=0; patt < p_cued ; patt++){
+
+        std::cout << "S: "<< params.S << " p: "<< params.p << " cued: " << patt << std::endl;
+        pnet.reset(params.beta,params.U);
+
 
         pnet.start_dynamics(generator,
                             params.p,
                             params.tstatus, //tstatus (tempostampa)
                             params.nupdates,  //Number of updates
                             pgen.get_patt(),
-                            patt_cued, //Pattern cued
+                            patt, //Pattern cued
                             params.a,
                             params.U,
                             params.w,
@@ -116,10 +109,7 @@ void PottsSim(struct parameters params, std::string filename, const int & id, st
                             500*params.N //tx (n0)
                             );
 
-
-
-
-        ksequence << patt_cued << " ";
+        ksequence << patt << " ";
         k = pnet.ksequence.begin();
         while( k!= pnet.ksequence.end()){
             ksequence << *k << " ";
@@ -127,7 +117,7 @@ void PottsSim(struct parameters params, std::string filename, const int & id, st
         }
         ksequence << std::endl;
 
-        msequence << patt_cued << " ";
+        msequence << patt << " ";
         m = pnet.msequence.begin();
         while( m!= pnet.msequence.end()){
             msequence << *m << " ";
@@ -135,25 +125,12 @@ void PottsSim(struct parameters params, std::string filename, const int & id, st
         }
         msequence << std::endl;
 
-        llength << patt_cued << " ";
+        llength << patt << " ";
         llength << pnet.latching_length << std::endl;
 
-        llseq.push_back(pnet.latching_length);
-        bool inf;
-        __fpv value = pnet.latching_length;//The maximum latching length
-        if(patt_cued > 10){
-            inf = true;
-            l = llseq.end();
-            for(i = 0; i < 10; ++i){
-                l--;
-                if(value != *l) inf = false;
-            }
+        if(pnet.infinite)llseq.push_back(pnet.infinite);
+        if(llseq.size() == msml)break;
 
-            if(inf == true && value > (params.nupdates - params.tstatus)){
-                std::cout << "Infinite latching regime" << std::endl;
-                break;
-            }
-        }
     }
 
     ksequence.close();

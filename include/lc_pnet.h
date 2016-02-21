@@ -53,11 +53,16 @@ class LC_PNet : public PNet {
         void reset(const __fpv & beta, const __fpv & U);
 
         __fpv * get_J(){return this->J;}
+        __fpv * get_active_r(){return this->active_r;}
+        __fpv * get_theta(){return this->theta;}
+        __fpv * get_active_states(){return this->active_states;}
         int * get_cm(){return this->cm;}
         int * get_ucm(){return this->ucm;}
+
         void set_J(__fpv * J){this->J = J;}
         void set_cm(int * cm){this->cm = cm;}
         void set_ucm(int * ucm){this->ucm = ucm;}
+
 
         void connect_units(std::default_random_engine & generator);
         void init_states(const __fpv & beta, const __fpv & U);

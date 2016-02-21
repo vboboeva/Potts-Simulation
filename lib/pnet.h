@@ -20,7 +20,7 @@ class PNet{
         void get_status(const int & p, const int & tx, const int & t, const int * xi, const __fpv & a, int & Mumaxold, int & Mumax, int & steps, bool & stop);
 
     public:
-        PNet(const int & N){this->N = N; this->infinite = false;}
+        PNet(const int & N){this->N = N; this->infinite = false; this->stop = NULL;}
 
         std::vector<int> ksequence;
         std::vector<__fpv> msequence;

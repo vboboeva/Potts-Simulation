@@ -2,7 +2,7 @@
 #define __PTHREAD_SIMULATION_H
 
 
-void PottsSim(struct parameters params, const int & threads);
+void ThreadedPottsSim(struct parameters params, const int & threads, const int & msml);
 
 
 #endif
