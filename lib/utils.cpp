@@ -121,7 +121,9 @@ void load_params(std::string filename, struct parameters & params){
 
     }
 
-
+    //Default start and end cue
+    params.start_cue = 0;
+    params.end_cue = params.p;
 
 }
 

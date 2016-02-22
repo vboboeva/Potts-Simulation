@@ -19,21 +19,40 @@ int main(int argc, char *argv[]){
     /********************************************/
 
     double t1,t2;
-    int sims; //count the total sims
+    int sims, division, rem, p; //count the total sims
 
     if(PPS::pid == 0){
-        int i,j;
+        int i,j,k;
 
         t1 = MPI::Wtime();
         std::cout << "Potts simulation" << std::endl;
         struct parameters params;
         load_params("params.cfg", params);
 
+
         int S[] = {3, 5, 7, 9};
         for(i = 0; i < 4; ++i){
             params.S = S[i];
             for(j = 10; j < 1000; j+=50 ){
+
                 params.p = j;
+
+                p = params.p;
+                if(p > 100) p = 100;
+
+                division = p / 10; //Number of params over number of threads
+                rem = p % 10;
+
+                for(k = 0; k < division; ++i){
+                    params.start_cue = 10*k;
+                    params.end_cue = params.start_cue + 10;
+                    PPS::plist.push_back(params);
+                }
+                //Last sim in case there's a remainder
+                if(rem != 0){
+                    params.start_cue = 10*division;
+                    params.end_cue += params.start_cue + rem;
+                }
                 PPS::plist.push_back(params);
             }
         }

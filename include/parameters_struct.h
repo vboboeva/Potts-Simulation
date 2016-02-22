@@ -13,7 +13,8 @@ struct parameters{
     int N_fact;
     int Num_fact;
     int tstatus;
-    int cued;
+    int start_cue;
+    int end_cue;
     __fpv a;
     __fpv U;
     __fpv b1;
