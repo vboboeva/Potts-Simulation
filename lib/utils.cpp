@@ -151,4 +151,6 @@ void print_params(struct parameters & params){
     std::cout << params.a_pf <<std::endl;
     std::cout << params.fact_eigen_slope <<std::endl;
     std::cout << params.tstatus <<std::endl;
+    std::cout << params.start_cue <<std::endl;
+    std::cout << params.end_cue <<std::endl;
 }

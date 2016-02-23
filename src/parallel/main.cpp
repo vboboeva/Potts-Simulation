@@ -19,7 +19,7 @@ int main(int argc, char *argv[]){
     /********************************************/
 
     double t1,t2;
-    int sims, division, rem, p; //count the total sims
+    int sims, division, rem, p, threads=10; //count the total sims
 
     if(PPS::pid == 0){
         int i,j,k;
@@ -40,18 +40,18 @@ int main(int argc, char *argv[]){
                 p = params.p;
                 if(p > 100) p = 100;
 
-                division = p / 10; //Number of params over number of threads
-                rem = p % 10;
+                division = p / threads; //Number of params over number of threads
+                rem = p % threads;
 
                 for(k = 0; k < division; ++k){
-                    params.start_cue = 10*k;
-                    params.end_cue = params.start_cue + 10;
+                    params.start_cue = threads*k;
+                    params.end_cue = params.start_cue + threads;
                     PPS::plist.push_back(params);
                 }
                 //Last sim in case there's a remainder
                 if(rem != 0){
-                    params.start_cue = 10*division;
-                    params.end_cue += params.start_cue + rem;
+                    params.start_cue = threads*division;
+                    params.end_cue = params.start_cue + rem;
                 }
                 PPS::plist.push_back(params);
             }
