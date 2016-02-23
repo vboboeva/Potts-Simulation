@@ -13,7 +13,8 @@ module load openmpi/1.10.1/intel/15.0
 cd $PBS_O_WORKDIR
 cd ../../
 
-make
+make clean
+make -j 4
 
 cd $PBS_O_WORKDIR
 
