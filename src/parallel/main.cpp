@@ -43,7 +43,7 @@ int main(int argc, char *argv[]){
                 division = p / 10; //Number of params over number of threads
                 rem = p % 10;
 
-                for(k = 0; k < division; ++i){
+                for(k = 0; k < division; ++k){
                     params.start_cue = 10*k;
                     params.end_cue = params.start_cue + 10;
                     PPS::plist.push_back(params);
