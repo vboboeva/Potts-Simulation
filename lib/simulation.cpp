@@ -69,9 +69,7 @@ void PottsSim(struct parameters params, const int & pid, const int & msml){
     //Start the dynamics
 
     int patt,i;
-    int p_cued = params.p;
-    //If the number of pattern is higher than 100 simply run the sim for 100 different cues
-    if(params.p >= 100) p_cued = 100;
+    int p_cued = params.end_cue - params.start_cue;
 
     std::vector<bool> llseq;
     std::vector<bool>::iterator l;
@@ -85,9 +83,12 @@ void PottsSim(struct parameters params, const int & pid, const int & msml){
 
 
 
-    for(patt=0; patt < p_cued ; patt++){
+    for(i=0; i < p_cued ; i++){
+
+        patt = params.start_cue + i;
 
         std::cout << "S: "<< params.S << " p: "<< params.p << " cued: " << patt << std::endl;
+
         generator.seed(12345);
         pnet.reset(params.beta,params.U);
 

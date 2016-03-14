@@ -64,9 +64,7 @@ void *fthreads(void *threadarg){
     d = (struct thread_data *) threadarg;
 
     struct parameters params = gp.params;
-    int p_cued = params.p;
-    //If the number of pattern is higher than 100 simply run the sim for 100 different cues
-    if(params.p >= 100) p_cued = 100;
+    int p_cued = params.end_cue - params.start_cue;
 
     int rem, patt, num_sim, i;
     rem = p_cued % d->total_threads;
@@ -92,7 +90,7 @@ void *fthreads(void *threadarg){
 
     for( i = 0; i < num_sim; ++i){
 
-        patt = d->thread_id + i*d->total_threads;
+        patt = params.start_cue + d->thread_id + i*d->total_threads;
 
         //In order to have the same result as with the Psim without threads remember to reset the seed to the
         //same value each time
@@ -200,9 +198,9 @@ void ThreadedPottsSim(struct parameters params, const int & threads, const int &
         thread_data_array[i].total_threads = threads;
     }
 
-    ksequence.open("thread/ksequence_S"+std::to_string(params.S)+"_p"+std::to_string(params.p)+".dat",std::ios::app);
-    msequence.open("thread/msequence_S"+std::to_string(params.S)+"_p"+std::to_string(params.p)+".dat",std::ios::app);
-    llength.open("thread/llength_S"+std::to_string(params.S)+"_p"+std::to_string(params.p)+".dat",std::ios::app);
+    ksequence.open("thread/ksequence_S"+std::to_string(params.S)+"_p"+std::to_string(params.p)+"_"+std::to_string(params.start_cue)+".dat",std::ios::app);
+    msequence.open("thread/msequence_S"+std::to_string(params.S)+"_p"+std::to_string(params.p)+"_"+std::to_string(params.start_cue)+".dat",std::ios::app);
+    llength.open("thread/llength_S"+std::to_string(params.S)+"_p"+std::to_string(params.p)+"_"+std::to_string(params.start_cue)+".dat",std::ios::app);
 
     //Random seed init
     std::default_random_engine generator;

@@ -39,7 +39,7 @@ void PPS::start(){
     MPI::Datatype datatypes[2];
     MPI::Aint extent,lb;
 
-    blockcounts[0] = 10; //Number of ints
+    blockcounts[0] = 11; //Number of ints
     blockcounts[1] = 13; //number of __fpv
     datatypes[0] = MPI::INT;
     datatypes[1] = MPIFPV;

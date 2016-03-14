@@ -1,10 +1,10 @@
 #!/bin/bash
 #PBS -N PottsSweep
-#PBS -l walltime=12:00:00
-#PBS -l nodes=10:ppn=20
-#PBS -q regular
+#PBS -l walltime=8:00:00
+#PBS -l nodes=32:ppn=20
+#PBS -q wide
 #PBS -m abe
-#PBS -M vboboeva@sissa.it
+#PBS -M leonardo.romor@gmail.com
 
 module purge
 module load testing
@@ -13,17 +13,18 @@ module load openmpi/1.10.1/intel/15.0
 cd $PBS_O_WORKDIR
 cd ../../
 
-make
+make clean
+make -j 4
 
 cd $PBS_O_WORKDIR
 
 #Create the thread directory if it doesn't exit
 mkdir -p thread
 #Clean it
-rm thread/* -f
+rm -f thread/*
 
 #Start the simulation, remember to select the correct number of threads and processes.
 #The maximum performance number of threads in ulisse is 10, (10 physical cores per socket, each node has 2 sockets)
 #the number of processes per node should be then 2, 1 process per socket, each process will then spawn 10 threads each,
 #filling in this way with 20 threads the whole node.
-mpirun --bind-to socket -np 200 ./pscheduler_psim.x > stdout.txt
+mpirun -report-bindings --map-by node --bind-to socket -np 65 ./pscheduler_psim.x > stdout.txt
