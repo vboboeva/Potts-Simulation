@@ -4,7 +4,7 @@
 #PBS -l nodes=32:ppn=20
 #PBS -q wide
 #PBS -m abe
-#PBS -M leonardo.romor@gmail.com
+#PBS -M vezha.boboeva@gmail.com
 
 module purge
 module load testing
