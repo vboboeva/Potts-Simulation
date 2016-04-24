@@ -22,7 +22,7 @@ void PNet::get_status(const int & p, const int & tx, const int & t, const int * 
             }
         }
 
-        if(Mumaxold != Mumax && Mmax > 0.5){
+        if(Mumaxold != Mumax ){ //&& Mmax > 0.5 we remove this condition because we want a smoother contour graph
             steps++;
             Mumaxold = Mumax;
 
